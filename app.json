@@ -1,0 +1,26 @@
+{
+  "expo": {
+    "name": "voices-app",
+    "slug": "voices-app",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "updates": {
+      "fallbackToCacheTimeout": 0
+    },
+    "assetBundlePatterns": [
+      "**/*"
+    ],
+    "ios": {
+      "supportsTablet": true
+    },
+    "android": {
+      "adaptiveIcon": {
+        
+        "backgroundColor": "#FFFFFF"
+      }
+    },
+    "web": {
+     
+    }
+  }
+}

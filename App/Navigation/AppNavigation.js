@@ -2,12 +2,11 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 import { NavigationContainer } from '@react-navigation/native'
 import { createStackNavigator } from '@react-navigation/stack'
 import React from 'react';
-import { Images, Colors, Metrics } from '../Themes'
 import { StyleSheet, Image } from 'react-native';
-import { Entypo } from '@expo/vector-icons';
-import MainMap from '../Screens/MainMap.js'
-import PlaylistHome from '../Screens/PlaylistHome.js'
-import RecordHome from '../Screens/RecordHome.js'
+import ExploreComponent from './ExploreComponent.js';
+import PlaylistComponent from './PlaylistComponent.js';
+import RecordComponent from './RecordComponent.js';
+import { Ionicons, MaterialIcons, FontAwesome } from '@expo/vector-icons';
 
 
 
@@ -35,35 +34,6 @@ tabBarOptions={{
 
 */
 
-const ExploreNav = createStackNavigator();
-function ExploreComponent () {
-  return (
-  <ExploreNav.Navigator headerMode='float'>
-    <ExploreNav.Screen name={'MainMap'} component={MainMap}/>
-  </ExploreNav.Navigator>
-  );
-}
-
-const PlaylistNav = createStackNavigator();
-function PlaylistComponent () {
-  return (
-    <PlaylistNav.Navigator headerMode='float'>
-      <PlaylistNav.Screen name={'PlaylistHome'} component={PlaylistHome} />
-    </PlaylistNav.Navigator>
-  );
-}
-
-const RecordNav = createStackNavigator();
-function RecordComponent () {
-  return (
-    <RecordNav.Navigator headerMode='float'>
-      <RecordNav.Screen name={'RecordHome'} component={RecordHome} />
-    </RecordNav.Navigator>
-  );
-}
-
-
-
 
 
 const TabNav = createBottomTabNavigator();
@@ -71,13 +41,36 @@ export default function AppNavigation() {
   return (
     <NavigationContainer>
       <TabNav.Navigator
-        initialRouteName='FeedScreen'
+        initialRouteName='Explore'
+
+        screenOptions={({ route }) => ({
+          tabBarIcon: ({focused, color, size}) => {
+            if (route.name == "Explore") {
+              return (
+                <Ionicons name={'ios-globe'} color={color} size={36}/>
+              );
+            }
+            if (route.name == "Record") {
+              return (
+                <FontAwesome name={'microphone'} color={color} size={36}/>
+              );
+            }if (route.name == "Playlist") {
+              let color = focused ? 'black' : 'grey';
+              return (
+                <MaterialIcons name={'playlist-play'} color={color} size={48}/>
+              );
+            }
+            
+          },
+        })}
 
         tabBarOptions={{
-          activeTintColor: Colors.black,
-          showLabel: true,
-          
-        }}>
+          showLabel: false,
+          activeTintColor: 'black',
+
+        }}
+
+      >
         <TabNav.Screen name="Explore" component={ExploreComponent} />
         <TabNav.Screen name="Record" component={RecordComponent} />
         <TabNav.Screen name="Playlist" component={PlaylistComponent} />

@@ -7,12 +7,12 @@ import { Images } from '../../Themes/index.js';
 import { useNavigation } from '@react-navigation/native';
     
     
-export default function EditStory () {
+export default function StoryInfo () {
     const navigation = useNavigation();
     return (
         <View style ={styles.container}>
             <BackgroundGradient/>
-            <Button title={'Story Info'} onPress={() => {navigation.navigate('StoryInfo')}}/>
+            <Button title={'Confirmation'} onPress={() => {navigation.navigate('Confirmation')}}/>
         </View>
     );
 

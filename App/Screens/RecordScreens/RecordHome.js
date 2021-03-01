@@ -1,24 +1,79 @@
 import React, { useState, useEffect } from 'react';
 import { StyleSheet, Text, SafeAreaView, View, AsyncStorage, Image, TouchableOpacity, FlatList, Button } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
+import BackgroundGradient from '../../Components/BackgroundGradient.js';
+import RecordingOrb from '../../Components/RecordingOrb.js';
+import LongButton from '../../Components/LongButton.js';
+import { Images } from '../../Themes/index.js';
+import { useNavigation } from '@react-navigation/native';
 
 export default function RecordHome() {
+    const navigation = useNavigation();
+    const [time, setTime] = useState(0);
+    const [recordState, changeRecordState] = useState({
+        paused: true,
+        orb: Images.blueOrb,
+        instructions: 'Tap to Start'
+    });
+    var interval = null;
+
+
+    const restartTimer = () => {
+        changeRecordState({
+            paused: true,
+            orb: Images.blueOrb,
+            instructions: 'Tap to Start'
+        });
+        setTime(0);
+        
+
+    }
+
+    const pauseOrContinue = () => {
+        recordState.paused ? 
+        changeRecordState({
+            paused: false,
+            orb: Images.yellowOrb,
+            instructions: "Tap to Stop"
+        }) :
+        changeRecordState({
+            paused: true,
+            orb: Images.blueOrb,
+            instructions: 'Tap to Start'
+        })
+    }
+
+    useEffect(() => {
+        
+        if (!recordState.paused) {
+            interval = setInterval(() => {
+                setTime(time => time + 1);
+            }, 1000);
+        }
+        else {
+            clearInterval(interval);
+        }
+        return () => clearInterval(interval);
+    },[recordState]);
+
+
+    
+
+
     return (
-        // <View style={styles.container}>
- 
-        //      <Text>
-
-        //         Welcome to the recording tab. This page will represent the start of the recording process. 
-        //         On this page, we need to add in a glowing button that willl allow the user to start/stop recording.
-
-        //     </Text>
-            
-        // </View>
+        
 
        <View style ={styles.container}>
-           <LinearGradient colors={['#FDF0AF', '#ffffff']} style={styles.background}>
-               <Text>Hello World!</Text>
-           </LinearGradient>
+           <BackgroundGradient/>
+           <View style={styles.orbView}>
+               <RecordingOrb onPress={pauseOrContinue} paused={recordState} time={time}/>
+           </View>
+           
+           <View style={styles.buttonView}>
+                <LongButton label='Restart' onPress={restartTimer}/>
+                <LongButton label='Edit Story' onPress={() => {navigation.navigate('EditStory')}}/>
+           </View>
+
        </View>
        
             
@@ -40,5 +95,20 @@ const styles = StyleSheet.create({
         top: 0,
         height: '100%',
         justifyContent: 'center'
+    },
+    orbView: {
+        flex: 3,
+        width: '100%',
+        justifyContent: 'flex-end',
+        alignItems: 'center',
+        // backgroundColor: 'grey'
+    
+    },
+    buttonView: {
+        flex: 1,
+        width: '100%',
+        justifyContent: 'center',
+        alignItems: 'center',
+        paddingBottom: 20,
     }
   });

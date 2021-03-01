@@ -2,12 +2,13 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 import { NavigationContainer } from '@react-navigation/native'
 import { createStackNavigator } from '@react-navigation/stack'
 import React from 'react';
-import { StyleSheet, Image } from 'react-native';
+import { StyleSheet, Image, SafeAreaView } from 'react-native';
 import ExploreComponent from './ExploreComponent.js';
 import PlaylistComponent from './PlaylistComponent.js';
 import RecordComponent from './RecordComponent.js';
 import { Ionicons, MaterialIcons, FontAwesome } from '@expo/vector-icons';
 
+import { useHeaderHeight } from '@react-navigation/stack';
 
 
 /* OPTIONAL: Add icons for both tabs using navigationOptions as shown in lecture
@@ -38,8 +39,10 @@ tabBarOptions={{
 
 const TabNav = createBottomTabNavigator();
 export default function AppNavigation() {
+  
+  
   return (
-    <NavigationContainer>
+      <NavigationContainer>
       <TabNav.Navigator
         initialRouteName='Explore'
 
@@ -78,5 +81,13 @@ export default function AppNavigation() {
 
       </TabNav.Navigator>
     </NavigationContainer>
+
+    
   );
 }
+
+const styles = StyleSheet.create({
+  container: {
+      flex: 1,
+  } 
+});

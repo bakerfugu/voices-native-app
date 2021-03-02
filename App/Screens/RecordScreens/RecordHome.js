@@ -107,8 +107,16 @@ const styles = StyleSheet.create({
     buttonView: {
         flex: 1,
         width: '100%',
+        flexDirection: 'row',
         justifyContent: 'center',
         alignItems: 'center',
         paddingBottom: 20,
+        paddingHorizontal: 5
     }
   });
+
+
+
+    //add confirmation to restart button to prevent user from accidentally doing it
+    //put restart and edit story button next to each other
+    //potentially record snippets instead of the entire story

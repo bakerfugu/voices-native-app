@@ -12,6 +12,11 @@ export default function StoryInfo () {
     return (
         <View style ={styles.container}>
             <BackgroundGradient/>
+            <Text>
+                Hello
+            </Text>
+
+
             <Button title={'Confirmation'} onPress={() => {navigation.navigate('Confirmation')}}/>
         </View>
     );

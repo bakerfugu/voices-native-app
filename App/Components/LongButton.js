@@ -13,14 +13,15 @@ export default function LongButton (props) {
 const styles = StyleSheet.create({
     LongButton: {
         borderRadius: 15,
-        width: '80%',
+        flex: 1,
         height: 50,
         backgroundColor: 'white',
         justifyContent: 'center',
         borderWidth: 3,
         borderColor: '#F1B600',
         alignItems: 'center',
-        marginVertical: 15
+        marginVertical: 15,
+        marginHorizontal: 10
 
     }
 });

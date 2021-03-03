@@ -5,6 +5,7 @@ import BackgroundGradient from '../../Components/BackgroundGradient.js';
 import LongButton from '../../Components/LongButton.js';
 import { Images } from '../../Themes/index.js';
 import { useNavigation } from '@react-navigation/native';
+import StoryInfoForm from '../../Components/StoryInfoForm.js';
     
     
 export default function StoryInfo () {
@@ -12,11 +13,7 @@ export default function StoryInfo () {
     return (
         <View style ={styles.container}>
             <BackgroundGradient/>
-            <Text>
-                Hello
-            </Text>
-
-
+            <StoryInfoForm/>
             <Button title={'Confirmation'} onPress={() => {navigation.navigate('Confirmation')}}/>
         </View>
     );

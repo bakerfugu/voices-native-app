@@ -6,6 +6,7 @@ import LongButton from '../../Components/LongButton.js';
 import { Images } from '../../Themes/index.js';
 import { useNavigation } from '@react-navigation/native';
 import { ImageBackground } from 'react-native';
+import DeleteOrEdit from '../../Components/DeleteOrEdit.js';
     
     
 export default function Confirmation () {
@@ -17,9 +18,13 @@ export default function Confirmation () {
                 <TouchableOpacity style={styles.recordNew}  onPress={() => {navigation.navigate('RecordHome')}}>
                     <Text style={styles.recordButtonText}>Record New Story</Text>
                 </TouchableOpacity>
+                <View style={styles.subcontainer}>
                 <Image source={Images.storyBubble} style={styles.storyBubble}>
 
-                </Image>
+            </Image>
+            <DeleteOrEdit style={styles.test}/>
+                </View>
+
             </View>
             </ImageBackground>
         </SafeAreaView>
@@ -49,11 +54,18 @@ const styles = StyleSheet.create({
         marginTop: '80%'
     },
     storyBubble: {
-        marginTop: '35%',
-        marginRight: '40%'
+        marginTop: '0%',
     },
     recordButtonText: {
         fontSize: 20
+    },
+    subcontainer: {
+        display: 'flex',
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        marginTop: '35%',
+        marginRight: '18%'
     }
 });
 

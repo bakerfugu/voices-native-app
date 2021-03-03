@@ -6,6 +6,7 @@ import LongButton from '../../Components/LongButton.js';
 import { Images } from '../../Themes/index.js';
 import { useNavigation } from '@react-navigation/native';
 import StoryInfoForm from '../../Components/StoryInfoForm.js';
+import TagsOverlay from '../../Components/TagsOverlay.js';
     
     
 export default function StoryInfo () {

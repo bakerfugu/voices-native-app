@@ -10,8 +10,6 @@ import { useNavigation } from '@react-navigation/native';
 import Trimmer from 'react-native-trimmer'
 
 import SvgPlayButtonIcon from '../../../icons/PlayButtonIcon'
-import SvgAddPhotoSelected from '../../../icons/AddPhotoSelected'
-
 import BackgroundGradient from '../../Components/BackgroundGradient.js';    
     
 export default function EditStory () {

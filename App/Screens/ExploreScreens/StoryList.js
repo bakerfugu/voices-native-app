@@ -12,7 +12,15 @@ export default function StoryList () {
     return (
         <View style ={styles.container}>
             <BackgroundGradient/>
-            <Button title={'Story Listen'} onPress={() => {navigation.navigate('StoryListen')}}/>
+            <View style={styles.header}>
+
+            </View>
+            
+            <View style={styles.test}>
+                <Button title={'Story Listen'} onPress={() => {navigation.navigate('StoryListen')}}/>
+            </View>
+
+            
         </View>
     );
 
@@ -25,6 +33,18 @@ const styles = StyleSheet.create({
       justifyContent: 'center',
       alignItems: 'center',
     },
+    header: {
+        width: '100%',
+        height: 100,
+        // backgroundColor: 'grey',
+        left: 0,
+        top: 0
+    },
+    test: {
+        flex: 1,
+        width: '100%',
+        backgroundColor: 'lightblue'
+    }
 });
 
     

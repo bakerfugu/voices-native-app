@@ -12,7 +12,7 @@ export default function StoryListen () {
     return (
         <View style ={styles.container}>
             <BackgroundGradient/>
-
+            
         </View>
     );
 
@@ -22,9 +22,10 @@ export default function StoryListen () {
 const styles = StyleSheet.create({
     container: {
       flex: 1,
-      justifyContent: 'center',
+      justifyContent: 'flex-start',
       alignItems: 'center',
     },
+    
 });
 
     

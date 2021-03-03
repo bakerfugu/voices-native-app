@@ -5,6 +5,7 @@ import BackgroundGradient from '../../Components/BackgroundGradient.js';
 import LongButton from '../../Components/LongButton.js';
 import { Images } from '../../Themes/index.js';
 import { useNavigation } from '@react-navigation/native';
+import StoryLocationComponent from '../../Components/StoryLocationComponent.js'
     
     
 export default function StoryList () {
@@ -15,11 +16,9 @@ export default function StoryList () {
             <View style={styles.header}>
 
             </View>
-            
-            <View style={styles.test}>
-                <Button title={'Story Listen'} onPress={() => {navigation.navigate('StoryListen')}}/>
-            </View>
 
+
+            <StoryLocationComponent/>
             
         </View>
     );

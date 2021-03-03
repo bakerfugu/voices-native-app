@@ -14,7 +14,9 @@ export default function PlaylistComponent () {
           headerTransparent:true,
           title : 'Playlist'
           
-          }}  />
+          }}  
+      />
+      
     </PlaylistNav.Navigator>
   );
 }

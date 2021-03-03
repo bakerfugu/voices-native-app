@@ -12,22 +12,16 @@ export default function Confirmation () {
     const navigation = useNavigation();
     return (
         <SafeAreaView>
-            
             <ImageBackground source={Images.santaMonica} style={styles.image}>
             <View style ={styles.container}>
                 <TouchableOpacity style={styles.recordNew}  onPress={() => {navigation.navigate('RecordHome')}}>
                     <Text style={styles.recordButtonText}>Record New Story</Text>
                 </TouchableOpacity>
-
-
                 <Image source={Images.storyBubble} style={styles.storyBubble}>
 
                 </Image>
             </View>
             </ImageBackground>
-
-        
-
         </SafeAreaView>
         
     );

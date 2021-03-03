@@ -9,6 +9,9 @@ import {
 import { useNavigation } from '@react-navigation/native';
 import Trimmer from 'react-native-trimmer'
 
+import SvgPlayButtonIcon from '../../../icons/PlayButtonIcon'
+import SvgAddPhotoSelected from '../../../icons/AddPhotoSelected'
+
 import BackgroundGradient from '../../Components/BackgroundGradient.js';    
     
 export default function EditStory () {
@@ -29,6 +32,10 @@ export default function EditStory () {
                 totalDuration={60000}
                 trimmerLeftHandlePosition={leftHandlePos}
                 trimmerRightHandlePosition={rightHandlePos}
+            />
+            <SvgPlayButtonIcon
+                width={"80"}
+                height={"80"}
             />
             <Button title={'Story Info'} onPress={() => {navigation.navigate('StoryInfo')}}/>
         </View>

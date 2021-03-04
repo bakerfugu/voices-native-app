@@ -13,6 +13,7 @@ export default function StoryInfo () {
     return (
         <View style ={styles.container}>
             <BackgroundGradient/>
+            <View style={styles.header}/>
             <StoryInfoForm/>
             <Button title={'Confirmation'} onPress={() => {navigation.navigate('Confirmation')}}/>
         </View>
@@ -27,6 +28,10 @@ const styles = StyleSheet.create({
       justifyContent: 'center',
       alignItems: 'center',
     },
+    header: {
+        height: 100,
+        width: '100%'
+    }
 });
 
     

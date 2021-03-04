@@ -15,8 +15,15 @@ export default function StoryListen () {
             <View style={styles.header}/>
             {/* <ScrollView> */}
                 <View style={styles.pictureView}>
-                   <Image source={Images.oldImage} resizeMode='contain' style={styles.image}/>
+                   <Image source={Images.silverMan} resizeMode='contain' style={styles.image}/>
+                   <Text style={styles.title}> Title of Story </Text>
+                   <Text style={styles.author}> @author</Text>
                 </View>
+
+                <View style={styles.playBarAndButtons}>
+
+                </View>
+                
             {/* </ScrollView */}
             
         </View>
@@ -42,16 +49,29 @@ const styles = StyleSheet.create({
         flex: 1,
         width: '100%',
         flexDirection: 'column',
-        backgroundColor: 'grey',
+        // backgroundColor: 'grey',
         justifyContent: 'center',
         alignItems: 'center',
+        
 
     },
     image: {
-        height: '80%',
+        width: '50%',
         aspectRatio: 1,
+        borderRadius: 25,
+        marginBottom: 10
 
-    }
+    },
+    title: {
+        fontSize: 22,
+        marginBottom: 10,
+    },
+    author: {
+        fontSize: 18,
+        color: 'grey',
+
+    },
+
     
 });
 

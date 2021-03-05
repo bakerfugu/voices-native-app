@@ -56,7 +56,9 @@ export default function RecordHome() {
         return () => clearInterval(interval);
     },[recordState]);
 
-
+    const nextPage =  () => {
+        navigation.navigate('EditStory');
+    }
     
 
 
@@ -71,7 +73,7 @@ export default function RecordHome() {
            
            <View style={styles.buttonView}>
                 <LongButton label='Restart' onPress={restartTimer}/>
-                <LongButton label='Edit Story' onPress={() => {navigation.navigate('EditStory')}}/>
+                <LongButton label='Edit Story' onPress={nextPage}/>
            </View>
 
        </View>

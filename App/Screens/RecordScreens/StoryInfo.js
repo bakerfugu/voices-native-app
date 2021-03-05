@@ -4,12 +4,14 @@ import { LinearGradient } from 'expo-linear-gradient';
 import BackgroundGradient from '../../Components/BackgroundGradient.js';
 import LongButton from '../../Components/LongButton.js';
 import { Images } from '../../Themes/index.js';
-import { useNavigation } from '@react-navigation/native';
+import { NavigationContainer, useNavigation } from '@react-navigation/native';
 import {
     Dropdown,
     GroupDropdown,
     MultiselectDropdown,
-  } from 'sharingan-rn-modal-dropdown';
+} from 'sharingan-rn-modal-dropdown';
+import StoryInfoForm from '../../Components/StoryInfoForm.js';
+import Confirmation from './Confirmation.js';
     
     
 export default function StoryInfo () {
@@ -36,7 +38,8 @@ export default function StoryInfo () {
         <View style={styles.container}>
             <BackgroundGradient/>
             <View style={styles.header}/>
-            <View style={styles.tagDropDrown}>
+            <StoryInfoForm/>
+            {/* <View style={styles.tagDropDrown}>
             <MultiselectDropdown
                 label='Tags'
                 data={data}
@@ -50,7 +53,8 @@ export default function StoryInfo () {
                 
             />
 
-            </View>
+            </View> */}
+            <Button title={'Confirmation'} onPress={() => {navigation.navigate('Confirmation')}}/>
             
         </View>
        

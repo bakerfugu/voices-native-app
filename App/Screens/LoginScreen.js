@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
 import { StyleSheet, Text, SafeAreaView, View, TextInput, Button, Image, TouchableOpacity } from 'react-native';
-import firestore from '../../../firebase';
+import firestore from '../../firebase';
 import firebase from 'firebase';
-import BackgroundGradient from '../../Components/BackgroundGradient';
-import {Images} from '../../Themes';
+import BackgroundGradient from '../Components/BackgroundGradient';
+import {Images} from '../Themes';
 
 export default function LoginScreen(props) {
+
+
   const [signUpName, setSignUpName] = useState('');
   const [signUpEmail, setSignUpEmail] = useState('');
   const [signUpPassword, setSignUpPassword] = useState('');
@@ -16,9 +18,11 @@ export default function LoginScreen(props) {
   // Check out this link to learn more about firebase.auth()
   // https://firebase.google.com/docs/reference/node/firebase.auth.Auth
   let signUp = async () => {
+    
     try {
       const response = await firebase.auth().createUserWithEmailAndPassword(signUpEmail, signUpPassword);
       if(response.user) {
+       
         const user = firebase.auth().currentUser;
         var userDocRef = firestore.doc('users/' + user.uid);
 
@@ -27,20 +31,31 @@ export default function LoginScreen(props) {
         userDocRef.set({
           name: signUpName
         });
+
         props.updateStatus(true);
       }
     } catch (err) {
+      if (err.code === 'auth/email-already-in-use') {
+        console.log('That email address is already in use!');
+      }
+  
+      if (err.code === 'auth/invalid-email') {
+        console.log('That email address is invalid!');
+      }
       console.log(err);
     }
   }
-  
+
+    
+    
   // Check out this link to learn more about firebase.auth()
   // https://firebase.google.com/docs/reference/node/firebase.auth.Auth
   let login = async () => {
     try {
       // Note that we don't have to tell the app that the user has logged in.
       // firebase.auth().onAuthStateChanged() in App.js communicates this for us!
-      await firebase.auth().signInWithEmailAndPassword(loginEmail, loginPassword)
+      await firebase.auth().signInWithEmailAndPassword(loginEmail, loginPassword);
+      console.log('reached');
     } catch (err) {
       console.log(err);
     }
@@ -72,7 +87,7 @@ export default function LoginScreen(props) {
         onChangeText={(signUpPassword) => setSignUpPassword(signUpPassword)}
         placeholder="Password" 
       />
-      <TouchableOpacity style={styles.button}>
+      <TouchableOpacity style={styles.button} onPress={() => signUp()}>
         <Text style={{fontSize:20, fontWeight:'bold', color:'white'}}>SIGN UP</Text>
       </TouchableOpacity>
 
@@ -97,7 +112,7 @@ export default function LoginScreen(props) {
         style={styles.button}
 
       /> */}
-      <TouchableOpacity style={styles.button}>
+      <TouchableOpacity style={styles.button} onPress={() => login()}>
         <Text style={{fontSize:20, fontWeight:'bold', color:'white'}}>LOG IN</Text>
       </TouchableOpacity>
 

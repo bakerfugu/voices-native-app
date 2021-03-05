@@ -1,7 +1,7 @@
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 import { NavigationContainer } from '@react-navigation/native'
 import { createStackNavigator } from '@react-navigation/stack'
-import React from 'react';
+import React, { useState } from 'react';
 import { StyleSheet, Image, SafeAreaView } from 'react-native';
 import ExploreComponent from './ExploreComponent.js';
 import PlaylistComponent from './PlaylistComponent.js';
@@ -9,6 +9,7 @@ import RecordComponent from './RecordComponent.js';
 import { Ionicons, MaterialIcons, FontAwesome } from '@expo/vector-icons';
 
 import { useHeaderHeight } from '@react-navigation/stack';
+import { useEffect } from 'react';
 
 
 /* OPTIONAL: Add icons for both tabs using navigationOptions as shown in lecture

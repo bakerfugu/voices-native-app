@@ -5,6 +5,7 @@ import RecordHome from '../Screens/RecordScreens/RecordHome.js'
 import EditStory from '../Screens/RecordScreens/EditStory.js'
 import StoryInfo from '../Screens/RecordScreens/StoryInfo.js'
 import Confirmation from '../Screens/RecordScreens/Confirmation.js'
+import TakePhoto from '../Screens/RecordScreens/takePhoto.js'
 const RecordNav = createStackNavigator();
 export default function RecordComponent () {
   return (
@@ -17,7 +18,7 @@ export default function RecordComponent () {
       <RecordNav.Screen name={'EditStory'} component={EditStory} 
         options={{
           headerTransparent:true,
-          title : 'Edit A Story'
+          title : 'Edit Your Story'
       }}/>
       <RecordNav.Screen name={'StoryInfo'} component={StoryInfo} 
         options={{
@@ -27,7 +28,12 @@ export default function RecordComponent () {
       <RecordNav.Screen name={'Confirmation'} component={Confirmation} 
         options={{
           headerTransparent:true,
-          title : 'Story Published!'
+          title : ''
+      }}/>
+      <RecordNav.Screen name={'TakePhoto'} component={TakePhoto} 
+          options={{
+          headerTransparent:true,
+          title : ''
       }}/>
     </RecordNav.Navigator>
   );

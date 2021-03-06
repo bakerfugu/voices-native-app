@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { StyleSheet, Text, SafeAreaView, View, Modal, Image, TouchableOpacity, FlatList, Button, Touchable } from 'react-native';
+import { StyleSheet, Pressable, Text, SafeAreaView, View, Modal, Image, TouchableOpacity, FlatList, Button, Touchable } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import BackgroundGradient from '../../Components/BackgroundGradient.js';
 import LongButton from '../../Components/LongButton.js';
@@ -7,30 +7,72 @@ import { Images } from '../../Themes/index.js';
 import { useNavigation } from '@react-navigation/native';
 import { ImageBackground } from 'react-native';
 import DeleteOrEdit from '../../Components/DeleteOrEdit.js';
+
     
     
 export default function Confirmation () {
     const navigation = useNavigation();
     const [modalVisible, setModalVisible] = useState(false);
+    const [deleted, setDeleted] = useState(false);
+
+    
+
     return (
-        <View style={styles.container}> 
+        <View style={styles.container} > 
             <ImageBackground source={Images.santaMonica} style={styles.image}>
             <View style={styles.header}/>
 
             <View style={styles.confirmationMessage}>
-                <Text style={styles.recordButtonText}>Your story has been uploaded!</Text>
+                <Text style={styles.recordButtonText}>
+                    {deleted ? "Story deleted!" : "Your story has been uploaded!"}
+                </Text>
             </View>
-            
-        
             <View style={styles.subcontainer}>
-    
-
-                <Image source={Images.storyBubble} style={styles.storyBubble}/>
-                <DeleteOrEdit style={styles.test}/>
+                
+                <Modal
+                animationType = "slide"
+                transparent = {true}
+                visible = {modalVisible}
+                onRequestClose={() => {
+                    setModalVisible(!modalVisible);
+                }}
+                >
+                <View style={styles.modalView}>
+                    <Pressable style={styles.DeleteOrEdit} >
+                        <Text onPress={() => {
+                            navigation.navigate('EditStory');
+                            setModalVisible(false);
+                            }}>
+                            Edit
+                        </Text>
+                    </Pressable>
+                    <Pressable style={styles.DeleteOrEdit} 
+                    onPress={() => {
+                        setDeleted(true);
+                        setModalVisible(false);
+                    }}
+                    >
+                        <Text>
+                            Delete
+                        </Text>
+                    </Pressable>
+                
+                </View>
+                </Modal>
+                <Pressable onPress={() => setModalVisible(true)}>
+                    {
+                        deleted ? 
+                        <View></View> 
+                        :
+                        <Image source={Images.storyBubble} style={styles.storyBubble} />  
+                    }
+              
+                </Pressable>
             </View>
-
-        
         </ImageBackground>
+
+      
+            
 
         </View>
             
@@ -80,6 +122,35 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         marginTop: '35%',
         marginRight: '18%'
-    }
+    },
+    modalView: {
+        margin: 20,
+        backgroundColor: '#F1B600',
+        borderRadius: 20,
+        marginTop: '125%',
+        marginLeft: '30%',
+        width: '22%',
+        padding: '1%',
+        alignItems: "center",
+        alignSelf: "center",
+        shadowColor: "#000",
+        shadowOffset: {
+        width: 0,
+        height: 2
+        },
+        shadowOpacity: 0.25,
+        shadowRadius: 4,
+        elevation: 5
+    },
+    DeleteOrEdit: {
+        borderRadius: 10,
+        height: 'auto',
+        width: '80%',
+        backgroundColor: 'white',
+        marginTop: '2%',
+        padding: '5%',
+        borderWidth: 3,
+        borderColor: '#F1B600',
+    },
 });
 

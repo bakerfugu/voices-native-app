@@ -11,9 +11,11 @@ import {
     GroupDropdown,
     MultiselectDropdown,
 } from 'sharingan-rn-modal-dropdown';
+import { useNavigation } from '@react-navigation/native';
     
 
 export default function StoryInfoForm () {
+    const navigation = useNavigation();
     const [valueMS, setValueMS] = useState([]);
     const onChangeMS = (value) => {
         setValueMS(value);
@@ -73,7 +75,7 @@ export default function StoryInfoForm () {
             <View placeholder="Upload Image"></View>
             <View style={styles.buttonView}>
                 <ImageButton label='Upload Image'/>
-                <ImageButton label='Take Image'/>
+                <ImageButton label='Take Image' onPress={() => navigation.navigate('TakePhoto')}/>
             </View>
             <TextInput style={styles.textInput} placeholder="Location"/>
             

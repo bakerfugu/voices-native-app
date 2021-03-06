@@ -12,6 +12,8 @@ import {
 } from 'sharingan-rn-modal-dropdown';
 import StoryInfoForm from '../../Components/StoryInfoForm.js';
 import Confirmation from './Confirmation.js';
+
+
     
     
 export default function StoryInfo () {
@@ -54,7 +56,7 @@ export default function StoryInfo () {
             />
 
             </View> */}
-            <Button title={'Confirmation'} onPress={() => {navigation.navigate('Confirmation')}}/>
+            <Button title={'Post'} onPress={() => {navigation.navigate('Confirmation')}}/>
             
         </View>
        

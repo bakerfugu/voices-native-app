@@ -8,7 +8,12 @@ const images = {
   oldImage : require('../Images/old-image.png'),
   silverMan : require('../Images/silver-man.png'),
   logo : require('../Images/voices-logo-signin.png'),
-  addPhoto : require('../Images/addPhoto.png')
+  addPhoto : require('../Images/addPhoto.png'),
+  profPlaceholder : require('../Images/tay.png'),
+  dot : require('../Images/dot.png'),
+  profSettings : require('../Images/profSettings.png'),
+  fountainsEu : require('../Images/fountainsEurope.png'),
+
 }
 
 export default images

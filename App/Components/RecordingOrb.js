@@ -4,11 +4,11 @@ import { LinearGradient } from 'expo-linear-gradient';
 import {Images} from '../Themes'
 import Timer from './Timer.js'
 
+import {AntDesign, FontAwesome5} from '@expo/vector-icons'
 
 
 
-
-export default function RecordingOrb ({onPress, time, paused}) {
+export default function RecordingOrb ({onPress, time, recordState}) {
     
     // const [instructions, setInstructions] = useState('Tap to Start');
     // const [orb, setOrb] = useState(Images.blueOrb);
@@ -61,16 +61,17 @@ export default function RecordingOrb ({onPress, time, paused}) {
             
             <TouchableOpacity style={styles.orbView} onPress={onPress}>
                 
-                <Image source={paused.orb} resizeMode='contain' style={styles.blueOrb}/>
+                <Image source={recordState.orb} resizeMode='contain' style={styles.blueOrb}/>
                 <View style={{position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, justifyContent: 'center', alignItems: 'center'}}>
                     <Timer style={styles.timer} time={time}/>
+                    <FontAwesome5 name={recordState.paused ? 'microphone' : 'pause'} color={'white'} size={48} style={{marginTop: 10}}/>
                 </View>
                 
             
                 
             </TouchableOpacity>
-            
-            <Text style={styles.instructions}>{paused.instructions}</Text>
+            {/* <AntDesign name={'caretup'} size={24} style={{marginTop: 10}}/> */}
+            {/* <Text style={styles.instructions}>{recordState.instructions}</Text> */}
 
         </View>
 
@@ -103,13 +104,13 @@ const styles = StyleSheet.create({
         backgroundColor: 'green'
     },
     instructions: {
-        marginTop: 20,
+        // marginTop: 20,
         fontSize: 24
     },
     timer: {
         position: 'absolute',
         left: 0,
-        top: 0
+        top: 0,
     }
 
   });

@@ -7,13 +7,14 @@ import LongButton from '../../Components/LongButton.js';
 import { Images } from '../../Themes/index.js';
 import { useNavigation } from '@react-navigation/native';
 
+
 export default function RecordHome() {
     const navigation = useNavigation();
     const [time, setTime] = useState(0);
     const [recordState, changeRecordState] = useState({
         paused: true,
         orb: Images.blueOrb,
-        instructions: 'Tap to Start'
+        instructions: 'Tap to Record'
     });
     var interval = null;
 
@@ -22,7 +23,7 @@ export default function RecordHome() {
         changeRecordState({
             paused: true,
             orb: Images.blueOrb,
-            instructions: 'Tap to Start'
+            instructions: 'Tap to Record'
         });
         setTime(0);
         
@@ -34,7 +35,7 @@ export default function RecordHome() {
         changeRecordState({
             paused: false,
             orb: Images.yellowOrb,
-            instructions: "Tap to Stop"
+            instructions: "Tap to Pause"
         }) :
         changeRecordState({
             paused: true,
@@ -68,7 +69,7 @@ export default function RecordHome() {
        <View style ={styles.container}>
            <BackgroundGradient/>
            <View style={styles.orbView}>
-               <RecordingOrb onPress={pauseOrContinue} paused={recordState} time={time}/>
+               <RecordingOrb onPress={pauseOrContinue} recordState={recordState} time={time}/>
            </View>
            
            <View style={styles.buttonView}>

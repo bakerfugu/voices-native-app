@@ -56,7 +56,9 @@ export default function AppNavigation() {
         
         let doc = await userDocRef.get();
         if(doc.exists) {
-          if (doc.bio) {
+          
+          if (doc.data().bio) {
+            
             setBioFilledOut(true);          
           }
         }

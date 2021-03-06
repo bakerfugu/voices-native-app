@@ -70,6 +70,9 @@ export default function ProfileInfo(props) {
   }
   return (
   
+
+
+   
     <SafeAreaView style={styles.container}>
 
       <BackgroundGradient/>
@@ -103,15 +106,6 @@ export default function ProfileInfo(props) {
       <TouchableOpacity style={continueDisabled ? styles.greyButton : styles.orangeButton} disabled={continueDisabled} onPress={submitInfo}>
         <Text style={{fontSize:20, fontWeight: 'bold', color: continueDisabled ? '#bdbdbd' : 'black'}}>Continue</Text>
       </TouchableOpacity>
-
-
-      
-
-
-
-
-
-      
 
     </SafeAreaView>
   );

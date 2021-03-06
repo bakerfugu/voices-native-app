@@ -1,6 +1,5 @@
 import React, {useState, useEffect} from 'react';
 import AppNavigation from './App/Navigation/AppNavigation';
-import LoginNavigation from './App/Navigation/LoginNavigation';
 import LoginScreen from './App/Screens/LoginScreen';
 import firebase from 'firebase';
 import "firebase/auth";
@@ -9,6 +8,7 @@ import "firebase/auth";
 
 export default function App() {
     const [loggedIn, setLoggedIn] = useState(false);
+    const [bioFilledIn, setBioFilledIn] = useState(false);
   
     // Check out this link to learn more about firebase.auth()
     // https://firebase.google.com/docs/reference/node/firebase.auth.Auth

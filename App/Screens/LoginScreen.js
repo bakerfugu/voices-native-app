@@ -29,7 +29,7 @@ export default function LoginScreen(props) {
         // Since my document doesn't exist, userDocRef.set will
         // create the document for me
         userDocRef.set({
-          name: signUpName
+          name: signUpName,
         });
 
         props.updateStatus(true);

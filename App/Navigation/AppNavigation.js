@@ -7,9 +7,13 @@ import ExploreComponent from './ExploreComponent.js';
 import PlaylistComponent from './PlaylistComponent.js';
 import RecordComponent from './RecordComponent.js';
 import { Ionicons, MaterialIcons, FontAwesome } from '@expo/vector-icons';
-
+import ProfileInfo from '../Screens/ProfileInfo.js';
 import { useHeaderHeight } from '@react-navigation/stack';
 import { useEffect } from 'react';
+
+import firebase from 'firebase';
+import "firebase/auth";
+import firestore from '../../firebase';
 
 
 /* OPTIONAL: Add icons for both tabs using navigationOptions as shown in lecture
@@ -40,8 +44,36 @@ tabBarOptions={{
 
 const TabNav = createBottomTabNavigator();
 export default function AppNavigation() {
+
+  const [bioFilledOut, setBioFilledOut] = useState(false);
+  useEffect(() => {
+    
+    async function bio() {
+      try {
+        
+        const user = firebase.auth().currentUser;
+        var userDocRef = firestore.doc('users/' + user.uid);
+        
+        let doc = await userDocRef.get();
+        if(doc.exists) {
+          if (doc.bio) {
+            setBioFilledOut(true);          
+          }
+        }
   
-  
+      } catch (err) {
+        console.log(err);
+      }
+    }
+    bio();
+    
+  }, []);
+
+  if (!bioFilledOut) {
+    return (
+      <ProfileInfo updateState={setBioFilledOut}/>
+    )
+  }
   return (
       <NavigationContainer>
       <TabNav.Navigator

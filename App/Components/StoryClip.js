@@ -4,10 +4,10 @@ import {Ionicons, MaterialIcons} from '@expo/vector-icons';
 import { useFonts } from 'expo-font';
 
 export default function StoryClip() {
-  let [fontsLoaded] = useFonts({
-    'NotoSansRegular': require('../Fonts/NotoSansMalayalam-Regular.ttf'),
-    'NotoSansBold': require('../Fonts/NotoSansMalayalam-Bold.ttf'),
-  }, []);
+  // let [fontsLoaded] = useFonts({
+  //   'NotoSansRegular': require('../Fonts/NotoSansMalayalam-Regular.ttf'),
+  //   'NotoSansBold': require('../Fonts/NotoSansMalayalam-Bold.ttf'),
+  // }, []);
 
   return (
       <View style={styles.storyInList}>

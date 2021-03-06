@@ -4,6 +4,7 @@ import { createStackNavigator } from '@react-navigation/stack'
 import MainMap from '../Screens/ExploreScreens/MainMap.js';
 import StoryList from '../Screens/ExploreScreens/StoryList.js';
 import StoryListen from '../Screens/ExploreScreens/StoryListen.js';
+import Profile from '../Screens/ExploreScreens/Profile.js';
 import {
   StyleSheet, 
   Text, 
@@ -38,6 +39,8 @@ export default function ExploreComponent () {
       headerTransparent:true,
       title : 'Story Listen'
       }} />
+
+      <ExploreNav.Screen name={'Profile'} component={Profile} />
   </ExploreNav.Navigator>
   );
 }

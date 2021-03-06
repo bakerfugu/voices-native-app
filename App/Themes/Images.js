@@ -6,7 +6,12 @@ const images = {
   storyBubble : require('../Images/smStory.png'),
   parliament : require('../Images/parliament.png'),
   oldImage : require('../Images/old-image.png'),
-  silverMan : require('../Images/silver-man.png')
+  silverMan : require('../Images/silver-man.png'),
+  profPlaceholder : require('../Images/tay.png'),
+  dot : require('../Images/dot.png'),
+  profSettings : require('../Images/profSettings.png'),
+  fountainsEu : require('../Images/fountainsEurope.png'),
+
 }
 
 export default images

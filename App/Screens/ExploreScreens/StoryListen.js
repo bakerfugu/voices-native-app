@@ -17,7 +17,7 @@ export default function StoryListen () {
                 <View style={styles.pictureView}>
                    <Image source={Images.silverMan} resizeMode='contain' style={styles.image}/>
                    <Text style={styles.title}> Title of Story </Text>
-                   <Text style={styles.author}> @author</Text>
+                   <Text style={styles.author} onPress={() => navigation.navigate('Profile')}> @author</Text>
                 </View>
 
                 <View style={styles.playBarAndButtons}>

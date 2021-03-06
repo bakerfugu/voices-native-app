@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
-import { StyleSheet, Text, SafeAreaView, View, TextInput, Button, Image, TouchableOpacity } from 'react-native';
+import { StyleSheet, Text, SafeAreaView, View, TextInput, Button, Image, TouchableOpacity,Keyboard } from 'react-native';
 import firestore from '../../firebase';
 import firebase from 'firebase';
 import BackgroundGradient from '../Components/BackgroundGradient';
 import {Images} from '../Themes';
+import { TouchableWithoutFeedback } from 'react-native-gesture-handler';
 
 export default function LoginScreen(props) {
 
@@ -46,6 +47,7 @@ export default function LoginScreen(props) {
     }
   }
 
+
     
     
   // Check out this link to learn more about firebase.auth()
@@ -68,6 +70,7 @@ export default function LoginScreen(props) {
       <Image source={Images.logo} resizeMode='stretch'/>
 
       <Text style={styles.caption}> Illuminate your world with local narratives</Text>
+    
       <TextInput
         style={styles.input}
         value={signUpName}

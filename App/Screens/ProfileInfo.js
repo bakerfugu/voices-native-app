@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { StyleSheet, Text, SafeAreaView, View, TextInput, Button, Image, TouchableOpacity } from 'react-native';
+import { StyleSheet, Text, SafeAreaView, View, TextInput, Button, Image, TouchableOpacity, TouchableWithoutFeedback, Keyboard } from 'react-native';
 import firestore from '../../firebase';
 import firebase from 'firebase';
 import BackgroundGradient from '../Components/BackgroundGradient';
@@ -23,7 +23,9 @@ export default function ProfileInfo(props) {
   const [bio, setBio] = useState('');
   const [canContinue, setCanContinue] = useState(false);
   const [continueDisabled, setContinueDisabled] = useState(true);
-  const [icon, setIcon] = useState('person-add')
+  const [icon, setIcon] = useState('person-add');
+
+
 
   useEffect(() => {
     if (language && pictureChosen && bio) {
@@ -69,10 +71,11 @@ export default function ProfileInfo(props) {
     setPictureChosen(true);
   }
   return (
-  
+    <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
+    
     <SafeAreaView style={styles.container}>
-
-      <BackgroundGradient/>
+      
+      <BackgroundGradient/> 
       <TouchableOpacity style={styles.profilePic} onPress={addPhoto}>
         <Ionicons name={icon} size={124}/>
       </TouchableOpacity>
@@ -91,7 +94,6 @@ export default function ProfileInfo(props) {
       <View style={{flexDirection:'row',  justifyContent: 'flex-start', width: "80%"}}>
         <Text style={{fontSize: 24, fontWeight: 'bold', paddingLeft: 5}}>Bio:</Text>
       </View>
-      
       <TextInput 
         style={styles.bioView}
         multiline={true}
@@ -99,21 +101,13 @@ export default function ProfileInfo(props) {
         onChangeText={(bio) => setBio(bio)}
       
       />
-
       <TouchableOpacity style={continueDisabled ? styles.greyButton : styles.orangeButton} disabled={continueDisabled} onPress={submitInfo}>
         <Text style={{fontSize:20, fontWeight: 'bold', color: continueDisabled ? '#bdbdbd' : 'black'}}>Continue</Text>
       </TouchableOpacity>
 
-
-      
-
-
-
-
-
-      
-
     </SafeAreaView>
+    </TouchableWithoutFeedback>
+    
   );
 }
 

@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { StyleSheet, Text, SafeAreaView, View, AsyncStorage, Image, TouchableOpacity, FlatList, Button } from 'react-native';
+import {useNavigation} from '@react-navigation/native';
 
 export default function PlaylistHome() {
+    const navigation = useNavigation();
     return (
         <View style ={styles.container}>
             <Text>
@@ -11,6 +13,7 @@ export default function PlaylistHome() {
 
                 
             </Text>
+            <Button title={'List View of Playlist'} onPress={() => navigation.navigate('PlaylistListView')}/>
             
         </View>
     );

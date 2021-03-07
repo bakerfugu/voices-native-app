@@ -26,7 +26,9 @@ const styles = StyleSheet.create({
         paddingTop: 10
     }, 
     title: {
-        paddingTop: 10
+        paddingTop: 10, 
+        width: 120, 
+        textAlign: 'center'
     }
 
 });

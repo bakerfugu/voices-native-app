@@ -6,6 +6,7 @@ import EditStory from '../Screens/RecordScreens/EditStory.js'
 import StoryInfo from '../Screens/RecordScreens/StoryInfo.js'
 import Confirmation from '../Screens/RecordScreens/Confirmation.js'
 import TakePhoto from '../Screens/RecordScreens/takePhoto.js'
+import { StatusBar } from 'expo-status-bar';
 const RecordNav = createStackNavigator();
 export default function RecordComponent () {
   return (
@@ -13,22 +14,72 @@ export default function RecordComponent () {
       <RecordNav.Screen name={'RecordHome'} component={RecordHome} 
         options={{
           headerTransparent:true,
-          title : 'Record A Story'
+          headerBackTitleVisible: false,
+          headerTintColor: 'black',
+          title : 'Record Your Story',
+          headerTitleStyle: {
+            fontSize: 30,
+            fontWeight: 'bold',
+
+          },
+          
+          headerStyle: {
+            // backgroundColor: 'grey',
+            height: 75
+          },
+          headerLeftContainerStyle: {
+            paddingLeft: 10
+          }
+          
+
       }}/>
       <RecordNav.Screen name={'EditStory'} component={EditStory} 
         options={{
           headerTransparent:true,
-          title : 'Edit Your Story'
+          headerBackTitleVisible: false,
+          headerTintColor: 'black',
+          title : 'Edit Your Story',
+          headerTitleStyle: {
+            fontSize: 30,
+            fontWeight: 'bold',
+
+          },
+          
+          headerStyle: {
+            // backgroundColor: 'grey',
+            height: 75
+          },
+          headerLeftContainerStyle: {
+            paddingLeft: 10
+          }
       }}/>
       <RecordNav.Screen name={'StoryInfo'} component={StoryInfo} 
         options={{
+          
           headerTransparent:true,
-          title : 'Story Information'
+          headerBackTitleVisible: false,
+          headerTintColor: 'black',
+          title : 'Story Information',
+          headerTitleStyle: {
+            fontSize: 30,
+            fontWeight: 'bold',
+
+          },
+          headerStyle: {
+            // backgroundColor: 'grey',
+            height: 75
+          },
+
+          headerLeftContainerStyle: {
+            paddingLeft: 10
+          }
       }}/>
       <RecordNav.Screen name={'Confirmation'} component={Confirmation} 
         options={{
           headerTransparent:true,
-          title : ''
+          headerBackTitleVisible: false,
+          title: '',
+          headerLeft: null
       }}/>
       <RecordNav.Screen name={'TakePhoto'} component={TakePhoto} 
           options={{

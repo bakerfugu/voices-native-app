@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import { StyleSheet, Text, SafeAreaView, View, AsyncStorage, Image, TouchableOpacity, FlatList, Button, Alert } from 'react-native';
+import { StyleSheet, Text, SafeAreaView, View, AsyncStorage, Image, TouchableOpacity, FlatList, Button, Alert, StatusBar } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import BackgroundGradient from '../../Components/BackgroundGradient.js';
 import RecordingOrb from '../../Components/RecordingOrb.js';
 import LongButton from '../../Components/LongButton.js';
 import { Images } from '../../Themes/index.js';
 import { useNavigation } from '@react-navigation/native';
+import metrics from '../../Themes/Metrics.js';
 
 
 export default function RecordHome() {
@@ -83,8 +84,11 @@ export default function RecordHome() {
     return (
         
 
+
+      
        <View style ={styles.container}>
            <BackgroundGradient/>
+           <View style={styles.header}/>
            <View style={styles.orbView}>
                <RecordingOrb onPress={pauseOrContinue} recordState={recordState} time={time}/>
            </View>
@@ -95,6 +99,7 @@ export default function RecordHome() {
            </View>
 
        </View>
+
        
             
 
@@ -119,7 +124,7 @@ const styles = StyleSheet.create({
     orbView: {
         flex: 3,
         width: '100%',
-        justifyContent: 'flex-end',
+        justifyContent: 'center',
         alignItems: 'center',
         // backgroundColor: 'grey'
     
@@ -129,10 +134,17 @@ const styles = StyleSheet.create({
         width: '100%',
         flexDirection: 'row',
         justifyContent: 'center',
-        alignItems: 'center',
+        alignItems: 'flex-end',
         paddingBottom: 20,
-        paddingHorizontal: 5
-    }
+        paddingHorizontal: 5,
+    
+    }, 
+    header: {
+        width: '100%',
+        height: 75,
+        left: 0,
+        top: 0,
+    },
   });
 
 

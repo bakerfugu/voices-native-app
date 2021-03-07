@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { StyleSheet, Text, SafeAreaView, View, AsyncStorage, Image, TouchableOpacity, FlatList, Button } from 'react-native';
+import { ScrollView } from 'react-native-gesture-handler';
 import BackgroundGradient from '../../Components/BackgroundGradient.js';
 import Playlist from '../../Components/Playlist.js';
 import { Images } from '../../Themes/index.js';
@@ -16,7 +17,7 @@ export default function PlaylistHome() {
     return (
         <View style ={styles.container}>
             <BackgroundGradient/>
-
+            {/* <Text style={styles.title}>My Playlists</Text> */}
 
             <View style={styles.profileHeader}>
                 <View style={styles.photoContainer}>
@@ -26,7 +27,6 @@ export default function PlaylistHome() {
                 <Text style={styles.title}>My Playlists</Text>
 
             </View>
-
 
             <FlatList 
                     contentContainerStyle={styles.grid}
@@ -55,7 +55,7 @@ const styles = StyleSheet.create({
     grid: {
         marginBottom: 32, 
         marginTop: 10, 
-        height: 120, 
+        //height: 120, 
         alignItems: 'center', 
     }, 
 
@@ -70,11 +70,14 @@ const styles = StyleSheet.create({
         width: 100,
     }, 
     title: {
+        alignSelf: 'center', 
+        paddingRight: 200, 
     }, 
  
     profileHeader: {
-        alignContent: 'center', 
-        alignItems: 'baseline', 
+        alignContent: 'flex-start', 
+
+        textAlignVertical: 'center'
     }
 
   });

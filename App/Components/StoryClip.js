@@ -2,12 +2,22 @@ import * as React from 'react';
 import { Text, View, StyleSheet, Image, TouchableOpacity } from 'react-native';
 import {Ionicons, MaterialIcons} from '@expo/vector-icons';
 import { useFonts } from 'expo-font';
+import { ScrollView } from 'react-native-gesture-handler';
 
-export default function StoryClip() {
+export default function StoryClip(props) {
   // let [fontsLoaded] = useFonts({
   //   'NotoSansRegular': require('../Fonts/NotoSansMalayalam-Regular.ttf'),
   //   'NotoSansBold': require('../Fonts/NotoSansMalayalam-Bold.ttf'),
   // }, []);
+
+  //<Photo key={photo._id} value={photo} newComment={this.setNewComment} user={this.state.user} class="standard"/>
+  let all_tags = props.value.tags; 
+  let tagList = all_tags.map((tag) => 
+    <View style={styles.tag}>
+     <Text>{tag}</Text>
+    </View>
+    );
+  
 
   return (
       <View style={styles.storyInList}>
@@ -17,10 +27,10 @@ export default function StoryClip() {
             <Ionicons name={'play-circle'} color={'#1ddbb5'} size={56}/>
           </View>
           <View style={styles.titleColumn}>
-            <Text style={styles.title}>Story Title</Text>
+            <Text style={styles.title}>{props.value.title}</Text>
           </View>
           <View style={styles.rightColumn}>
-            <Text>MTH 2099</Text>
+            <Text>{props.value.date}</Text>
           </View>
           
         </View>
@@ -28,22 +38,19 @@ export default function StoryClip() {
 
         <View style={styles.bottomRow}>
           <View style={styles.playColumn}>
-            <Text> 99 min </Text>
+            <Text>{props.value.length + " min"}</Text>
           </View>
           <View style={styles.titleColumn}>
+            <ScrollView horizontal={true}>
             <View style={styles.tagRow}>
-              <View style={styles.tag}>
-                  <Text>Tag 1</Text>
-                </View>
-                <View style={styles.tag}>
-                  <Text>Tag 2</Text>
-                </View>
+              {tagList}
               </View>
+            </ScrollView>
             </View>
           <View style={styles.rightColumn}>
               <View style={styles.sharingIconsRow}>
-                <Ionicons name={"md-share-outline"} size={24} color={'black'}/>
-                <MaterialIcons name={"playlist-add"} size={30} color={'black'}/>
+                <Ionicons name={"md-share-outline"} size={24} color={'black'} style={styles.icon}/>
+                <MaterialIcons name={"playlist-add"} size={30} color={'black'} style={styles.icon}/>
               </View>
           </View>
         
@@ -94,6 +101,8 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     flex: 1,
     height: '100%',
+    alignItems: 'flex-end'
+
     // backgroundColor: 'yellow'
   },
   title: {
@@ -113,12 +122,15 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     paddingVertical: 3,
     paddingHorizontal: 15,
-    marginRight: 5
+    marginRight: 5, 
+    backgroundColor: "white"
   },
   sharingIconsRow: {
     flexDirection: 'row',
-    justifyContent: 'space-between',
-
+    justifyContent: 'space-around',
+  },
+  icon: {
+    paddingLeft: 5, 
   },
   topRow: {
     flex: 2,

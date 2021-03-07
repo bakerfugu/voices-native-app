@@ -17,8 +17,7 @@ export default function StoryList () {
 
             </View>
 
-
-            <StoryLocationComponent/>
+            <StoryLocationComponent location={"Palau del Parlament de Catalunya"}/>
             
         </View>
     );

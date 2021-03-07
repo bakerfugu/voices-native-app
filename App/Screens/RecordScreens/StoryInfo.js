@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { StyleSheet, Text, SafeAreaView, View, AsyncStorage, Image, TouchableOpacity, FlatList, Button } from 'react-native';
+import { StyleSheet, Text, TextInput, SafeAreaView, View, AsyncStorage, Image, TouchableOpacity, FlatList, Button, Keyboard, TouchableWithoutFeedback } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import BackgroundGradient from '../../Components/BackgroundGradient.js';
 import LongButton from '../../Components/LongButton.js';
@@ -12,11 +12,21 @@ import {
 } from 'sharingan-rn-modal-dropdown';
 import StoryInfoForm from '../../Components/StoryInfoForm.js';
 import Confirmation from './Confirmation.js';
-
+import SvgTakePhotoIcon from '../../../icons/TakePhotoIcon';
+import SvgUploadImageIcon from '../../../icons/UploadImageIcon';
+    
 
     
     
-export default function StoryInfo () {
+export default function StoryInfo ({route}) {
+    let uri, w, h;
+    if (route.params) {
+        uri = route.params.uri;
+        w = route.params.w;
+        h = route.params.h;
+        //const {uri, w, h} = route.params;
+        console.log(uri);
+    } 
     const [valueMS, setValueMS] = useState([]);
     const onChangeMS = (value) => {
         setValueMS(value);
@@ -30,35 +40,85 @@ export default function StoryInfo () {
         {
           value: '2',
           label: 'Music',
-          
-        }
+        },
+        {
+            value: '3',
+            label: 'Dance',
+          },
+          {
+            value: '4',
+            label: 'Food',
+            
+          },
+          {
+            value: '5',
+            label: 'History',
+          },
+          {
+            value: '6',
+            label: 'Folklore',
+            
+          }
     ];
+
 
     const navigation = useNavigation();
     return (
-
-        <View style={styles.container}>
+            <View style={styles.container}>
             <BackgroundGradient/>
-            <View style={styles.header}/>
-            <StoryInfoForm/>
-            {/* <View style={styles.tagDropDrown}>
-            <MultiselectDropdown
-                label='Tags'
-                data={data}
-                chipType="flat"
-                enableSearch
-                value={valueMS}
-                onChange={onChangeMS}
-                chipStyle={{backgroundColor: '#5dd7bf', borderColor: 'black'}}
-          
-                mainContainerStyle={{backgroundColor: 'white', borderColor: 'yellow', borderWidth: 2}}
+            <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
+            <View style={styles.form}>
+            <TextInput style={styles.textInput} placeholder="Title"/>
+            <View style={styles.tagDropDrown}>
+                <MultiselectDropdown
+                    label='Tags'
+                    data={data}
+                    chipType="flat"
+                    enableSearch
+                    value={valueMS}
+                    onChange={onChangeMS}
+                    chipStyle={{backgroundColor: '#5dd7bf', borderColor: 'black'}}
+                    mainContainerStyle={styles.tagsContainer}
+                    
+                />
+            </View>
+            {
+                !uri ?
+            <View style={styles.buttonView}>
                 
-            />
-
-            </View> */}
-            <Button title={'Post'} onPress={() => {navigation.navigate('Confirmation')}}/>
-            
+                <TouchableOpacity onPress={() => {navigation.navigate('UploadPhoto')}}>
+                    <SvgUploadImageIcon
+                    width={"70"}
+                    height={"55"}/>
+                    <Text style={{marginTop: "5%", marginLeft: "13%"}}>
+                        Upload 
+                    </Text>
+                </TouchableOpacity>
+                <TouchableOpacity onPress={() => navigation.navigate('TakePhoto')}>
+                    <SvgTakePhotoIcon
+                    width={"70"} style={{marginTop: "-35%"}}
+                    />
+                    <Text style={{marginTop: "-20%"}}>
+                        Take Photo
+                    </Text>
+                </TouchableOpacity>       
+            </View>
+            :
+            <Image source={{uri: uri}} style={{width: w, height: h, borderRadius: w, marginBottom: '5%'}}/>
+            }
+            <TextInput style={styles.textInput} placeholder="Location"/>  
         </View>
+
+        </TouchableWithoutFeedback>
+        <View style={{paddingBottom: 0, width: '100%', alignItems: 'center'}}>
+            <TouchableOpacity style={styles.postButton} onPress={() => {navigation.navigate('Confirmation')}}>
+                <Text style={{fontSize: 20}}>
+                    Post
+                </Text>
+            </TouchableOpacity> 
+        </View>
+        </View>
+ 
        
     );
 
@@ -68,22 +128,69 @@ export default function StoryInfo () {
 const styles = StyleSheet.create({
     container: {
       flex: 1,
-      justifyContent: 'center',
       alignItems: 'center',
-    },
-    header: {
-        position: 'absolute',
-        width: '100%',
-        height: 100,
-        // backgroundColor: 'grey',
-        left: 0,
-        top: 0,
-        // backgroundColor: 'pink'
     },
     tagDropDrown: {
         height: 100,
         width: '90%',
         // backgroundColor: 'grey'
+    },
+    postButton: {
+        backgroundColor: '#F1B600',
+        borderRadius: 35,
+        padding: '3%',
+        width: '60%',
+        alignItems: 'center',
+        
+        
+    },
+    form: {
+        // alignSelf: 'stretch',
+        // alignItems: 'center'
+        flex: 1, 
+        flexDirection: 'column',
+        justifyContent: 'center',
+        alignItems: 'center',
+        // backgroundColor: 'grey',
+        width: '100%',
+        paddingHorizontal: 10,
+        // backgroundColor: 'pink'
+    },
+
+    textInput: {
+        // alignSelf: 'center',
+        padding: 10,
+        width: '80%',
+        height: 40, 
+        marginBottom: 0,
+        // color: 'black',
+        backgroundColor: 'white',
+        borderWidth: 3,
+        borderColor: '#F1B600',
+        borderRadius: 10
+    },
+    buttonView: {
+        width: '80%',
+        flexDirection: 'row',
+        justifyContent: 'space-evenly',
+        alignItems: 'center',
+        paddingBottom: 20,
+        paddingHorizontal: 5,
+        marginTop: "10%",
+        marginBottom:"15%"
+    },
+    tagDropDrown: {
+        height: 100,
+        width: '80%',
+        marginBottom: 20,
+        marginTop: "10%"
+    },
+    tagsContainer: {
+        backgroundColor: 'white',
+        borderWidth: 3,
+        borderColor: '#F1B600',
+        borderRadius: 10
+        
     }
 
 });

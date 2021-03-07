@@ -6,6 +6,9 @@ import EditStory from '../Screens/RecordScreens/EditStory.js'
 import StoryInfo from '../Screens/RecordScreens/StoryInfo.js'
 import Confirmation from '../Screens/RecordScreens/Confirmation.js'
 import TakePhoto from '../Screens/RecordScreens/takePhoto.js'
+import PhotoPreview from '../Screens/RecordScreens/photoPreview.js'
+import UploadPhoto from '../Screens/RecordScreens/uploadPhoto.js'
+
 const RecordNav = createStackNavigator();
 export default function RecordComponent () {
   return (
@@ -35,6 +38,17 @@ export default function RecordComponent () {
           headerTransparent:true,
           title : ''
       }}/>
+      <RecordNav.Screen name={'PhotoPreview'} component={PhotoPreview} 
+        options={{
+        headerTransparent:true,
+        title : ''
+      }}/>
+      <RecordNav.Screen name={'UploadPhoto'} component={UploadPhoto} 
+        options={{
+        headerTransparent:true,
+        title : ''
+      }}/>
+
     </RecordNav.Navigator>
   );
 }

@@ -66,7 +66,7 @@ export default function ProfileInfo(props) {
     props.updateState(true);
   }
 
-  const addPhoto = () => {
+  const addPhoto = () => { //navigate to uploadProfPic 
     setIcon('person');
     setPictureChosen(true);
   }

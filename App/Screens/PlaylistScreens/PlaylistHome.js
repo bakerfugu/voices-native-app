@@ -5,6 +5,8 @@ import {useNavigation} from '@react-navigation/native';
 import BackgroundGradient from '../../Components/BackgroundGradient.js';
 import Playlist from '../../Components/Playlist.js';
 import { Images } from '../../Themes/index.js';
+import storyPlaylists from '../../Components/StoryPlaylists';
+
 
 
 
@@ -15,7 +17,27 @@ export default function PlaylistHome() {
         image: Images.utahToBelize
     };
 
-    let playlists = [playlist, playlist, playlist, playlist, playlist, playlist, playlist, playlist, playlist, playlist];
+    let playlists = [];
+    console.log("this is playlists ", storyPlaylists);
+    for (let i = 0; i < storyPlaylists.length; i++) {
+        let playlist = {
+            title: storyPlaylists[i].title,
+            image: storyPlaylists[i].image,
+            stories: storyPlaylists[i].stories,
+        }
+        playlists.push(playlist);
+
+    }
+
+    for (let i = 0; i < storyPlaylists.length; i++) {
+        let playlist = {
+            title: storyPlaylists[i].title,
+            image: storyPlaylists[i].image,
+            stories: storyPlaylists[i].stories,
+        }
+        playlists.push(playlist);
+
+    }
 
 
     return (
@@ -37,6 +59,7 @@ export default function PlaylistHome() {
                     numColumns={2} 
                     data={playlists} 
                     // scrollEnabled={true}
+                    directionalLockEnabled={true}
                     keyExtractor={(playlist, index) => playlist.title}
                     renderItem={(playlist) => {
                         console.log("Printing playlist: ", playlist);
@@ -59,7 +82,6 @@ const styles = StyleSheet.create({
     grid: {
         marginBottom: 32, 
         marginTop: 10, 
-        //height: 120, 
         alignItems: 'center', 
     }, 
 

@@ -36,11 +36,11 @@ export default function PlaylistHome() {
                     contentContainerStyle={styles.grid}
                     numColumns={2} 
                     data={playlists} 
-                    scrollEnabled={true}
+                    // scrollEnabled={true}
                     keyExtractor={(playlist, index) => playlist.title}
                     renderItem={(playlist) => {
                         console.log("Printing playlist: ", playlist);
-                        return <Playlist key={playlist.item.title} value={playlist.item}/>
+                        return <Playlist key={playlist.item.title} value={playlist.item} onPress={() => {navigation.navigate('PlaylistListView'), {title:playlist.item.title}}}/>
                         }
                     }
                     />

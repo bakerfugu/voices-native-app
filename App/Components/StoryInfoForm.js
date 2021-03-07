@@ -3,7 +3,10 @@ import {
     StyleSheet, 
     Text, 
     View,
-    TextInput 
+    TextInput,
+    Keyboard,
+    TouchableWithoutFeedback,
+    TouchableOpacity
 } from 'react-native';
 import ImageButton from '../Components/ImageButton.js';
 import {
@@ -12,6 +15,8 @@ import {
     MultiselectDropdown,
 } from 'sharingan-rn-modal-dropdown';
 import { useNavigation } from '@react-navigation/native';
+import SvgTakePhotoIcon from '../../icons/TakePhotoIcon';
+import SvgUploadImageIcon from '../../icons/UploadImageIcon';
     
 
 export default function StoryInfoForm () {
@@ -53,10 +58,9 @@ export default function StoryInfoForm () {
     
 
     return (
-
-        <View style={styles.form}>
+        <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
+            <View style={styles.form}>
             <TextInput style={styles.textInput} placeholder="Title"/>
-            
             <View style={styles.tagDropDrown}>
                 <MultiselectDropdown
                     label='Tags'
@@ -69,18 +73,29 @@ export default function StoryInfoForm () {
                     mainContainerStyle={styles.tagsContainer}
                     
                 />
-
             </View>
-
-            <View placeholder="Upload Image"></View>
             <View style={styles.buttonView}>
-                <ImageButton label='Upload Image'/>
-                <ImageButton label='Take Image' onPress={() => navigation.navigate('TakePhoto')}/>
+                <TouchableOpacity onPress={() => {navigation.navigate('UploadPhoto')}}>
+                    <SvgUploadImageIcon
+                    width={"70"}
+                    height={"55"}/>
+                    <Text style={{marginTop: "5%", marginLeft: "13%"}}>
+                        Upload 
+                    </Text>
+                </TouchableOpacity>
+                <TouchableOpacity onPress={() => navigation.navigate('TakePhoto')}>
+                    <SvgTakePhotoIcon
+                    width={"70"} style={{marginTop: "-35%"}}
+                    />
+                    <Text style={{marginTop: "-20%"}}>
+                        Take Photo
+                    </Text>
+                </TouchableOpacity>       
             </View>
-            <TextInput style={styles.textInput} placeholder="Location"/>
-            
+            <TextInput style={styles.textInput} placeholder="Location"/>  
         </View>
-
+        </TouchableWithoutFeedback>
+        
     );
 
 }
@@ -115,15 +130,18 @@ const styles = StyleSheet.create({
     buttonView: {
         width: '80%',
         flexDirection: 'row',
-        justifyContent: 'center',
+        justifyContent: 'space-evenly',
         alignItems: 'center',
         paddingBottom: 20,
-        paddingHorizontal: 5
+        paddingHorizontal: 5,
+        marginTop: "10%",
+        marginBottom:"15%"
     },
     tagDropDrown: {
         height: 100,
         width: '80%',
-        marginBottom: 20
+        marginBottom: 20,
+        marginTop: "10%"
     },
     tagsContainer: {
         backgroundColor: 'white',

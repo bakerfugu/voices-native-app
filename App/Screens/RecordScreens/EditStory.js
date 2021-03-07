@@ -20,7 +20,7 @@ import {
     
 export default function EditStory () {
 
-
+    
 
     const navigation = useNavigation();
     const [leftHandlePos, setLeftHandlePos] = useState(0);
@@ -39,6 +39,7 @@ export default function EditStory () {
                 totalDuration={60000}
                 trimmerLeftHandlePosition={leftHandlePos}
                 trimmerRightHandlePosition={rightHandlePos}
+             
             />
             <SvgPlayButtonIcon
                 width={"80"}

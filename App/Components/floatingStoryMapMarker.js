@@ -1,19 +1,25 @@
+import { NavigationContainer } from '@react-navigation/native';
 import React from 'react';
-import { StyleSheet, View, Image } from 'react-native';
-import { YellowBlurOrb } from '../../icons'
+import { StyleSheet, View, Image, TouchableOpacity } from 'react-native';
+import { YellowBlurOrb } from '../../icons';
+import {useNavigation} from '@react-navigation/native'
 
 export default function FloatingStoryMapMarker ({imageSource}) {
+    const navigation = useNavigation();
     return (
-        <View style={styles.orb}>
-            <YellowBlurOrb 
-                style={styles.innerOrb}
-                width={50}
-                height={50}
-            />
-            <View style={styles.innerOrb}>
-                <Image source={imageSource} resizeMode='contain' style={styles.storyImage}/>
+        
+        
+            <View style={styles.orb}>
+                <YellowBlurOrb 
+                    style={styles.innerOrb}
+                    width={50}
+                    height={50}
+                />
+                <View style={styles.innerOrb}>
+                    <Image source={imageSource} resizeMode='contain' style={styles.storyImage}/>
+                </View>
             </View>
-        </View>
+        
     )
 }
 

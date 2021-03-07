@@ -1,8 +1,10 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, Fragment} from 'react';
+import {SafeAreaView} from 'react-native'
 import AppNavigation from './App/Navigation/AppNavigation';
 import LoginScreen from './App/Screens/LoginScreen';
 import firebase from 'firebase';
 import "firebase/auth";
+import BackgroundGradient from './App/Components/BackgroundGradient';
 
 
 
@@ -29,11 +31,27 @@ export default function App() {
 
   
     if (loggedIn) {
-      return <AppNavigation />;
+      return (
+        <Fragment>
+          <SafeAreaView style={{flex:0, backgroundColor: '#FDF0AF'}}/>
+
+          <SafeAreaView style={{flex:1}}>
+            <AppNavigation />
+          </SafeAreaView>
+        </Fragment>
+        
+        
+      );
+      
     } 
     
     else {
-        return <LoginScreen updateStatus={(val) => setLoggedIn(val)} setBioInfo={(val) => setBioInfoFilled(val)}/>;
+        return (
+        <SafeAreaView style={{flex:0, backgroundColor: '#FDF0AF'}}>
+          <LoginScreen updateStatus={(val) => setLoggedIn(val)} setBioInfo={(val) => setBioInfoFilled(val)}/>
+        
+        </SafeAreaView>
+       );
     }
 
       

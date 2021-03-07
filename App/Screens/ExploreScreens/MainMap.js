@@ -18,6 +18,9 @@ export default function MainMap() {
                     }}
                     title={"What up, I title"}
                     // description={"what up I descrribe"}
+                    onSelect={() => {
+                        navigation.navigate('StoryList');
+                    }}
                 >
                     <FloatingStoryMapMarker imageSource={Images.parliament}/>
                 </Marker>

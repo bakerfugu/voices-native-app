@@ -5,7 +5,8 @@ import BackgroundGradient from '../../Components/BackgroundGradient.js';
 import LongButton from '../../Components/LongButton.js';
 import { Images } from '../../Themes/index.js';
 import { useNavigation } from '@react-navigation/native';
-    
+import Slider from 'react-native-reanimated-slider';
+
     
 export default function StoryListen () {
     const navigation = useNavigation();
@@ -13,7 +14,7 @@ export default function StoryListen () {
         <View style ={styles.container}>
             <BackgroundGradient/>
             <View style={styles.header}/>
-            {/* <ScrollView> */}
+           
                 <View style={styles.pictureView}>
                    <Image source={Images.silverMan} resizeMode='contain' style={styles.image}/>
                    <Text style={styles.title}> Title of Story </Text>
@@ -21,10 +22,12 @@ export default function StoryListen () {
                 </View>
 
                 <View style={styles.playBarAndButtons}>
-
+                    
+                <View style={styles.progressBar}/>
+                    
                 </View>
                 
-            {/* </ScrollView */}
+          
             
         </View>
     );
@@ -71,6 +74,12 @@ const styles = StyleSheet.create({
         color: 'grey',
 
     },
+    progressBar: {
+        height: 10,
+        width: '80%',
+        borderRadius: 5, 
+        backgroundColor: 'lightgrey'
+    }
 
     
 });

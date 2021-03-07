@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { StyleSheet, Text, SafeAreaView, View, AsyncStorage, Image, TouchableOpacity, FlatList, Button } from 'react-native';
+import { StyleSheet, Text, SafeAreaView, View, AsyncStorage, Image, TouchableOpacity, FlatList, Button, Alert } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import BackgroundGradient from '../../Components/BackgroundGradient.js';
 import RecordingOrb from '../../Components/RecordingOrb.js';
@@ -18,15 +18,32 @@ export default function RecordHome() {
     });
     var interval = null;
 
+    
 
     const restartTimer = () => {
-        changeRecordState({
-            paused: true,
-            orb: Images.blueOrb,
-            instructions: 'Tap to Record'
-        });
-        setTime(0);
-        
+    
+    Alert.alert(
+        "Are you sure you would like to restart your recording?",
+        "The existing recording will be erased permanently.",
+        [
+            {
+            text: "Cancel",
+            onPress: () => {
+                console.log('does not want to restart')
+            },
+            style: "cancel"
+            },
+            { text: "OK", onPress: () => {
+                changeRecordState({
+                    paused: true,
+                    orb: Images.blueOrb,
+                    instructions: 'Tap to Record'
+                });
+                setTime(0);
+            } }
+        ],
+        { cancelable: false }
+        );  
 
     }
 

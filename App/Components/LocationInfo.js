@@ -4,8 +4,9 @@ import { Images } from '../Themes';
 import StoryClip from './StoryClip.js';
 
 
-export default function LocationInfo () {
-
+export default function LocationInfo (location) {
+    //console.log('This is location in LocationInfo', info.location);
+    //console.log('This is num_stories in LocationInfo', info.num_stories);
     
 
     
@@ -13,6 +14,7 @@ export default function LocationInfo () {
 
     return (
         <View style={styles.container}>
+            <Text style={styles.locationTitle}>{location}</Text>
             <Text>99 Stories Available</Text>
             <View style={styles.background}>
                 <ImageBackground source={Images.yellowOrb} resizeMode={'contain'} style={styles.orb}>
@@ -54,12 +56,20 @@ const styles = StyleSheet.create({
     locationImage: {
         height: '80%',
         aspectRatio: 1,
+        alignSelf: 'center', 
+        justifyContent: 'center'
     
     },
     flatlist: {
         marginTop: 20,
         flex: 1,
         width:'100%'
+    }, 
+    locationTitle: {
+        fontSize: 30,
+        fontFamily: 'NotoSansBold',
+        fontWeight: 'bold',
+        textAlign: 'center', 
     }
   
 

@@ -3,56 +3,27 @@ import { StyleSheet, Text, SafeAreaView, View, AsyncStorage, Image, TouchableOpa
 import { Images } from '../Themes';
 import LocationInfo from './LocationInfo';
 import StoryClip from './StoryClip.js';
+import storyLocations from './StoryLocations';
 
 
-export default function ListOfStories () {
+export default function ListOfStories (props) {
+    //console.log("this is props in ListOfStories ", props);
+    //console.log("this is props.location in ListOfStories ", props.location);
 
-    
-
-    const DATA = [
-        {
-          id: "1",
-          title: "First Item",
-        },
-        {
-          id: "2",
-          title: "Second Item",
-        },
-        {
-          id: "3",
-          title: "Third Item",
-        },
-        {
-        id: "4",
-        title: "First Item",
-        },
-        {
-        id: "5",
-        title: "Second Item",
-        },
-        {
-        id: "6",
-        title: "Third Item",
-        }
-    ];
-
-
-
-    const renderItem = () => {
-        return (
-            <StoryClip/>
-        );
-
-    }
+    //console.log("This is storyLocations ", storyLocations);
 
 
     return (
         <View style={styles.flatlist}>
             <FlatList
-                data={DATA}
-                renderItem={renderItem}
+                data={storyLocations[0].stories}
+                renderItem={(story) => {
+                    console.log("Printing playlist: ", story);
+                    return <StoryClip key={story.item.title} value={story.item}/>
+                    }
+                }
                 keyExtractor={(item) => item.id}
-                ListHeaderComponent={LocationInfo}
+                ListHeaderComponent={LocationInfo(props.location)}
             />
 
         </View>

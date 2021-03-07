@@ -13,6 +13,8 @@ const images = {
   dot : require('../Images/dot.png'),
   profSettings : require('../Images/profSettings.png'),
   fountainsEu : require('../Images/fountainsEurope.png'),
+  utahToBelize: require('../Images/from-utah-to-belize.png'),
+  newYorkPlaylist: require('../Images/new-york-playlist.png'),
 
 }
 

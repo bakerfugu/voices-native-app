@@ -18,8 +18,15 @@ import SvgUploadImageIcon from '../../../icons/UploadImageIcon';
 
     
     
-export default function StoryInfo () {
-    const [image, setImage] = useState(null);
+export default function StoryInfo ({route}) {
+    let uri, w, h;
+    if (route.params) {
+        uri = route.params.uri;
+        w = route.params.w;
+        h = route.params.h;
+        //const {uri, w, h} = route.params;
+        console.log(uri);
+    } 
     const [valueMS, setValueMS] = useState([]);
     const onChangeMS = (value) => {
         setValueMS(value);
@@ -75,7 +82,10 @@ export default function StoryInfo () {
                     
                 />
             </View>
+            {
+                !uri ?
             <View style={styles.buttonView}>
+                
                 <TouchableOpacity onPress={() => {navigation.navigate('UploadPhoto')}}>
                     <SvgUploadImageIcon
                     width={"70"}
@@ -93,14 +103,20 @@ export default function StoryInfo () {
                     </Text>
                 </TouchableOpacity>       
             </View>
+            :
+            <Image source={{uri: uri}} style={{width: w, height: h, borderRadius: w, marginBottom: '5%'}}/>
+            }
             <TextInput style={styles.textInput} placeholder="Location"/>  
         </View>
+
         </TouchableWithoutFeedback>
+        <View style={{paddingBottom: 0, width: '100%', alignItems: 'center'}}>
             <TouchableOpacity style={styles.postButton} onPress={() => {navigation.navigate('Confirmation')}}>
                 <Text style={{fontSize: 20}}>
                     Post
                 </Text>
-            </TouchableOpacity>         
+            </TouchableOpacity> 
+        </View>
         </View>
  
        
@@ -124,7 +140,9 @@ const styles = StyleSheet.create({
         borderRadius: 35,
         padding: '3%',
         width: '60%',
-        alignItems: 'center'
+        alignItems: 'center',
+        
+        
     },
     form: {
         // alignSelf: 'stretch',
@@ -140,12 +158,11 @@ const styles = StyleSheet.create({
     },
 
     textInput: {
-
         // alignSelf: 'center',
         padding: 10,
         width: '80%',
         height: 40, 
-        marginBottom: 30, 
+        marginBottom: 0,
         // color: 'black',
         backgroundColor: 'white',
         borderWidth: 3,

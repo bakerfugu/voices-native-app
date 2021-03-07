@@ -8,16 +8,20 @@ import SvgUsePhotoIcon from '../../../icons/UsePhotoIcon'
 import BackgroundGradient from '../../Components/BackgroundGradient.js';
 export default function PhotoPreview ({route, navigation}) {
     const {uri, w, h} = route.params;
-    console.log("in photo preview");
-    console.log(JSON.stringify(route.params));
-    console.log(uri, w, h);
+    
+
     return (
         <View style={styles.container}>
             <BackgroundGradient/>
             <View style={styles.v}>
             <TouchableOpacity>
             <SvgUsePhotoIcon
-                width={'60'} style={styles.usePhoto}/>
+                width={'60'} style={styles.usePhoto} onPress={() => {navigation.navigate('StoryInfo', {
+                    uri: uri,
+                    w: w,
+                    h: h
+                  });
+                } }/>
             </TouchableOpacity>  
             </View>
             <View style={styles.imgContainer}>

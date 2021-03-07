@@ -52,9 +52,6 @@ export default function TakePhoto () {
           <TouchableOpacity style={styles.capture} onPress={async () => 
           {
             const photo = await ref.current.takePictureAsync();
-            console.log(photo.uri);
-            console.log(photo.width);
-            console.log(photo.height);
             navigation.navigate('PhotoPreview', {
               uri: photo.uri,
               w: photo.width,

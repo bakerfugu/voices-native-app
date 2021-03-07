@@ -2,7 +2,7 @@ import React from 'react';
 import { NavigationContainer } from '@react-navigation/native'
 import { createStackNavigator } from '@react-navigation/stack'
 import PlaylistHome from '../Screens/PlaylistScreens/PlaylistHome.js'
-
+import PlaylistListView from '../Screens/PlaylistScreens/PlaylistListView.js'
 
 
 const PlaylistNav = createStackNavigator();
@@ -16,6 +16,14 @@ export default function PlaylistComponent () {
           
           }}  
       />
+      <PlaylistNav.Screen name={'PlaylistListView'} component={PlaylistListView}  
+        options={{
+          headerTransparent:true,
+          title : 'Playlist'
+          
+          }}  
+      />
+      
       
     </PlaylistNav.Navigator>
   );

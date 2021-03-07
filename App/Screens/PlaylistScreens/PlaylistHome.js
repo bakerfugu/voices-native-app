@@ -1,11 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import { StyleSheet, Text, SafeAreaView, View, AsyncStorage, Image, TouchableOpacity, FlatList, Button } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
+import {useNavigation} from '@react-navigation/native';
 import BackgroundGradient from '../../Components/BackgroundGradient.js';
 import Playlist from '../../Components/Playlist.js';
 import { Images } from '../../Themes/index.js';
 
+
+
 export default function PlaylistHome() {
+    const navigation = useNavigation();
     let playlist  = {
         title: "From Utah to Belize",
         image: Images.utahToBelize
@@ -32,11 +36,11 @@ export default function PlaylistHome() {
                     contentContainerStyle={styles.grid}
                     numColumns={2} 
                     data={playlists} 
-                    scrollEnabled={true}
+                    // scrollEnabled={true}
                     keyExtractor={(playlist, index) => playlist.title}
                     renderItem={(playlist) => {
                         console.log("Printing playlist: ", playlist);
-                        return <Playlist key={playlist.item.title} value={playlist.item}/>
+                        return <Playlist key={playlist.item.title} value={playlist.item} onPress={() => {navigation.navigate('PlaylistListView'), {title:playlist.item.title}}}/>
                         }
                     }
                     />

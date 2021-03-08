@@ -16,6 +16,12 @@ const images = {
   mexicoCity : require('../Images/mexico-city-mural.png'),
   utahToBelize: require('../Images/from-utah-to-belize.png'),
   newYorkPlaylist: require('../Images/new-york-playlist.png'),
+  zona: require('../Images/zona.png'),
+  wharf: require('../Images/wharf.png'),
+  parkGuell: require('../Images/park-guell.png'),
+  dolores: require('../Images/dolores.png'),
+  delPopolo: require('../Images/del-popolo.png'),
+  
 
 }
 

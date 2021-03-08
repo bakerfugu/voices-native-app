@@ -16,6 +16,7 @@ import {
     GroupDropdown,
     MultiselectDropdown,
   } from 'sharingan-rn-modal-dropdown';
+import metrics from '../../Themes/Metrics';
     
     
 export default function EditStory () {
@@ -34,6 +35,7 @@ export default function EditStory () {
     return (
         <View style ={styles.container}>
             <BackgroundGradient/>
+            <View style={styles.header}/>
             <Trimmer
                 onHandleChange={onHandleChange}
                 totalDuration={60000}
@@ -45,7 +47,7 @@ export default function EditStory () {
                 width={"80"}
                 height={"80"}
             />
-            <View style={styles.header}/>
+            
             
             <Button title={'Story Info'} onPress={() => {navigation.navigate('StoryInfo')}}/>
         </View>
@@ -64,7 +66,7 @@ const styles = StyleSheet.create({
     },
     header: {
         width: '100%',
-        height: 100,
+        height: metrics.headerHeight,
         // backgroundColor: 'grey',
         left: 0,
         top: 0

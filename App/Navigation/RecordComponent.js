@@ -27,7 +27,7 @@ export default function RecordComponent () {
           },
           
           headerStyle: {
-            // backgroundColor: 'grey',
+            backgroundColor: 'grey',
             height: 75
           },
           headerLeftContainerStyle: {

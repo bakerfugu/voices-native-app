@@ -4,6 +4,7 @@ import { Camera } from 'expo-camera';
 import SvgCapturePhotoIcon from '../../../icons/CapturePhotoIcon'
 import SvgSwitchCameraDirectionIcon from '../../../icons/SwitchCameraDirectionIcon'
 import { useNavigation } from '@react-navigation/native';
+import * as ImageManipulator from 'expo-image-manipulator';
 
 export default function TakePhoto () {
   const navigation = useNavigation();
@@ -29,6 +30,7 @@ export default function TakePhoto () {
   //   const photo = await ref.current.takePictureAsync();
   // }
 
+
   return (
     <View style={styles.container}>
       <Camera style={styles.camera} type={type} ref={ref}>
@@ -52,10 +54,15 @@ export default function TakePhoto () {
           <TouchableOpacity style={styles.capture} onPress={async () => 
           {
             const photo = await ref.current.takePictureAsync();
+            const resizedPhoto = await ImageManipulator.manipulateAsync(
+              photo.uri,
+              [{ resize: { width: 250 } }], // resize to width of 300 and preserve aspect ratio 
+              { compress: 0.7, format: 'jpeg' },
+             );
             navigation.navigate('PhotoPreview', {
-              uri: photo.uri,
-              w: photo.width,
-              h: photo.height
+              uri: resizedPhoto.uri,
+              w: resizedPhoto.width,
+              h: resizedPhoto.height
             });
           }}>
             <SvgCapturePhotoIcon

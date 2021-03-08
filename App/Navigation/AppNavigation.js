@@ -6,7 +6,7 @@ import { StyleSheet, Image, SafeAreaView } from 'react-native';
 import ExploreComponent from './ExploreComponent.js';
 import PlaylistComponent from './PlaylistComponent.js';
 import RecordComponent from './RecordComponent.js';
-import { Ionicons, MaterialIcons, FontAwesome } from '@expo/vector-icons';
+import { Ionicons, MaterialIcons, FontAwesome, FontAwesome5 } from '@expo/vector-icons';
 import ProfileInfo from '../Screens/ProfileInfo.js';
 import { useHeaderHeight } from '@react-navigation/stack';
 import { useEffect } from 'react';
@@ -85,7 +85,7 @@ export default function AppNavigation() {
           tabBarIcon: ({focused, color, size}) => {
             if (route.name == "Explore") {
               return (
-                <Ionicons name={'ios-globe'} color={color} size={36}/>
+                <FontAwesome5 name={'globe-americas'} color={color} size={36}/>
               );
             }
             if (route.name == "Record") {

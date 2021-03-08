@@ -1,4 +1,4 @@
-export const barcelonaParcGuell = [
+export const ZonaOmbra = [
     {
       id: "1",
       title: "Our First Night at Barcelona",

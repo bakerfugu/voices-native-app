@@ -6,10 +6,18 @@ import LongButton from '../../Components/LongButton.js';
 import { Images } from '../../Themes/index.js';
 import { useNavigation } from '@react-navigation/native';
 import StoryLocationComponent from '../../Components/StoryLocationComponent.js'
+import storyLocations from '../../Components/StoryLocations';  
     
-    
-export default function StoryList () {
-    const navigation = useNavigation();
+export default function StoryList ({route, navigation}) {
+    const {locationIndex} = route.params;
+
+    useEffect(() => {
+        
+        navigation.setOptions({
+            title: storyLocations[locationIndex].title,
+        });
+    }, []);
+
     return (
         <View style ={styles.container}>
             <BackgroundGradient/>
@@ -17,7 +25,7 @@ export default function StoryList () {
 
             </View>
 
-            <StoryLocationComponent location={"Palau del Parlament de Catalunya"}/>
+            <StoryLocationComponent locationIndex={locationIndex}/>
             
         </View>
     );
@@ -33,10 +41,11 @@ const styles = StyleSheet.create({
     },
     header: {
         width: '100%',
-        height: 100,
+        height: 75,
         // backgroundColor: 'grey',
         left: 0,
         top: 0
+
     },
     test: {
         flex: 1,

@@ -18,13 +18,18 @@ export default function ExploreComponent () {
   <ExploreNav.Navigator headerMode='float'>
     <ExploreNav.Screen name={'MainMap'} component={MainMap}  options={{
       // headerTransparent:true,
+      headerShown: false,
+      
       title : 'Explore Page',
       headerStyle: {
-        height: 100,
+        height: 75,
         // backgroundColor: 'pink'
       },
       headerTitleStyle: {
         fontSize: 24
+      },
+      headerLeftContainerStyle: {
+        paddingLeft: 10
       }
     }}
      />
@@ -32,7 +37,17 @@ export default function ExploreComponent () {
 
     <ExploreNav.Screen name={'StoryList'} component={StoryList}  options={{
       headerTransparent:true,
-      title : 'Story List'
+      title: '',
+      headerTintColor: 'black',
+      headerBackTitleVisible: false,
+      headerTitleStyle: {
+        fontSize: 30,
+        fontWeight: 'bold',
+
+      },
+      headerLeftContainerStyle: {
+        paddingLeft: 10
+      }
       }} />
 
       <ExploreNav.Screen name={'StoryListen'} component={StoryListen}  options={{

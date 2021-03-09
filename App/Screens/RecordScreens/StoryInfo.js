@@ -93,19 +93,17 @@ export default function StoryInfo({ route }) {
                             data={data}
                             chipType="flat"
                             enableSearch
-                            value={valueMS}
+                            value={valueMS}                           
                             onChange={onChangeMS}
                             chipStyle={{ backgroundColor: '#5dd7bf', borderColor: 'black' }}
                             mainContainerStyle={styles.tagsContainer}
-                            
-
                         />
                     </View>
 
 
                     {
                         !uri ?
-                            <View style={styles.buttonView}>
+                            <View style={styles.photoBubble}>
 
                                 <TouchableOpacity onPress={() => { navigation.navigate('UploadPhoto') }}>
                                     <SvgUploadImageIcon
@@ -113,7 +111,7 @@ export default function StoryInfo({ route }) {
                                         height={"55"} />
                                     <Text style={{ marginTop: "5%", marginLeft: "13%" }}>
                                         Upload
-                            </Text>
+                                    </Text>
                                 </TouchableOpacity>
 
                                 <TouchableOpacity onPress={() => navigation.navigate('TakePhoto')}>
@@ -127,25 +125,21 @@ export default function StoryInfo({ route }) {
 
                             </View>
                             :
-                            <Image source={{ uri: uri }} style={{ width: w, height: h, borderRadius: w, marginBottom: '5%' }} />
+                            <Image source={{ uri: uri }} style={styles.photoBubble}/>
+                            //style={{ width: w, height: h, borderRadius: w, marginBottom: '5%' }} />
                     }
                     <TextInput 
-                    style={styles.textInput} 
-                    placeholder="Location" 
-                    onChangeText={setLocation}
+                        style={styles.textInput} 
+                        placeholder="Location" 
+                        onChangeText={setLocation}
                     />
                 </View>
 
             </TouchableWithoutFeedback>
-
+{/* 
+            <LongButton style={styles.postbutton} onPress={() => { navigation.navigate('Confirmation', {uri: uri}) }} disabled={!title || !uri || !location || !valueMS} label={'Post'}/> */}
             <View style={{ flex: 1,justifyContent: 'flex-end', width: '100%', alignItems: 'center', paddingBottom: metrics.paddingBottom }}>
-                {/* <TouchableOpacity style={styles.postButton} onPress={() => { navigation.navigate('Confirmation', {uri: uri}) }} disabled={!title || !uri || !location || !valueMS}>
-                    <Text style={{ fontSize: 20 }}>
-                        Post
-                    </Text>
-                </TouchableOpacity> */}
-                <View style={styles.postButton}>
-               
+                <View style={styles.postButton}>              
                     <LongButton onPress={() => { navigation.navigate('Confirmation', {uri: uri}) }} disabled={!title || !uri || !location || !valueMS} label={'Post'}/>
                 </View>
                 
@@ -163,20 +157,6 @@ const styles = StyleSheet.create({
         flex: 1,
         alignItems: 'center',
     },
-    tagDropDrown: {
-        height: 100,
-        width: '90%',
-        // backgroundColor: 'grey'
-    },
-    postButton: {
-        backgroundColor: '#F1B600',
-        borderRadius: 35,
-        padding: '3%',
-        width: '60%',
-        alignItems: 'center',
-
-
-    },
     form: {
         // alignSelf: 'stretch',
         // alignItems: 'center'
@@ -191,58 +171,61 @@ const styles = StyleSheet.create({
     },
 
     textInput: {
-        // alignSelf: 'center',
         padding: 10,
         width: '80%',
         height: 40,
-        marginBottom: 0,
-        // color: 'black',
         backgroundColor: 'white',
         borderWidth: 3,
         borderColor: '#F1B600',
-        borderRadius: 10
+        borderRadius: 10,
+        margin: '10%',
     },
-    buttonView: {
+
+    photoBubble: {
         width: 250,
         height: 250,
-        borderRadius: 125,
+        borderRadius: 250,
+        // width: '50%',
+        // paddingBottom: '50%',
+        // borderRadius: 100,
         borderWidth: 3,
         borderColor: '#F1B600',
         flexDirection: 'row',
         justifyContent: 'space-evenly',
         alignItems: 'center',
-        // paddingBottom: 20,
         paddingHorizontal: 5,
+        margin: '10%',
+        //marginBottom: "20%"
 
     },
     tagDropDrown: {
         height: 100,
         width: '80%',
-        marginBottom: 20,
+        //marginBottom: 20,
+        margin: '10%'
     },
     tagsContainer: {
         backgroundColor: 'white',
         borderWidth: 3,
         borderColor: '#F1B600',
-        borderRadius: 10
+        borderRadius: 10,
+        //marginTop: '10%' 
 
     },
     header: {
-
         width: '100%',
         height: metrics.headerHeight,
 
     },
     postButton: {
         flex: 1,
-        width: '50%',
-        flexDirection: 'row',
-        justifyContent: 'center',
-        alignItems: 'flex-end',
-        paddingBottom: metrics.paddingBottom,
-        paddingHorizontal: 5,
-
-    
+        width: '40%',
+        // flexDirection: 'row',
+        // justifyContent: 'center',
+        // alignItems: 'flex-end',
+        //paddingBottom: metrics.paddingBottom,
+        //paddingHorizontal: 5, 
+        //margin: '10%', 
     }, 
 
 });

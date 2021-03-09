@@ -3,7 +3,7 @@ import { Text, View, StyleSheet, Image, TouchableOpacity } from 'react-native';
 import {Ionicons, MaterialIcons} from '@expo/vector-icons';
 import { useFonts } from 'expo-font';
 import { ScrollView } from 'react-native-gesture-handler';
-import { Card, ListItem, Button, Icon } from 'react-native-paper';
+import { Card, ListItem, Button, Icon, Divider } from 'react-native-paper';
 
 export default function StoryClip(props) {
   // let [fontsLoaded] = useFonts({
@@ -15,18 +15,18 @@ export default function StoryClip(props) {
   let all_tags = props.value.tags; 
   let tagList = all_tags.map((tag) => 
     <View style={styles.tag}>
-     <Text>{tag}</Text>
+     <Text style={styles.tagText}>{tag}</Text>
     </View>
     );
   
 //color={'#1ddbb5'}
   return (
       //<View style={styles.storyInList}>
-      <Card>
+      <Card style={styles.card}>
         <View style={styles.topRow}>
           <View style={styles.playColumn}>
             
-            <Ionicons name={'play-circle'} color={'#FCCD12'} size={56}/>
+            <Ionicons name={'play-circle'} color={'#1ddbb5'} size={56}/>
           </View>
           <View style={styles.titleColumn}>
             <Text style={styles.title}>{props.value.title}</Text>
@@ -110,13 +110,14 @@ const styles = StyleSheet.create({
     // backgroundColor: 'yellow'
   },
   title: {
-    fontSize: 20,
+    fontSize: 18,
     fontWeight: 'bold'
   },
   tagRow: {
-    flexDirection: 'row', 
-    
-
+    flexDirection: 'row',  
+  },
+  tagText: {
+    fontSize: 13,
   },
   tag: {
     borderRadius: 15,
@@ -125,7 +126,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     paddingVertical: 3,
-    paddingHorizontal: 15,
+    paddingHorizontal: 12,
     marginRight: 5, 
     backgroundColor: "white", 
   },
@@ -149,7 +150,12 @@ const styles = StyleSheet.create({
     width: '100%',
     flexDirection: 'row',
     alignItems: 'center',
-
+  }, 
+  card: {
+    marginBottom: '2%',
+    marginLeft: '2%',
+    marginRight: '2%',
+    padding: '3%'
   }
   
 });

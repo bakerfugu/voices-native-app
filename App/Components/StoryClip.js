@@ -3,6 +3,7 @@ import { Text, View, StyleSheet, Image, TouchableOpacity } from 'react-native';
 import {Ionicons, MaterialIcons} from '@expo/vector-icons';
 import { useFonts } from 'expo-font';
 import { ScrollView } from 'react-native-gesture-handler';
+import { Card, ListItem, Button, Icon } from 'react-native-paper';
 
 export default function StoryClip(props) {
   // let [fontsLoaded] = useFonts({
@@ -18,13 +19,14 @@ export default function StoryClip(props) {
     </View>
     );
   
-
+//color={'#1ddbb5'}
   return (
-      <View style={styles.storyInList}>
-
+      //<View style={styles.storyInList}>
+      <Card>
         <View style={styles.topRow}>
           <View style={styles.playColumn}>
-            <Ionicons name={'play-circle'} color={'#1ddbb5'} size={56}/>
+            
+            <Ionicons name={'play-circle'} color={'#FCCD12'} size={56}/>
           </View>
           <View style={styles.titleColumn}>
             <Text style={styles.title}>{props.value.title}</Text>
@@ -55,7 +57,9 @@ export default function StoryClip(props) {
           </View>
         
         </View>
-      </View>
+        </Card>
+
+      //</View>
 
   );
 }
@@ -73,7 +77,7 @@ const styles = StyleSheet.create({
     height: 115,
     width: '100%',
     borderTopWidth: 2,
-    borderColor: 'grey',
+    borderColor: 'red',
     // borderWidth: 2,
     
     flexDirection: 'column',
@@ -116,13 +120,14 @@ const styles = StyleSheet.create({
   },
   tag: {
     borderRadius: 15,
-    borderWidth: 2,
+    borderWidth: 1,
+    borderColor: '#6a6a6a',
     justifyContent: 'center',
     alignItems: 'center',
     paddingVertical: 3,
     paddingHorizontal: 15,
     marginRight: 5, 
-    backgroundColor: "white"
+    backgroundColor: "white", 
   },
   sharingIconsRow: {
     flexDirection: 'row',

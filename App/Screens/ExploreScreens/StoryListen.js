@@ -24,7 +24,7 @@ export default function StoryListen () {
             <View style={styles.firstView}> 
                 <View style={styles.content}>
 
-                    <Image source={Images.silverMan} resizeMode='contain' style={styles.image}/>
+                    <Image source={Images.silverMan} resizeMode='cover' style={styles.image}/>
                     <Text style={styles.title}> Title of Story </Text>
                     <Text style={styles.author} onPress={() => navigation.navigate('Profile')}> @author</Text>
 
@@ -109,7 +109,8 @@ const styles = StyleSheet.create({
     },
     image: {
         width: '50%',
-        aspectRatio: 1,
+        //width: 200, 
+        //height: 200, 
         borderRadius: 25,
         marginBottom: 10
 

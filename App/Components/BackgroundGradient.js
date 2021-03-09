@@ -4,7 +4,7 @@ import { LinearGradient } from 'expo-linear-gradient';
 
 export default function BackgroundGradient() {
     return (
-        <LinearGradient colors={['#FDF0AF', '#ffffff']} style={styles.background} end={[0.0, 0.7]}/>
+        <LinearGradient colors={['#FDF0AF', '#ffffff']} style={styles.background} start={[0.0, 0.0]} end={[0.0, 0.4]}/>
     )
 }
 

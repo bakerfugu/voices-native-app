@@ -8,6 +8,7 @@ import SvgUsePhotoIcon from '../../../icons/UsePhotoIcon'
 import BackgroundGradient from '../../Components/BackgroundGradient.js';
 export default function PhotoPreview ({route, navigation}) {
     const {uri, w, h} = route.params;
+    console.log(h);
     
 
     return (

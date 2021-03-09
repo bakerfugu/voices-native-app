@@ -6,14 +6,14 @@ import { useNavigation } from '@react-navigation/native'
 import { ScrollView } from 'react-native-gesture-handler';
 
 
-export default function StoryLocationComponent (props) {
-    console.log("this is props ", props);
-    console.log("this is props.location ", props.location);
+export default function StoryLocationComponent ({locationIndex}) {
+    // console.log("this is props ", location);
+    // console.log("this is props.location ", location.title);
     const navigation = useNavigation();
     return (
 
         <View style={styles.container}>
-            <ListOfStories location={props.location}/>
+            <ListOfStories locationIndex={locationIndex}/>
             <Button title={'Story Listening Page'} onPress={() => {navigation.navigate('StoryListen')}}/>
 
         </View>

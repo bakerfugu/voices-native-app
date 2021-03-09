@@ -6,24 +6,26 @@ import StoryClip from './StoryClip.js';
 import storyLocations from './StoryLocations';
 
 
-export default function ListOfStories (props) {
+export default function ListOfStories ({locationIndex}) {
     //console.log("this is props in ListOfStories ", props);
     //console.log("this is props.location in ListOfStories ", props.location);
 
     //console.log("This is storyLocations ", storyLocations);
+    const locationInfo = storyLocations[locationIndex];
 
+    
 
     return (
         <View style={styles.flatlist}>
             <FlatList
-                data={storyLocations[0].stories}
+                data={locationInfo.stories}
                 renderItem={(story) => {
                     console.log("Printing playlist: ", story);
                     return <StoryClip key={story.item.title} value={story.item}/>
                     }
                 }
                 keyExtractor={(item) => item.id}
-                ListHeaderComponent={LocationInfo(props.location)}
+                ListHeaderComponent={LocationInfo(locationIndex)}
             />
 
         </View>
@@ -51,7 +53,7 @@ const styles = StyleSheet.create({
 
     },
     flatlist: {
-        marginTop: 20,
+        // marginTop: 20,
         flex: 1,
         width:'100%'
     }

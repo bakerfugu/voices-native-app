@@ -4,8 +4,9 @@ import { StyleSheet, View, Image, TouchableOpacity } from 'react-native';
 import { YellowBlurOrb } from '../../icons';
 import {useNavigation} from '@react-navigation/native'
 
-export default function FloatingStoryMapMarker ({imageSource}) {
+export default function FloatingStoryMapMarker ({imageSource, recordStory}) {
     const navigation = useNavigation();
+
     return (
         
         
@@ -16,7 +17,11 @@ export default function FloatingStoryMapMarker ({imageSource}) {
                     height={50}
                 />
                 <View style={styles.innerOrb}>
+                    {recordStory ?
+                    <Image source={{uri: imageSource}} resizeMode='contain' style={styles.storyImage}/> :
                     <Image source={imageSource} resizeMode='contain' style={styles.storyImage}/>
+                    }
+                    
                 </View>
             </View>
         

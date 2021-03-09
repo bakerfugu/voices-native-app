@@ -14,11 +14,14 @@ import StoryInfoForm from '../../Components/StoryInfoForm.js';
 import Confirmation from './Confirmation.js';
 import SvgTakePhotoIcon from '../../../icons/TakePhotoIcon';
 import SvgUploadImageIcon from '../../../icons/UploadImageIcon';
-    
+import metrics from '../../Themes/Metrics.js';
 
-    
-    
-export default function StoryInfo ({route}) {
+
+
+
+// export default function StoryInfo ({route}) {
+export default function StoryInfo({ route }) {
+
     let uri, w, h;
     if (route.params) {
         uri = route.params.uri;
@@ -26,100 +29,130 @@ export default function StoryInfo ({route}) {
         h = route.params.h;
         //const {uri, w, h} = route.params;
         console.log(uri);
-    } 
+    }
+
+    // const [image, setImage] = useState(null);
+    const [title, setTitle] = useState('');
+    const [location, setLocation] = useState();
+
     const [valueMS, setValueMS] = useState([]);
     const onChangeMS = (value) => {
         setValueMS(value);
-      };
+    };
+
+
 
     const data = [
         {
-          value: '1',
-          label: 'COVID-19',
+            value: '1',
+            label: 'COVID-19',
         },
         {
-          value: '2',
-          label: 'Music',
+            value: '2',
+            label: 'Music',
         },
         {
             value: '3',
             label: 'Dance',
-          },
-          {
+        },
+        {
             value: '4',
             label: 'Food',
-            
-          },
-          {
+
+        },
+        {
             value: '5',
             label: 'History',
-          },
-          {
+        },
+        {
             value: '6',
             label: 'Folklore',
-            
-          }
+
+        }
     ];
 
 
     const navigation = useNavigation();
     return (
-            <View style={styles.container}>
-            <BackgroundGradient/>
+        <View style={styles.container}>
+
+            <BackgroundGradient />
+            <View style={styles.header} />
+
             <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
-            <View style={styles.form}>
-            <TextInput style={styles.textInput} placeholder="Title"/>
-            <View style={styles.tagDropDrown}>
-                <MultiselectDropdown
-                    label='Tags'
-                    data={data}
-                    chipType="flat"
-                    enableSearch
-                    value={valueMS}
-                    onChange={onChangeMS}
-                    chipStyle={{backgroundColor: '#5dd7bf', borderColor: 'black'}}
-                    mainContainerStyle={styles.tagsContainer}
-                    
-                />
-            </View>
-            {
-                !uri ?
-            <View style={styles.buttonView}>
-                
-                <TouchableOpacity onPress={() => {navigation.navigate('UploadPhoto')}}>
-                    <SvgUploadImageIcon
-                    width={"70"}
-                    height={"55"}/>
-                    <Text style={{marginTop: "5%", marginLeft: "13%"}}>
-                        Upload 
-                    </Text>
-                </TouchableOpacity>
-                <TouchableOpacity onPress={() => navigation.navigate('TakePhoto')}>
-                    <SvgTakePhotoIcon
-                    width={"70"} style={{marginTop: "-35%"}}
+
+                <View style={styles.form}>
+                    <TextInput 
+                    style={styles.textInput} 
+                    placeholder="Title" 
+                    onChangeText={setTitle}
                     />
-                    <Text style={{marginTop: "-20%"}}>
-                        Take Photo
+                    <View style={styles.tagDropDrown}>
+                        <MultiselectDropdown
+                            label='Tags'
+                            data={data}
+                            chipType="flat"
+                            enableSearch
+                            value={valueMS}
+                            onChange={onChangeMS}
+                            chipStyle={{ backgroundColor: '#5dd7bf', borderColor: 'black' }}
+                            mainContainerStyle={styles.tagsContainer}
+                            
+
+                        />
+                    </View>
+
+
+                    {
+                        !uri ?
+                            <View style={styles.buttonView}>
+
+                                <TouchableOpacity onPress={() => { navigation.navigate('UploadPhoto') }}>
+                                    <SvgUploadImageIcon
+                                        width={"70"}
+                                        height={"55"} />
+                                    <Text style={{ marginTop: "5%", marginLeft: "13%" }}>
+                                        Upload
+                            </Text>
+                                </TouchableOpacity>
+
+                                <TouchableOpacity onPress={() => navigation.navigate('TakePhoto')}>
+                                    <SvgTakePhotoIcon
+                                        width={"70"} style={{ marginTop: "-35%" }}
+                                    />
+                                    <Text style={{ marginTop: "-20%" }}>
+                                        Take Photo
+                            </Text>
+                                </TouchableOpacity>
+
+                            </View>
+                            :
+                            <Image source={{ uri: uri }} style={{ width: w, height: h, borderRadius: w, marginBottom: '5%' }} />
+                    }
+                    <TextInput 
+                    style={styles.textInput} 
+                    placeholder="Location" 
+                    onChangeText={setLocation}
+                    />
+                </View>
+
+            </TouchableWithoutFeedback>
+
+            <View style={{ flex: 1,justifyContent: 'flex-end', width: '100%', alignItems: 'center', paddingBottom: metrics.paddingBottom }}>
+                {/* <TouchableOpacity style={styles.postButton} onPress={() => { navigation.navigate('Confirmation', {uri: uri}) }} disabled={!title || !uri || !location || !valueMS}>
+                    <Text style={{ fontSize: 20 }}>
+                        Post
                     </Text>
-                </TouchableOpacity>       
+                </TouchableOpacity> */}
+                <View style={styles.postButton}>
+               
+                    <LongButton onPress={() => { navigation.navigate('Confirmation', {uri: uri}) }} disabled={!title || !uri || !location || !valueMS} label={'Post'}/>
+                </View>
+                
             </View>
-            :
-            <Image source={{uri: uri}} style={{width: w, height: h, borderRadius: w, marginBottom: '5%'}}/>
-            }
-            <TextInput style={styles.textInput} placeholder="Location"/>  
         </View>
 
-        </TouchableWithoutFeedback>
-        <View style={{paddingBottom: 0, width: '100%', alignItems: 'center'}}>
-            <TouchableOpacity style={styles.postButton} onPress={() => {navigation.navigate('Confirmation')}}>
-                <Text style={{fontSize: 20}}>
-                    Post
-                </Text>
-            </TouchableOpacity> 
-        </View>
-        </View>
- 
-       
+
     );
 
 }
@@ -127,8 +160,8 @@ export default function StoryInfo ({route}) {
 
 const styles = StyleSheet.create({
     container: {
-      flex: 1,
-      alignItems: 'center',
+        flex: 1,
+        alignItems: 'center',
     },
     tagDropDrown: {
         height: 100,
@@ -141,15 +174,15 @@ const styles = StyleSheet.create({
         padding: '3%',
         width: '60%',
         alignItems: 'center',
-        
-        
+
+
     },
     form: {
         // alignSelf: 'stretch',
         // alignItems: 'center'
-        flex: 1, 
+        flex: 5,
         flexDirection: 'column',
-        justifyContent: 'center',
+        justifyContent: 'space-around',
         alignItems: 'center',
         // backgroundColor: 'grey',
         width: '100%',
@@ -161,7 +194,7 @@ const styles = StyleSheet.create({
         // alignSelf: 'center',
         padding: 10,
         width: '80%',
-        height: 40, 
+        height: 40,
         marginBottom: 0,
         // color: 'black',
         backgroundColor: 'white',
@@ -170,29 +203,48 @@ const styles = StyleSheet.create({
         borderRadius: 10
     },
     buttonView: {
-        width: '80%',
+        width: 250,
+        height: 250,
+        borderRadius: 125,
+        borderWidth: 3,
+        borderColor: '#F1B600',
         flexDirection: 'row',
         justifyContent: 'space-evenly',
         alignItems: 'center',
-        paddingBottom: 20,
+        // paddingBottom: 20,
         paddingHorizontal: 5,
-        marginTop: "10%",
-        marginBottom:"15%"
+
     },
     tagDropDrown: {
         height: 100,
         width: '80%',
         marginBottom: 20,
-        marginTop: "10%"
     },
     tagsContainer: {
         backgroundColor: 'white',
         borderWidth: 3,
         borderColor: '#F1B600',
         borderRadius: 10
-        
-    }
+
+    },
+    header: {
+
+        width: '100%',
+        height: metrics.headerHeight,
+
+    },
+    postButton: {
+        flex: 1,
+        width: '50%',
+        flexDirection: 'row',
+        justifyContent: 'center',
+        alignItems: 'flex-end',
+        paddingBottom: metrics.paddingBottom,
+        paddingHorizontal: 5,
+
+    
+    }, 
 
 });
 
-    
+

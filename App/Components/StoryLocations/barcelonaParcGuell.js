@@ -21,46 +21,46 @@ export const barcelonaParcGuell = [
       tags: ["Heart-Warmer", "Community"]
     },
     {
-        id: "4",
-        title: "Parc Guëll under Covid",
-        length: 31, 
-        date: "Mar 2019", 
-        tags: ["COVID-19", "Music", "Love"]
+    id: "4",
+    title: "Parc Guëll under Covid",
+    length: 31, 
+    date: "Mar 2019", 
+    tags: ["COVID-19", "Music", "Love"]
     },
     {
-        id: "5",
-        title: "A Local Perspective on Our Park",
-        length: 8, 
-        date: "Jan 2019", 
-        tags: ["History", "Community", "Love"]
+    id: "5",
+    title: "A Local Perspective on Our Park",
+    length: 8, 
+    date: "Jan 2019", 
+    tags: ["History", "Community", "Love"]
     },
     {
-        id: "6",
-        title: "Picnics at Parc Guëll",
-        length: 24, 
-        date: "May 2018", 
-        tags: ["Food", "Family", "Community"]
+    id: "6",
+    title: "Picnics at Parc Guëll",
+    length: 24, 
+    date: "May 2018", 
+    tags: ["Food", "Family", "Community"]
     },
     {
-        id: "7",
-        title: "The Ghost of Gaudi",
-        length: 52, 
-        date: "Mar 2018", 
-        tags: ["Folklore", "History", "Community"]
+    id: "7",
+    title: "The Ghost of Gaudi",
+    length: 52, 
+    date: "Mar 2018", 
+    tags: ["Folklore", "History", "Community"]
     },
-    ,
+    
     {
-        id: "8",
-        title: "Hidden Secrets of the Park",
-        length: 21, 
-        date: "Jan 2018", 
-        tags: ["Folklore", "Community"]
+    id: "8",
+    title: "Hidden Secrets of the Park",
+    length: 21, 
+    date: "Jan 2018", 
+    tags: ["Folklore", "Community"]
     },
     {
-        id: "9",
-        title: "What it means to be a UNESCO Site",
-        length: 18, 
-        date: "Dec 2017", 
-        tags: ["History", "Community"]
+    id: "9",
+    title: "What it means to be a UNESCO Site",
+    length: 18, 
+    date: "Dec 2017", 
+    tags: ["History", "Community"]
     }
 ];

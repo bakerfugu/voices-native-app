@@ -7,11 +7,11 @@ import { Images } from '../../Themes/index.js';
 import { useNavigation } from '@react-navigation/native';
 import { ImageBackground } from 'react-native';
 import DeleteOrEdit from '../../Components/DeleteOrEdit.js';
-
+import FloatingStoryMapMarker from '../../Components/floatingStoryMapMarker.js'
     
     
-export default function Confirmation () {
-    const navigation = useNavigation();
+export default function Confirmation ({route, navigation}) {
+    const {uri} = route.params;
     const [modalVisible, setModalVisible] = useState(false);
     const [deleted, setDeleted] = useState(false);
 
@@ -64,7 +64,8 @@ export default function Confirmation () {
                         deleted ? 
                         <View></View> 
                         :
-                        <Image source={Images.storyBubble} style={styles.storyBubble} />  
+                        // <Image source={Images.storyBubble} style={styles.storyBubble} /> 
+                        <FloatingStoryMapMarker imageSource={uri} recordStory={true}/>
                     }
               
                 </Pressable>

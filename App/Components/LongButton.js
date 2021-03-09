@@ -4,14 +4,14 @@ import { StyleSheet, Text, SafeAreaView, View, AsyncStorage, Image, TouchableOpa
 
 export default function LongButton (props) {
     return (
-        <TouchableOpacity style={styles.LongButton} onPress={props.onPress}>
+        <TouchableOpacity style={props.disabled ? styles.disabled : styles.able} onPress={props.onPress} disabled={props.disabled}>
             <Text>{props.label}</Text>
         </TouchableOpacity>
     )
 }
 
 const styles = StyleSheet.create({
-    LongButton: {
+    able: {
         borderRadius: 15,
         flex: 1,
         height: 50,
@@ -23,5 +23,17 @@ const styles = StyleSheet.create({
         marginVertical: 15,
         marginHorizontal: 10
 
+    },
+    disabled: {
+        borderRadius: 15,
+        flex: 1,
+        height: 50,
+        backgroundColor: 'lightgrey',
+        justifyContent: 'center',
+        borderWidth: 3,
+        borderColor: '#F1B600',
+        alignItems: 'center',
+        marginVertical: 15,
+        marginHorizontal: 10
     }
 });

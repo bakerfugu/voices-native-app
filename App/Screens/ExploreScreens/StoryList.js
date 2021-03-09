@@ -7,6 +7,7 @@ import { Images } from '../../Themes/index.js';
 import { useNavigation } from '@react-navigation/native';
 import StoryLocationComponent from '../../Components/StoryLocationComponent.js'
 import storyLocations from '../../Components/StoryLocations';  
+import { Ionicons } from '@expo/vector-icons'
     
 export default function StoryList ({route, navigation}) {
     const {locationIndex} = route.params;
@@ -22,6 +23,20 @@ export default function StoryList ({route, navigation}) {
         <View style ={styles.container}>
             <BackgroundGradient/>
             <View style={styles.header}>
+                <View style={styles.backButton}>
+                    <Ionicons name="chevron-back-outline" size={34} color="black" />
+                </View>
+
+                <View style={styles.titleView}> 
+                    <Text style={styles.title}>
+                        {storyLocations[locationIndex].title}
+                        </Text>
+                </View>
+
+                <View style={styles.backButton}>
+
+                </View>
+                
 
             </View>
 
@@ -44,13 +59,36 @@ const styles = StyleSheet.create({
         height: 75,
         // backgroundColor: 'grey',
         left: 0,
-        top: 0
+        top: 0,
+        flexDirection: 'row',
+        paddingLeft: 10, 
+        justifyContent: 'center'
+        
 
     },
     test: {
         flex: 1,
         width: '100%',
         backgroundColor: 'lightblue'
+    },
+    titleView: {
+        width:'75%',
+        alignItems:'center',
+       
+    },
+    backButton: {
+        justifyContent: 'center',
+        alignItems: 'flex-start',
+        height: '100%',
+        // backgroundColor: 'grey',
+        width: '12.5%',
+
+
+    },
+    title: {
+        fontSize:26, 
+        fontWeight: 'bold',
+        textAlign: 'center'
     }
 });
 

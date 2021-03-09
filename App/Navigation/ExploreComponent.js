@@ -26,7 +26,8 @@ export default function ExploreComponent () {
         // backgroundColor: 'pink'
       },
       headerTitleStyle: {
-        fontSize: 24
+        fontSize: 30,
+        fontWeight: 'bold'
       },
       headerLeftContainerStyle: {
         paddingLeft: 10
@@ -36,6 +37,31 @@ export default function ExploreComponent () {
       
 
     <ExploreNav.Screen name={'StoryList'} component={StoryList}  options={{
+      headerTransparent:true,
+      headerShown: false,
+      title: '',
+      headerTintColor: 'black',
+      headerBackTitleVisible: false,
+      headerTitleStyle: {
+        fontSize: 30,
+        fontWeight: 'bold',
+
+      },
+      headerLeftContainerStyle: {
+        paddingLeft: 10
+      }, 
+      headerStyle: {
+        height: 75,
+        // backgroundColor: 'pink'
+      },
+      headerTitleContainerStyle: {
+        flex: 1,
+        width:'60%',
+        alignItems:'center'
+      }
+      }} />
+
+      <ExploreNav.Screen name={'StoryListen'} component={StoryListen}  options={{
       headerTransparent:true,
       title: '',
       headerTintColor: 'black',
@@ -47,12 +73,13 @@ export default function ExploreComponent () {
       },
       headerLeftContainerStyle: {
         paddingLeft: 10
-      }
-      }} />
-
-      <ExploreNav.Screen name={'StoryListen'} component={StoryListen}  options={{
-      headerTransparent:true,
-      title : 'Story Listen'
+      }, 
+      headerStyle: {
+        height: 75,
+        // backgroundColor: 'pink'
+      },
+      
+      
       }} />
 
       <ExploreNav.Screen name={'Profile'} component={Profile} />

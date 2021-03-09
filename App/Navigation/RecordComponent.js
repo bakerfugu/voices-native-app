@@ -53,8 +53,9 @@ export default function RecordComponent () {
             height: 75
           },
           headerLeftContainerStyle: {
-            paddingLeft: 10
-          }
+            paddingLeft: 10,
+          },
+          gestureEnabled: false,
       }}/>
       <RecordNav.Screen name={'StoryInfo'} component={StoryInfo} 
         options={{

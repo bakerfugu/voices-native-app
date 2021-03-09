@@ -4,6 +4,7 @@ import {barcelonaParcGuell} from "./barcelonaParcGuell";
 import {sfWharfStories} from "./sfWharf";
 import {sfDelPopoloStories} from "./sfDelPopolo";
 import {sfMissionDoloresPark} from "./sfMissionDolores";
+import {ZonaOmbra} from './barcelonaZonaOmbre'
 import {Images} from '../../Themes';
 import { manipulateAsync } from "expo-image-manipulator";
 import metrics from "../../Themes/Metrics";
@@ -40,6 +41,7 @@ const storyLocations = [
   },
   {
       title: "Zona d'Ombra",
+      stories: ZonaOmbra,
       coordinates: { 
       latitude: 41.382750, 
       longitude: 2.175700

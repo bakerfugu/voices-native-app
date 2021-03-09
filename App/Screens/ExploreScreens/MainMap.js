@@ -23,15 +23,13 @@ export default function MainMap() {
                   }}
             >
                 
-                {/* {storyLocations.map((item) => (
-                    {console.log(item.coordinates)}
-                    <Marker coordinate={item.coordinates}>
-                        <FloatingStoryMapMarker imageSource={Images.parliament}/>
-
-                    </Marker>
-                ))} */}
-                {storyLocations.map((item) => (
-                <Marker title="Test" coordinate={item.coordinates}>
+            
+                {storyLocations.map((item, index) => (
+                <Marker title="Test" coordinate={item.coordinates}
+                    onPress={ (item) => {
+                        navigation.navigate('StoryList', {locationIndex: index});
+                    }}
+                >
                     <FloatingStoryMapMarker imageSource={item.image}/>
                 </Marker>
                     

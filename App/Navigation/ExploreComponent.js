@@ -18,13 +18,19 @@ export default function ExploreComponent () {
   <ExploreNav.Navigator headerMode='float'>
     <ExploreNav.Screen name={'MainMap'} component={MainMap}  options={{
       // headerTransparent:true,
+      headerShown: false,
+      
       title : 'Explore Page',
       headerStyle: {
-        height: 100,
+        height: 75,
         // backgroundColor: 'pink'
       },
       headerTitleStyle: {
-        fontSize: 24
+        fontSize: 30,
+        fontWeight: 'bold'
+      },
+      headerLeftContainerStyle: {
+        paddingLeft: 10
       }
     }}
      />
@@ -32,12 +38,48 @@ export default function ExploreComponent () {
 
     <ExploreNav.Screen name={'StoryList'} component={StoryList}  options={{
       headerTransparent:true,
-      title : 'Story List'
+      headerShown: false,
+      title: '',
+      headerTintColor: 'black',
+      headerBackTitleVisible: false,
+      headerTitleStyle: {
+        fontSize: 30,
+        fontWeight: 'bold',
+
+      },
+      headerLeftContainerStyle: {
+        paddingLeft: 10
+      }, 
+      headerStyle: {
+        height: 75,
+        // backgroundColor: 'pink'
+      },
+      headerTitleContainerStyle: {
+        flex: 1,
+        width:'60%',
+        alignItems:'center'
+      }
       }} />
 
       <ExploreNav.Screen name={'StoryListen'} component={StoryListen}  options={{
       headerTransparent:true,
-      title : 'Story Listen'
+      title: '',
+      headerTintColor: 'black',
+      headerBackTitleVisible: false,
+      headerTitleStyle: {
+        fontSize: 30,
+        fontWeight: 'bold',
+
+      },
+      headerLeftContainerStyle: {
+        paddingLeft: 10
+      }, 
+      headerStyle: {
+        height: 75,
+        // backgroundColor: 'pink'
+      },
+      
+      
       }} />
 
       <ExploreNav.Screen name={'Profile'} component={Profile} />

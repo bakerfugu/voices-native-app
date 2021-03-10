@@ -18,8 +18,8 @@ export default function FloatingStoryMapMarker ({imageSource, recordStory}) {
                 />
                 <View style={styles.innerOrb}>
                     {recordStory ?
-                    <Image source={{uri: imageSource}} resizeMode='contain' style={styles.storyImage}/> :
-                    <Image source={imageSource} resizeMode='contain' style={styles.storyImage}/>
+                    <Image source={{uri: imageSource}} resizeMode='cover' style={styles.storyImage}/> :
+                    <Image source={imageSource} resizeMode='cover' style={styles.storyImage}/>
                     }
                     
                 </View>

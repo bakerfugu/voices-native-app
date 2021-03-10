@@ -13,9 +13,10 @@ export default function StoryList ({route, navigation}) {
     const {locationIndex} = route.params;
 
     useEffect(() => {
-        
+        console.log("this is storyLocations[locationIndex] ", storyLocations[locationIndex]);
         navigation.setOptions({
             title: storyLocations[locationIndex].title,
+            numStories: storyLocations[locationIndex].stories.length
         });
     }, []);
 
@@ -30,6 +31,9 @@ export default function StoryList ({route, navigation}) {
                 <View style={styles.titleView}> 
                     <Text style={styles.title}>
                         {storyLocations[locationIndex].title}
+                        </Text>
+                        <Text style={styles.numStories}>
+                        {storyLocations[locationIndex].stories.length + " Stories Available"}
                         </Text>
                 </View>
 
@@ -86,9 +90,11 @@ const styles = StyleSheet.create({
 
     },
     title: {
-        fontSize:26, 
+        marginTop: '5%',
+        fontSize: 26, 
         fontWeight: 'bold',
-        textAlign: 'center'
+        textAlign: 'center',
+        margin: '3%', 
     }
 });
 

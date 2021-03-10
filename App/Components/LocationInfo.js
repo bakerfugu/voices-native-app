@@ -12,11 +12,11 @@ export default function LocationInfo (locationIndex) {
     
     return (
         <View style={styles.container}>
-            {/* <Text style={styles.locationTitle}>{location.title}</Text> */}
-            <Text>{location.stories.length} Stories Available</Text>
+            {/* <Text style={styles.locationTitle}>{location.stories.title}</Text> */}
+            {/* <Text>{location.stories.length} Stories Available</Text> */}
             <View style={styles.background}>
                 <ImageBackground source={Images.yellowOrb} resizeMode={'contain'} style={styles.orb}>
-                    <Image source={location.image} resizeMode='contain' style={styles.locationImage}/>
+                    <Image source={location.image} resizeMode='cover' style={styles.locationImage}/>
                 </ImageBackground>             
             </View>
             
@@ -70,7 +70,7 @@ const styles = StyleSheet.create({
     
         fontWeight: 'bold',
         textAlign: 'center', 
-    }
+    }, 
   
 
 });

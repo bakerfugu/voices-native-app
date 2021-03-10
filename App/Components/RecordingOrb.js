@@ -3,81 +3,38 @@ import { StyleSheet, Text, SafeAreaView, View, AsyncStorage, Image, TouchableOpa
 import { LinearGradient } from 'expo-linear-gradient';
 import {Images} from '../Themes'
 import Timer from './Timer.js'
-
-import {AntDesign, FontAwesome5} from '@expo/vector-icons'
+import { Dimensions } from 'react-native';
+import {FontAwesome5} from '@expo/vector-icons'
 
 
 
 export default function RecordingOrb ({onPress, time, recordState}) {
-    
-    // const [instructions, setInstructions] = useState('Tap to Start');
-    // const [orb, setOrb] = useState(Images.blueOrb);
-    
-    // const [time, setTime] = useState(0);
-    // const [paused, changeRecordState] = useState(true);
-    // var interval = null;
-
-    
-    // const continueTimer = () => {
-    //     changeRecordState(false);
-        
-    // }
-
-    // const pauseTimer = () => {
-    //     changeRecordState(true);
-    // }
-
-
-    // const switchOrb = () => {
-    //     if (orb===Images.blueOrb) {
-    //         setOrb(Images.yellowOrb);
-    //         setInstructions('Tap to Stop');
-    //         changeRecordState(false);
-    //     }
-    //     else {
-    //         setOrb(Images.blueOrb);
-    //         setInstructions('Tap to Start');
-    //         changeRecordState(true);           
-    //     }
-    // }
-
-    // useEffect(() => {
-        
-    //     if (!paused) {
-    //         interval = setInterval(() => {
-    //             setTime(time => time + 1);
-
-    //         }, 1000);
-    //     }
-    //     else {
-    //         clearInterval(interval);
-    //     }
-    //     return () => clearInterval(interval);
-    // },[paused]);
 
   
     return (    
         <View style={styles.container}>
             
+            
             <TouchableOpacity style={styles.orbView} onPress={onPress}>
                 
-                <Image source={recordState.orb} resizeMode='contain' style={styles.blueOrb}/>
-                <View style={{position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, justifyContent: 'center', alignItems: 'center'}}>
-                    <Timer style={styles.timer} time={time}/>
-                    <FontAwesome5 name={recordState.paused ? 'microphone' : 'pause'} color={'white'} size={48} style={{marginTop: 10}}/>
-                </View>
                 
-            
-                
+                 <Image source={recordState.paused ? Images.record : Images.pause} resizeMode='contain' style={styles.blueOrb}/>
+                {/*<View style={{position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, justifyContent: 'center', alignItems: 'center'}}>
+                    
+                    <FontAwesome5 name={recordState.paused ? 'microphone' : 'stop'} color={'white'} size={100} style={{marginTop: 10}}/>
+                </View> */}
+               
+    
             </TouchableOpacity>
-            {/* <AntDesign name={'caretup'} size={24} style={{marginTop: 10}}/> */}
-            {/* <Text style={styles.instructions}>{recordState.instructions}</Text> */}
+            <Timer style={styles.timer} time={time}/>
 
         </View>
 
     )
 }
 
+
+const windowWidth = Dimensions.get('window').width;
 const styles = StyleSheet.create({
     
     container: {
@@ -86,11 +43,16 @@ const styles = StyleSheet.create({
        
     },
     orbView: {
-        height: '70%',
+        height: '80%',
+        // width: '100%',
+
         aspectRatio: 1,
+        // borderRadius: windowWidth * .35,
+        // borderColor: 'lightgrey',
+        // borderWidth: 4,
         justifyContent: 'center',
         alignItems: 'center',
-       
+        marginBottom: '5%',
         // backgroundColor: 'green'
         
     },
@@ -108,9 +70,10 @@ const styles = StyleSheet.create({
         fontSize: 24
     },
     timer: {
-        position: 'absolute',
-        left: 0,
-        top: 0,
+        // position: 'absolute',
+        // left: 0,
+        // top: 0,
+        
     }
 
   });

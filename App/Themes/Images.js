@@ -21,7 +21,8 @@ const images = {
   parkGuell: require('../Images/park-guell.png'),
   dolores: require('../Images/dolores.png'),
   delPopolo: require('../Images/del-popolo.png'),
-  
+  record : require('../Images/record-button.png'),
+  pause : require('../Images/pause-button.png'),
 
 }
 

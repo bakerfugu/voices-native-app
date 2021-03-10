@@ -39,7 +39,7 @@ export default function EditStory () {
     const calculateTimes = (position) => {
         
         let totalSecs = Math.floor(position / 1000);
-        console.log(totalSecs)
+        // console.log(totalSecs)
         // let minutes = Math.floor(time / 60);
         // let sec = time % 60;
         let min = `${Math.floor(totalSecs / 60)}`

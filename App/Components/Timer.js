@@ -27,7 +27,7 @@ const styles = StyleSheet.create({
     
     timer: {
         fontSize : 48,
-        fontWeight: 'bold',
-        color: 'white',
+        fontWeight: '300',
+        color: 'black',
     }
 });

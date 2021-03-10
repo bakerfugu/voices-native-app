@@ -200,7 +200,7 @@ const styles = StyleSheet.create({
         backgroundColor: 'white',
         borderWidth: 3,
         borderColor: '#F1B600',
-        borderRadius: 10
+        borderRadius: 10,
     },
     buttonView: {
         width: 250,
@@ -213,6 +213,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         // paddingBottom: 20,
         paddingHorizontal: 5,
+        backgroundColor: 'white',
 
     },
     tagDropDrown: {

@@ -11,7 +11,7 @@ import FloatingStoryMapMarker from '../../Components/floatingStoryMapMarker.js'
     
     
 export default function Confirmation ({route, navigation}) {
-    const {uri} = route.params;
+    const {image} = route.params;
     const [modalVisible, setModalVisible] = useState(false);
     const [deleted, setDeleted] = useState(false);
 
@@ -65,7 +65,7 @@ export default function Confirmation ({route, navigation}) {
                         <View></View> 
                         :
                         // <Image source={Images.storyBubble} style={styles.storyBubble} /> 
-                        <FloatingStoryMapMarker imageSource={uri} recordStory={true}/>
+                        <FloatingStoryMapMarker imageSource={image} recordStory={true}/>
                     }
               
                 </Pressable>

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { StyleSheet, Text, TextInput, SafeAreaView, View, AsyncStorage, Image, TouchableOpacity, FlatList, Button, Keyboard, TouchableWithoutFeedback } from 'react-native';
+import { StyleSheet, Text, TextInput, AsyncStorage, View, StatusBar, Image, TouchableOpacity, FlatList, Button, Keyboard, TouchableWithoutFeedback, KeyboardAvoidingView } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import BackgroundGradient from '../../Components/BackgroundGradient.js';
 import LongButton from '../../Components/LongButton.js';
@@ -16,20 +16,13 @@ import SvgTakePhotoIcon from '../../../icons/TakePhotoIcon';
 import SvgUploadImageIcon from '../../../icons/UploadImageIcon';
 import metrics from '../../Themes/Metrics.js';
 import * as ImagePicker from 'expo-image-picker';
-
+import * as Permissions from 'expo-permissions';
+import { useHeaderHeight } from '@react-navigation/stack'
 
 
 // export default function StoryInfo ({route}) {
-export default function StoryInfo({ route }) {
-
-    let uri, w, h;
-    if (route.params) {
-        uri = route.params.uri;
-        w = route.params.w;
-        h = route.params.h;
-        //const {uri, w, h} = route.params;
-        console.log(uri);
-    }
+export default function StoryInfo() {
+    const KEYBOARD_VERTICAL_OFFSET = 75 + StatusBar.currentHeight;
 
     // const [image, setImage] = useState(null);
     const [title, setTitle] = useState('');
@@ -40,33 +33,51 @@ export default function StoryInfo({ route }) {
         setValueMS(value);
     };
 
+    const [valueSS, setValueSS] = useState('');
+    const onChangeSS = (value: string) => {
+        setValueSS(value);
+      };
+
+
+
     const [image, setImage] = useState(null);
 
-    useEffect(() => {
-        (async () => {
-        if (Platform.OS !== 'web') {
-            const { status } = await ImagePicker.requestMediaLibraryPermissionsAsync();
-            if (status !== 'granted') {
-            alert('Sorry, we need camera roll permissions to make this work!');
-            }
+    const getPermissionAsync = async (permission) => {
+        const { status } = await Permissions.askAsync(permission);
+        if (status !== 'granted') {
+          alert('Sorry, we need camera roll or camera permissions to make this work!');
         }
-        })();
-    }, []);
-
-    const pickImage = async () => {
+      }
+      const pickImage = async () => {
+        await getPermissionAsync(Permissions.CAMERA_ROLL);
         let result = await ImagePicker.launchImageLibraryAsync({
-          mediaTypes: ImagePicker.MediaTypeOptions.All,
-          allowsEditing: true,
-          aspect: [4, 3],
-          quality: 1,
+            mediaTypes: ImagePicker.MediaTypeOptions.All,
+                allowsEditing: true,
+                aspect: [4, 3],
+                quality: 1,
         });
-    
-        console.log(result);
-    
         if (!result.cancelled) {
-          setImage(result.uri);
+          setImage(result.uri)
         }
-      };
+      }
+
+      const uploadFromCamera = async () => {
+        await getPermissionAsync(Permissions.CAMERA);
+        let result = await ImagePicker.launchCameraAsync({
+            mediaTypes: ImagePicker.MediaTypeOptions.All,
+                allowsEditing: true,
+                aspect: [4, 3],
+                quality: 1,
+        });
+        if (!result.cancelled) {
+            setImage(result.uri)
+        }
+      }
+
+      
+        
+        
+        
 
 
 
@@ -142,7 +153,7 @@ export default function StoryInfo({ route }) {
                                     </Text>
                                 </TouchableOpacity>
 
-                                <TouchableOpacity onPress={() => navigation.navigate('TakePhoto')}>
+                                <TouchableOpacity onPress={uploadFromCamera}>
                                     <SvgTakePhotoIcon
                                         width={"70"} style={{ marginTop: "-35%" }}
                                     />
@@ -153,14 +164,23 @@ export default function StoryInfo({ route }) {
 
                             </View>
                             :
-                            <Image source={{ uri: image }} style={styles.photoBubble}/>
+                            <TouchableOpacity onPress={() => setImage(null)}>
+                                <Image source={{ uri: image }} style={styles.photoBubble}/>             
+                            </TouchableOpacity>
+                            
                             //style={{ width: w, height: h, borderRadius: w, marginBottom: '5%' }} />
                     }
-                    <TextInput 
-                        style={styles.textInput} 
-                        placeholder="Location" 
-                        onChangeText={setLocation}
-                    />
+
+                    
+                            <TextInput 
+                                style={styles.textInput} 
+                                placeholder="Location" 
+                                onChangeText={setLocation}
+                           />
+
+                    
+                    
+                    
                 </View>
 
             </TouchableWithoutFeedback>
@@ -168,7 +188,7 @@ export default function StoryInfo({ route }) {
             <LongButton style={styles.postbutton} onPress={() => { navigation.navigate('Confirmation', {uri: uri}) }} disabled={!title || !uri || !location || !valueMS} label={'Post'}/> */}
             <View style={{ flex: 1,justifyContent: 'flex-end', width: '100%', alignItems: 'center', paddingBottom: metrics.paddingBottom }}>
                 <View style={styles.postButton}>              
-                    <LongButton onPress={() => { navigation.navigate('Confirmation', {uri: uri}) }} disabled={!title || !uri || !location || !valueMS} label={'Post'}/>
+                    <LongButton onPress={() => { navigation.navigate('Confirmation', {image: image}) }} disabled={!title || !image || !location || !valueMS} label={'Post'}/>
                 </View>
                 
             </View>

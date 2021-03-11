@@ -25,7 +25,7 @@ export default function StoryList ({route, navigation}) {
             <BackgroundGradient/>
             <View style={styles.header}>
                 <View style={styles.backButton}>
-                    <Ionicons name="chevron-back-outline" size={34} color="black" />
+                    <Ionicons name="chevron-back-outline" size={34} color="black" onPress={() => navigation.navigate('MainMap')} />
                 </View>
 
                 <View style={styles.titleView}> 

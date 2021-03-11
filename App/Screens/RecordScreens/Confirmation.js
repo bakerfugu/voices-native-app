@@ -8,6 +8,7 @@ import { useNavigation } from '@react-navigation/native';
 import { ImageBackground } from 'react-native';
 import DeleteOrEdit from '../../Components/DeleteOrEdit.js';
 import FloatingStoryMapMarker from '../../Components/floatingStoryMapMarker.js'
+
     
     
 export default function Confirmation ({route, navigation}) {

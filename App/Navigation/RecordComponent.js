@@ -8,6 +8,7 @@ import Confirmation from '../Screens/RecordScreens/Confirmation.js'
 import TakePhoto from '../Screens/RecordScreens/takePhoto.js'
 import PhotoPreview from '../Screens/RecordScreens/photoPreview.js'
 import UploadPhoto from '../Screens/RecordScreens/uploadPhoto.js'
+import {MaterialIcons} from '@expo/vector-icons'
 
 import { StatusBar } from 'expo-status-bar';
 const RecordNav = createStackNavigator();
@@ -32,8 +33,13 @@ export default function RecordComponent () {
           },
           headerLeftContainerStyle: {
             paddingLeft: 10
-          }
-          
+          },
+          headerRight:  () => (
+            <MaterialIcons name={'cloud-upload'} size={36} color={'#1ddbb5'}/>
+          ),
+          headerRightContainerStyle: {
+            paddingRight: 15
+          }  
 
       }}/>
       <RecordNav.Screen name={'EditStory'} component={EditStory} 

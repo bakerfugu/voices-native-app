@@ -89,14 +89,22 @@ export default function RecordHome() {
        <View style ={styles.container}>
            <BackgroundGradient/>
            <View style={styles.header}/>
+
+           
            <View style={styles.orbView}>
                <RecordingOrb onPress={pauseOrContinue} recordState={recordState} time={time}/>
+           </View>
+
+           <View style={styles.uploadFile}> 
+
            </View>
            
            <View style={styles.buttonView}>
                 <LongButton label='Restart' onPress={restartTimer} disabled={(time===0 || !recordState.paused)}/>
                 <LongButton label='Edit Story' onPress={nextPage} disabled={time===0 || !recordState.paused}/>
            </View>
+
+
 
        </View>
 
@@ -122,10 +130,12 @@ const styles = StyleSheet.create({
         justifyContent: 'center'
     },
     orbView: {
-        flex: 5,
+        flex: 8,
         width: '100%',
         justifyContent: 'center',
         alignItems: 'center',
+        
+        
     
     },
     buttonView: {
@@ -136,16 +146,13 @@ const styles = StyleSheet.create({
         alignItems: 'flex-end',
         paddingBottom: metrics.paddingBottom,
         paddingHorizontal: 5,
-
     
     }, 
     header: {
         width: '100%',
         height: metrics.headerHeight,
     },
-    disabled: {
 
-    }
   });
 
 

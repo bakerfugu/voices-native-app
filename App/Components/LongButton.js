@@ -39,6 +39,6 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         marginVertical: 15,
         marginHorizontal: 10, 
-        marginBottom: 50, 
+        // marginBottom: 50, 
     }
 });

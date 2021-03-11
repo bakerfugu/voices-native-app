@@ -4,7 +4,7 @@ import { LinearGradient } from 'expo-linear-gradient';
 import {Images} from '../Themes'
 import Timer from './Timer.js'
 import { Dimensions } from 'react-native';
-import {FontAwesome5} from '@expo/vector-icons'
+import {FontAwesome5, MaterialIcons} from '@expo/vector-icons'
 
 
 
@@ -19,6 +19,7 @@ export default function RecordingOrb ({onPress, time, recordState}) {
                 
                 
                  <Image source={recordState.paused ? Images.record : Images.pause} resizeMode='contain' style={styles.blueOrb}/>
+                 
                 {/*<View style={{position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, justifyContent: 'center', alignItems: 'center'}}>
                     
                     <FontAwesome5 name={recordState.paused ? 'microphone' : 'stop'} color={'white'} size={100} style={{marginTop: 10}}/>
@@ -26,7 +27,10 @@ export default function RecordingOrb ({onPress, time, recordState}) {
                
     
             </TouchableOpacity>
-            <Timer style={styles.timer} time={time}/>
+            <View style={styles.timerView}>
+                <Timer style={styles.timer} time={time}/>
+            </View>
+            
 
         </View>
 
@@ -52,7 +56,7 @@ const styles = StyleSheet.create({
         // borderWidth: 4,
         justifyContent: 'center',
         alignItems: 'center',
-        marginBottom: '5%',
+      
         // backgroundColor: 'green'
         
     },
@@ -63,17 +67,24 @@ const styles = StyleSheet.create({
     },
     buttons: {
         flex: 1,
-        backgroundColor: 'green'
+        // backgroundColor: 'green'
     },
     instructions: {
         // marginTop: 20,
         fontSize: 24
+    
     },
     timer: {
         // position: 'absolute',
         // left: 0,
         // top: 0,
         
+    },
+    timerView:{
+        flexDirection: 'column',
+        alignItems: 'center',
+        justifyContent: 'flex-start',
+        // backgroundColor: 'grey'
     }
 
   });

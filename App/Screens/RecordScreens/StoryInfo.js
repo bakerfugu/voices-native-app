@@ -15,7 +15,7 @@ import Confirmation from './Confirmation.js';
 import SvgTakePhotoIcon from '../../../icons/TakePhotoIcon';
 import SvgUploadImageIcon from '../../../icons/UploadImageIcon';
 import metrics from '../../Themes/Metrics.js';
-
+import * as ImagePicker from 'expo-image-picker';
 
 
 
@@ -39,6 +39,34 @@ export default function StoryInfo({ route }) {
     const onChangeMS = (value) => {
         setValueMS(value);
     };
+
+    const [image, setImage] = useState(null);
+
+    useEffect(() => {
+        (async () => {
+        if (Platform.OS !== 'web') {
+            const { status } = await ImagePicker.requestMediaLibraryPermissionsAsync();
+            if (status !== 'granted') {
+            alert('Sorry, we need camera roll permissions to make this work!');
+            }
+        }
+        })();
+    }, []);
+
+    const pickImage = async () => {
+        let result = await ImagePicker.launchImageLibraryAsync({
+          mediaTypes: ImagePicker.MediaTypeOptions.All,
+          allowsEditing: true,
+          aspect: [4, 3],
+          quality: 1,
+        });
+    
+        console.log(result);
+    
+        if (!result.cancelled) {
+          setImage(result.uri);
+        }
+      };
 
 
 
@@ -102,10 +130,10 @@ export default function StoryInfo({ route }) {
 
 
                     {
-                        !uri ?
+                        !image ?
                             <View style={styles.photoBubble}>
 
-                                <TouchableOpacity onPress={() => { navigation.navigate('UploadPhoto') }}>
+                                <TouchableOpacity onPress={pickImage}>
                                     <SvgUploadImageIcon
                                         width={"70"}
                                         height={"55"} />
@@ -125,7 +153,7 @@ export default function StoryInfo({ route }) {
 
                             </View>
                             :
-                            <Image source={{ uri: uri }} style={styles.photoBubble}/>
+                            <Image source={{ uri: image }} style={styles.photoBubble}/>
                             //style={{ width: w, height: h, borderRadius: w, marginBottom: '5%' }} />
                     }
                     <TextInput 

@@ -4,121 +4,83 @@ import {Ionicons, MaterialIcons} from '@expo/vector-icons';
 import { useFonts } from 'expo-font';
 import { ScrollView } from 'react-native-gesture-handler';
 import { Card, ListItem, Button, Icon, Divider } from 'react-native-paper';
+import { setStatusBarNetworkActivityIndicatorVisible } from 'expo-status-bar';
 
 export default function StoryClip(props) {
-  // let [fontsLoaded] = useFonts({
-  //   'NotoSansRegular': require('../Fonts/NotoSansMalayalam-Regular.ttf'),
-  //   'NotoSansBold': require('../Fonts/NotoSansMalayalam-Bold.ttf'),
-  // }, []);
+
 
   //<Photo key={photo._id} value={photo} newComment={this.setNewComment} user={this.state.user} class="standard"/>
-  let all_tags = props.value.tags; 
-  let tagList = all_tags.map((tag) => 
-    <View style={styles.tag}>
-     <Text style={styles.tagText}>{tag}</Text>
-    </View>
-    );
+  // let all_tags = props.value.tags; 
+  
+  const makeTags = (allTags) => {
+    return allTags.map((tag) => 
+      <View style={styles.tag}>
+          <Text style={{fontFamily:'Montserrat-Light', fontSize: 14}}>{tag}</Text>
+      </View>  
+      );
+  }
+  
+
+
   
 //color={'#1ddbb5'}
   return (
-      //<View style={styles.storyInList}>
-      <Card style={styles.card}>
-        <View style={styles.topRow}>
-          <View style={styles.playColumn}>
-            
-            <Ionicons name={'play-circle'} color={'#1ddbb5'} size={56}/>
-          </View>
-          <View style={styles.titleColumn}>
-            <Text style={styles.title}>{props.value.title}</Text>
-          </View>
-          <View style={styles.rightColumn}>
-            <Text>{props.value.date}</Text>
-          </View>
-          
-        </View>
-          
+     
 
-        <View style={styles.bottomRow}>
-          <View style={styles.playColumn}>
-            <Text>{props.value.length + " min"}</Text>
-          </View>
-          <View style={styles.titleColumn}>
-            <ScrollView horizontal={true}>
-            <View style={styles.tagRow}>
-              {tagList}
+      <View style = {styles.container}>
+         
+          
+            <View style={styles.info}>
+
+              <View style={styles.title}>
+                  <Text style={{fontFamily: 'Montserrat', fontSize: 32}}>Title of Story</Text>
               </View>
-            </ScrollView>
+
+              <View style={{marginBottom: '10%'}}>
+                <Text style={{fontFamily: "Montserrat-Light", fontSize: 22}}>Author</Text>
+                <Text style={{fontFamily: 'Montserrat-Light', fontSize: 18}}>June 2022 · 20 min</Text>
+              </View>
+              
+              <View style={styles.tagRow}>
+                  {makeTags(['COVID', 'Art', 'Music'])}
+              </View> 
+
             </View>
-          <View style={styles.rightColumn}>
-              <View style={styles.sharingIconsRow}>
-                <Ionicons name={"md-share-outline"} size={24} color={'black'} style={styles.icon}/>
-                <MaterialIcons name={"playlist-add"} size={30} color={'black'} style={styles.icon}/>
-              </View>
-          </View>
-        
-        </View>
-        </Card>
 
-      //</View>
+            <View style={styles.buttons}>
+              <Ionicons name={'play-circle'} color={'#1ddbb5'} size={84} style={{alignSelf: 'center'}}/>
+              <View style={styles.sharingIconsRow}>
+                 <Ionicons name={"md-share-outline"} size={30} color={'black'} style={styles.icon}/>
+                 <MaterialIcons name={"playlist-add"} size={32} color={'black'} style={styles.icon}/>
+               </View>
+            </View>
+
+      </View>
 
   );
 }
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    flexDirection: 'column',
-    justifyContent: 'center',
-    alignItems: 'center',
-    
-  },
-  storyInList: {
-    alignSelf: 'center',
-    height: 115,
-    width: '100%',
-    borderTopWidth: 2,
-    borderColor: 'red',
-    // borderWidth: 2,
-    
-    flexDirection: 'column',
-    padding: 10
-  }, 
-  playColumn: {
-    flex: 1,
-    height: '100%',
-    justifyContent: 'center',
-    alignItems: 'center',
- 
-  },
-  titleColumn: {
-
-    flexDirection: 'column',
-    flex: 3,
-    paddingLeft: 8,
-    height: '100%',
+    // flex: 1,
    
+    flexDirection: 'row',
     justifyContent: 'center',
-  },
-  rightColumn: {
-
-    flexDirection: 'column',
-    justifyContent: 'center',
-    flex: 1,
-    height: '100%',
-    alignItems: 'flex-end'
-
-    // backgroundColor: 'yellow'
+    width: '95%',
+    // height: '100%',
+    padding: '5%',
+    borderColor: '#FCC201',
+    borderWidth: 2,
+    borderRadius: 15
   },
   title: {
-    fontSize: 18,
-    fontWeight: 'bold'
+    // marginTop: 15,
+    marginBottom: '5%',
+    marginRight: 10,
+    justifyContent: 'center',
+   
   },
-  tagRow: {
-    flexDirection: 'row',  
-  },
-  tagText: {
-    fontSize: 13,
-  },
+ 
   tag: {
     borderRadius: 15,
     borderWidth: 1,
@@ -130,32 +92,29 @@ const styles = StyleSheet.create({
     marginRight: 5, 
     backgroundColor: "white", 
   },
+  tagRow: {
+    flexDirection: 'row',
+    
+  },
   sharingIconsRow: {
     flexDirection: 'row',
     justifyContent: 'space-around',
-  },
-  icon: {
-    paddingLeft: 5, 
-  },
-  topRow: {
-    flex: 2,
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    width: '100%',
-    alignItems: 'center',
 
   },
-  bottomRow: {
-    flex: 1,
-    width: '100%',
-    flexDirection: 'row',
-    alignItems: 'center',
-  }, 
-  card: {
-    marginBottom: '2%',
-    marginLeft: '2%',
-    marginRight: '2%',
-    padding: '3%'
-  }
+  info: {
+    flex:3, 
+    flexDirection: 'column', 
+
+
+  },
+  buttons: {
+    flex:1, 
+    flexDirection: 'column',
+    justifyContent: 'space-between',
+
+
+  },
+  
+ 
   
 });

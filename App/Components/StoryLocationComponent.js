@@ -6,6 +6,7 @@ import { useNavigation } from '@react-navigation/native'
 import { ScrollView } from 'react-native-gesture-handler';
 
 
+
 export default function StoryLocationComponent ({locationIndex}) {
     // console.log("this is props ", location);
     // console.log("this is props.location ", location.title);
@@ -28,6 +29,8 @@ const styles = StyleSheet.create({
         flex: 1,
         width: '100%',
         flexDirection: 'column',
-        justifyContent: 'center',
+        justifyContent: 'flex-start',
+        paddingTop: 50, 
+        // backgroundColor: 'grey'
     }
 });

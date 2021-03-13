@@ -5,6 +5,7 @@ import { useFonts } from 'expo-font';
 import { ScrollView } from 'react-native-gesture-handler';
 import { Card, ListItem, Button, Icon, Divider } from 'react-native-paper';
 import { setStatusBarNetworkActivityIndicatorVisible } from 'expo-status-bar';
+import { LinearGradient } from 'expo-linear-gradient';
 
 export default function StoryClip(props) {
 
@@ -26,8 +27,10 @@ export default function StoryClip(props) {
 //color={'#1ddbb5'}
   return (
      
+      <View style={styles.card}>
 
-      <View style = {styles.container}>
+     
+        <View style = {styles.container}>
          
           
             <View style={styles.info}>
@@ -48,36 +51,45 @@ export default function StoryClip(props) {
             </View>
 
             <View style={styles.buttons}>
-              <Ionicons name={'play-circle'} color={'#1ddbb5'} size={84} style={{alignSelf: 'center'}}/>
+              <Ionicons name={'play-circle'} color={'#1ddbb5'} size={64} style={{alignSelf: 'center'}}/>
               <View style={styles.sharingIconsRow}>
                  <Ionicons name={"md-share-outline"} size={30} color={'black'} style={styles.icon}/>
                  <MaterialIcons name={"playlist-add"} size={32} color={'black'} style={styles.icon}/>
                </View>
             </View>
 
+        </View>
+
+        <LinearGradient colors={['grey', 'green']} style={styles.progressBar} start={[0.9, 0.9]} end={[0.0, 0.3]}>
+
+        </LinearGradient>
       </View>
 
   );
 }
 
 const styles = StyleSheet.create({
+  card: {
+    padding: '5%',
+    borderColor: '#FCC201',
+    borderWidth: 2,
+    borderRadius: 15,
+    width: '95%'
+  },
   container: {
     // flex: 1,
    
     flexDirection: 'row',
     justifyContent: 'center',
-    width: '95%',
+
     // height: '100%',
-    padding: '5%',
-    borderColor: '#FCC201',
-    borderWidth: 2,
-    borderRadius: 15
+    
   },
   title: {
     // marginTop: 15,
     marginBottom: '5%',
     marginRight: 10,
-    justifyContent: 'center',
+    justifyContent: 'flex-start',
    
   },
  
@@ -104,16 +116,24 @@ const styles = StyleSheet.create({
   info: {
     flex:3, 
     flexDirection: 'column', 
-
+    justifyContent: 'flex-start'
 
   },
   buttons: {
+    marginTop: '-3%',
     flex:1, 
     flexDirection: 'column',
     justifyContent: 'space-between',
 
 
   },
+  progressBar: {
+    marginTop: '10%',
+    width: '100%',
+    height: '2%',
+    borderRadius: 15, 
+
+  }
   
  
   

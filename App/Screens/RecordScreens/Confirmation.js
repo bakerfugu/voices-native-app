@@ -16,6 +16,7 @@ export default function Confirmation ({route, navigation}) {
     console.log(image)
     const [location, setLocation] = useState(null);
     const [modalVisible, setModalVisibility] = useState(false);
+    const [posted, setPosted] = useState(false);
     const mapRef = useRef(null);
 
     const stanfordCoordinates = {
@@ -31,6 +32,25 @@ export default function Confirmation ({route, navigation}) {
     }, [location])
 
 
+    const finalizePost = () => {
+        setModalVisibility(false);
+        setPosted(true);
+        navigation.navigate('MainMap');
+    }  
+    
+    const deletePost = () => {
+        setModalVisibility(false);
+        navigation.navigate('RecordHome', {deleted: true});
+    }  
+
+    const editPost = () => {
+        setPosted(false);
+        setLocation(null);
+        setModalVisibility(false);
+    } 
+
+    
+    
 
     return (
         <View style={styles.container}>
@@ -56,7 +76,7 @@ export default function Confirmation ({route, navigation}) {
                         
                         setLocation(item.value)
                     }}
-                    placeholder='Location'
+                    placeholder='Select a Location'
                         
                 />
             </View>
@@ -73,15 +93,19 @@ export default function Confirmation ({route, navigation}) {
                   }}        
             >  
 
-                <Marker coordinate={stanfordCoordinates}>
-                    <FloatingStoryMapMarker imageSource={{uri: image}}/>
-                </Marker>
+                { location &&  <Marker coordinate={stanfordCoordinates}>
+                        <FloatingStoryMapMarker imageSource={{uri: image}}/>
+                    </Marker>
+                }
+
 
             </MapView>
 
+            { !posted &&    
             <View style={{position: 'absolute', bottom: 0, width: '60%', height: 100}}>
                 <LongButton disabled={!location} onPress={() => setModalVisibility(true)} label="Post Story"/>
             </View>
+            }
             
 
             <View style={{position: 'absolute'}}>
@@ -100,49 +124,16 @@ export default function Confirmation ({route, navigation}) {
 
                         <View style={{flexDirection: 'row'}}>
                             <View style={{flex: 1, height: 50}}>
-                                <LongButton label='Delete' disabled={false} onPress={() => {
-                                    setLocation(null);
-                                    setModalVisibility(false);
-                                    }}/>
+                                <LongButton label='Delete' disabled={false} onPress={deletePost}/>
                             </View>
                             <View style={{flex: 1, height: 50}}>
-                                <LongButton label='Edit' disabled={false} onPress={() => {
-                                    setLocation(null);
-                                    setModalVisibility(false);
-                                }}/>
+                                <LongButton label='Edit' disabled={false} onPress={editPost}/>
                             </View>
                             <View style={{flex: 1, height: 50}}>
-                                <LongButton label='Ok' disabled={false} onPress={() => setModalVisibility(false)}/>
+                                <LongButton label='Ok' disabled={false} onPress={finalizePost}/>
                             </View>
-                            {/* <View style={{flex:1}}> 
-                                <LongButton label={'Delete'} disabled={false} onPress={() => setLocation(null)}/>
-                            </View>
-                            <View style={{flex:1}}> 
-
-                            </View>
-                            <View style={{flex:1}}>  */}
-
-                            {/* </View> */}
+                         
                         </View>
-
-                        {/* <Pressable style={styles.DeleteOrEdit} >
-                            <Text onPress={() => {
-                                navigation.navigate('EditStory');
-                                setModalVisible(false);
-                                }}>
-                                Edit
-                            </Text>
-                        </Pressable>
-                        <Pressable style={styles.DeleteOrEdit} 
-                        onPress={() => {
-                            setDeleted(true);
-                            setModalVisible(false);
-                        }}
-                        >
-                            <Text>
-                                Delete
-                            </Text>
-                        </Pressable> */}
                     
                     </View>
                 </Modal>

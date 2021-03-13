@@ -38,7 +38,7 @@ const styles = StyleSheet.create({
         borderColor: '#F1B600',
         alignItems: 'center',
         marginVertical: 15,
-        marginHorizontal: 10, 
+        marginHorizontal: '2%', 
         // marginBottom: 50, 
     }
 });

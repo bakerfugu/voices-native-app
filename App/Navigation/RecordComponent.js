@@ -86,10 +86,22 @@ export default function RecordComponent () {
       }}/>
       <RecordNav.Screen name={'Confirmation'} component={Confirmation} 
         options={{
-          headerTransparent:true,
+          headerTransparent:false,
           headerBackTitleVisible: false,
-          title: '',
-          headerLeft: null
+          headerTintColor: 'black',
+          title : 'Story Location',
+          headerTitleStyle: {
+            fontSize: 30,
+            fontWeight: 'bold',
+
+          },
+          headerStyle: {
+            backgroundColor: '#FDF0AF',
+            height: 50,
+          },
+          headerLeftContainerStyle: {
+            paddingLeft: 10
+          }
       }}/>
       <RecordNav.Screen name={'TakePhoto'} component={TakePhoto} 
           options={{

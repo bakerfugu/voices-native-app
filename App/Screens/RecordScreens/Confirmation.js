@@ -1,86 +1,156 @@
-import React, { useState, useEffect } from 'react';
-import { StyleSheet, Pressable, Text, SafeAreaView, View, Modal, Image, TouchableOpacity, FlatList, Button, Touchable } from 'react-native';
-import { LinearGradient } from 'expo-linear-gradient';
+import React, { useState, useEffect, useRef } from 'react';
+import { StyleSheet, Pressable, Text, SafeAreaView, View, Modal, Image, TouchableOpacity, Dimensions } from 'react-native';
 import BackgroundGradient from '../../Components/BackgroundGradient.js';
 import LongButton from '../../Components/LongButton.js';
 import { Images } from '../../Themes/index.js';
-import { useNavigation } from '@react-navigation/native';
 import { ImageBackground } from 'react-native';
 import DeleteOrEdit from '../../Components/DeleteOrEdit.js';
 import FloatingStoryMapMarker from '../../Components/floatingStoryMapMarker.js'
+import MapView, { Marker } from 'react-native-maps';
+import DropDownPicker from 'react-native-dropdown-picker';
+import { Root, Popup } from 'popup-ui'
     
     
 export default function Confirmation ({route, navigation}) {
-    const {image} = route.params;
-    const [modalVisible, setModalVisible] = useState(false);
-    const [deleted, setDeleted] = useState(false);
+    const { image } = route.params
+    console.log(image)
+    const [location, setLocation] = useState(null);
+    const [modalVisible, setModalVisibility] = useState(false);
+    const [posted, setPosted] = useState(false);
+    const mapRef = useRef(null);
 
+    const stanfordCoordinates = {
+        latitude: 37.4275,
+        longitude: -122.1697,
+        latitudeDelta: 0.035922,
+        longitudeDelta: 0.035421,
+    }
+    useEffect(() => {
+        if (location==='Stanford University') {
+            mapRef.current.animateToRegion(stanfordCoordinates,300)
+        }
+    }, [location])
+
+
+    const finalizePost = () => {
+        setModalVisibility(false);
+        setPosted(true);
+        navigation.navigate('MainMap');
+    }  
+    
+    const deletePost = () => {
+        setModalVisibility(false);
+        navigation.navigate('RecordHome', {deleted: true});
+    }  
+
+    const editPost = () => {
+        setPosted(false);
+        setLocation(null);
+        setModalVisibility(false);
+    } 
+
+    
     
 
     return (
-        <View style={styles.container} > 
-            <ImageBackground source={Images.santaMonica} style={styles.image}>
-            <View style={styles.header}/>
+        <View style={styles.container}>
 
-            <View style={styles.confirmationMessage}>
-                <Text style={styles.recordButtonText}>
-                    {deleted ? "Story deleted!" : "Your story has been uploaded!"}
-                </Text>
+            <View style={{position: 'absolute', top: 0, height: 50, width: '100%', backgroundColor: '#FDF0AF', padding: 5}}>
+                <DropDownPicker
+                    items={[
+                        {label: 'Stanford University', value: 'Stanford University'},
+                    ]}
+                    defaultValue={location}
+                    containerStyle={{height: 40}}
+                    style={{backgroundColor: '#fafafa', borderRadius: 20}}
+                    itemStyle={{
+                        justifyContent: 'flex-start'
+                    }}
+                    style={{
+                        borderTopLeftRadius: 10, borderTopRightRadius: 10,
+                        borderBottomLeftRadius: 10, borderBottomRightRadius: 10,
+                        borderColor: 'lightgrey', borderWidth: 2
+                    }}
+                    dropDownStyle={{backgroundColor: '#fafafa'}}
+                    onChangeItem={item => {
+                        
+                        setLocation(item.value)
+                    }}
+                    placeholder='Select a Location'
+                        
+                />
             </View>
-            <View style={styles.subcontainer}>
-                
+
+
+            <MapView 
+                ref={mapRef}
+                style={styles.map}
+                initialRegion={{
+                    latitude: 37.783363,
+                    longitude: -122.403908,
+                    latitudeDelta: 0.015922,
+                    longitudeDelta: 0.015421,
+                  }}        
+            >  
+
+                { location &&  <Marker coordinate={stanfordCoordinates}>
+                        <FloatingStoryMapMarker imageSource={{uri: image}}/>
+                    </Marker>
+                }
+
+
+            </MapView>
+
+            { !posted &&    
+            <View style={{position: 'absolute', bottom: 0, width: '60%', height: 100}}>
+                <LongButton disabled={!location} onPress={() => setModalVisibility(true)} label="Post Story"/>
+            </View>
+            }
+            
+
+            <View style={{position: 'absolute'}}>
                 <Modal
-                animationType = "slide"
-                transparent = {true}
-                visible = {modalVisible}
-                onRequestClose={() => {
-                    setModalVisible(!modalVisible);
-                }}
-                >
-                <View style={styles.modalView}>
-                    <Pressable style={styles.DeleteOrEdit} >
-                        <Text onPress={() => {
-                            navigation.navigate('EditStory');
-                            setModalVisible(false);
-                            }}>
-                            Edit
-                        </Text>
-                    </Pressable>
-                    <Pressable style={styles.DeleteOrEdit} 
-                    onPress={() => {
-                        setDeleted(true);
-                        setModalVisible(false);
+                    animationType = "slide"
+                    transparent = {true}
+                    visible = {modalVisible}
+                    onRequestClose={() => {
+                        setModalVisible(!modalVisible);
                     }}
                     >
-                        <Text>
-                            Delete
-                        </Text>
-                    </Pressable>
-                
-                </View>
-                </Modal>
-                <Pressable onPress={() => setModalVisible(true)}>
-                    {
-                        deleted ? 
-                        <View></View> 
-                        :
-                        // <Image source={Images.storyBubble} style={styles.storyBubble} /> 
-                        <FloatingStoryMapMarker imageSource={image} recordStory={true}/>
-                    }
-              
-                </Pressable>
-            </View>
-        </ImageBackground>
+                    <View style={styles.modalView}>
 
-      
+                        <Text style={styles.posted}>Your story has been posted!</Text>
+                        <Text style={styles.thanks}>Thanks for sharing your perspective</Text>
+
+                        <View style={{flexDirection: 'row'}}>
+                            <View style={{flex: 1, height: 50}}>
+                                <LongButton label='Delete' disabled={false} onPress={deletePost}/>
+                            </View>
+                            <View style={{flex: 1, height: 50}}>
+                                <LongButton label='Edit' disabled={false} onPress={editPost}/>
+                            </View>
+                            <View style={{flex: 1, height: 50}}>
+                                <LongButton label='Ok' disabled={false} onPress={finalizePost}/>
+                            </View>
+                         
+                        </View>
+                    
+                    </View>
+                </Modal>
+
+            </View>
             
+            
+                    
+
+           
+
+            
+            
+
 
         </View>
-            
-
-        
-    );
-
+    )
 }
 
 
@@ -124,25 +194,7 @@ const styles = StyleSheet.create({
         marginTop: '35%',
         marginRight: '18%'
     },
-    modalView: {
-        margin: 20,
-        backgroundColor: '#F1B600',
-        borderRadius: 20,
-        marginTop: '125%',
-        marginLeft: '30%',
-        width: '22%',
-        padding: '1%',
-        alignItems: "center",
-        alignSelf: "center",
-        shadowColor: "#000",
-        shadowOffset: {
-        width: 0,
-        height: 2
-        },
-        shadowOpacity: 0.25,
-        shadowRadius: 4,
-        elevation: 5
-    },
+   
     DeleteOrEdit: {
         borderRadius: 10,
         height: 'auto',
@@ -153,5 +205,42 @@ const styles = StyleSheet.create({
         borderWidth: 3,
         borderColor: '#F1B600',
     },
+    map: {
+        width: Dimensions.get('window').width,
+        height: Dimensions.get('window').height,
+        zIndex: -1
+
+    },
+    modalView: {
+        marginTop: '80%',
+        marginHorizontal: '10%',
+        backgroundColor: "white",
+        borderRadius: 20,
+        padding: '5%',
+        alignItems: "center",
+        shadowColor: "#000",
+        shadowOffset: {
+        width: 0,
+        height: 2
+        },
+        shadowOpacity: 0.25,
+        shadowRadius: 4,
+        elevation: 5
+    },
+    posted: {
+        fontFamily: 'Montserrat',
+        fontSize: 20,
+        alignSelf: 'flex-start'
+    },
+    thanks: {
+        fontSize: 16,
+        fontFamily: 'Montserrat-Light',
+        color: 'grey',
+        alignSelf: 'flex-start'
+    },
+    buttonRow: {
+        flexDirection: 'row',
+        justifyContent: 'space-between'
+    }
 });
 

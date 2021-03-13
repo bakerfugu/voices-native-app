@@ -5,10 +5,20 @@ import LoginScreen from './App/Screens/LoginScreen';
 import firebase from 'firebase';
 import "firebase/auth";
 import BackgroundGradient from './App/Components/BackgroundGradient';
+import AppLoading from 'expo-app-loading';
+import { useFonts } from 'expo-font';
 
 
 
 export default function App() {
+
+  let [fontsLoaded] = useFonts({
+    'Montserrat': require('./App/Fonts/Montserrat-Regular.ttf'),
+    'Montserrat-Bold': require('./App/Fonts/Montserrat-Bold.ttf'),
+    'Montserrat-Light': require('./App/Fonts/Montserrat-Light.ttf'),
+    'Montserrat-Italic': require('./App/Fonts/Montserrat-Italic.ttf'),
+  });
+
     const [loggedIn, setLoggedIn] = useState(false);
     const [bioFilledIn, setBioFilledIn] = useState(false);
   
@@ -28,7 +38,9 @@ export default function App() {
     }, []);
 
 
-
+  if (!fontsLoaded) {
+    return <AppLoading />;
+  }
   
     if (loggedIn) {
       return (

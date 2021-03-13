@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { StyleSheet, Text, SafeAreaView, View, AsyncStorage, Image, TouchableOpacity, FlatList, Button, Alert, StatusBar } from 'react-native';
+import { StyleSheet, Text, SafeAreaView, View, AsyncStorage, Image, TouchableOpacity, FlatList, Button, Alert, Modal } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import BackgroundGradient from '../../Components/BackgroundGradient.js';
 import RecordingOrb from '../../Components/RecordingOrb.js';
@@ -9,8 +9,9 @@ import { useNavigation } from '@react-navigation/native';
 import metrics from '../../Themes/Metrics.js';
 
 
-export default function RecordHome() {
-    const navigation = useNavigation();
+export default function RecordHome({route, navigation}) {
+
+    const [deleted, setDeleted] = useState(false)
     const [time, setTime] = useState(0);
     const [recordState, changeRecordState] = useState({
         paused: true,
@@ -18,6 +19,13 @@ export default function RecordHome() {
         instructions: 'Tap to Record'
     });
     var interval = null;
+    
+    useEffect(() => {
+        if (route.params) {
+            setDeleted(true);
+        }
+    })
+
 
     
 
@@ -104,6 +112,29 @@ export default function RecordHome() {
                 <LongButton label='Edit Story' onPress={nextPage} disabled={time===0 || !recordState.paused}/>
            </View>
 
+
+           <Modal
+                    animationType = "slide"
+                    transparent = {true}
+                    visible = {deleted}
+                    // onRequestClose={() => {
+                    //     setModalVisible(!modalVisible);
+                    // }}
+                    >
+                    <View style={styles.modalView}>
+
+                        <Text style={styles.posted}>Your story has been deleted.</Text>
+
+                        <View style={{flexDirection: 'row'}}>
+                            
+                            <View style={{flex: 1, height: 50}}>
+                                <LongButton label='Ok' disabled={false} onPress={() => setDeleted(false)}/>
+                            </View>
+                         
+                        </View>
+                    
+                    </View>
+                </Modal>
 
 
        </View>

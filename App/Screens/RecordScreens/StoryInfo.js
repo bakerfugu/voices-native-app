@@ -24,7 +24,6 @@ import { useHeaderHeight } from '@react-navigation/stack'
 export default function StoryInfo() {
     const KEYBOARD_VERTICAL_OFFSET = 75 + StatusBar.currentHeight;
 
-    // const [image, setImage] = useState(null);
     const [title, setTitle] = useState('');
     const [location, setLocation] = useState();
 
@@ -33,11 +32,7 @@ export default function StoryInfo() {
         setValueMS(value);
     };
 
-    const [valueSS, setValueSS] = useState('');
-    const onChangeSS = (value: string) => {
-        setValueSS(value);
-      };
-
+    
 
 
     const [image, setImage] = useState(null);

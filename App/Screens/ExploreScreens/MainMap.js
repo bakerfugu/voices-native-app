@@ -112,35 +112,6 @@ export default function MainMap() {
                     
                 ))}
 
-
-                {/* <Marker
-                    coordinate={{
-                        latitude: 37.78825,
-                        longitude: -122.4324,
-                    }}
-                    title={"What up, I title"}
-                    // description={"what up I descrribe"}
-                    onSelect={() => {
-                        navigation.navigate('StoryList');
-                    }}
-                >
-                    <FloatingStoryMapMarker imageSource={Images.parliament}/>
-                </Marker>
-
-                <Marker
-                    coordinate={{
-                        latitude: 41.3880,
-                        longitude: 2.1887,
-                    }}
-                    title={"What up, I title"}
-                    // description={"what up I descrribe"}
-                    onSelect={() => {
-                        navigation.navigate('StoryList');
-                    }}
-                >
-                    <FloatingStoryMapMarker imageSource={Images.parliament}/>
-
-                </Marker> */}
             </MapView>
             <Button title={'StoryList'} onPress={() => {navigation.navigate('StoryList')}}/>
         </View>

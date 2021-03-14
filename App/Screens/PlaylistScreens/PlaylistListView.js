@@ -1,64 +1,123 @@
 import React, { useState, useEffect } from 'react';
-import { StyleSheet, Text, SafeAreaView, View, AsyncStorage, Image, TouchableOpacity, FlatList, Button } from 'react-native';
+import { StyleSheet, ImageBackground, View, Image, FlatList, Dimensions } from 'react-native';
 import {useNavigation} from '@react-navigation/native';
-import StoryClipPlaylist from '../../Components/StoryClipPlaylist';
+import StoryClip from '../../Components/StoryClip';
+import  CircleList  from 'react-native-circle-list'
+import {Images} from '../../Themes';
+import BackgroundGradient from '../../Components/BackgroundGradient';
+import Header from '../../Components/Header';
 
-export default function PlaylistListView () {
 
-    const DATA = [
+const {width} = Dimensions.get('screen');
+const RADIUS = (1.5 * width) / 2;  
+
+export default function PlaylistListView ({route, navigation}) {
+
+    const {playlist} = route.params;
+
+    const[currStory, setStory] = useState(0);
+
+    const data = [
+
         {
-          id: "1",
-          title: "First Item",
+            key: 1, 
+            value: 1,
         },
         {
-          id: "2",
-          title: "Second Item",
+            key: 2, 
+            value: 1,
+        } , 
+        {
+            key: 3, 
+            value: 1,
+        } ,    
+        {
+            key: 4, 
+            value: 1,
+        }  ,
+        {
+            key: 5, 
+            value: 1,
+        } , 
+        {
+            key: 6, 
+            value: 1,
         },
         {
-          id: "3",
-          title: "Third Item",
+            key: 7, 
+            value: 1,
         },
         {
-        id: "4",
-        title: "First Item",
+            key: 8, 
+            value: 1,
         },
         {
-        id: "5",
-        title: "Second Item",
+            key: 9, 
+            value: 1,
         },
         {
-        id: "6",
-        title: "Third Item",
-        }
+            key: 10, 
+            value: 1,
+        },
+        {
+            key: 11, 
+            value: 1,
+        },
+        {
+            key: 12, 
+            value: 1,
+        }  
+    
     ];
 
+
+    
     const renderItem = () => {
         return (
-            <StoryClipPlaylist/>
-        );
-
+            <ImageBackground source={Images.yellowOrb} style={{height: 80, width: 80, justifyContent: 'center', alignItems: 'center'}}>
+                <Image source={Images.parliament} resizeMode='center' style={{height: 60, width: 60}}/>
+            </ImageBackground>
+            
+        )
     }
-    const navigation = useNavigation();
-    return (
-        <View style ={styles.container}>
-            <View style={styles.header}/>
-            <View style={styles.flatlist}>
-                <FlatList
-                    data={DATA}
-                    renderItem={renderItem}
-                    keyExtractor={(item) => item.id}
-                />
 
+    return (
+        <View style={styles.container}>
+            <BackgroundGradient/>
+            
+            <Header playlist={playlist} page='Playlist-ListView'/>
+            <View style={styles.flatlist}>
+
+                <View style ={styles.backgroundCircle}/>
+                <CircleList
+                    data={data}
+                    visibilityPadding={3}
+                    renderItem={renderItem}
+                    radius={RADIUS}
+                    keyExtractor={(item) => item.id}
+                    elementCount={12}
+                    selectedItemScale={2.7}
+                    swipeSpeedMultiplier={40}
+                    containerStyle={{paddingTop: 80, marginBottom: '5%'}}
+                    onScrollEnd={(item) =>setStory(item)}
+                    />
             </View>
+
+            <StoryClip />
+
         </View>
+            
     );
+
 }
+   
+
 
 const styles = StyleSheet.create({
     container: {
       flex: 1,
       backgroundColor: '#fff',
-      justifyContent: 'center',
+      justifyContent: 'flex-start',
       alignItems: 'center',
     },
     header: {
@@ -66,9 +125,20 @@ const styles = StyleSheet.create({
         width: '100%'
     },
     flatlist: {
-        marginTop: 20,
-        flex: 1,
-        width:'100%'
+        marginTop: '10%',
+        // flex: 1,
+        width:'100%',
+        // backgroundColor: 'grey',
+    },
+    backgroundCircle: {
+        borderColor: '#1ddbb5',
+        borderWidth: 10,
+        width: RADIUS * 2,
+        aspectRatio: 1,
+        borderRadius: RADIUS,
+        position: 'absolute',
+        alignSelf: 'center',
+        marginTop: 120
     }
 
   });

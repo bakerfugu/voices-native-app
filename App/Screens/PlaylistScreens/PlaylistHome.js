@@ -4,7 +4,7 @@ import { ScrollView } from 'react-native-gesture-handler';
 import {useNavigation} from '@react-navigation/native';
 import BackgroundGradient from '../../Components/BackgroundGradient.js';
 import Playlist from '../../Components/Playlist.js';
-import { Images } from '../../Themes/index.js';
+import { Images, Metrics } from '../../Themes';
 import storyPlaylists from '../../Components/StoryPlaylists';
 
 
@@ -12,10 +12,7 @@ import storyPlaylists from '../../Components/StoryPlaylists';
 
 export default function PlaylistHome() {
     const navigation = useNavigation();
-    let playlist  = {
-        title: "From Utah to Belize",
-        image: Images.utahToBelize
-    };
+
 
     let playlists = [];
     console.log("this is playlists ", storyPlaylists);
@@ -44,15 +41,8 @@ export default function PlaylistHome() {
         <View style ={styles.container}>
             <BackgroundGradient/>
             {/* <Text style={styles.title}>My Playlists</Text> */}
-
-            <View style={styles.profileHeader}>
-                <View style={styles.photoContainer}>
-                    <Image source={Images.profPlaceholder} resizeMode='contain' style={styles.profImage}/>
-
-                </View>
-                <Text style={styles.title}>My Playlists</Text>
-
-            </View>
+            <View style={styles.header}/>
+            
 
             <FlatList 
                     contentContainerStyle={styles.grid}
@@ -60,10 +50,10 @@ export default function PlaylistHome() {
                     data={playlists} 
                     // scrollEnabled={true}
                     directionalLockEnabled={true}
-                    keyExtractor={(playlist, index) => playlist.title}
+                    keyExtractor={(playlist, index) => index}
                     renderItem={(playlist) => {
                         console.log("Printing playlist: ", playlist);
-                        return <Playlist key={playlist.item.title} value={playlist.item} onPress={() => {navigation.navigate('PlaylistListView'), {title:playlist.item.title}}}/>
+                        return <Playlist key={playlist.item.title} value={playlist.item} onPress={() => navigation.navigate('PlaylistListView', {playlist: playlist})}/>
                         }
                     }
                     />
@@ -104,6 +94,10 @@ const styles = StyleSheet.create({
         alignContent: 'flex-start', 
 
         textAlignVertical: 'center'
-    }
+    },
+    header: {
+        width: '100%',
+        height: Metrics.headerHeight,
+    },
 
   });

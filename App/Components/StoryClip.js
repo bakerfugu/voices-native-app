@@ -6,10 +6,12 @@ import { ScrollView } from 'react-native-gesture-handler';
 import { Card, ListItem, Button, Icon, Divider } from 'react-native-paper';
 import { setStatusBarNetworkActivityIndicatorVisible } from 'expo-status-bar';
 import { LinearGradient } from 'expo-linear-gradient';
+import { NavigationContainer } from '@react-navigation/native';
+import { useNavigation } from '@react-navigation/native' ;
 
 export default function StoryClip(props) {
 
-
+  const navigation = useNavigation();
   //<Photo key={photo._id} value={photo} newComment={this.setNewComment} user={this.state.user} class="standard"/>
   // let all_tags = props.value.tags; 
   
@@ -51,7 +53,7 @@ export default function StoryClip(props) {
             </View>
 
             <View style={styles.buttons}>
-              <Ionicons name={'play-circle'} color={'#1ddbb5'} size={64} style={{alignSelf: 'center'}}/>
+              <Ionicons name={'play-circle'} color={'#1ddbb5'} size={64} style={{alignSelf: 'center'}} onPress={() => navigation.navigate('StoryListen', {title: 'Example Story Title'})}/>
               <View style={styles.sharingIconsRow}>
                  <Ionicons name={"md-share-outline"} size={30} color={'black'} style={styles.icon}/>
                  <MaterialIcons name={"playlist-add"} size={32} color={'black'} style={styles.icon}/>
@@ -60,7 +62,7 @@ export default function StoryClip(props) {
 
         </View>
 
-        <LinearGradient colors={['grey', 'green']} style={styles.progressBar} start={[0.9, 0.9]} end={[0.0, 0.3]}>
+        <LinearGradient colors={['grey', '#1ddbb5']} style={styles.progressBar} start={[0.9, 0.9]} end={[0.0, 0.3]}>
 
         </LinearGradient>
       </View>

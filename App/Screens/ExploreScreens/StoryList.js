@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { StyleSheet, Text, SafeAreaView, View, Dimensions, ImageBackground, Image} from 'react-native';
+import { StyleSheet, Text, View, Dimensions, ImageBackground, Image} from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import BackgroundGradient from '../../Components/BackgroundGradient.js';
 import LongButton from '../../Components/LongButton.js';
@@ -11,6 +11,7 @@ import { Ionicons } from '@expo/vector-icons'
 import CustomText from '../../Components/CustomText';  
 import CircleList from 'react-native-circle-list';
 import StoryClip from '../../Components/StoryClip'
+import Header from '../../Components/Header'
 
 
 const {width} = Dimensions.get('screen');
@@ -84,20 +85,20 @@ export default function StoryList ({route, navigation}) {
 
     const {locationIndex} = route.params;
 
-    useEffect(() => {
-        console.log("this is storyLocations[locationIndex] ", storyLocations[locationIndex]);
-        navigation.setOptions({
-            title: storyLocations[locationIndex].title,
-            numStories: storyLocations[locationIndex].stories.length
-        });
-    }, []);
+    // useEffect(() => {
+    //     console.log("this is storyLocations[locationIndex] ", storyLocations[locationIndex]);
+    //     navigation.setOptions({
+    //         title: storyLocations[locationIndex].title,
+    //         numStories: storyLocations[locationIndex].stories.length
+    //     });
+    // }, []);
 
     
     
     return (
         <View style ={styles.container}>
             <BackgroundGradient/>
-            <View style={styles.header}>
+            {/* <View style={styles.header}>
                 <View style={styles.backButton}>
                     <Ionicons name="chevron-back-outline" size={34} color="black" onPress={() => navigation.navigate('MainMap')} />
                 </View>
@@ -116,7 +117,8 @@ export default function StoryList ({route, navigation}) {
                 </View>
                 
 
-            </View>
+            </View> */}
+            <Header title={storyLocations[locationIndex].title} page={'Story List'} playlist={null}/>
 
             <View style={styles.flatlist}>
 

@@ -15,7 +15,19 @@ export default function PlaylistListView ({route, navigation}) {
 
     const {playlist} = route.params;
 
-    const[currStory, setStory] = useState(0);
+    const[currStory, setStory] = useState('');
+
+    useEffect(() => {
+        console.log(playlist.stories[0])
+        let story = playlist.stories[0]
+        setStory({
+            title: story.title,
+            length: story.length,
+            date: story.date,
+            tags: story.tags,
+            author: "Jennifer Lopez"
+        })
+    }, [])
 
     const data = [
 
@@ -85,7 +97,7 @@ export default function PlaylistListView ({route, navigation}) {
         <View style={styles.container}>
             <BackgroundGradient/>
             
-            <Header playlist={playlist} page='Playlist-ListView'/>
+            <Header playlist={playlist} page='Playlist-ListView' title={playlist.title}/>
             <View style={styles.flatlist}>
 
                 <View style ={styles.backgroundCircle}/>
@@ -99,11 +111,20 @@ export default function PlaylistListView ({route, navigation}) {
                     selectedItemScale={2.7}
                     swipeSpeedMultiplier={40}
                     containerStyle={{paddingTop: 80, marginBottom: '5%'}}
-                    onScrollEnd={(item) =>setStory(item)}
+                    onScrollEnd={(item) => {
+                        let index = item % playlist.stories.length;
+                        setStory(playlist.stories[index])
+                    }}
                     />
             </View>
 
-            <StoryClip />
+            <StoryClip title={currStory.title} 
+                author={currStory.author} 
+                date={currStory.date} 
+                length={currStory.length}
+                tags={currStory.tags}
+                author="Jessika Alba"
+            />
 
         </View>
             

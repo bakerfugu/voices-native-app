@@ -13,14 +13,11 @@ export default function StoryListen () {
     const navigation = useNavigation();
     return (
        
-        
-        
-      
         <ScrollView contentContainerStyle ={styles.container}>
         <BackgroundGradient/>
 
 
-            <View style={styles.header}/>
+            
             <View style={styles.firstView}> 
                 <View style={styles.content}>
 

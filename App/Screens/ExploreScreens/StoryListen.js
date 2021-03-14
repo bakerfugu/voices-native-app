@@ -1,72 +1,59 @@
 import React, { useState, useEffect } from 'react';
-import { StyleSheet, Text, SafeAreaView, View, AsyncStorage, Image, TouchableOpacity, FlatList, Button, ScrollView, Dimensions} from 'react-native';
+import { StyleSheet, Text, SafeAreaView, View, AsyncStorage, Image, TouchableOpacity, FlatList, Button, ScrollView, Dimensions, ImageBackground} from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import BackgroundGradient from '../../Components/BackgroundGradient.js';
-import LongButton from '../../Components/LongButton.js';
-import { Images } from '../../Themes/index.js';
-import { useNavigation } from '@react-navigation/native';
-import Slider from 'react-native-reanimated-slider';
-import {Ionicons, Entypo} from '@expo/vector-icons'
+import Header from '../../Components/Header.js';
+import { Images } from '../../Themes'
+import { Ionicons, Entypo, MaterialIcons } from '@expo/vector-icons'
+import LongButton from '../../Components/LongButton'
     
-export default function StoryListen () {
+export default function StoryListen ({route, navigation}) {
+    const {title, author, length, location} = route.params
     const [isPlaying, setPlayStatus] = useState(false);
-    const navigation = useNavigation();
+
     return (
-       
-        <ScrollView contentContainerStyle ={styles.container}>
-        <BackgroundGradient/>
 
+        <View style={styles.container}>
+            <BackgroundGradient/>
+            <Header title={location} page='Story List' playlist={null}/>
+            <View style={styles.content}>
+                <ImageBackground style={{width: 400, aspectRatio: 1, alignItems: 'center', justifyContent: 'center'}} source={Images.yellowOrb} resizeMode='center'>
+                    <Image source={Images.silverMan} style={{width: 200, aspectRatio: 1, borderRadius: 200}}/>
+                </ImageBackground>
 
-            
-            <View style={styles.firstView}> 
-                <View style={styles.content}>
+                <Text style={{fontSize: 24, fontFamily: "Montserrat", textAlign: 'center', marginBottom: 10}}>{title}</Text>
+                <Text style={{fontSize: 18, fontFamily: "Montserrat-Light", textAlign: 'center', marginBottom: 10}}>{author}</Text>
+                <Text style={{fontSize: 24, fontFamily: 'Montserrat', textAlign: 'center'}}>00:00 / 25:46</Text>
+                <View style={styles.progressBar}/>
 
-                    <Image source={Images.silverMan} resizeMode='cover' style={styles.image}/>
-                    <Text style={styles.title}> Title of Story </Text>
-                    <Text style={styles.author} onPress={() => navigation.navigate('Profile')}> @author</Text>
+                <View style={styles.playButtons}>
+                    <Ionicons name={'play-back-sharp'} size={28}/>
+                    <TouchableOpacity onPress={() => setPlayStatus(!isPlaying)}>
+                    <Ionicons name={isPlaying ? 'pause-circle' : 'play-circle'} size={80} color={"#1ddbb5"}/>
+                    </TouchableOpacity>
+                    
+                    <Ionicons name={'play-forward-sharp'} size={28}/>
+                </View> 
 
-                    <View style={styles.progressBar}/>
-
-                    <View style={styles.playButtons}>
-                        <Ionicons name={'play-back-sharp'} size={28}/>
-                        <TouchableOpacity onPress={() => setPlayStatus(!isPlaying)}>
-                        <Ionicons name={isPlaying ? 'pause-circle' : 'play-circle'} size={64} color={"#1ddbb5"}/>
-                        </TouchableOpacity>
-                        
-                        <Ionicons name={'play-forward-sharp'} size={28}/>
-                    </View> 
-
-                    </View>
-
-                    <View style={styles.transcriptAndOptions}>
-                    <View style={styles.transcriptButton}>
-                        <Text style={{fontSize: 20}}>Transcript</Text>
-                    </View>
-                    <Entypo name={'dots-three-horizontal'} size={36} color="black" />
+                <View style={styles.transcriptAndOptions}>
+                <View style={{width: '30%'}}>
+                    <LongButton label='Transcript' onPress={() => console.log('button pressed')} disabled={false}/>
                 </View>
 
+                <View style={{width:'30%', flexDirection: 'row', justifyContent: 'space-around'}}>
+                <Ionicons name={"md-share-outline"} size={34} color={'black'} style={styles.icon}/>
+                 <MaterialIcons name={"playlist-add"} size={38} color={'black'} style={styles.icon} onPress={() => setModalVisibility(true)}/>
+                </View>
 
             </View>
 
-            <View style={styles.transcript}>
-                <Text style={{fontSize: 20}}>
-                My grandparents were only 16 when they arrived in Barcelona. 
-                They were commissioned to design a building to commemorate the integrity and strength of the city in war times. 
-                How can you design a building to represent an entire city?
-                 Although I can hardly understand the pressure, my grandpa describes how he just knew. For him it was a gut feeling. 
-                 His culture was inside of him. It was something that he expressed everyday. He carried it with him where ever he went. 
-                 For him, making this building about his city was about telling the narratives of his friends and family. He had to design with them in mind. 
-                 There is no greater inspiration than these people.
 
-                </Text>
             </View>
+
             
-   
+        </View>
+            
 
-        
-       
-        
-    </ScrollView>
 
       
         
@@ -79,9 +66,10 @@ export default function StoryListen () {
 const windowHeight = Dimensions.get('window').height;
 const styles = StyleSheet.create({
     container: {
-      flexGrow: 1,
+      flex: 1,
       justifyContent: 'flex-start',
       alignItems: 'center',
+      backgroundColor: 'grey'
 
     },
     header: {
@@ -92,15 +80,14 @@ const styles = StyleSheet.create({
         top: 0
     },
     content: { 
-       height: '90%',
-        // flex: 1,
-        // height: '100%',
+       height: '100%',
         width: '100%',
         flexDirection: 'column',
-        // backgroundColor: 'grey',
-        justifyContent: 'center',
+        justifyContent: 'flex-start',
         alignItems: 'center',
-
+        marginTop: '-5%',
+        // backgroundColor: 'grey'
+      
         
 
     },
@@ -140,7 +127,7 @@ const styles = StyleSheet.create({
         width: '85%',
         flexDirection: 'row',
         justifyContent: 'space-between',
-        alignItems: 'flex-end',
+        alignItems: 'center',
         marginBottom: 15,
  
 

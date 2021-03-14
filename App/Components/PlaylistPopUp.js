@@ -1,0 +1,123 @@
+import React, { useState, useEffect } from 'react';
+import { StyleSheet, Text, View, Modal, Image, TouchableOpacity, FlatList, Button, Touchable } from 'react-native';
+import LongButton from './LongButton'
+import { LinearGradient } from 'expo-linear-gradient';
+import Playlist from './Playlist.js';
+import storyPlaylists from './StoryPlaylists';
+import { MaterialIcons } from '@expo/vector-icons'
+
+export default function PlaylistPopUp ({modalVisibile, setModalVisibility}) {
+
+    let playlists = [];
+    // console.log("this is playlists ", storyPlaylists);
+    for (let i = 0; i < storyPlaylists.length; i++) {
+        let playlist = {
+            title: storyPlaylists[i].title,
+            image: storyPlaylists[i].image,
+            stories: storyPlaylists[i].stories,
+        }
+        playlists.push(playlist);
+
+    }
+
+    for (let i = 0; i < storyPlaylists.length; i++) {
+        let playlist = {
+            title: storyPlaylists[i].title,
+            image: storyPlaylists[i].image,
+            stories: storyPlaylists[i].stories,
+        }
+        playlists.push(playlist);
+
+    }
+        
+    console.log(modalVisibile)
+
+    return (
+        <Modal
+            visible={modalVisibile}
+            transparent={true}
+        >
+  
+      <View style={styles.modalView}>
+            <View style={{flexDirection: 'row', justifyContent: 'space-between'}}>
+                <View style={{width: '15%', paddingLeft: 10}}>
+                    <MaterialIcons name='cancel' size={28} color='black' onPress={() => setModalVisibility(false)}/>
+                </View>
+                
+                <Text style={{fontSize: 24, fontFamily: "Montserrat"}}>Add to Playlist</Text>
+
+                <View style={{width: '15%'}}>
+
+                </View>
+
+            </View>
+  
+            <View style={{width: '70%'}}>
+                <LongButton label='Create New Playlist' onPress={() => console.log('Button pressed')}  disabled={false}/>
+            </View>
+
+            
+            <FlatList 
+                    contentContainerStyle={styles.grid}
+                    numColumns={2} 
+                    data={playlists} 
+                    scrollEnabled={false}
+                    
+                    // scrollEnabled={true}
+                    directionalLockEnabled={true}
+                    keyExtractor={(playlist, index) => index}
+                    renderItem={(playlist) => {
+                        // console.log("Printing playlist: ", playlist);
+                        return <Playlist key={playlist.item.title} value={playlist.item} onPress={() => setModalVisibility(false)}/>
+                        }
+                    }
+            />
+            
+            
+        </View>
+
+     
+        
+
+    </Modal>
+     
+    )
+}
+
+const styles = StyleSheet.create({
+    centeredView: {
+        flex: 1,
+        // height: '100%%',
+        justifyContent: "center",
+        alignItems: "center",
+        marginTop: 100,
+        
+        
+      },
+      modalView: {
+        marginTop: 70,
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: "center",
+        backgroundColor: "white",
+        borderRadius: 20,
+        paddingVertical: 35,
+
+        
+        shadowColor: "#000",
+        shadowOffset: {
+          width: 0,
+          height: 2
+        },
+        shadowOpacity: 0.25,
+        shadowRadius: 4,
+        elevation: 5
+      },
+    
+      grid: {
+        marginBottom: 32, 
+        marginTop: '25%', 
+        alignItems: 'center', 
+        
+    }, 
+});

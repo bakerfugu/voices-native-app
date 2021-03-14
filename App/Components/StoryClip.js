@@ -9,7 +9,7 @@ import { LinearGradient } from 'expo-linear-gradient';
 import { NavigationContainer } from '@react-navigation/native';
 import { useNavigation } from '@react-navigation/native' ;
 
-export default function StoryClip({title, author, date, length, tags}) {
+export default function StoryClip({title, author, date, length, tags, setModalVisibility, location}) {
 
   const navigation = useNavigation();
   //<Photo key={photo._id} value={photo} newComment={this.setNewComment} user={this.state.user} class="standard"/>
@@ -49,10 +49,10 @@ export default function StoryClip({title, author, date, length, tags}) {
             </View>
 
             <View style={styles.buttons}>
-              <Ionicons name={'play-circle'} color={'#1ddbb5'} size={64} style={{alignSelf: 'center'}} onPress={() => navigation.navigate('StoryListen', {title: 'Example Story Title'})}/>
+              <Ionicons name={'play-circle'} color={'#1ddbb5'} size={64} style={{alignSelf: 'center'}} onPress={() => navigation.navigate('StoryListen', {title: title, author: author, length: length, location: location})}/>
               <View style={styles.sharingIconsRow}>
                  <Ionicons name={"md-share-outline"} size={30} color={'black'} style={styles.icon}/>
-                 <MaterialIcons name={"playlist-add"} size={32} color={'black'} style={styles.icon}/>
+                 <MaterialIcons name={"playlist-add"} size={32} color={'black'} style={styles.icon} onPress={() => setModalVisibility(true)}/>
                </View>
             </View>
 

@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { StyleSheet, ImageBackground, View, Image, FlatList, Dimensions } from 'react-native';
+import { StyleSheet, ImageBackground, View, Image, Modal, Dimensions } from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 import StoryClip from '../../Components/StoryClip';
 import  CircleList  from 'react-native-circle-list'
@@ -13,9 +13,9 @@ import FloatingStoryMapMarker from '../../Components/floatingStoryMapMarker'
 export default function PlaylistMapView ({route, navigation}) {
 
     const {playlist} = route.params;
-    const stories = playlist.item.stories
+    const stories = playlist.stories
     const mapRef = useRef(null);
-    console.log(playlist.item.stories);
+    console.log(playlist.stories);
 
     return (
         <View style={styles.container}>
@@ -48,7 +48,7 @@ export default function PlaylistMapView ({route, navigation}) {
 
             </MapView>
             <View style={{position: 'absolute', top: 0}}>
-                <Header playlist={playlist} title={playlist.item.title} page='Playlist-MapView'/>
+                <Header playlist={playlist} title={playlist.title} page='Playlist-MapView'/>
             </View>
 
         </View>

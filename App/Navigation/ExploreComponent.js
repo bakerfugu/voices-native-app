@@ -64,6 +64,7 @@ export default function ExploreComponent () {
 
       <ExploreNav.Screen name={'StoryListen'} component={StoryListen}  options={{
       headerTransparent:true,
+      headerShown: false,
       title: '',
       headerTintColor: 'black',
       headerBackTitleVisible: false,

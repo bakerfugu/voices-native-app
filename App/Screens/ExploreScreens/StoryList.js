@@ -1,18 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { StyleSheet, Text, View, Dimensions, ImageBackground, Image} from 'react-native';
-import { LinearGradient } from 'expo-linear-gradient';
 import BackgroundGradient from '../../Components/BackgroundGradient.js';
-import LongButton from '../../Components/LongButton.js';
 import { Images } from '../../Themes/index.js';
-import { useNavigation } from '@react-navigation/native';
-import StoryLocationComponent from '../../Components/StoryLocationComponent.js'
 import storyLocations from '../../Components/StoryLocations';  
-import { Ionicons } from '@expo/vector-icons'
-import CustomText from '../../Components/CustomText';  
 import CircleList from 'react-native-circle-list';
 import StoryClip from '../../Components/StoryClip'
 import Header from '../../Components/Header'
-import { createIconSetFromFontello } from 'react-native-vector-icons';
+import PlaylistPopUp from '../../Components/PlaylistPopUp';  
 
 
 const {width} = Dimensions.get('screen');
@@ -22,6 +16,8 @@ export default function StoryList ({route, navigation}) {
     const {locationIndex} = route.params;
 
     const[currStory, setStory] = useState(0);
+    const[modalVisibile, setModalVisibility] = useState(false);
+
 
     useEffect(() => {
         console.log(currStory)
@@ -133,13 +129,18 @@ export default function StoryList ({route, navigation}) {
 
 
 
-            <StoryClip title={currStory.title} 
+            <StoryClip 
+                location={storyLocations[locationIndex].title}
+                title={currStory.title} 
                 author={currStory.author} 
                 date={currStory.date} 
                 length={currStory.length}
                 tags={currStory.tags}
                 author="Jessika Alba"
+                setModalVisibility={setModalVisibility}
             />
+
+            { modalVisibile && <PlaylistPopUp modalVisible={modalVisibile} setModalVisibility={setModalVisibility}/> }
             
             
         </View>
@@ -210,7 +211,8 @@ const styles = StyleSheet.create({
         position: 'absolute',
         alignSelf: 'center',
         marginTop: 120
-    }
+    },
+    
 });
 
     

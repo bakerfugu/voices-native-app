@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import { StyleSheet, ImageBackground, View, Image, FlatList, Dimensions } from 'react-native';
+import { StyleSheet, ImageBackground, View, Image, Modal, Dimensions, Text } from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 import StoryClip from '../../Components/StoryClip';
 import  CircleList  from 'react-native-circle-list'
 import {Images} from '../../Themes';
 import BackgroundGradient from '../../Components/BackgroundGradient';
 import Header from '../../Components/Header';
+import PlaylistPopUp from '../../Components/PlaylistPopUp'
 
 
 const {width} = Dimensions.get('screen');
@@ -16,6 +17,7 @@ export default function PlaylistListView ({route, navigation}) {
     const {playlist} = route.params;
 
     const[currStory, setStory] = useState('');
+    const[modalVisibile, setModalVisibility] = useState(false)
 
     useEffect(() => {
         console.log(playlist.stories[0])
@@ -124,6 +126,7 @@ export default function PlaylistListView ({route, navigation}) {
                 length={currStory.length}
                 tags={currStory.tags}
                 author="Jessika Alba"
+                setModalVisibility={setModalVisibility}
             />
 
         </View>
@@ -160,6 +163,7 @@ const styles = StyleSheet.create({
         position: 'absolute',
         alignSelf: 'center',
         marginTop: 120
-    }
+    },
+    
 
   });

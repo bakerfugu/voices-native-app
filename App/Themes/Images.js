@@ -14,16 +14,18 @@ const images = {
     parliament: require('../Images/parliament.png'),
     teleferic: require('../Images/teleferic.png'),
     razzmatazz: require('../Images/razzmatazz.png'),
+    cascada: require('../Images/cascada.png'),
+    blockedCasc: require('../Images/blockedCasc.png'),
     //La Sagrada
     laSagradaPodcast: require('../Images/lasagrada1.png'),
     laSagradaInspiration: require('../Images/sagrada-inspiration.png'),
     laSagradaGhosts: require('../Images/sagrada-ghosts.png'),
     laSagradaGaudi: require('../Images/gaudi.png'),
     laSagradaHistory: require('../Images/sagrada-history.png'),
-
-
     //Camp Nou
-    campNou: require('../Images/camp_nou.png'),
+    campNou: require('../Images/camp-nou.png'),
+    //teleferic
+    teleferic: require('../Images/teleferic.png'),
 
 
   //San Francisco story Images

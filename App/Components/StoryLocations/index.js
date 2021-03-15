@@ -14,6 +14,9 @@ import metrics from "../../Themes/Metrics";
 import { sfHippieHillStories } from "./sfHippieHill";
 import { sfBayToBreakers } from "./sfBayToBreakers";
 import {sfSmitten } from "./sfSmitten";
+import { barcelonaCampNou } from "./barcelonaCampNou";
+import { barcelonaRazzmatazz } from "./barcelonaRazzmatazz";
+import { barcelonaTeleferic } from "./barcelonaTeleferic";
 
 
 
@@ -37,13 +40,31 @@ const storyLocations = [
   image: Images.laSagradaHistory
   },
   {
+    title: "Camp Nou",
+    stories: barcelonaCampNou, 
+    coordinates: { 
+      latitude: 41.38096, 
+      longitude: 2.122825
+      },
+  image: Images.campNou
+  },
+  {
     title: "Cascada del Parc de la Ciutadella",
     stories: barcelonaCascadaStories,
     coordinates: { 
       latitude: 41.3901, 
       longitude: 2.1866
       },
-    image: Images.fountainsEu
+    image: Images.cascada
+  },
+  {
+    title: "Teleferic",
+    stories: barcelonaTeleferic,
+    coordinates: { 
+      latitude: 41.3909,
+      longitude: 2.16079
+      },
+    image: Images.teleferic
   },
   {
     title: "Parc Güell",
@@ -53,6 +74,15 @@ const storyLocations = [
       longitude: 2.1527
       },
     image: Images.parkGuell
+  },
+  {
+    title: "Razzmatazz",
+    stories: barcelonaRazzmatazz,
+    coordinates: { 
+      latitude: 41.39788, 
+      longitude: 2.19114
+      },
+    image: Images.razzmatazz
   },
   {
       title: "Zona d'Ombra",
@@ -106,7 +136,7 @@ const storyLocations = [
     latitude: 37.7594, 
     longitude: -122.5107
     },
-    image: Images.sfBayToBreakers
+    image: Images.traditionB2B
   },
   {
     title: "Smitten Ice Cream",
@@ -115,7 +145,7 @@ const storyLocations = [
       latitude: 37.7891, 
       longitude: -122.43416
     },
-    image: Images.smitten1
+    image: Images.smittenWithSmitten
   }
 ];
 

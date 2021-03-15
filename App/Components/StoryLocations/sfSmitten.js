@@ -8,8 +8,7 @@ export const sfSmitten = [
         tags: ["Love", "Community"], 
         author: "tlallas", 
         image: Images.smitten2,
-        transcript: `Smitten ice cream isn’t just incredibly tasty— it is an engineering marvel! All of the ice cream is made with the patented ‘Brrr’ machine. The founder of Smitten worked with a team of 14 engineers to create the Brrr machine.  Using a combination of liquid nitrogen and double helical beaters, the Brr machine creates ice cream with the ideal texture, viscosity, and richness. 
-        Although you can go to Smitten’s permanent locations in PacHeights, Hayes Valley, Santana Row, and Rockridge, Smitten started out as just the Brr machine on a radio flyer wagon. The founder Robyn Fisher made Smitten a household name, charting her wagon all over the iconic places of SF. Now you can order ice cream from Brrrristas that will be the smoothest, richest ice cream in the bay. I truly cannot live without the cookie dough ice cream with pretzels and chocolate chips. Go try some!`,
+        transcript: `Smitten ice cream isn’t just incredibly tasty— it is an engineering marvel! All of the ice cream is made with the patented ‘Brrr’ machine. The founder of Smitten worked with a team of 14 engineers to create the Brrr machine.  Using a combination of liquid nitrogen and double helical beaters, the Brr machine creates ice cream with the ideal texture, viscosity, and richness. Although you can go to Smitten’s permanent locations in PacHeights, Hayes Valley, Santana Row, and Rockridge, Smitten started out as just the Brr machine on a radio flyer wagon. The founder Robyn Fisher made Smitten a household name, charting her wagon all over the iconic places of SF. Now you can order ice cream from Brrrristas that will be the smoothest, richest ice cream in the bay. I truly cannot live without the cookie dough ice cream with pretzels and chocolate chips. Go try some!`,
       },
       {
         id: "2",

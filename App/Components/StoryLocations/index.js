@@ -1,6 +1,9 @@
+//Imports for Barcelona
 import {barcelonaParlamentStories} from "./barcelonaParlament";
 import {barcelonaCascadaStories} from "./barcelonaCascada";
 import {barcelonaParcGuell} from "./barcelonaParcGuell";
+import { barcelonaLaSagradaStories } from "./barcelonaLaSagrada";
+//Imports for SF
 import {sfWharfStories} from "./sfWharf";
 import {sfDelPopoloStories} from "./sfDelPopolo";
 import {sfMissionDoloresPark} from "./sfMissionDolores";
@@ -8,6 +11,8 @@ import {ZonaOmbra} from './barcelonaZonaOmbre'
 import {Images} from '../../Themes';
 import { manipulateAsync } from "expo-image-manipulator";
 import metrics from "../../Themes/Metrics";
+import { sfHippieHillStories } from "./sfHippieHill";
+import { sfBayToBreakers } from "./sfBayToBreakers";
 
 
 
@@ -20,6 +25,15 @@ const storyLocations = [
       longitude: 2.1887
       },
   image: Images.parliament
+  },
+  {
+    title: "La Sagrada Familia",
+    stories: barcelonaLaSagradaStories,
+    coordinates: { 
+      latitude: 41.4036, 
+      longitude: 2.1744
+      },
+  image: Images.laSagradaHistory
   },
   {
     title: "Cascada del Parc de la Ciutadella",
@@ -74,7 +88,26 @@ const storyLocations = [
     longitude: -122.4269
     },
     image: Images.dolores
+  }, 
+  {
+    title: "Hippie Hill",
+    stories: sfHippieHillStories,
+    coordinates: { 
+    latitude: 37.7699, 
+    longitude: -122.4579
+    },
+    image: Images.hippieHillCulture
+  },
+  {
+    title: "Bay to Breakers",
+    stories: sfBayToBreakers,
+    coordinates: { 
+    latitude: 37.7594, 
+    longitude: -122.5107
+    },
+    image: Images.sfBayToBreakers
   }
+
 ];
 
 export default storyLocations; 

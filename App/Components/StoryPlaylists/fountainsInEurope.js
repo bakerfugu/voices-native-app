@@ -1,4 +1,4 @@
-export const newYorkPlaylist = [
+export const fountainsInEurope = [
     {
       id: "1",
       title: "The History of Trevi Fountain",

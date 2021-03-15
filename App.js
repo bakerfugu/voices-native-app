@@ -7,7 +7,7 @@ import "firebase/auth";
 import BackgroundGradient from './App/Components/BackgroundGradient';
 import AppLoading from 'expo-app-loading';
 import { useFonts } from 'expo-font';
-
+import { ModalPortal } from 'react-native-modals';
 
 
 export default function App() {
@@ -45,6 +45,7 @@ export default function App() {
     if (loggedIn) {
       return (
         <Fragment>
+          <ModalPortal />
           <SafeAreaView style={{flex:0, backgroundColor: '#FDF0AF'}}/>
 
           <SafeAreaView style={{flex:1}}>

@@ -1,24 +1,38 @@
 import React, { useState, useEffect } from 'react';
-import { StyleSheet, Text, SafeAreaView, View, Dimensions, ImageBackground, Image} from 'react-native';
-import { LinearGradient } from 'expo-linear-gradient';
+import { StyleSheet, Text, View, Dimensions, ImageBackground, Image} from 'react-native';
 import BackgroundGradient from '../../Components/BackgroundGradient.js';
-import LongButton from '../../Components/LongButton.js';
 import { Images } from '../../Themes/index.js';
-import { useNavigation } from '@react-navigation/native';
-import StoryLocationComponent from '../../Components/StoryLocationComponent.js'
 import storyLocations from '../../Components/StoryLocations';  
-import { Ionicons } from '@expo/vector-icons'
-import CustomText from '../../Components/CustomText';  
 import CircleList from 'react-native-circle-list';
 import StoryClip from '../../Components/StoryClip'
+import Header from '../../Components/Header'
+import PlaylistPopUp from '../../Components/PlaylistPopUp';  
 
 
 const {width} = Dimensions.get('screen');
 const RADIUS = (1.5 * width) / 2;   
 export default function StoryList ({route, navigation}) {
 
-    const[currStory, setStory] = useState(0);
+    const {locationIndex} = route.params;
 
+    const[currStory, setStory] = useState(0);
+    const[modalVisibile, setModalVisibility] = useState(false);
+
+
+    useEffect(() => {
+        console.log(currStory)
+    }, [currStory])
+
+    useEffect(() => {
+        const story = storyLocations[locationIndex].stories[0]
+        setStory({
+            title: story.title,
+            length: story.length,
+            date: story.date,
+            tags: story.tags,
+            author: "Jennifer Lopez"
+        })
+    }, []);
     
     const data = [
 
@@ -82,42 +96,17 @@ export default function StoryList ({route, navigation}) {
         )
     }
 
-    const {locationIndex} = route.params;
+    
 
-    useEffect(() => {
-        console.log("this is storyLocations[locationIndex] ", storyLocations[locationIndex]);
-        navigation.setOptions({
-            title: storyLocations[locationIndex].title,
-            numStories: storyLocations[locationIndex].stories.length
-        });
-    }, []);
 
     
     
     return (
         <View style ={styles.container}>
             <BackgroundGradient/>
-            <View style={styles.header}>
-                <View style={styles.backButton}>
-                    <Ionicons name="chevron-back-outline" size={34} color="black" onPress={() => navigation.navigate('MainMap')} />
-                </View>
-
-                <View style={styles.titleView}> 
-                    <Text style={styles.title}>
-                        {storyLocations[locationIndex].title}
-                        </Text>
-                        <Text style={styles.numStories}>
-                        {storyLocations[locationIndex].stories.length + " Stories Available"}
-                        </Text>
-                </View>
-
-                <View style={styles.backButton}>
-
-                </View>
-                
-
-            </View>
-
+            
+            <Header title={storyLocations[locationIndex].title} page={'Story List'} playlist={null}/>
+            <Text style={{fontFamily: 'Montserrat-Light', fontSize: 18}}>{storyLocations[locationIndex].stories.length} Stories Available</Text>
             <View style={styles.flatlist}>
 
                 <View style ={styles.backgroundCircle}/>
@@ -131,14 +120,28 @@ export default function StoryList ({route, navigation}) {
                     selectedItemScale={2.7}
                     swipeSpeedMultiplier={40}
                     containerStyle={{paddingTop: 80, marginBottom: '5%'}}
-                    onScrollEnd={(item) =>setStory(item)}
+                    onScrollEnd={(item) => {
+                        let index = item % storyLocations[locationIndex].stories.length;
+                        setStory(storyLocations[locationIndex].stories[index])
+                    }}
                     />
             </View>
 
-            <StoryClip />
-            
 
-            {/* <StoryLocationComponent locationIndex={locationIndex}/> */}
+
+            <StoryClip 
+                location={storyLocations[locationIndex].title}
+                title={currStory.title} 
+                author={currStory.author} 
+                date={currStory.date} 
+                length={currStory.length}
+                tags={currStory.tags}
+                author="Jessika Alba"
+                setModalVisibility={setModalVisibility}
+            />
+
+            { modalVisibile && <PlaylistPopUp modalVisible={modalVisibile} setModalVisibility={setModalVisibility}/> }
+            
             
         </View>
     );
@@ -208,7 +211,8 @@ const styles = StyleSheet.create({
         position: 'absolute',
         alignSelf: 'center',
         marginTop: 120
-    }
+    },
+    
 });
 
     

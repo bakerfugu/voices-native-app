@@ -22,9 +22,9 @@ export default function RecordHome({route, navigation}) {
     
     useEffect(() => {
         if (route.params) {
-            setDeleted(true);
+            setDeleted(route.params.deleted)
         }
-    })
+    }, [])
 
 
     
@@ -112,7 +112,9 @@ export default function RecordHome({route, navigation}) {
                 <LongButton label='Edit Story' onPress={nextPage} disabled={time===0 || !recordState.paused}/>
            </View>
 
+            <View style={{position: 'absolute'}}>
 
+            
            <Modal
                     animationType = "slide"
                     transparent = {true}
@@ -136,6 +138,7 @@ export default function RecordHome({route, navigation}) {
                     </View>
                 </Modal>
 
+                </View>
 
        </View>
 
@@ -182,6 +185,27 @@ const styles = StyleSheet.create({
     header: {
         width: '100%',
         height: metrics.headerHeight,
+    },
+    modalView: {
+        marginTop: '80%',
+        marginHorizontal: '10%',
+        backgroundColor: "white",
+        borderRadius: 20,
+        padding: '5%',
+        alignItems: "center",
+        shadowColor: "#000",
+        shadowOffset: {
+        width: 0,
+        height: 2
+        },
+        shadowOpacity: 0.25,
+        shadowRadius: 4,
+        elevation: 5
+    },
+    posted: {
+        fontFamily: 'Montserrat',
+        fontSize: 20,
+        alignSelf: 'flex-start'
     },
 
   });

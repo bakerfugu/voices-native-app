@@ -39,7 +39,7 @@ const audio = {
     iceCreamTour : require('../Audio/iceCreamTourExtravaganza.mp3'),
     learnAboutSmitten : require('../Audio/LearnaboutSmittenIceCream.mp3'),
     smittenOwner : require('../Audio/MeettheOwnerofSmittenIceCream.mp3'),
-    moreThanIceCreamShop : require('../Audio/MoreThanIceCreamShop.mp3'),
+    moreThanIceCreamShop : require('../Audio/moreThanIceCream.mp3'),
     smittenIceCream : require('../Audio/smittenIceCream.mp3'),
-};
-export default audio;
+}
+export default audio

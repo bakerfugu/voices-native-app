@@ -13,6 +13,7 @@ import { manipulateAsync } from "expo-image-manipulator";
 import metrics from "../../Themes/Metrics";
 import { sfHippieHillStories } from "./sfHippieHill";
 import { sfBayToBreakers } from "./sfBayToBreakers";
+import {sfSmitten } from "./sfSmitten";
 
 
 
@@ -106,8 +107,16 @@ const storyLocations = [
     longitude: -122.5107
     },
     image: Images.sfBayToBreakers
+  },
+  {
+    title: "Smitten Ice Cream",
+    stories: sfSmitten,
+    coordinates: {
+      latitude: 37.7891, 
+      longitude: -122.43416
+    },
+    image: Images.smitten1
   }
-
 ];
 
 export default storyLocations; 

@@ -22,6 +22,7 @@ const images = {
     laSagradaGhosts: require('../Images/sagrada-ghosts.png'),
     laSagradaGaudi: require('../Images/gaudi.png'),
     laSagradaHistory: require('../Images/sagrada-history.png'),
+    laSagrada99Pct: require('../Images/sagrada99pct.png'),
     //Camp Nou
     campNou: require('../Images/camp-nou.png'),
     //teleferic

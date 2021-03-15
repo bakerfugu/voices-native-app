@@ -7,8 +7,9 @@ export const sfHippieHillStories = [
       length: 22, 
       date: "Jun 2020", 
       tags: ["Love", "Community", "Heart Warmer"], 
-      author: "tlallas", 
-      image: Images.hippieHillSwingWithView
+      author: "shinnyshin", 
+      image: Images.hippieHillSwingWithView,
+      transcript: `One of my favorite memories of San Francisco was at Hippie Hill, which has a bunch of swings that overlook San Francisco. You can see the entire bay. You have to go across the golden gate bridge to be able to access it and it is a 1 mile hike up. But once you get there, there are three or four different swings you can swing on. You can take so many different photos. There’s also a really cool tree you can climb up to get an even better view of the San Francisco Bay. `,
     },
     {
       id: "2",

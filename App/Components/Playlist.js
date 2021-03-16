@@ -20,6 +20,7 @@ const styles = StyleSheet.create({
         width: 120, 
         height: 120, 
         alignSelf: 'center', 
+        borderRadius: 15, 
     }, 
     playlistContainer: {
         padding: 30, 

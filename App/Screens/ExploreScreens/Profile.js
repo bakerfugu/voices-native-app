@@ -21,6 +21,7 @@ export default function Profile () {
 
     return (
         <ScrollView style={styles.scroll}>
+            <BackgroundGradient/>
             <Image source={Images.profSettings} style={styles.settings} resizeMode='contain' />
             <View style={styles.photoContainer}>
             <Image source={Images.profPlaceholder} resizeMode='contain' />

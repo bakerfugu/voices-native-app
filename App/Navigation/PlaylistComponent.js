@@ -6,11 +6,13 @@ import PlaylistListView from '../Screens/PlaylistScreens/PlaylistListView.js'
 import PlaylistMapView from '../Screens/PlaylistScreens/Playlist-MapView'
 import { View, TouchableOpacity, Image, StyleSheet } from 'react-native'
 import { Images } from '../Themes'
-
+import { useNavigation } from '@react-navigation/native'
+import Profile from '../Screens/ExploreScreens/Profile.js'
 
 
 const PlaylistNav = createStackNavigator();
 export default function PlaylistComponent () {
+  const navigation = useNavigation();
   return (
     <PlaylistNav.Navigator headerMode='float'>
       <PlaylistNav.Screen name={'PlaylistHome'} component={PlaylistHome}  
@@ -22,6 +24,7 @@ export default function PlaylistComponent () {
           headerTitleStyle: {
             fontSize: 30,
             fontWeight: 'bold',
+            fontFamily: 'Montserrat'
 
           },
           
@@ -33,7 +36,7 @@ export default function PlaylistComponent () {
             paddingLeft: 10
           },
           headerRight:  () => (
-              <TouchableOpacity style={styles.profImageView}>
+              <TouchableOpacity style={styles.profImageView} onPress={() => navigation.navigate('Profile')}>
                 <Image source={Images.profPlaceholder} resizeMode='contain' style={styles.profImage}/>
               </TouchableOpacity>
                   

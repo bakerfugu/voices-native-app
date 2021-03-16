@@ -86,7 +86,29 @@ export default function ExploreComponent () {
 
       
 
-      <ExploreNav.Screen name={'Profile'} component={Profile} />
+      <ExploreNav.Screen name={'Profile'} component={Profile} 
+      options={{
+        headerTransparent:true,
+        headerShown: false,
+        title: '',
+        headerTintColor: 'black',
+        headerBackTitleVisible: false,
+        headerTitleStyle: {
+          fontSize: 30,
+          fontWeight: 'bold',
+  
+        },
+        headerLeftContainerStyle: {
+          paddingLeft: 10
+        }, 
+        headerStyle: {
+          height: 75,
+          // backgroundColor: 'pink'
+        },
+      }}  
+      
+      
+      />
   </ExploreNav.Navigator>
   );
 }

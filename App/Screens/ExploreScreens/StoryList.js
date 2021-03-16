@@ -7,6 +7,8 @@ import CircleList from 'react-native-circle-list';
 import StoryClip from '../../Components/StoryClip'
 import Header from '../../Components/Header'
 import PlaylistPopUp from '../../Components/PlaylistPopUp';  
+import Confirmation from '../../Components/ConfirmationModal';  
+import NavigationModal from '../../Components/NavigationModal';
 
 
 const {width} = Dimensions.get('screen');
@@ -17,7 +19,8 @@ export default function StoryList ({route, navigation}) {
 
     const[currStory, setStory] = useState(0);
     const[modalVisibile, setModalVisibility] = useState(false);
-
+    const[confirmationModal, setConfirmation] = useState(false);
+    const[navigationModal, setNavigation] = useState(false);
 
     useEffect(() => {
         console.log(currStory)
@@ -105,7 +108,7 @@ export default function StoryList ({route, navigation}) {
         <View style ={styles.container}>
             <BackgroundGradient/>
             
-            <Header title={storyLocations[locationIndex].title} page={'Story List'} playlist={null}/>
+            <Header title={storyLocations[locationIndex].title} page={'Story List'} playlist={null} setNavigation={setNavigation}/>
             <Text style={{fontFamily: 'Montserrat-Light', fontSize: 18}}>{storyLocations[locationIndex].stories.length} Stories Available</Text>
             <View style={styles.flatlist}>
 
@@ -140,8 +143,11 @@ export default function StoryList ({route, navigation}) {
                 setModalVisibility={setModalVisibility}
             />
 
-            { modalVisibile && <PlaylistPopUp modalVisible={modalVisibile} setModalVisibility={setModalVisibility}/> }
+            { modalVisibile && <PlaylistPopUp modalVisible={modalVisibile} setModalVisibility={setModalVisibility} setConfirmation={setConfirmation}/> }
             
+            { confirmationModal && <Confirmation visible={confirmationModal} setConfirmation={setConfirmation}/> }
+
+            { navigationModal && <NavigationModal visible={navigationModal} setNavigation={setNavigation}/> }
             
         </View>
     );
@@ -197,7 +203,7 @@ const styles = StyleSheet.create({
     },
     
     flatlist: {
-        marginTop: '10%',
+        marginTop: '5%',
         // flex: 1,
         width:'100%',
         // backgroundColor: 'grey',

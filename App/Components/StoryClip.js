@@ -15,6 +15,15 @@ export default function StoryClip({title, author, date, length, tags, setModalVi
   //<Photo key={photo._id} value={photo} newComment={this.setNewComment} user={this.state.user} class="standard"/>
   // let all_tags = props.value.tags; 
   
+  let tagList;
+  if (tags) {
+
+    tagList = tags.map((tag) => 
+    <View style={styles.tag}>
+     <Text style={styles.tagText}>{tag}</Text>
+    </View>
+    );
+  }
   
 
   
@@ -34,7 +43,7 @@ export default function StoryClip({title, author, date, length, tags, setModalVi
             <View style={styles.info}>
 
               <View style={styles.title}>
-                  <Text style={{fontFamily: 'Montserrat', fontSize: 26}}>{title}</Text>
+                  <Text style={{fontFamily: 'Montserrat', fontSize: 24}}>{title}</Text>
               </View>
 
               <View style={{marginBottom: '10%'}}>
@@ -43,7 +52,7 @@ export default function StoryClip({title, author, date, length, tags, setModalVi
               </View>
               
               <View style={styles.tagRow}>
-                  
+                  {tagList}
               </View> 
 
             </View>

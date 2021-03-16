@@ -6,19 +6,29 @@ import Header from '../../Components/Header.js';
 import { Images } from '../../Themes'
 import { Ionicons, Entypo, MaterialIcons } from '@expo/vector-icons'
 import LongButton from '../../Components/LongButton'
+import PlaylistPopUp from '../../Components/PlaylistPopUp';  
+import Confirmation from '../../Components/ConfirmationModal';  
+import NavigationModal from '../../Components/NavigationModal';
+import TranscriptModal from '../../Components/TranscriptModal';
     
 export default function StoryListen ({route, navigation}) {
     const {title, author, length, location} = route.params
     const [isPlaying, setPlayStatus] = useState(false);
+    const[currStory, setStory] = useState(0);
+    const[modalVisibile, setModalVisibility] = useState(false);
+    const[confirmationModal, setConfirmation] = useState(false);
+    const[navigationModal, setNavigation] = useState(false);
+    const[transcriptModal, openTranscript] = useState(false);
+
 
     return (
 
         <View style={styles.container}>
             <BackgroundGradient/>
-            <Header title={location} page='Story List' playlist={null}/>
+            <Header title={location} page='Story List' playlist={null} setNavigation={setNavigation}/>
             <View style={styles.content}>
-                <ImageBackground style={{width: 400, aspectRatio: 1, alignItems: 'center', justifyContent: 'center'}} source={Images.yellowOrb} resizeMode='center'>
-                    <Image source={Images.silverMan} style={{width: 200, aspectRatio: 1, borderRadius: 200}}/>
+                <ImageBackground style={{width: 300, aspectRatio: 1, alignItems: 'center', justifyContent: 'center'}} source={Images.yellowOrb} resizeMode='contain'>
+                    <Image source={Images.silverMan} style={{width: 50, aspectRatio: 1, borderRadius: 200}} resizeMode='contain'/>
                 </ImageBackground>
 
                 <Text style={{fontSize: 24, fontFamily: "Montserrat", textAlign: 'center', marginBottom: 10}}>{title}</Text>
@@ -35,21 +45,29 @@ export default function StoryListen ({route, navigation}) {
                     <Ionicons name={'play-forward-sharp'} size={28}/>
                 </View> 
 
-                <View style={styles.transcriptAndOptions}>
-                <View style={{width: '30%'}}>
-                    <LongButton label='Transcript' onPress={() => console.log('button pressed')} disabled={false}/>
-                </View>
-
-                <View style={{width:'30%', flexDirection: 'row', justifyContent: 'space-around'}}>
-                <Ionicons name={"md-share-outline"} size={34} color={'black'} style={styles.icon}/>
-                 <MaterialIcons name={"playlist-add"} size={38} color={'black'} style={styles.icon} onPress={() => setModalVisibility(true)}/>
-                </View>
+                
 
             </View>
+            <View style={styles.transcriptAndOptions}>
+                <View style={{flexDirection: 'row',width: '30%', justifyContent: 'center'}}>
+                    <LongButton label='Transcript' onPress={() =>openTranscript(true)} disabled={false}/>
+                </View>
 
+                    <View style={{width:'30%', flexDirection: 'row', alignItems: 'center', justifyContent: 'space-around'}}>
+                        <Ionicons name={"md-share-outline"} size={34} color={'black'} style={styles.icon}/>
+                        <MaterialIcons name={"playlist-add"} size={38} color={'black'} style={styles.icon} onPress={() => setModalVisibility(true)}/>
+                    </View>
 
-            </View>
+                </View>
 
+            
+            { modalVisibile && <PlaylistPopUp modalVisible={modalVisibile} setModalVisibility={setModalVisibility} setConfirmation={setConfirmation}/> }
+            
+            { confirmationModal && <Confirmation visible={confirmationModal} setConfirmation={setConfirmation}/> }
+
+            { navigationModal && <NavigationModal visible={navigationModal} setNavigation={setNavigation}/> }
+
+            { transcriptModal && <TranscriptModal visible={transcriptModal} openTranscript={openTranscript}/>}
             
         </View>
             
@@ -69,26 +87,16 @@ const styles = StyleSheet.create({
       flex: 1,
       justifyContent: 'flex-start',
       alignItems: 'center',
-      backgroundColor: 'grey'
+ 
 
     },
-    header: {
-        width: '100%',
-        height: 100,
-        // backgroundColor: 'grey',
-        left: 0,
-        top: 0
-    },
+   
     content: { 
-       height: '100%',
+        flex: 9,
         width: '100%',
         flexDirection: 'column',
-        justifyContent: 'flex-start',
+        justifyContent: 'center',
         alignItems: 'center',
-        marginTop: '-5%',
-        // backgroundColor: 'grey'
-      
-        
 
     },
     image: {
@@ -122,14 +130,14 @@ const styles = StyleSheet.create({
         alignItems: 'center'
     },
     transcriptAndOptions: {
-        alignSelf: 'center',
-        height: '10%',
-        width: '85%',
+        flex: 1,
         flexDirection: 'row',
         justifyContent: 'space-between',
         alignItems: 'center',
-        marginBottom: 15,
+        width: '85%',
  
+        // marginBottom: 15,
+  
 
     },
     transcriptButton: {
@@ -139,19 +147,11 @@ const styles = StyleSheet.create({
         borderWidth: 3,
         borderColor: '#F1B600',
         alignItems: 'center',
-        borderRadius: 15,
-        
+        borderRadius: 15,   
 
     },
 
     
-    firstView: {
-        height: windowHeight - 190,
-        width: '100%',
-        marginBottom: 20
-        
-        
-    },
     transcript: {
         flex:1,
         marginHorizontal: 30

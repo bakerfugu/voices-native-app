@@ -54,6 +54,6 @@ export const sfSmitten = [
         author: "ayeletd", 
         image: Images.smitten1,
         audio: Audio.learnAboutSmitten,
-        transcript: `empty` 
+        transcript: `Let me tell you about Smitten Ice Cream. Robyn Sue Fisher’s affection for ice cream runs through the summer evenings of her Boston childhood, like a swirl of marshmallow cream through a pint of rocky road. “My mom would tell me I had two stomachs: one for food and one totally reserved for ice cream,” she says. While ice cream was Fisher’s family’s dessert of choice almost every night, that didn’t preclude special outings to ice cream shops. Those impromptu visits were filled with happy moments and spending time together, she says. “Building a business around those moments was very attractive to me” she told me about the origins of her ice cream business that recently opened its fifth location in the San Francisco area. Described on its website as “new old-fashioned,” Fisher’s ice cream is made from scratch and to-order from organic milk and cream and other fresh ingredients from local farms.` 
     }, 
 ];

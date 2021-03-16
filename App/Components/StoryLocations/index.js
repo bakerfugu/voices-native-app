@@ -17,6 +17,7 @@ import {sfSmitten } from "./sfSmitten";
 import { barcelonaCampNou } from "./barcelonaCampNou";
 import { barcelonaRazzmatazz } from "./barcelonaRazzmatazz";
 import { barcelonaTeleferic } from "./barcelonaTeleferic";
+import { sfCrossroads } from "./sfCrossroads";
 
 
 
@@ -137,6 +138,15 @@ const storyLocations = [
     longitude: -122.5107
     },
     image: Images.traditionB2B
+  },
+  {
+    title: "Crossroads Trading",
+    stories: sfCrossroads,
+    coordinates: { 
+    latitude: 37.76824, 
+    longitude: -122.42930
+    },
+    image: Images.sfCrossroads
   },
   {
     title: "Smitten Ice Cream",

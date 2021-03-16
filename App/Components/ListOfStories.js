@@ -74,7 +74,7 @@ export default function ListOfStories ({locationIndex}) {
     const renderItem = () => {
         return (
             <ImageBackground source={Images.yellowOrb} style={{height: 80, width: 80, justifyContent: 'center', alignItems: 'center'}}>
-                <Image source={images.parliament} resizeMode='center' style={{height: 60, width: 60}}/>
+                <Image source={images.parliament} resizeMode='center' style={{height: 60, width: 60, borderRadius: '50%'}}/>
             </ImageBackground>
             
         )

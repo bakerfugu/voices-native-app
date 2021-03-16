@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { Text, View, StyleSheet, Image, TouchableOpacity } from 'react-native';
+import { Text, View, ScrollView, StyleSheet, Image, TouchableOpacity } from 'react-native';
 import {Ionicons, MaterialIcons} from '@expo/vector-icons';
 import { useFonts } from 'expo-font';
-import { ScrollView } from 'react-native-gesture-handler';
+// import { ScrollView } from 'react-native-gesture-handler';
 import { Card, ListItem, Button, Icon, Divider } from 'react-native-paper';
 import { setStatusBarNetworkActivityIndicatorVisible } from 'expo-status-bar';
 import { LinearGradient } from 'expo-linear-gradient';
@@ -15,9 +15,14 @@ export default function StoryClip({title, author, date, length, tags, setModalVi
   //<Photo key={photo._id} value={photo} newComment={this.setNewComment} user={this.state.user} class="standard"/>
   // let all_tags = props.value.tags; 
   
-  
-
-  
+  let tagList;
+  if (tags) {
+    tagList = tags.map((tag) => <View style={styles.tag}>
+      <Text style={styles.tagText}>
+        {tag}
+      </Text>
+    </View>);
+  }
 
 
   
@@ -34,17 +39,17 @@ export default function StoryClip({title, author, date, length, tags, setModalVi
             <View style={styles.info}>
 
               <View style={styles.title}>
-                  <Text style={{fontFamily: 'Montserrat', fontSize: 26}}>{title}</Text>
+                  <Text style={{fontFamily: 'Montserrat-Bold', fontSize: 20}}>{title}</Text>
               </View>
 
               <View style={{marginBottom: '10%'}}>
-                <Text style={{fontFamily: "Montserrat-Light", fontSize: 18}}>{author}</Text>
-                <Text style={{fontFamily: 'Montserrat-Light', fontSize: 18}}>{date} · {length} min</Text>
+                <Text style={{fontFamily: "Montserrat-Light", fontSize: 16}}>{author}</Text>
+                <Text style={{fontFamily: 'Montserrat-Light', fontSize: 16}}>{date} · {length} min</Text>
               </View>
               
-              <View style={styles.tagRow}>
-                  
-              </View> 
+              <ScrollView horizontal={true} style={styles.tagRow}>
+                  {tagList}
+              </ScrollView> 
 
             </View>
 
@@ -76,7 +81,7 @@ const styles = StyleSheet.create({
     borderColor: '#FCC201',
     borderWidth: 2,
     borderRadius: 15,
-    width: '95%'
+    width: '90%'
   },
   container: {
     // flex: 1,
@@ -108,6 +113,7 @@ const styles = StyleSheet.create({
   },
   tagRow: {
     flexDirection: 'row',
+    marginRight: '5%'
     
   },
   sharingIconsRow: {
@@ -135,7 +141,21 @@ const styles = StyleSheet.create({
     height: '2%',
     borderRadius: 15, 
 
-  }
+  },
+  tag: {
+    borderRadius: 15,
+    borderWidth: 1,
+    borderColor: '#6a6a6a',
+    justifyContent: 'center',
+    alignItems: 'center',
+    paddingVertical: 3,
+    paddingHorizontal: 12,
+    marginRight: 5, 
+    backgroundColor: "white", 
+  },
+  tagText: {
+    fontSize: 13,
+  },
   
  
   

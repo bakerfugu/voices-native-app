@@ -30,7 +30,9 @@ export default function StoryList ({route, navigation}) {
             length: story.length,
             date: story.date,
             tags: story.tags,
-            author: "Jennifer Lopez"
+            author: story.author,
+            image: story.image,
+            transcript: story.transcript,
         })
     }, []);
     
@@ -87,13 +89,14 @@ export default function StoryList ({route, navigation}) {
 
     ]
 
-    const renderItem = () => {
-        return (
-            <ImageBackground source={Images.yellowOrb} style={{height: 80, width: 80, justifyContent: 'center', alignItems: 'center'}}>
-                <Image source={Images.parliament} resizeMode='center' style={{height: 60, width: 60}}/>
-            </ImageBackground>
-            
-        )
+    const renderItem = ({item, index}) => {
+        console.log(item);
+        let storyIndex = index % storyLocations[locationIndex].stories.length;
+            return (
+                <ImageBackground source={Images.yellowOrb} resizeMode='contain' style={{height: 80, width: 80, justifyContent: 'center', alignItems: 'center'}}>
+                    <Image source={storyLocations[locationIndex].stories[storyIndex].image} resizeMode='cover' style={{height: 60, width: 60, borderRadius: '50%'}}/>
+                </ImageBackground>    
+        );
     }
 
     
@@ -122,7 +125,7 @@ export default function StoryList ({route, navigation}) {
                     containerStyle={{paddingTop: 80, marginBottom: '5%'}}
                     onScrollEnd={(item) => {
                         let index = item % storyLocations[locationIndex].stories.length;
-                        setStory(storyLocations[locationIndex].stories[index])
+                        setStory(storyLocations[locationIndex].stories[index]);
                     }}
                     />
             </View>
@@ -136,7 +139,6 @@ export default function StoryList ({route, navigation}) {
                 date={currStory.date} 
                 length={currStory.length}
                 tags={currStory.tags}
-                author="Jessika Alba"
                 setModalVisibility={setModalVisibility}
             />
 

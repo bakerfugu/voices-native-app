@@ -17,7 +17,6 @@ export default function PlaylistPopUp ({modalVisibile, setModalVisibility, setCo
             stories: storyPlaylists[i].stories,
         }
         playlists.push(playlist);
-
     }
 
     for (let i = 0; i < storyPlaylists.length; i++) {

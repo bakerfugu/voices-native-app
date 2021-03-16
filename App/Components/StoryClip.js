@@ -23,6 +23,20 @@ export default function StoryClip({title, author, date, length, tags, setModalVi
       </Text>
     </View>);
   }
+  let titleLength, titleAdjust;
+  let long;
+  if (title) {
+    titleLength = title.length;
+    if (titleLength >=28) {
+      titleAdjust = title.substring(0,24) + '...';
+      long = true;
+    } else {
+      titleAdjust = "";
+      long = false;
+    }
+    
+  }
+
 
 
   
@@ -36,26 +50,31 @@ export default function StoryClip({title, author, date, length, tags, setModalVi
         <View style = {styles.container}>
 
             <View style={styles.title}>
-                <Text style={{fontFamily: 'Montserrat-Bold', fontSize: 24}}>{title}</Text>
+                <Text style={{fontFamily: 'Montserrat-Bold', fontSize: 19}}>{long ? titleAdjust : title}</Text>
             </View>
+
 
             <View style={{marginBottom: '5%'}}>
-                <Text style={{fontFamily: "Montserrat-Light", fontSize: 16}}>{author} · {date} · {length} min</Text>
+                <Text style={{fontFamily: "Montserrat", fontSize: 16}}>@{author}</Text>
             </View>
-
             <View style={{flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', marginBottom: '3%'}}>
             <ScrollView horizontal={true} style={styles.tagRow}>
                 {tagList}
             </ScrollView> 
-            <LinearGradient colors={['grey', '#1ddbb5']} style={styles.progressBar} start={[0.9, 0.9]} end={[0.0, 0.3]}/>
-
             </View>
+
+            {/* <LinearGradient colors={['grey', '#1ddbb5']} style={styles.progressBar} start={[0.9, 0.9]} end={[0.0, 0.3]}/> */}
+
+            
             
 
 
 
             <View style={styles.buttons}>
+            
               <Ionicons name={'play-circle'} color={'#1ddbb5'} size={48} style={{alignSelf: 'center'}} onPress={() => navigation.navigate('StoryListen', {title: title, author: author, length: length, location: location})}/>
+              <Text style={{fontFamily: "Montserrat", fontSize: 14, marginLeft: '-10%'}}> {length} min · {date}</Text>
+        
               <View style={styles.sharingIconsRow}>
                  <Ionicons name={"md-share-outline"} size={30} color={'black'} style={styles.icon}/>
                  <MaterialIcons name={"playlist-add"} size={32} color={'black'} style={styles.icon} onPress={() => setModalVisibility(true)}/>

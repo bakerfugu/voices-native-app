@@ -172,8 +172,8 @@ export default function StoryList ({route, navigation}) {
             </View>
 
             <View style={styles.arrows}>
-                <Ionicons name='arrow-back-sharp' color='grey' size={48} onPress={prevStory}/>
-                <Ionicons name='arrow-forward-sharp' color='grey' size={48} onPress={nextStory}/>
+                <Ionicons name='arrow-back-sharp' color='#FCC201' size={48} onPress={prevStory}/>
+                <Ionicons name='arrow-forward-sharp' color='#FCC201' size={48} onPress={nextStory}/>
 
             </View>
             
@@ -253,7 +253,7 @@ const styles = StyleSheet.create({
         // backgroundColor: 'grey',
     },
     backgroundCircle: {
-        borderColor: '#1ddbb5',
+        borderColor: '#FCC201',
         borderWidth: 10,
         width: RADIUS * 2,
         aspectRatio: 1,
@@ -268,6 +268,7 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'space-between',
         alignItems: 'center',
+      
         // backgroundColor: 'grey'
     }
     

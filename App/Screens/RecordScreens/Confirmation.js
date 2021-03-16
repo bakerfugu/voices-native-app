@@ -159,7 +159,7 @@ export default function Confirmation ({route, navigation}) {
             </MapView>
 
             { !posted &&    
-            <View style={{position: 'absolute', bottom: 0, width: '60%', height: 100}}>
+            <View style={{position: 'absolute', bottom: 0, width: '50%', height: 100}}>
                 <LongButton disabled={!location} onPress={() => setModalVisibility(true)} label="Post Story"/>
             </View>
             }

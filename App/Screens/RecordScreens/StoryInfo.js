@@ -181,9 +181,9 @@ export default function StoryInfo() {
             </TouchableWithoutFeedback>
 {/* 
             <LongButton style={styles.postbutton} onPress={() => { navigation.navigate('Confirmation', {uri: uri}) }} disabled={!title || !uri || !location || !valueMS} label={'Post'}/> */}
-            <View style={{ flex: 1,flexDirection: 'column', justifyContent: 'flex-end', width: '100%', alignItems: 'center', backgroundColor: '' }}>
+            <View style={{ flex: 1,flexDirection: 'column', width: '100%', alignItems: 'center', }}>
                 <View style={styles.postButton}>              
-                    <LongButton onPress={() => { navigation.navigate('Confirmation', {image: image}) }} disabled={!title || !image || !location || !valueMS} label={'Post'}/>
+                    <LongButton onPress={() => { navigation.navigate('Confirmation', {image: image}) }} disabled={!title || !image || !valueMS} label={'Choose Location'}/>
                 </View>
                 
             </View>
@@ -203,7 +203,7 @@ const styles = StyleSheet.create({
     form: {
         // alignSelf: 'stretch',
         // alignItems: 'center'
-        flex: 5,
+        flex: 8,
         flexDirection: 'column',
         justifyContent: 'space-around',
         alignItems: 'center',
@@ -264,6 +264,10 @@ const styles = StyleSheet.create({
     postButton: {
         flex: 1,
         width: '40%',
+        flexDirection: 'row',
+        justifyContent:'center',
+        alignItems: 'flex-end',
+        marginBottom: 15,
         // flexDirection: 'row',
         // justifyContent: 'center',
         // alignItems: 'flex-end',

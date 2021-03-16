@@ -34,9 +34,36 @@ export default function StoryClip({title, author, date, length, tags, setModalVi
 
      
         <View style = {styles.container}>
-         
+
+            <View style={styles.title}>
+                <Text style={{fontFamily: 'Montserrat-Bold', fontSize: 24}}>{title}</Text>
+            </View>
+
+            <View style={{marginBottom: '5%'}}>
+                <Text style={{fontFamily: "Montserrat-Light", fontSize: 16}}>{author} · {date} · {length} min</Text>
+            </View>
+
+            <View style={{flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', marginBottom: '3%'}}>
+            <ScrollView horizontal={true} style={styles.tagRow}>
+                {tagList}
+            </ScrollView> 
+            <LinearGradient colors={['grey', '#1ddbb5']} style={styles.progressBar} start={[0.9, 0.9]} end={[0.0, 0.3]}/>
+
+            </View>
+            
+
+
+
+            <View style={styles.buttons}>
+              <Ionicons name={'play-circle'} color={'#1ddbb5'} size={48} style={{alignSelf: 'center'}} onPress={() => navigation.navigate('StoryListen', {title: title, author: author, length: length, location: location})}/>
+              <View style={styles.sharingIconsRow}>
+                 <Ionicons name={"md-share-outline"} size={30} color={'black'} style={styles.icon}/>
+                 <MaterialIcons name={"playlist-add"} size={32} color={'black'} style={styles.icon} onPress={() => setModalVisibility(true)}/>
+               </View>
+            </View>
+            
           
-            <View style={styles.info}>
+            {/* <View style={styles.info}>
 
               <View style={styles.title}>
                   <Text style={{fontFamily: 'Montserrat-Bold', fontSize: 20}}>{title}</Text>
@@ -59,13 +86,11 @@ export default function StoryClip({title, author, date, length, tags, setModalVi
                  <Ionicons name={"md-share-outline"} size={30} color={'black'} style={styles.icon}/>
                  <MaterialIcons name={"playlist-add"} size={32} color={'black'} style={styles.icon} onPress={() => setModalVisibility(true)}/>
                </View>
-            </View>
+            </View> */}
 
         </View>
 
-        <LinearGradient colors={['grey', '#1ddbb5']} style={styles.progressBar} start={[0.9, 0.9]} end={[0.0, 0.3]}>
-
-        </LinearGradient>
+        
       </View>
 
   );
@@ -85,8 +110,8 @@ const styles = StyleSheet.create({
   },
   container: {
     // flex: 1,
-   
-    flexDirection: 'row',
+    display: 'flex',
+    flexDirection: 'column',
     justifyContent: 'center',
 
     // height: '100%',
@@ -95,7 +120,7 @@ const styles = StyleSheet.create({
   title: {
     // marginTop: 15,
     marginBottom: '5%',
-    marginRight: 10,
+    
     justifyContent: 'flex-start',
    
   },
@@ -110,15 +135,21 @@ const styles = StyleSheet.create({
     paddingHorizontal: 12,
     marginRight: 5, 
     backgroundColor: "white", 
+
   },
   tagRow: {
     flexDirection: 'row',
-    marginRight: '5%'
+    marginRight: '5%',
+    // marginBottom: '5%',
+    flex: 2,
+   
+    
     
   },
   sharingIconsRow: {
     flexDirection: 'row',
     justifyContent: 'space-around',
+    width: 100
 
   },
   info: {
@@ -128,18 +159,21 @@ const styles = StyleSheet.create({
 
   },
   buttons: {
-    marginTop: '-3%',
-    flex:1, 
-    flexDirection: 'column',
+
+    flexDirection: 'row',
     justifyContent: 'space-between',
+    alignItems: 'center'
+   
 
 
   },
   progressBar: {
-    marginTop: '10%',
-    width: '100%',
-    height: '2%',
-    borderRadius: 15, 
+    alignSelf: 'center',
+    borderRadius: 10, 
+    height: 15,
+    flex: 1,
+   
+    
 
   },
   tag: {

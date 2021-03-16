@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useLayoutEffect } from 'react';
 import { StyleSheet, Text, View, Dimensions, ImageBackground, Image} from 'react-native';
 import BackgroundGradient from '../../Components/BackgroundGradient.js';
 import { Images } from '../../Themes/index.js';
@@ -9,6 +9,8 @@ import Header from '../../Components/Header'
 import PlaylistPopUp from '../../Components/PlaylistPopUp';  
 import Confirmation from '../../Components/ConfirmationModal';  
 import NavigationModal from '../../Components/NavigationModal';
+import { Ionicons } from '@expo/vector-icons'
+import { setCustomRefreshControl } from 'react-native-global-props';
 
 
 const {width} = Dimensions.get('screen');
@@ -17,25 +19,26 @@ export default function StoryList ({route, navigation}) {
 
     const {locationIndex} = route.params;
 
-    const[currStory, setStory] = useState(0);
+    const[currStory, setStory] = useState({
+        info: storyLocations[locationIndex].stories[0],
+        index: 0
+
+     })
     const[modalVisibile, setModalVisibility] = useState(false);
     const[confirmationModal, setConfirmation] = useState(false);
     const[navigationModal, setNavigation] = useState(false);
+    const[listRef, setRef] = useState(null);
 
     useEffect(() => {
-        console.log(currStory)
+        // console.log(currStory)
     }, [currStory])
 
     useEffect(() => {
+        const {locationIndex} = route.params;
         const story = storyLocations[locationIndex].stories[0]
         setStory({
-            title: story.title,
-            length: story.length,
-            date: story.date,
-            tags: story.tags,
-            author: story.author,
-            image: story.image,
-            transcript: story.transcript,
+            info: story,
+            index: 0,
         })
     }, []);
     
@@ -93,17 +96,48 @@ export default function StoryList ({route, navigation}) {
     ]
 
     const renderItem = ({item, index}) => {
-        console.log(item);
+        // console.log(item);
         let storyIndex = index % storyLocations[locationIndex].stories.length;
             return (
                 <ImageBackground source={Images.yellowOrb} resizeMode='contain' style={{height: 80, width: 80, justifyContent: 'center', alignItems: 'center'}}>
-                    <Image source={storyLocations[locationIndex].stories[storyIndex].image} resizeMode='cover' style={{height: 60, width: 60, borderRadius: '50%'}}/>
+                    <Image source={storyLocations[locationIndex].stories[storyIndex].image ? storyLocations[locationIndex].stories[storyIndex].image : Images.parliament} resizeMode='cover' style={{height: 60, width: 60, borderRadius: '50%'}}/>
                 </ImageBackground>    
         );
     }
 
     
+    const nextStory = () => {  
+        console.log('next story')
+        const index = currStory.index;
+        const new_index = (index + 1) % 12
+        let storyIndex = new_index % storyLocations[locationIndex].stories.length;
+        listRef.scrollToIndex(new_index);
+        setStory({
+            info: storyLocations[locationIndex].stories[storyIndex],
+            index: new_index
+        });
+    }
+    const prevStory = () => {
+        
+        const index = currStory.index;
+        let new_index;
+        if (index == 0) {
+            new_index = 11
+        }
+        else {
+            new_index = index - 1;
+        }
+        console.log(new_index)
+        let storyIndex = new_index % storyLocations[locationIndex].stories.length;
+        listRef.scrollToIndex(new_index);
+        setStory({
+            info: storyLocations[locationIndex].stories[storyIndex],
+            index: new_index
+        });
+        
 
+        
+    }
 
     
     
@@ -118,6 +152,7 @@ export default function StoryList ({route, navigation}) {
                 <View style ={styles.backgroundCircle}/>
                 <CircleList
                     data={data}
+                    innerRef={component => setRef(component)}
                     visibilityPadding={3}
                     renderItem={renderItem}
                     radius={RADIUS}
@@ -128,20 +163,27 @@ export default function StoryList ({route, navigation}) {
                     containerStyle={{paddingTop: 80, marginBottom: '5%'}}
                     onScrollEnd={(item) => {
                         let index = item % storyLocations[locationIndex].stories.length;
-                        setStory(storyLocations[locationIndex].stories[index]);
+                        setStory({
+                            info: storyLocations[locationIndex].stories[index],
+                            index: item
+                        })
                     }}
                     />
             </View>
 
+            <View style={styles.arrows}>
+                <Ionicons name='arrow-back-sharp' color='grey' size={48} onPress={prevStory}/>
+                <Ionicons name='arrow-forward-sharp' color='grey' size={48} onPress={nextStory}/>
 
-
+            </View>
+            
             <StoryClip 
                 location={storyLocations[locationIndex].title}
-                title={currStory.title} 
-                author={currStory.author} 
-                date={currStory.date} 
-                length={currStory.length}
-                tags={currStory.tags}
+                title={currStory.info.title} 
+                author={currStory.info.author} 
+                date={currStory.info.date} 
+                length={currStory.info.length}
+                tags={currStory.info.tags}
                 setModalVisibility={setModalVisibility}
             />
 
@@ -220,6 +262,14 @@ const styles = StyleSheet.create({
         alignSelf: 'center',
         marginTop: 120
     },
+    arrows: {
+        marginTop: '-10%',
+        width: '90%',
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        // backgroundColor: 'grey'
+    }
     
 });
 

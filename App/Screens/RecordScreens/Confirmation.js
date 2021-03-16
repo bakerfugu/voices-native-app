@@ -18,17 +18,70 @@ export default function Confirmation ({route, navigation}) {
     const [modalVisible, setModalVisibility] = useState(false);
     const [posted, setPosted] = useState(false);
     const mapRef = useRef(null);
-
-    const stanfordCoordinates = {
+    const [markerCoordinates, setMarker] = useState({
         latitude: 37.4275,
         longitude: -122.1697,
-        latitudeDelta: 0.035922,
-        longitudeDelta: 0.035421,
+    })
+
+    const coordinates = {
+        Stanford: {
+            latitude: 37.4275,
+            longitude: -122.1697,
+            latitudeDelta: 0.035922,
+            longitudeDelta: 0.035421,
+        },
+        HippieHill: {
+            latitude: 37.7699, 
+            longitude: -122.4579,
+            latitudeDelta: 0.035922,
+            longitudeDelta: 0.035421,
+        },
+        Smitten: {
+            latitude: 37.7891, 
+            longitude: -122.43416,
+            latitudeDelta: 0.035922,
+            longitudeDelta: 0.035421,
+
+        },
+        BaytoBreakers: {
+            latitude: 37.7594, 
+            longitude: -122.5107,
+            latitudeDelta: 0.035922,
+            longitudeDelta: 0.035421,
+
+        }
+        
     }
     useEffect(() => {
         if (location==='Stanford University') {
-            mapRef.current.animateToRegion(stanfordCoordinates,300)
+            mapRef.current.animateToRegion(coordinates.Stanford,300)
+            setMarker({
+                latitude: coordinates.Stanford.latitude,
+                longitude: coordinates.Stanford.longitude
+            })
         }
+        else if (location === 'Smitten Ice Cream') {
+            mapRef.current.animateToRegion(coordinates.Smitten,300)
+            setMarker({
+                latitude: coordinates.Smitten.latitude,
+                longitude: coordinates.Smitten.longitude
+            })
+        }
+        else if (location === "Bay to Breakers") {
+            mapRef.current.animateToRegion(coordinates.BaytoBreakers,300)
+            setMarker({
+                latitude: coordinates.BaytoBreakers.latitude,
+                longitude: coordinates.BaytoBreakers.longitude
+            })
+        }
+        else if (location === 'Hippie Hill') {
+            mapRef.current.animateToRegion(coordinates.HippieHill,300)
+            setMarker({
+                latitude: coordinates.HippieHill.latitude,
+                longitude: coordinates.HippieHill.longitude
+            })
+        }
+
     }, [location])
 
 
@@ -59,6 +112,10 @@ export default function Confirmation ({route, navigation}) {
                 <DropDownPicker
                     items={[
                         {label: 'Stanford University', value: 'Stanford University'},
+                        {label: 'Smitten Ice Cream', value: 'Smitten Ice Cream'},
+                        {label: 'Bay to Breakers', value: 'Bay to Breakers'},
+                        {label: 'Hippie Hill', value: 'Hippie Hill'},
+                        
                     ]}
                     defaultValue={location}
                     containerStyle={{height: 40}}
@@ -93,7 +150,7 @@ export default function Confirmation ({route, navigation}) {
                   }}        
             >  
 
-                { location &&  <Marker coordinate={stanfordCoordinates}>
+                { location &&  <Marker coordinate={markerCoordinates}>
                         <FloatingStoryMapMarker imageSource={{uri: image}}/>
                     </Marker>
                 }

@@ -1,45 +1,70 @@
 import { Audio } from '../../Themes';
+import {Images} from '../../Themes';
 export const barcelonaParlamentStories = [
     {
       id: "1",
       title: "The Lost Art of Palau",
       length: 12, 
       date: "Jan 2021", 
-      tags: ["COVID-19", "Music"]
+      tags: ["COVID-19", "Music"],
+      author: "author",
+      transcript: `insert a transcript`,
+      image: Images.oasis,
+      audio: Audio.oasis,
     },
     {
       id: "2",
       title: "Rights to Remarriage",
       length: 9, 
       date: "Jun 2020", 
-      tags: ["Politics", "Protest"]
+      tags: ["Politics", "Protest"],
+      author: "author",
+      transcript: `insert a transcript`,
+      image: Images.oasis,
+      audio: Audio.oasis,
     },
     {
       id: "3",
       title: "Drama in the Art Room",
       length: 22, 
       date: "Dec 2019", 
-      tags: ["Art", "Architecture"]
+      tags: ["Art", "Architecture"],
+      author: "author",
+      transcript: `insert a transcript`,
+      image: Images.oasis,
+      audio: Audio.oasis,
     },
     {
         id: "4",
         title: "Singing for Love",
         length: 31, 
         date: "Mar 2019", 
-        tags: ["Art", "Music", "Love"]
+        tags: ["Art", "Music", "Love"],
+        author: "author",
+        transcript: `insert a transcript`,
+        image: Images.oasis,
+        audio: Audio.oasis,
     },
     {
         id: "5",
         title: "Revolution in Art",
         length: 8, 
         date: "Dec 2019", 
-        tags: ["History", "Art"]
+        tags: ["History", "Art"],
+        author: "author",
+        transcript: `insert a transcript`,
+        image: Images.oasis,
+        audio: Audio.oasis,
     },
     {
         id: "6",
         title: "It Takes a Village",
         length: 54, 
         date: "May 2018", 
-        tags: ["Folklore", "Family", "Love", "Community"]
+        tags: ["Folklore", "Family", "Love", "Community"],
+        author: "author",
+        transcript: `insert a transcript`,
+        image: Images.oasis,
+        audio: Audio.oasis,
     }
 ];

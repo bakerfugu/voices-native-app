@@ -41,34 +41,54 @@ export const barcelonaCascadaStories = [
         title: "The Locals' Palace",
         length: 31, 
         date: "Dec 2019", 
-        tags: ["Art", "History", "Community"]
+        tags: ["Art", "History", "Community"],
+        author: "author",
+        transcript: `insert a transcript`,
+        image: Images.oasis,
+        audio: Audio.oasis,
     },
     {
         id: "5",
         title: "The Ghost of La Cascada",
         length: 27, 
         date: "Oct 2019", 
-        tags: ["History", "Folklore", "Horror"]
+        tags: ["History", "Folklore", "Horror"],
+        author: "author",
+        transcript: `insert a transcript`,
+        image: Images.oasis,
+        audio: Audio.oasis,
     },
     {
         id: "6",
         title: "Childhood Picnics in La Cascada",
         length: 54, 
         date: "Jul 2019", 
-        tags: ["Heart-Warmer", "Family", "Love"]
+        tags: ["Heart-Warmer", "Family", "Love"],
+        author: "author",
+        transcript: `insert a transcript`,
+        image: Images.oasis,
+        audio: Audio.oasis,
     },
     {
         id: "7",
         title: "How La Cascada Saved Us",
         length: 12, 
         date: "May 2019", 
-        tags: ["Heart-Warmer", "Love","Community"]
+        tags: ["Heart-Warmer", "Love","Community"],
+        author: "author",
+        transcript: `insert a transcript`,
+        image: Images.oasis,
+        audio: Audio.oasis,
     },
     {
         id: "8",
         title: "Catalan History of La Cascada",
         length: 49, 
         date: "May 2018", 
-        tags: ["History", "Folktales","Community"]
+        tags: ["History", "Folktales","Community"],
+        author: "author",
+        transcript: `insert a transcript`,
+        image: Images.oasis,
+        audio: Audio.oasis,
     }
 ];

@@ -42,6 +42,8 @@ const images = {
     iceCreamExtravaganza: require('../Images/smitten2.png'),
     //Bay to Breakers
     traditionB2B: require('../Images/baytobreakers1.png'),
+    //crossroads
+    sfCrossroads: require('../Images/crossroads.png'),
 
   //Audio Images + Icons
   record : require('../Images/record-button.png'),

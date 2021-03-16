@@ -167,11 +167,11 @@ export default function StoryInfo() {
                     }
 
                     
-                            <TextInput 
+                            {/* <TextInput 
                                 style={styles.textInput} 
                                 placeholder="Location" 
                                 onChangeText={setLocation}
-                           />
+                           /> */}
 
                     
                     
@@ -181,7 +181,7 @@ export default function StoryInfo() {
             </TouchableWithoutFeedback>
 {/* 
             <LongButton style={styles.postbutton} onPress={() => { navigation.navigate('Confirmation', {uri: uri}) }} disabled={!title || !uri || !location || !valueMS} label={'Post'}/> */}
-            <View style={{ flex: 1,justifyContent: 'flex-end', width: '100%', alignItems: 'center', paddingBottom: metrics.paddingBottom }}>
+            <View style={{ flex: 1,flexDirection: 'column', justifyContent: 'flex-end', width: '100%', alignItems: 'center', backgroundColor: '' }}>
                 <View style={styles.postButton}>              
                     <LongButton onPress={() => { navigation.navigate('Confirmation', {image: image}) }} disabled={!title || !image || !location || !valueMS} label={'Post'}/>
                 </View>
@@ -216,7 +216,7 @@ const styles = StyleSheet.create({
     textInput: {
         padding: 10,
         width: '80%',
-        height: 40,
+        height: 50,
         backgroundColor: 'white',
         borderWidth: 3,
         borderColor: '#F1B600',

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { StyleSheet, Text, View, Dimensions, ImageBackground, Image} from 'react-native';
 import { Ionicons, MaterialIcons } from '@expo/vector-icons'
 import { useNavigation } from '@react-navigation/native'
-export default function Header ({playlist, title, page}) {
+export default function Header ({playlist, title, page, setNavigation}) {
 
     const navigation = useNavigation();
 
@@ -18,7 +18,7 @@ export default function Header ({playlist, title, page}) {
             </View>
 
             <View style={styles.backButton}>
-                {page==='Story List' && <MaterialIcons name='assistant-navigation' size={34} color='black'/>}
+                {page==='Story List' && <MaterialIcons name='assistant-navigation' size={34} color='black' onPress={() => setNavigation(true)}/>}
                 {page==='Playlist-ListView' && <Ionicons name='map-outline' size={34} color='black' onPress={() => navigation.navigate('PlaylistMapView', {playlist: playlist})}/>}
                 {page==='Playlist-MapView' && <MaterialIcons name='playlist-play' size={40} color='black' onPress={() => navigation.navigate('PlaylistListView', {playlist: playlist})}/>}
                 

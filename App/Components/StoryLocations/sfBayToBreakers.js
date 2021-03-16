@@ -1,5 +1,5 @@
 import {Images} from '../../Themes';
-
+import { Audio } from '../../Themes';
 export const sfBayToBreakers = [
     {
       id: "1",
@@ -9,6 +9,7 @@ export const sfBayToBreakers = [
       tags: ["Love", "Community", "Heart Warmer"], 
       author: "tlallas", 
       image: Images.traditionB2B,
+      audio: Audio.tradition,
       transcript: `If you’re here in May you might get a chance to see or, if you plan right, to participate in Bay to Breakers. Bay to Breakers is a tradition that screams San Francisco! It has been going on for over 100 years.  This is a 12k like no other. People walk, jog, and dance from Embarcadero to Ocean Beach dressed in wacky costumes. You’ll see groups ranging from the whole game of thrones cast to pac men to donuts. It is a wonderful way to see how San Francisco celebrates life, individuality, and culture!`,
     },
     {
@@ -18,6 +19,8 @@ export const sfBayToBreakers = [
       date: "May 2019", 
       tags: ["Sports", "Community", "Love"], 
       author: "adrazen", 
-      image: Images.traditionB2B
+      audio: Audio.loveBaytoBreakers,
+      image: Images.traditionB2B,
+      transcript: `Every year thousands of Californians come to… Bay to Breakers! This is where I ran my first marathon. I remember that feeling: the rush, the fun, the run. Running at Bay to Breakers is like no other marathon. Not only do you get to run in one of the United States’ greatest cities, you also get to dress up as whatever you want. Every year Bay to Breakers is the heart of San Francisco’s funnest, most exciting race. `,
     },
 ];

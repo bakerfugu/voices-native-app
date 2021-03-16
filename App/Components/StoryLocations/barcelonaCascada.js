@@ -1,5 +1,7 @@
 import {Images} from '../../Themes';
 import images from '../../Themes/Images';
+import { Audio } from '../../Themes';
+
 export const barcelonaCascadaStories = [
     {
       id: "1",
@@ -9,6 +11,7 @@ export const barcelonaCascadaStories = [
       tags: ["COVID-19", "Art", "Outdoors"],
       author: "tlallas",
       image: Images.cascada,
+      audio: Audio.oasis,
       transcript: `2020 has been a hard year for everyone. During the shutdowns and closures, parc de la ciutadella has become an oasis for Barcelona’s locals. In normal times, the park is crowded with tourists exploring our beautiful city. But since the shutdowns, more locals than ever have come to enjoy spending time in the park. I personally like to sit by la Cascada and write. The serenity of the atmosphere allows me to create my best work.`,
     },
     {
@@ -18,6 +21,7 @@ export const barcelonaCascadaStories = [
       date: "Jul 2020", 
       tags: ["Politics", "Protest"],
       image: Images.blockedCasc,
+      audio: Audio.blockedAccess,
       author: "tlallas",
       transcript: `Parc de la cittadella has become an important symbolic place in the political movement for Catalan independence. As a broad public space, it provides ample space for demonstrations and protests. Secessionists and anti-Secessionists alike have taken to the park to make their voices heard. Last week, though, tensions got particularly high. Clashes between the two groups caused the government to shutdown the park entirely, preventing our voices from being heard. `,
     },
@@ -28,6 +32,7 @@ export const barcelonaCascadaStories = [
       date: "Feb 2020", 
       tags: ["Art", "Architecture", "History"],
       image: Images.oldImageCitudella,
+      audio: Audio.makingOfLaCascada,
       author: "tlallas",
       transcript: `If you are an art and architecture buff like me, you might be interested in the making of La Cascada. All of the wonderful sculpture you see was not initially part of the fountain. It was actually part of a revamp designed to impress at the 1888 Barcelona Universal Exhibition. Designed by Josep Fontsere and allegedly also Antoni Gaudi, it was inspired loosely by Rome’s Trevi Fountain. You can see the greco-roman influence in both the marble sculpture work technique and in the subject choice. The fountain’s centerpiece, Venus standing on an open clam with arms overhead, is a triumphant and bold twist on the Birth of Venus motif, which was famously painted by Sandro Botticelli. `,
     },
@@ -36,34 +41,54 @@ export const barcelonaCascadaStories = [
         title: "The Locals' Palace",
         length: 31, 
         date: "Dec 2019", 
-        tags: ["Art", "History", "Community"]
+        tags: ["Art", "History", "Community"],
+        author: "author",
+        transcript: `insert a transcript`,
+        image: Images.oasis,
+        audio: Audio.oasis,
     },
     {
         id: "5",
         title: "The Ghost of La Cascada",
         length: 27, 
         date: "Oct 2019", 
-        tags: ["History", "Folklore", "Horror"]
+        tags: ["History", "Folklore", "Horror"],
+        author: "author",
+        transcript: `insert a transcript`,
+        image: Images.oasis,
+        audio: Audio.oasis,
     },
     {
         id: "6",
         title: "Childhood Picnics in La Cascada",
         length: 54, 
         date: "Jul 2019", 
-        tags: ["Heart-Warmer", "Family", "Love"]
+        tags: ["Heart-Warmer", "Family", "Love"],
+        author: "author",
+        transcript: `insert a transcript`,
+        image: Images.oasis,
+        audio: Audio.oasis,
     },
     {
         id: "7",
         title: "How La Cascada Saved Us",
         length: 12, 
         date: "May 2019", 
-        tags: ["Heart-Warmer", "Love","Community"]
+        tags: ["Heart-Warmer", "Love","Community"],
+        author: "author",
+        transcript: `insert a transcript`,
+        image: Images.oasis,
+        audio: Audio.oasis,
     },
     {
         id: "8",
         title: "Catalan History of La Cascada",
         length: 49, 
         date: "May 2018", 
-        tags: ["History", "Folktales","Community"]
+        tags: ["History", "Folktales","Community"],
+        author: "author",
+        transcript: `insert a transcript`,
+        image: Images.oasis,
+        audio: Audio.oasis,
     }
 ];

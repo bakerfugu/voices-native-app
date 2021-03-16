@@ -109,7 +109,7 @@ export default function RecordHome({route, navigation}) {
            
            <View style={styles.buttonView}>
                 <LongButton label='Restart' onPress={restartTimer} disabled={(time===0 || !recordState.paused)}/>
-                <LongButton label='Edit Story' onPress={nextPage} disabled={time===0 || !recordState.paused}/>
+                <LongButton label='Next' onPress={nextPage} disabled={time===0 || !recordState.paused}/>
            </View>
 
             <View style={{position: 'absolute'}}>
@@ -177,10 +177,9 @@ const styles = StyleSheet.create({
         width: '100%',
         flexDirection: 'row',
         justifyContent: 'center',
-        alignItems: 'flex-end',
         paddingBottom: metrics.paddingBottom,
         paddingHorizontal: 5,
-    
+        marginBottom: '15%'
     }, 
     header: {
         width: '100%',

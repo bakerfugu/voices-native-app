@@ -27,7 +27,9 @@ export default function PlaylistListView ({route, navigation}) {
             length: story.length,
             date: story.date,
             tags: story.tags,
-            author: "Jennifer Lopez"
+            author: story.author,
+            image: story.image,
+            transcript: story.transcript,
         })
     }, [])
 
@@ -86,13 +88,14 @@ export default function PlaylistListView ({route, navigation}) {
 
 
     
-    const renderItem = () => {
-        return (
-            <ImageBackground source={Images.yellowOrb} style={{height: 80, width: 80, justifyContent: 'center', alignItems: 'center'}}>
-                <Image source={Images.parliament} resizeMode='center' style={{height: 60, width: 60}}/>
-            </ImageBackground>
-            
-        )
+    const renderItem = ({item, index}) => {
+        console.log(item);
+        let storyIndex = index % playlist.stories.length;
+            return (
+                <ImageBackground source={Images.yellowOrb} resizeMode='contain' style={{height: 80, width: 80, justifyContent: 'center', alignItems: 'center'}}>
+                    <Image source={playlist.stories[storyIndex].image} resizeMode='cover' style={{height: 60, width: 60, borderRadius: '50%'}}/>
+                </ImageBackground>    
+        );
     }
 
     return (
@@ -125,7 +128,6 @@ export default function PlaylistListView ({route, navigation}) {
                 date={currStory.date} 
                 length={currStory.length}
                 tags={currStory.tags}
-                author="Jessika Alba"
                 setModalVisibility={setModalVisibility}
             />
 

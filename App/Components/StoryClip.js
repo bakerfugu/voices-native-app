@@ -28,7 +28,7 @@ export default function StoryClip({title, author, date, length, tags, setModalVi
   if (title) {
     titleLength = title.length;
     if (titleLength >=28) {
-      titleAdjust = title.substring(0,24) + '...';
+      titleAdjust = title.substring(0,25) + '...';
       long = true;
     } else {
       titleAdjust = "";
@@ -139,7 +139,7 @@ const styles = StyleSheet.create({
   title: {
     // marginTop: 15,
     marginBottom: '5%',
-    
+  
     justifyContent: 'flex-start',
    
   },

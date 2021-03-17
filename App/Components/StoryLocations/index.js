@@ -119,7 +119,7 @@ const storyLocations = [
     },
     image: Images.smittenWithSmitten,
   },
-    // {
+    // { 
   //   title: "Fisherman's Wharf",
   //   stories: sfWharfStories,
   //   coordinates: {
@@ -128,7 +128,7 @@ const storyLocations = [
   //   },
   //   image: Images.wharf,
   // },
-  // {
+  // { 
   //   title: "Del Popolo",
   //   stories: sfDelPopoloStories,
   //   coordinates: {
@@ -137,7 +137,7 @@ const storyLocations = [
   //   },
   //   image: Images.delPopolo,
   // },
-  // {
+  // { 
   //   title: "Mission Dolores Park",
   //   stories: sfMissionDoloresPark,
   //   coordinates: {

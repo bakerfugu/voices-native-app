@@ -251,7 +251,10 @@ const styles = StyleSheet.create({
     },
     
     flatlist: {
-        marginTop: '5%',
+        //marginTop: '5%',
+
+        marginBottom: height/500,
+        marginTop: height/80,
         // flex: 1,
         width:'100%',
         // backgroundColor: 'grey',

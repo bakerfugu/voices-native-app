@@ -27,7 +27,7 @@ export default function StoryClip({title, author, date, length, tags, setModalVi
   let long;
   if (title) {
     titleLength = title.length;
-    if (titleLength >=28) {
+    if (titleLength >=30) {
       titleAdjust = title.substring(0,25) + '...';
       long = true;
     } else {
@@ -58,7 +58,7 @@ export default function StoryClip({title, author, date, length, tags, setModalVi
 
 
             <View style={{marginBottom: '3%'}}>
-                <Text style={{fontFamily: "Montserrat", fontSize: 16}}>@{author}</Text>
+                <Text style={{fontFamily: "Montserrat", fontSize: 16}}>{author} | {date}</Text>
             </View>
             <View style={{flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', marginBottom: '3%'}}>
             <ScrollView horizontal={true} style={styles.tagRow}>
@@ -72,7 +72,9 @@ export default function StoryClip({title, author, date, length, tags, setModalVi
             
 
 
+            
 
+            
             <View style={styles.buttons}>
             
               <Ionicons name={'play-circle'} color={'#1ddbb5'} size={48} style={{alignSelf: 'center'}} onPress={() => navigation.navigate('StoryListen', {title: title, author: author, length: length, location: location, image: image, transcript: transcript})}/>
@@ -80,7 +82,7 @@ export default function StoryClip({title, author, date, length, tags, setModalVi
         
               <View style={styles.sharingIconsRow}>
                  <Ionicons name={"md-share-outline"} size={30} color={'black'} style={styles.icon}/>
-                 <MaterialIcons name={"playlist-add"} size={32} color={'black'} style={styles.icon} onPress={() => setModalVisibility(true)}/>
+                 <MaterialIcons name={"playlist-add"} size={35} color={'black'} style={styles.icon} onPress={() => setModalVisibility(true)}/>
                </View>
             </View>
             
@@ -130,7 +132,7 @@ const styles = StyleSheet.create({
     borderWidth: 2,
     borderRadius: 15,
     width: '90%',
-    marginBottom: '2%'
+    marginBottom: '2%',
   },
   container: {
     // flex: 1,

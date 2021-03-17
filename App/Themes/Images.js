@@ -45,6 +45,7 @@ const images = {
     smittenOwner: require('../Images/smitten_owner.png'),
     //Bay to Breakers
     traditionB2B: require('../Images/baytobreakers1.png'),
+    B2BMarathon: require('../Images/bay_to_breakers.png'),
     //crossroads
     sfCrossroads: require('../Images/crossroads.png'),
 
@@ -68,6 +69,9 @@ const images = {
   //profiles 
   taylor : require('../Images/tay.png'),
   janice : require('../Images/janice.png'),
+  baker : require('../Images/baker.png'),
+  krishnan : require('../Images/krishnan.png'),
+  ayelet : require('../Images/ayelet.png'),
 
 }
 

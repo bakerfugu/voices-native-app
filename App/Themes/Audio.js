@@ -8,6 +8,7 @@ const audio = {
     inspiration : require('../Audio/InspirationfromLaSagradaFamilia.mp3'),
     notGaudiFan : require('../Audio/notGaudiFan.mp3'),
     laSagradaGhosts : require('../Audio/laSagradaGhosts.mp3'),
+    laSagradaMagnumOpus: require('../Audio/sagrada-familia.mp3'),
 
     //La Cascada 
     makingOfLaCascada : require('../Audio/makingLaCascada.mp3'),
@@ -20,6 +21,12 @@ const audio = {
     //Teleferic 
     teleferic : require('../Audio/Teleferic.mp3'),
 
+    //Zona de Ombra
+    zonaDeOmbra: require('../Audio/zona-de-ombra.mp3'),
+
+    //Parc Guell
+    parcGuell: require('../Audio/parc-guell.mp3'),
+
 
 
     //SF
@@ -29,6 +36,8 @@ const audio = {
 
     //crossroads
     crossroads : require('../Audio/crossroadsStory.mp3'),
+    crossroadsChildhood : require('../Audio/crossroads-childhood.mp3'),
+
 
     //Hippie Hill
     swingWithView : require('../Audio/swingHippieHill.mp3'),

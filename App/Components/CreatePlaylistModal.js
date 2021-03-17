@@ -35,7 +35,7 @@ export default function CreatePlaylistModal ({visible, setVisible}) {
 
                         </TextInput>
 
-                        <View style={{width: '50%', marginVertical: '5%'}}>
+                        <View style={{width: '50%', marginVertical: '5%', marginBottom: '8%'}}>
                             <LongButton label='Create' onPress={() => create()} disabled={false}/>
                         </View>
                         
@@ -98,9 +98,9 @@ const styles = StyleSheet.create({
         backgroundColor: 'white',
         borderColor: '#F1B600',
         borderBottomWidth: 5,
-        fontSize: 32,
-        fontFamily: 'Montserrat'
-       
+        fontSize: 26,
+        fontFamily: 'Montserrat', 
+        marginBottom: "5%"
     }
 });
 

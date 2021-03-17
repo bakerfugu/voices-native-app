@@ -65,15 +65,15 @@ const storyLocations = [
     },
     image: Images.teleferic,
   },
-  // {
-  //   title: "Parc Güell",
-  //   stories: barcelonaParcGuell,
-  //   coordinates: {
-  //     latitude: 41.4145,
-  //     longitude: 2.1527,
-  //   },
-  //   image: Images.parkGuell,
-  // },
+  {
+    title: "Parc Güell",
+    stories: barcelonaParcGuell,
+    coordinates: {
+      latitude: 41.4145,
+      longitude: 2.1527,
+    },
+    image: Images.parkGuell,
+  },
   {
     title: "Razzmatazz",
     stories: barcelonaRazzmatazz,
@@ -83,15 +83,15 @@ const storyLocations = [
     },
     image: Images.razzmatazz,
   },
-  // {
-  //   title: "Zona d'Ombra",
-  //   stories: ZonaOmbra,
-  //   coordinates: {
-  //     latitude: 41.38275,
-  //     longitude: 2.1757,
-  //   },
-  //   image: Images.zona,
-  // },
+  {
+    title: "Zona d'Ombra",
+    stories: ZonaOmbra,
+    coordinates: {
+      latitude: 41.38275,
+      longitude: 2.1757,
+    },
+    image: Images.zona,
+  },
   // {
   //   title: "Fisherman's Wharf",
   //   stories: sfWharfStories,

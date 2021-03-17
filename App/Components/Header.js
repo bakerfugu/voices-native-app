@@ -5,6 +5,17 @@ import { useNavigation } from '@react-navigation/native'
 export default function Header ({playlist, title, page, setNavigation}) {
 
     const navigation = useNavigation();
+    let titleLength;
+    let long;
+    if (title) {
+        titleLength = title.length;
+        if (titleLength >=20) {
+        long = true;
+        } else {
+        long = false;
+        }
+    }
+    
 
     return (
         <View style={styles.header}>
@@ -14,13 +25,13 @@ export default function Header ({playlist, title, page, setNavigation}) {
             </View>
 
             <View style={styles.titleView}> 
-                <Text style={styles.title}>{title}</Text>
+                <Text style={long ? styles.longTitle : styles.title}>{title}</Text>
             </View>
 
             <View style={styles.backButton}>
                 {page==='Story List' && <MaterialIcons name='assistant-navigation' size={34} color='black' onPress={() => setNavigation(true)}/>}
                 {page==='Playlist-ListView' && <Ionicons name='map-outline' size={34} color='black' onPress={() => navigation.navigate('PlaylistMapView', {playlist: playlist})}/>}
-                {page==='Playlist-MapView' && <MaterialIcons name='playlist-play' size={40} color='black' onPress={() => navigation.navigate('PlaylistListView', {playlist: playlist})}/>}
+                {page==='Playlist-MapView' && <MaterialIcons name='playlist-play' size={50} color='black' onPress={() => navigation.navigate('PlaylistListView', {playlist: playlist})}/>}
                 
             </View>
 
@@ -71,7 +82,14 @@ const styles = StyleSheet.create({
         textAlign: 'center',
         fontFamily: 'Montserrat-Bold',
         margin: '3%', 
-   
+    },
+
+    longTitle: {
+        fontSize: 22, 
+        fontWeight: 'bold',
+        textAlign: 'center',
+        fontFamily: 'Montserrat-Bold',
+        margin: '3%', 
     },
   
 });

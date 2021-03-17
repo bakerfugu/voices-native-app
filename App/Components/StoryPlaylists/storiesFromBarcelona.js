@@ -19,7 +19,7 @@ export const storiesFromBarcelona = [
         id: "2",
         title: "Late Nights + Loud Music",
         length: 1, 
-        date: "September 2019", 
+        date: "Sep 2019", 
         tags: ["Music"], 
         author: "tlallas", 
         image: Images.razzmatazz,

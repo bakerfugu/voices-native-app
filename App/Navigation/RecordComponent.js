@@ -22,10 +22,10 @@ export default function RecordComponent () {
           headerTintColor: 'black',
           title : 'Record Your Story',
           headerTitleStyle: {
-            fontSize: 30,
+            //fontSize: 30,
+            fontSize: '28vw',
             fontWeight: 'bold',
-            fontFamily: 'Montserrat-Bold'
-
+            fontFamily: 'Montserrat-Bold',
           },
           headerStyle: {
             backgroundColor: 'grey',
@@ -35,10 +35,10 @@ export default function RecordComponent () {
             paddingLeft: 10
           },
           headerRight:  () => (
-            <MaterialIcons name={'cloud-upload'} size={36} color={'#1ddbb5'}/>
+            <MaterialIcons name={'cloud-upload'} size={36} color={'black'}/>
           ),
           headerRightContainerStyle: {
-            paddingRight: 15
+            paddingRight: 15,
           }  
 
       }}/>

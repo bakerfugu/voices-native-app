@@ -9,7 +9,7 @@ import Header from '../../Components/Header';
 import PlaylistPopUp from '../../Components/PlaylistPopUp'
 
 
-const {width} = Dimensions.get('screen');
+const {width, height} = Dimensions.get('screen');
 const RADIUS = (1.6 * width) / 2;  
 
 export default function PlaylistListView ({route, navigation}) {
@@ -152,10 +152,13 @@ const styles = StyleSheet.create({
         width: '100%'
     },
     flatlist: {
-        marginTop: '10%',
+        //marginTop: '6%',
+        //marginBottom: 20,
+        marginBottom: height/500,
+        marginTop: height/80,
         // flex: 1,
         width:'100%',
-        // backgroundColor: 'grey',
+        // backgroundColor: 'grey',s
     },
     backgroundCircle: {
         borderColor: '#FCC201',

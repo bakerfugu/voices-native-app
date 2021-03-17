@@ -20,15 +20,15 @@ import { barcelonaTeleferic } from "./barcelonaTeleferic";
 import { sfCrossroads } from "./sfCrossroads";
 
 const storyLocations = [
-  {
-    title: "Palau del Parlament de Catalunya",
-    stories: barcelonaParlamentStories,
-    coordinates: {
-      latitude: 41.388,
-      longitude: 2.1887,
-    },
-    image: Images.parliament,
-  },
+  // {
+  //   title: "Palau del Parlament de Catalunya",
+  //   stories: barcelonaParlamentStories,
+  //   coordinates: {
+  //     latitude: 41.388,
+  //     longitude: 2.1887,
+  //   },
+  //   image: Images.parliament,
+  // },
   {
     title: "La Sagrada Familia",
     stories: barcelonaLaSagradaStories,
@@ -65,15 +65,15 @@ const storyLocations = [
     },
     image: Images.teleferic,
   },
-  {
-    title: "Parc Güell",
-    stories: barcelonaParcGuell,
-    coordinates: {
-      latitude: 41.4145,
-      longitude: 2.1527,
-    },
-    image: Images.parkGuell,
-  },
+  // {
+  //   title: "Parc Güell",
+  //   stories: barcelonaParcGuell,
+  //   coordinates: {
+  //     latitude: 41.4145,
+  //     longitude: 2.1527,
+  //   },
+  //   image: Images.parkGuell,
+  // },
   {
     title: "Razzmatazz",
     stories: barcelonaRazzmatazz,
@@ -83,42 +83,42 @@ const storyLocations = [
     },
     image: Images.razzmatazz,
   },
-  {
-    title: "Zona d'Ombra",
-    stories: ZonaOmbra,
-    coordinates: {
-      latitude: 41.38275,
-      longitude: 2.1757,
-    },
-    image: Images.zona,
-  },
-  {
-    title: "Fisherman's Wharf",
-    stories: sfWharfStories,
-    coordinates: {
-      latitude: 37.808,
-      longitude: -122.4177,
-    },
-    image: Images.wharf,
-  },
-  {
-    title: "Del Popolo",
-    stories: sfDelPopoloStories,
-    coordinates: {
-      latitude: 37.78953,
-      longitude: -122.41128,
-    },
-    image: Images.delPopolo,
-  },
-  {
-    title: "Mission Dolores Park",
-    stories: sfMissionDoloresPark,
-    coordinates: {
-      latitude: 37.7596,
-      longitude: -122.4269,
-    },
-    image: Images.dolores,
-  },
+  // {
+  //   title: "Zona d'Ombra",
+  //   stories: ZonaOmbra,
+  //   coordinates: {
+  //     latitude: 41.38275,
+  //     longitude: 2.1757,
+  //   },
+  //   image: Images.zona,
+  // },
+  // {
+  //   title: "Fisherman's Wharf",
+  //   stories: sfWharfStories,
+  //   coordinates: {
+  //     latitude: 37.808,
+  //     longitude: -122.4177,
+  //   },
+  //   image: Images.wharf,
+  // },
+  // {
+  //   title: "Del Popolo",
+  //   stories: sfDelPopoloStories,
+  //   coordinates: {
+  //     latitude: 37.78953,
+  //     longitude: -122.41128,
+  //   },
+  //   image: Images.delPopolo,
+  // },
+  // {
+  //   title: "Mission Dolores Park",
+  //   stories: sfMissionDoloresPark,
+  //   coordinates: {
+  //     latitude: 37.7596,
+  //     longitude: -122.4269,
+  //   },
+  //   image: Images.dolores,
+  // },
   {
     title: "Hippie Hill",
     stories: sfHippieHillStories,

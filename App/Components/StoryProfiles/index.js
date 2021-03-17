@@ -54,7 +54,6 @@ const storyProfiles = {
     image: Images.baker,
     bio: "",
   },
-<<<<<<< HEAD
   adrazen: {
     author: "adrazen",
     stories: findStoriesOfAuthor("adrazen"),
@@ -83,9 +82,6 @@ const storyProfiles = {
     image: Images.janice,
     bio: "",
   }
-=======
-  
->>>>>>> e043fcf3be643c26440f5c830df9d6dae02f91d9
 };
 
 export default storyProfiles; 

@@ -22,7 +22,8 @@ export default function SharingModal ({visible, setVisibile, title, author}) {
         <View style={styles.centeredView}>
             <View style={styles.modalView}>
 
-                <MaterialIcons name='cancel' size={24} color='black' style={{position: 'absolute', top: 5, left: 5}}/>
+                <MaterialIcons name='cancel' size={24} color='black' style={{position: 'absolute', top: 5, left: 5}} 
+                onPress={() => setVisibile(false)}/>
                 <View style={{ width: '100%', padding: '5%', marginLeft: 50}}>
                         <Text style={{fontFamily: 'Montserrat-Bold', fontSize: 18,}}>{title}</Text>
                         <Text>{author}</Text>

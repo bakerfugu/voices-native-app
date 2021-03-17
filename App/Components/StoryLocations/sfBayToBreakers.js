@@ -20,7 +20,7 @@ export const sfBayToBreakers = [
       tags: ["Sports", "Community", "Love"], 
       author: "adrazen", 
       audio: Audio.loveBaytoBreakers,
-      image: Images.traditionB2B,
+      image: Images.B2BMarathon,
       transcript: `Every year thousands of Californians come to… Bay to Breakers! This is where I ran my first marathon. I remember that feeling: the rush, the fun, the run. Running at Bay to Breakers is like no other marathon. Not only do you get to run in one of the United States’ greatest cities, you also get to dress up as whatever you want. Every year Bay to Breakers is the heart of San Francisco’s funnest, most exciting race. `,
     },
 ];

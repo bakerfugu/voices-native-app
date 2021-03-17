@@ -34,9 +34,11 @@ export default function RecordHome({ route, navigation }) {
         await newRecording.setOnRecordingStatusUpdate(
           handleRecordingStatusUpdate
         );
+        console.log("Preparing...");
         await newRecording.prepareToRecordAsync(
           Audio.RECORDING_OPTIONS_PRESET_HIGH_QUALITY
         );
+        console.log("Properly starting...");
         await newRecording.startAsync();
         setRecordingOn(true);
         setRecording(newRecording);

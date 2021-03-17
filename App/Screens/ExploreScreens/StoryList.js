@@ -179,6 +179,26 @@ export default function StoryList ({route, navigation}) {
                 <Ionicons name='arrow-back-sharp' color='#FCC201' size={48} onPress={prevStory}/>
                 <Ionicons name='arrow-forward-sharp' color='#FCC201' size={48} onPress={nextStory}/>
 
+                <View style ={styles.backgroundCircle}/>
+                <CircleList
+                    data={data}
+                    innerRef={component => setRef(component)}
+                    visibilityPadding={3}
+                    renderItem={renderItem}
+                    radius={RADIUS}
+                    keyExtractor={(item) => item.id}
+                    elementCount={12}
+                    selectedItemScale={2.7}
+                    swipeSpeedMultiplier={40}
+                    containerStyle={{paddingTop: 80, marginBottom: '2%'}}
+                    onScrollEnd={(item) => {
+                        let index = item % storyLocations[locationIndex].stories.length;
+                        setStory({
+                            info: storyLocations[locationIndex].stories[index],
+                            index: item
+                        })
+                    }}
+                    />
             </View>
             
             <StoryClip 

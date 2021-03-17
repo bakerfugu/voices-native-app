@@ -68,6 +68,7 @@ const styles = StyleSheet.create({
     instructions: {
         // marginTop: 20,
         fontSize: 24
+
     },
     timer: {
         // position: 'absolute',

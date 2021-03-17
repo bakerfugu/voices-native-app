@@ -80,7 +80,6 @@ export default function EditStory({ route }) {
     }
 
     // console.log("time deets", leftHandlePos, rightHandlePos, activeScrubberPosition)
-
     const scrubberTimeString = getTimeStringFromMillis(activeScrubberPosition);
     return (
         <View style={styles.container}>

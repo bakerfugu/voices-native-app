@@ -17,7 +17,7 @@ export default function StoryClip({title, author, date, length, tags, setModalVi
   
   let tagList;
   if (tags) {
-    tagList = tags.map((tag) => <View style={styles.tag}>
+    tagList = tags.map((tag) => <View style={styles.tag} key={tag}>
       <Text style={styles.tagText}>
         {tag}
       </Text>
@@ -50,7 +50,7 @@ export default function StoryClip({title, author, date, length, tags, setModalVi
         <View style = {styles.container}>
 
             <View style={long ? styles.longTitle : styles.title}>
-                <Text style={{fontFamily: 'Montserrat-Bold', fontSize: 19, overflow: 'ellipsis'}}>
+                <Text style={{fontFamily: 'Montserrat-Bold', fontSize: 19, }}>
                   {/* {long ? titleAdjust : title} */}
                   {title}
                   </Text>

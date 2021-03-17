@@ -44,8 +44,8 @@ export default function MainMap() {
             mapRef.current.animateToRegion({
                 latitude: 37.783363,
                 longitude: -122.403908,
-                latitudeDelta: 0.015922,
-                longitudeDelta: 0.015421,
+                latitudeDelta: 0.03,
+                longitudeDelta: 0.03,
             }, 300)
         }
 
@@ -92,8 +92,8 @@ export default function MainMap() {
                 initialRegion={{
                     latitude: 37.783363,
                     longitude: -122.403908,
-                    latitudeDelta: 0.07,
-                    longitudeDelta: 0.07,
+                    latitudeDelta: 0.5,
+                    longitudeDelta: 0.5,
                 }}
 
             >

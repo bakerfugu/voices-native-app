@@ -6,7 +6,7 @@ import Playlist from './Playlist.js';
 import storyPlaylists from './StoryPlaylists';
 import { MaterialIcons } from '@expo/vector-icons'
 
-export default function PlaylistPopUp ({modalVisibile, setModalVisibility, setConfirmation}) {
+export default function PlaylistPopUp ({modalVisibile, setModalVisibility, setConfirmation, createPlaylist}) {
 
     let playlists = [];
     // console.log("this is playlists ", storyPlaylists);
@@ -36,6 +36,13 @@ export default function PlaylistPopUp ({modalVisibile, setModalVisibility, setCo
         setConfirmation(true)
     }
 
+    const createNewPlaylist = () => {
+        setModalVisibility(false);
+        createPlaylist(true);
+    }
+
+
+
     return (
         <Modal
             visible={modalVisibile}
@@ -46,22 +53,18 @@ export default function PlaylistPopUp ({modalVisibile, setModalVisibility, setCo
 
             
                 <View style={styles.modalView}>
-                    
+                        <MaterialIcons name='cancel' size={28} color='black' onPress={() => setModalVisibility(false)} style={styles.cancel}/>
                         <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
-                            <View style={{width: '15%', paddingLeft: 10}}>
-                                <MaterialIcons name='cancel' size={28} color='black' onPress={() => setModalVisibility(false)}/>
-                            </View>
+                            
                             
                             <Text style={{fontSize: 24, fontFamily: "Montserrat"}}>Add to Playlist</Text>
 
-                            <View style={{width: '15%'}}>
-
-                            </View>
+                            
 
                         </View>
             
                         <View style={{width: '70%', height: 60, alignSelf: 'center', marginTop: 10}}>
-                            <LongButton label='Create New Playlist' onPress={() => console.log('Button pressed')}  disabled={false}/>
+                            <LongButton label='Create New Playlist' onPress={() => createNewPlaylist()}  disabled={false}/>
                         </View>
 
                         
@@ -128,4 +131,9 @@ const styles = StyleSheet.create({
         alignItems: 'center', 
         
     }, 
+    cancel: {
+        position: 'absolute',
+        left: 15,
+        top: 15
+    }
 });

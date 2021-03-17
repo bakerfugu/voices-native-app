@@ -6,7 +6,7 @@ import Playlist from './Playlist.js';
 import storyPlaylists from './StoryPlaylists';
 import { MaterialIcons, Feather, Ionicons, FontAwesome } from '@expo/vector-icons'
 
-export default function SharingModal ({visible, setVisibile, title, author}) {
+export default function SharingModal ({visible, setVisible, title, author}) {
 
     
 

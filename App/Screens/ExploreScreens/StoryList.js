@@ -184,7 +184,8 @@ export default function StoryList ({route, navigation}) {
                 date={currStory.info.date} 
                 length={currStory.info.length}
                 tags={currStory.info.tags}
-                image={currStory.info.image}
+                image={currStory.info.image} 
+                transcript={currStory.info.transcript}
                 setModalVisibility={setModalVisibility}
             />
 

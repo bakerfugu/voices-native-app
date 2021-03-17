@@ -15,7 +15,8 @@ import CreatePlaylistModal from '../../Components/CreatePlaylistModal.js';
 
     
 export default function StoryListen ({route, navigation}) {
-    const {title, author, length, location, image, transcript} = route.params
+    const { storyObject, location } = route.params;
+    const { title, author, date, length, tags, image, transcript } = storyObject;
     const [isPlaying, setPlayStatus] = useState(false);
     const[currStory, setStory] = useState(0);
     const[modalVisibile, setModalVisibility] = useState(false);

@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { StyleSheet, Text, SafeAreaView, View, AsyncStorage, Image, TouchableOpacity, FlatList, Button, ImageBackground, Dimensions} from 'react-native';
 import { Images } from '../Themes';
 import LocationInfo from './LocationInfo';
-import StoryClip from './StoryClip.js';
 import storyLocations from './StoryLocations';
 import CircleList from 'react-native-circle-list';
 import images from '../Themes/Images';
@@ -82,16 +81,6 @@ export default function ListOfStories ({locationIndex}) {
 
     return (
         <View style={styles.flatlist}>
-            {/* <FlatList
-                data={locationInfo.stories}
-                renderItem={(story) => {
-                    // console.log("Printing playlist: ", story);
-                    return <StoryClip key={story.item.title} value={story.item}/>
-                }}
-                keyExtractor={(item) => item.id}
-                ListHeaderComponent={LocationInfo(locationIndex)}
-            /> */}
-
 
             <View style ={styles.backgroundCircle}/>
             <CircleList
@@ -105,7 +94,6 @@ export default function ListOfStories ({locationIndex}) {
                 swipeSpeedMultiplier={40}
                 containerStyle={{paddingTop: 80, marginBottom: '5%'}}/>
             
-            <StoryClip />
             {/* <Text style={{marginHorizontal: '8%', fontSize: 32, fontFamily: 'Montserrat' }}>It's the Start of Something New</Text>
             <Text style={{marginHorizontal: '8%', fontSize: 18, fontFamily: 'Montserrat'}}> Vanessa Hudgens</Text> */}
             

@@ -7,7 +7,7 @@ import storyPlaylists from './StoryPlaylists';
 import { MaterialIcons } from '@expo/vector-icons'
 import { ScrollView } from 'react-native-gesture-handler';
 
-export default function TranscriptModal ({visible, openTranscript}) {
+export default function TranscriptModal ({visible, openTranscript, transcript}) {
 
    
 
@@ -38,9 +38,9 @@ export default function TranscriptModal ({visible, openTranscript}) {
                     </View>
 
                     <ScrollView style={styles.transcript}>
-                        <Text style={{fontFamily: 'Montserrat', fontSize: 36}}>This is the transcript of the story. Its not that long but it is a story. Lets make the text larger to see if it works. 
-                        This is the transcript of the story. Its not that long but it is a story. Lets make the text larger to see if it works.
-                        This is the transcript of the story. Its not that long but it is a story. Lets make the text larger to see if it works.</Text>
+                        <Text style={{fontFamily: 'Montserrat', fontSize: 24}}>
+                            {transcript}
+                        </Text>
 
                         <View style={{height: 105}}/>
                     </ScrollView>

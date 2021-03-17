@@ -31,8 +31,57 @@ const storyProfiles = {
     stories: findStoriesOfAuthor("shinnyshin"),
     location: "San Francisco",
     image: Images.janice,
+    bio: "I am a member of the Stanford Women's Tennis team. I'm a Houston, TX native, but I've come to call San Francisco my home away from home.",
+  },
+  adrazen: {
+    author: "adrazen",
+    stories: findStoriesOfAuthor("adrazen"),
+    location: "San Francisco",
+    image: Images.ayelet,
     bio: "",
   },
+  knair: {
+    author: "knair",
+    stories: findStoriesOfAuthor("knair"),
+    location: "San Francisco",
+    image: Images.krishnan,
+    bio: "",
+  },
+  bsharp: {
+    author: "bsharp",
+    stories: findStoriesOfAuthor("bsharp"),
+    location: "San Francisco",
+    image: Images.baker,
+    bio: "",
+  },
+  adrazen: {
+    author: "adrazen",
+    stories: findStoriesOfAuthor("adrazen"),
+    location: "San Francisco",
+    image: Images.janice,
+    bio: "",
+  },
+  krishfish: {
+    author: "krishfish",
+    stories: findStoriesOfAuthor("krishfish"),
+    location: "San Francisco",
+    image: Images.janice,
+    bio: "Hi! My name is Krishnan and I am an undergraduate student at Stanford. I grew up on the West coast and have loved immsersing myself in Polynesian culture in the Bay Area.",
+  }, 
+  bakers : {
+    author: "bakers",
+    stories: findStoriesOfAuthor("bakers"),
+    location: "San Francisco",
+    image: Images.janice,
+    bio: "",
+  }, 
+  vmiller: {
+    author: "vmiller",
+    stories: findStoriesOfAuthor("vmiller"),
+    location: "San Francisco",
+    image: Images.janice,
+    bio: "",
+  }
 };
 
 export default storyProfiles; 

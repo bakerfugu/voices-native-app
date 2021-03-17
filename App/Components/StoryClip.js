@@ -9,7 +9,7 @@ import { LinearGradient } from 'expo-linear-gradient';
 import { NavigationContainer } from '@react-navigation/native';
 import { useNavigation } from '@react-navigation/native' ;
 
-export default function StoryClip({title, author, date, length, tags, setModalVisibility, location, image}) {
+export default function StoryClip({title, author, date, length, tags, setModalVisibility, location, image, transcript}) {
 
   const navigation = useNavigation();
   //<Photo key={photo._id} value={photo} newComment={this.setNewComment} user={this.state.user} class="standard"/>
@@ -77,8 +77,8 @@ export default function StoryClip({title, author, date, length, tags, setModalVi
             
             <View style={styles.buttons}>
             
-              <Ionicons name={'play-circle'} color={'#1ddbb5'} size={48} style={{alignSelf: 'center'}} onPress={() => navigation.navigate('StoryListen', {title: title, author: author, length: length, location: location, image: image})}/>
-              <Text style={{fontFamily: "Montserrat-Bold", fontSize: 14, marginLeft: '-35%'}}> {length} min</Text>
+              <Ionicons name={'play-circle'} color={'#1ddbb5'} size={48} style={{alignSelf: 'center'}} onPress={() => navigation.navigate('StoryListen', {title: title, author: author, length: length, location: location, image: image, transcript: transcript})}/>
+              <Text style={{fontFamily: "Montserrat", fontSize: 14, marginLeft: '-10%'}}> {length} min · {date}</Text>
         
               <View style={styles.sharingIconsRow}>
                  <Ionicons name={"md-share-outline"} size={30} color={'black'} style={styles.icon}/>

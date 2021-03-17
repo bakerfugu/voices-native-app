@@ -10,6 +10,8 @@ import PlaylistPopUp from '../../Components/PlaylistPopUp';
 import Confirmation from '../../Components/ConfirmationModal';  
 import NavigationModal from '../../Components/NavigationModal';
 import TranscriptModal from '../../Components/TranscriptModal';
+import SharingModal from '../../Components/SharingModal';
+
     
 export default function StoryListen ({route, navigation}) {
     const {title, author, length, location, image} = route.params
@@ -19,7 +21,7 @@ export default function StoryListen ({route, navigation}) {
     const[confirmationModal, setConfirmation] = useState(false);
     const[navigationModal, setNavigation] = useState(false);
     const[transcriptModal, openTranscript] = useState(false);
-
+    const [sharingModal, openSharing] = useState(false);
 
     return (
 
@@ -58,7 +60,7 @@ export default function StoryListen ({route, navigation}) {
                 </View>
 
                     <View style={{width:'30%', flexDirection: 'row', alignItems: 'center', justifyContent: 'space-around'}}>
-                        <Ionicons name={"md-share-outline"} size={34} color={'black'} style={styles.icon}/>
+                        <Ionicons name={"md-share-outline"} size={34} color={'black'} style={styles.icon} onPress={() => openSharing(true)}/>
                         <MaterialIcons name={"playlist-add"} size={38} color={'black'} style={styles.icon} onPress={() => setModalVisibility(true)}/>
                     </View>
 
@@ -72,6 +74,8 @@ export default function StoryListen ({route, navigation}) {
             { navigationModal && <NavigationModal visible={navigationModal} setNavigation={setNavigation}/> }
 
             { transcriptModal && <TranscriptModal visible={transcriptModal} openTranscript={openTranscript}/>}
+
+            { sharingModal && <SharingModal visible={sharingModal} setVisibile={openSharing} title={title} author={author}/> }
             
         </View>
             
@@ -137,7 +141,7 @@ const styles = StyleSheet.create({
         flex: 1,
         flexDirection: 'row',
         justifyContent: 'space-between',
-        alignItems: 'center',
+        alignItems: 'flex-start',
         width: '85%',
  
         // marginBottom: 15,

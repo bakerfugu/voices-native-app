@@ -21,16 +21,8 @@ export default function PlaylistListView ({route, navigation}) {
 
     useEffect(() => {
         console.log(playlist.stories[0])
-        let story = playlist.stories[0]
-        setStory({
-            title: story.title,
-            length: story.length,
-            date: story.date,
-            tags: story.tags,
-            author: story.author,
-            image: story.image,
-            transcript: story.transcript,
-        })
+        const newStory = playlist.stories[0]
+        setStory(newStory)
     }, [])
 
     const data = [
@@ -123,12 +115,8 @@ export default function PlaylistListView ({route, navigation}) {
                     />
             </View>
 
-            <StoryClip title={currStory.title} 
-                author={currStory.author} 
-                date={currStory.date} 
-                length={currStory.length}
-                tags={currStory.tags}
-                image={currStory.image}
+            <StoryClip
+                storyObject={currStory} 
                 setModalVisibility={setModalVisibility}
             />
 

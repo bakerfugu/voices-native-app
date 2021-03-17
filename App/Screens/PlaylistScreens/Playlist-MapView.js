@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { StyleSheet, ImageBackground, View, Image, Modal, Dimensions } from 'react-native';
 import {useNavigation} from '@react-navigation/native';
-import StoryClip from '../../Components/StoryClip';
 import  CircleList  from 'react-native-circle-list'
 import {Images} from '../../Themes';
 import BackgroundGradient from '../../Components/BackgroundGradient';

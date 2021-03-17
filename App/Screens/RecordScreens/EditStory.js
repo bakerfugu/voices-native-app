@@ -90,17 +90,7 @@ export default function EditStory({ route }) {
                 <View style={styles.content}>
                     <View style={styles.timesColumn}>
                         <Text style={{ fontSize: 18, color: 'grey', textAlign: 'center' }}>Duration</Text>
-                        <Text style={{ fontSize: 22, color: 'black', textAlign: 'center' }}>{rightHandlePos > leftHandlePos ? trimmedTime() : '00 : 00'}</Text>
-                    </View>
-                    <View style={styles.times}>
-                        <View style={styles.timesColumn}>
-                            <Text style={{ fontSize: 18, color: 'grey', textAlign: 'center' }}>Start Time</Text>
-                            <Text style={{ fontSize: 22, color: 'black', textAlign: 'center' }}>{getTimeStringFromMillis(leftHandlePos)}</Text>
-                        </View>
-                        <View style={styles.timesColumn}>
-                            <Text style={{ fontSize: 18, color: 'grey', textAlign: 'center' }}>End Time</Text>
-                            <Text style={{ fontSize: 22, color: 'black', textAlign: 'center' }}>{getTimeStringFromMillis(rightHandlePos)}</Text>
-                        </View>
+                        <Text style={{ fontSize: 22, color: 'black', textAlign: 'center', marginBottom: '5%' }}>{rightHandlePos > leftHandlePos ? trimmedTime() : '00 : 00'}</Text>
                     </View>
                     <View style={{ marginBottom: 20 }}>
                         <Trimmer
@@ -120,11 +110,21 @@ export default function EditStory({ route }) {
                             initialZoomValue={1}
                         />
                     </View>
+                    <View style={styles.times}>
+                        <View style={styles.timesColumn}>
+                            <Text style={{ fontSize: 16, color: 'grey', textAlign: 'left' }}>Start</Text>
+                            <Text style={{ fontSize: 18, color: 'black', textAlign: 'center' }}>{getTimeStringFromMillis(leftHandlePos)}</Text>
+                        </View>
+                        <View style={styles.timesColumn}>
+                            <Text style={{ fontSize: 16, color: 'grey', textAlign: 'left' }}>End</Text>
+                            <Text style={{ fontSize: 18, color: 'black', textAlign: 'center' }}>{getTimeStringFromMillis(rightHandlePos)}</Text>
+                        </View>
+                    </View>
                     {/* <SvgPlayButtonIcon
                         width={"80"}
                         height={"80"}
                     /> */}
-                    <Text style={{ fontSize: 22, color: 'black', textAlign: 'center' }}>{scrubberTimeString}</Text>
+                    {/* <Text style={{ fontSize: 22, color: 'black', textAlign: 'center' }}>{scrubberTimeString}</Text> */}
                     <Ionicons name={playing ? 'pause-circle' : 'play-circle'} size={100} color={"#1ddbb5"}
                         onPress={() => {
                             setPlaying(playingUpdated => {
@@ -188,7 +188,8 @@ const styles = StyleSheet.create({
     times: {
         flexDirection: 'row',
         justifyContent: 'space-around',
-        width: '140%'
+        width: '140%',
+        marginTop: '-7%'
     },
     timesColumn: {
         flexDirection: 'column',

@@ -23,7 +23,7 @@ export default function RecordComponent () {
           title : 'Record Your Story',
           headerTitleStyle: {
             //fontSize: 30,
-            fontSize: '28vw',
+            fontSize: 28,
             fontWeight: 'bold',
             fontFamily: 'Montserrat-Bold',
           },

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { StyleSheet, Text, SafeAreaView, View, AsyncStorage, Image, TouchableOpacity, FlatList, Button, Touchable } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
+import { useFonts } from 'expo-font';
 
 
 //'#FFDF00'
@@ -11,7 +12,7 @@ export default function LongButton (props) {
         // <TouchableOpacity style={props.disabled ? styles.disabled : styles.able}  onPress={props.onPress} disabled={props.disabled}>       
         <TouchableOpacity style={props.disabled ? styles.disabled : styles.able}  onPress={props.onPress} disabled={props.disabled}> 
         <LinearGradient colors={['#FCC201', '#FCCD12','#FCC201']} style={styles.button} start={[0.9, 0.9]} end={[0.0, 0.3]}>      
-            <Text>{props.label}</Text>
+            <Text style={styles.text}>{props.label}</Text>
         </LinearGradient>
         </TouchableOpacity>
     )
@@ -40,5 +41,8 @@ const styles = StyleSheet.create({
         // marginVertical: 15,
         marginHorizontal: '2%', 
         // marginBottom: 50, 
+    }, 
+    text: {
+        fontFamily: "Montserrat",
     }
 });

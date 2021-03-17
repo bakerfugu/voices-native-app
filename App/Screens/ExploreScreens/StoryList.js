@@ -13,8 +13,8 @@ import { Ionicons } from '@expo/vector-icons'
 import { setCustomRefreshControl } from 'react-native-global-props';
 
 
-const {width} = Dimensions.get('screen');
-const RADIUS = (1.5 * width) / 2;   
+const {width, height} = Dimensions.get('screen');
+const RADIUS = (1.6 * width) / 2;   
 export default function StoryList ({route, navigation}) {
 
     const {locationIndex} = route.params;
@@ -145,8 +145,8 @@ export default function StoryList ({route, navigation}) {
         <View style ={styles.container}>
             <BackgroundGradient/>
             
-            <Header title={storyLocations[locationIndex].title} page={'Story List'} playlist={null} setNavigation={setNavigation}/>
-            <Text style={{fontFamily: 'Montserrat-Light', fontSize: 18}}>{storyLocations[locationIndex].stories.length} Stories Available</Text>
+            <Header title={storyLocations[locationIndex].title} style={{fontFamily: 'Montserrat-Bold'}} page={'Story List'} playlist={null} setNavigation={setNavigation}/>
+            <Text style={{fontFamily: 'Montserrat-Light', fontSize: 18, marginTop: -10}}>{storyLocations[locationIndex].stories.length} Stories Available</Text>
             <View style={styles.flatlist}>
 
                 <View style ={styles.backgroundCircle}/>
@@ -160,7 +160,7 @@ export default function StoryList ({route, navigation}) {
                     elementCount={12}
                     selectedItemScale={2.7}
                     swipeSpeedMultiplier={40}
-                    containerStyle={{paddingTop: 80, marginBottom: '5%'}}
+                    containerStyle={{paddingTop: 80, marginBottom: '2%'}}
                     onScrollEnd={(item) => {
                         let index = item % storyLocations[locationIndex].stories.length;
                         setStory({
@@ -184,6 +184,7 @@ export default function StoryList ({route, navigation}) {
                 date={currStory.info.date} 
                 length={currStory.info.length}
                 tags={currStory.info.tags}
+                image={currStory.info.image}
                 setModalVisibility={setModalVisibility}
             />
 
@@ -204,6 +205,7 @@ const styles = StyleSheet.create({
       flex: 1,
       justifyContent: 'flex-start',
       alignItems: 'center',
+      fontFamily: "Montserrat"
   
     },
     header: {
@@ -214,7 +216,8 @@ const styles = StyleSheet.create({
         top: 0,
         flexDirection: 'row',
         paddingLeft: 10, 
-        justifyContent: 'center'
+        justifyContent: 'center',
+        fontFamily: "Montserrat"
         
 
     },

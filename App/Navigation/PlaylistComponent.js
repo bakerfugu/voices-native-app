@@ -24,7 +24,7 @@ export default function PlaylistComponent () {
           headerTitleStyle: {
             fontSize: 30,
             fontWeight: 'bold',
-            fontFamily: 'Montserrat'
+            fontFamily: 'Montserrat-Bold'
 
           },
           

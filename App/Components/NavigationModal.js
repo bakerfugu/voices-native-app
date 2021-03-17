@@ -26,7 +26,7 @@ export default function NavigationModal ({visible, setNavigation}) {
             <Text style={styles.thanks}>Navigation is not available in this prototype.</Text>
 
             <TouchableOpacity style={styles.able}  onPress={() => setNavigation(false)}> 
-                <Text>Ok</Text>
+                <Text>OK</Text>
             </TouchableOpacity>
             
             

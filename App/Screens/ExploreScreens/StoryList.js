@@ -104,7 +104,7 @@ export default function StoryList ({route, navigation}) {
         let storyIndex = index % storyLocations[locationIndex].stories.length;
             return (
                 <ImageBackground source={Images.yellowOrb} resizeMode='contain' style={{height: 80, width: 80, justifyContent: 'center', alignItems: 'center'}}>
-                    <Image source={storyLocations[locationIndex].stories[storyIndex].image ? storyLocations[locationIndex].stories[storyIndex].image : Images.parliament} resizeMode='cover' style={{height: 60, width: 60, borderRadius: '50%'}}/>
+                    <Image source={storyLocations[locationIndex].stories[storyIndex].image ? storyLocations[locationIndex].stories[storyIndex].image : Images.parliament} resizeMode='cover' style={{height: 60, width: 60, borderRadius: 30}}/>
                 </ImageBackground>    
         );
     }
@@ -160,7 +160,7 @@ export default function StoryList ({route, navigation}) {
                     visibilityPadding={3}
                     renderItem={renderItem}
                     radius={RADIUS}
-                    keyExtractor={(item) => item.id}
+                    keyExtractor={(item) => `${item.key}`}
                     elementCount={12}
                     selectedItemScale={2.7}
                     swipeSpeedMultiplier={40}
@@ -172,7 +172,7 @@ export default function StoryList ({route, navigation}) {
                             index: item
                         })
                     }}
-                    />
+                />
             </View>
 
             <View style={styles.arrows}>

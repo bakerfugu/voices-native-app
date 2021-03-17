@@ -32,9 +32,6 @@ export default function StoryInfo({route, params}) {
         setValueMS(value);
     };
 
-    
-
-
     const [image, setImage] = useState(null);
 
     const getPermissionAsync = async (permission) => {
@@ -42,8 +39,8 @@ export default function StoryInfo({route, params}) {
         if (status !== 'granted') {
           alert('Sorry, we need camera roll or camera permissions to make this work!');
         }
-      }
-      const pickImage = async () => {
+    }
+    const pickImage = async () => {
         await getPermissionAsync(Permissions.CAMERA_ROLL);
         let result = await ImagePicker.launchImageLibraryAsync({
             mediaTypes: ImagePicker.MediaTypeOptions.All,
@@ -54,9 +51,9 @@ export default function StoryInfo({route, params}) {
         if (!result.cancelled) {
           setImage(result.uri)
         }
-      }
+    }
 
-      const uploadFromCamera = async () => {
+    const uploadFromCamera = async () => {
         await getPermissionAsync(Permissions.CAMERA);
         let result = await ImagePicker.launchCameraAsync({
             mediaTypes: ImagePicker.MediaTypeOptions.All,
@@ -67,14 +64,7 @@ export default function StoryInfo({route, params}) {
         if (!result.cancelled) {
             setImage(result.uri)
         }
-      }
-
-      
-        
-        
-        
-
-
+    }
 
     const data = [
         {

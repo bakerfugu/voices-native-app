@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { StyleSheet, Text, SafeAreaView, View, TextInput, Button, Image, TouchableOpacity,Keyboard } from 'react-native';
+import { StyleSheet, Text, View, TextInput, Button, Image, TouchableOpacity,Keyboard } from 'react-native';
 import firestore from '../../firebase';
 import firebase from 'firebase';
 import BackgroundGradient from '../Components/BackgroundGradient';
@@ -86,8 +86,7 @@ export default function LoginScreen(props) {
   }
 
   return (
-    <SafeAreaView style={styles.container}>
-
+    <View style={styles.container}>
       <BackgroundGradient/>
       <Image source={Images.logo} resizeMode='stretch'/>
 
@@ -142,7 +141,7 @@ export default function LoginScreen(props) {
         <Text style={{fontSize:20, fontWeight:'bold', color:'white'}}>LOG IN</Text>
       </TouchableOpacity>
 
-    </SafeAreaView>
+    </View>
   );
 }
 
@@ -151,6 +150,7 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
+    marginTop: 200
   },
   input: {
     width: '90%',
@@ -162,17 +162,13 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
     borderColor: '#F1c232',
     borderRadius: 15,
-    borderWidth: 3
-
-  },
-  button: {
-    marginBottom: 50
+    borderWidth: 3,
+    minHeight: 35
   },
   caption: {
     marginBottom: 20,
     color: 'black',
     fontSize: 18,
-
   },
   button: {
     backgroundColor: '#1ddbb5',
@@ -180,8 +176,8 @@ const styles = StyleSheet.create({
     width: '50%',
     borderRadius: 15,
     justifyContent: 'center',
-    alignItems: 'center'
-    
+    alignItems: 'center',
+    marginBottom: 50,
+    minHeight: 35
   }
-  
 });

@@ -183,13 +183,7 @@ export default function StoryList ({route, navigation}) {
             
             <StoryClip 
                 location={storyLocations[locationIndex].title}
-                title={currStory.info.title} 
-                author={currStory.info.author} 
-                date={currStory.info.date} 
-                length={currStory.info.length}
-                tags={currStory.info.tags}
-                image={currStory.info.image} 
-                transcript={currStory.info.transcript}
+                storyObject={currStory.info}
                 setModalVisibility={setModalVisibility}
                 openSharing={openSharing}
             />

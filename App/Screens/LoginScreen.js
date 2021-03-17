@@ -5,11 +5,12 @@ import firebase from 'firebase';
 import BackgroundGradient from '../Components/BackgroundGradient';
 import {Images} from '../Themes';
 import { TouchableWithoutFeedback } from 'react-native-gesture-handler';
+import AsyncStorage from '@react-native-async-storage/async-storage'
 
 export default function LoginScreen(props) {
 
 
-  const [signUpName, setSignUpName] = useState('');
+  const [username, setUsername] = useState('');
   const [signUpEmail, setSignUpEmail] = useState('');
   const [signUpPassword, setSignUpPassword] = useState('');
   const [loginEmail, setLoginEmail] = useState('');
@@ -29,9 +30,30 @@ export default function LoginScreen(props) {
 
         // Since my document doesn't exist, userDocRef.set will
         // create the document for me
-        userDocRef.set({
-          name: signUpName,
+        await userDocRef.set({
+          username: username,
+          bio: "",
+          image: "",
+          stories: "",
         });
+        
+        profile = {
+          handle: username, 
+          bio: "", 
+          image: "",
+          stories: [],
+          playlists: []
+        }
+        
+        var stringProfile = JSON.stringify(profile)
+        try {
+          await AsyncStorage.setItem('profile', stringProfile)
+        }
+        catch (e){
+          console.log(e)
+        }
+        
+
 
         props.updateStatus(true);
       }
@@ -73,10 +95,11 @@ export default function LoginScreen(props) {
     
       <TextInput
         style={styles.input}
-        value={signUpName}
-        onChangeText={(signUpName) => setSignUpName(signUpName)}
-        placeholder="Name" 
+        value={username}
+        onChangeText={(text) => setUsername(text)}
+        placeholder="Username" 
       />
+
       <TextInput
         style={styles.input}
         value={signUpEmail}

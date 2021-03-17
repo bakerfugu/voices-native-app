@@ -20,7 +20,7 @@ export default function App() {
   });
 
     const [loggedIn, setLoggedIn] = useState(false);
-    const [bioFilledIn, setBioFilledIn] = useState(false);
+ 
   
     // Check out this link to learn more about firebase.auth()
     // https://firebase.google.com/docs/reference/node/firebase.auth.Auth
@@ -60,10 +60,15 @@ export default function App() {
     
     else {
         return (
-        <SafeAreaView style={{flex:0, backgroundColor: '#FDF0AF'}}>
+        <Fragment>
+
+        
+        <SafeAreaView style={{flex:0, backgroundColor: '#FDF0AF'}}/>
+        <SafeAreaView style={{flex:1}}> 
           <LoginScreen updateStatus={(val) => setLoggedIn(val)} setBioInfo={(val) => setBioInfoFilled(val)}/>
         
         </SafeAreaView>
+        </Fragment>
        );
     }
 

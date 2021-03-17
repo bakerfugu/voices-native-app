@@ -20,6 +20,7 @@ import metrics from '../../Themes/Metrics';
 import { TouchableOpacity, TouchableWithoutFeedback } from 'react-native-gesture-handler';
 import LongButton from '../../Components/LongButton.js'
 import { Ionicons } from '@expo/vector-icons'
+import { getPermissionsAsync } from 'expo-camera';
     
     
 export default function EditStory () {
@@ -28,7 +29,7 @@ export default function EditStory () {
 
     const navigation = useNavigation();
     const [leftHandlePos, setLeftHandlePos] = useState(0);
-    const [rightHandlePos, setRightHandlePos] = useState(0);
+    const [rightHandlePos, setRightHandlePos] = useState(600000);
     const [startTime, setStartTime] = useState(0);
     const [endTime, setEndTime] = useState(0);
     const [scrubberPosition, setScrubberPosition] = useState(1000);
@@ -172,7 +173,11 @@ export default function EditStory () {
             
             <View style={styles.buttonView}>
                 <LongButton 
-                onPress={() => {navigation.navigate('StoryInfo')}} 
+                onPress={() => {
+                    const time = trimmedTime()
+                    const min = time.slice(0, 2);
+                    navigation.navigate('StoryInfo', {length: min})
+                }} 
                 disabled={rightHandlePos<=leftHandlePos} 
                 label={'Next'}/>
                 

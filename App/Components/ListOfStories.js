@@ -85,10 +85,9 @@ export default function ListOfStories ({locationIndex}) {
             {/* <FlatList
                 data={locationInfo.stories}
                 renderItem={(story) => {
-                    console.log("Printing playlist: ", story);
+                    // console.log("Printing playlist: ", story);
                     return <StoryClip key={story.item.title} value={story.item}/>
-                    }
-                }
+                }}
                 keyExtractor={(item) => item.id}
                 ListHeaderComponent={LocationInfo(locationIndex)}
             /> */}

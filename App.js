@@ -1,5 +1,5 @@
 import React, {useState, useEffect, Fragment} from 'react';
-import {SafeAreaView} from 'react-native'
+import { Platform, SafeAreaView, View } from 'react-native'
 import AppNavigation from './App/Navigation/AppNavigation';
 import LoginScreen from './App/Screens/LoginScreen';
 import firebase from 'firebase';
@@ -43,7 +43,7 @@ export default function App() {
   }
   
     if (loggedIn) {
-      return (
+      return ( Platform.OS === 'ios' ?
         <Fragment>
           <ModalPortal />
           <SafeAreaView style={{flex:0, backgroundColor: '#FDF0AF'}}/>
@@ -52,10 +52,15 @@ export default function App() {
             <AppNavigation />
           </SafeAreaView>
         </Fragment>
-        
-        
+        :
+        <Fragment>
+          <View style={{flex:0, backgroundColor: '#FDF0AF'}}/>
+
+          <View style={{flex:1}}>
+            <AppNavigation />
+          </View>
+        </Fragment>
       );
-      
     } 
     
     else {

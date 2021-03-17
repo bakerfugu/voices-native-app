@@ -74,7 +74,7 @@ export default function ProfileInfo(props) {
    
     <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
     
-    <SafeAreaView style={styles.container}>
+    <View style={styles.container}>
       
       <BackgroundGradient/> 
       <TouchableOpacity style={styles.profilePic} onPress={addPhoto}>
@@ -106,7 +106,7 @@ export default function ProfileInfo(props) {
         <Text style={{fontSize:20, fontWeight: 'bold', color: continueDisabled ? '#bdbdbd' : 'black'}}>Continue</Text>
       </TouchableOpacity>
 
-    </SafeAreaView>
+    </View>
     </TouchableWithoutFeedback>
     
   );

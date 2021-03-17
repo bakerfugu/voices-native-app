@@ -26,7 +26,7 @@ export default function AudioPlayer ({audioSourceObject, playing, positionMillis
 
     useEffect(() => {
         async function createSound() {
-            console.log('Creating Sound');
+            console.log('Creating Sound', audioSourceObject);
             const { sound } = await Audio.Sound.createAsync(
                 // { uri: "https://www.learningcontainer.com/wp-content/uploads/2020/02/Kalimba.mp3" }
                 audioSourceObject,

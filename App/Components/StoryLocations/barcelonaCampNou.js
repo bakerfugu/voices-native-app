@@ -3,7 +3,7 @@ import { Audio } from '../../Themes';
 
 export const barcelonaCampNou = [
     {
-      id: "1",
+      locationIndex: 1,
       title: "FC Barcelona!!",
       length: 1, 
       date: "June 2019", 

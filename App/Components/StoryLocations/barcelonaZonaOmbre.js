@@ -2,7 +2,7 @@ import { Audio } from '../../Themes';
 import {Images} from '../../Themes';
 export const ZonaOmbra = [
     {
-      //id: "1",
+      locationIndex: 6,
       title: "Premier Wine Bar",
       location: "Zona d'Ombre",
       coordinates: {

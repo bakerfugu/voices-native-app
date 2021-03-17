@@ -20,16 +20,7 @@ import { barcelonaTeleferic } from "./barcelonaTeleferic";
 import { sfCrossroads } from "./sfCrossroads";
 
 const storyLocations = [
-  // {
-  //   title: "Palau del Parlament de Catalunya",
-  //   stories: barcelonaParlamentStories,
-  //   coordinates: {
-  //     latitude: 41.388,
-  //     longitude: 2.1887,
-  //   },
-  //   image: Images.parliament,
-  // },
-  {
+  { //0
     title: "La Sagrada Familia",
     stories: barcelonaLaSagradaStories,
     coordinates: {
@@ -38,7 +29,7 @@ const storyLocations = [
     },
     image: Images.laSagradaHistory,
   },
-  {
+  {  //1
     title: "Camp Nou",
     stories: barcelonaCampNou,
     coordinates: {
@@ -47,7 +38,7 @@ const storyLocations = [
     },
     image: Images.campNou,
   },
-  {
+  {  //2
     title: "Cascada del Parc de la Ciutadella",
     stories: barcelonaCascadaStories,
     coordinates: {
@@ -56,7 +47,7 @@ const storyLocations = [
     },
     image: Images.cascada,
   },
-  {
+  {  //3
     title: "Teleferic",
     stories: barcelonaTeleferic,
     coordinates: {
@@ -65,7 +56,7 @@ const storyLocations = [
     },
     image: Images.teleferic,
   },
-  {
+  {  //4
     title: "Parc Güell",
     stories: barcelonaParcGuell,
     coordinates: {
@@ -74,7 +65,7 @@ const storyLocations = [
     },
     image: Images.parkGuell,
   },
-  {
+  {  //5
     title: "Razzmatazz",
     stories: barcelonaRazzmatazz,
     coordinates: {
@@ -83,7 +74,7 @@ const storyLocations = [
     },
     image: Images.razzmatazz,
   },
-  {
+  {  //6
     title: "Zona d'Ombra",
     stories: ZonaOmbra,
     coordinates: {
@@ -92,7 +83,43 @@ const storyLocations = [
     },
     image: Images.zona,
   },
-  // {
+  {  //7
+    title: "Hippie Hill",
+    stories: sfHippieHillStories,
+    coordinates: {
+      latitude: 37.7699,
+      longitude: -122.4579,
+    },
+    image: Images.hippieHillCulture,
+  },
+  {  //8
+    title: "Bay to Breakers",
+    stories: sfBayToBreakers,
+    coordinates: {
+      latitude: 37.7594,
+      longitude: -122.5107,
+    },
+    image: Images.traditionB2B,
+  },
+  {  //9
+    title: "Crossroads Trading",
+    stories: sfCrossroads,
+    coordinates: {
+      latitude: 37.76824,
+      longitude: -122.4293,
+    },
+    image: Images.sfCrossroads,
+  },
+  {  //10
+    title: "Smitten Ice Cream",
+    stories: sfSmitten,
+    coordinates: {
+      latitude: 37.7891,
+      longitude: -122.43416,
+    },
+    image: Images.smittenWithSmitten,
+  },
+    // {
   //   title: "Fisherman's Wharf",
   //   stories: sfWharfStories,
   //   coordinates: {
@@ -119,42 +146,15 @@ const storyLocations = [
   //   },
   //   image: Images.dolores,
   // },
-  {
-    title: "Hippie Hill",
-    stories: sfHippieHillStories,
-    coordinates: {
-      latitude: 37.7699,
-      longitude: -122.4579,
-    },
-    image: Images.hippieHillCulture,
-  },
-  {
-    title: "Bay to Breakers",
-    stories: sfBayToBreakers,
-    coordinates: {
-      latitude: 37.7594,
-      longitude: -122.5107,
-    },
-    image: Images.traditionB2B,
-  },
-  {
-    title: "Crossroads Trading",
-    stories: sfCrossroads,
-    coordinates: {
-      latitude: 37.76824,
-      longitude: -122.4293,
-    },
-    image: Images.sfCrossroads,
-  },
-  {
-    title: "Smitten Ice Cream",
-    stories: sfSmitten,
-    coordinates: {
-      latitude: 37.7891,
-      longitude: -122.43416,
-    },
-    image: Images.smittenWithSmitten,
-  },
+    // {
+  //   title: "Palau del Parlament de Catalunya",
+  //   stories: barcelonaParlamentStories,
+  //   coordinates: {
+  //     latitude: 41.388,
+  //     longitude: 2.1887,
+  //   },
+  //   image: Images.parliament,
+  // },
 ];
 
 export default storyLocations;

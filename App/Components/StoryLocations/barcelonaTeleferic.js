@@ -2,7 +2,7 @@ import {Images} from '../../Themes';
 import { Audio } from '../../Themes';
 export const barcelonaTeleferic = [
     {
-      id: "1",
+      locationIndex: 3,
       title: "Family-Owned -> Internationally Renowned",
       length: 2, 
       date: "Jan 2020", 

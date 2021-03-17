@@ -9,15 +9,15 @@ import { LinearGradient } from 'expo-linear-gradient';
 import { NavigationContainer } from '@react-navigation/native';
 import { useNavigation } from '@react-navigation/native' ;
 
-export default function StoryClip({title, author, date, length, tags, setModalVisibility, location, image, transcript, openSharing}) {
+export default function StoryClipForProfile ({story, setModalVisibility, openSharing, setClicked}) {
 
   const navigation = useNavigation();
   //<Photo key={photo._id} value={photo} newComment={this.setNewComment} user={this.state.user} class="standard"/>
   // let all_tags = props.value.tags; 
   
   let tagList;
-  if (tags) {
-    tagList = tags.map((tag) => <View style={styles.tag}>
+  if (story.tags) {
+    tagList = story.tags.map((tag) => <View style={styles.tag}>
       <Text style={styles.tagText}>
         {tag}
       </Text>
@@ -25,10 +25,10 @@ export default function StoryClip({title, author, date, length, tags, setModalVi
   }
   let titleLength, titleAdjust;
   let long;
-  if (title) {
-    titleLength = title.length;
+  if (story.title) {
+    titleLength = story.title.length;
     if (titleLength >=30) {
-      titleAdjust = title.substring(0,25) + '...';
+      titleAdjust = story.title.substring(0,25) + '...';
       long = true;
     } else {
       titleAdjust = "";
@@ -38,7 +38,16 @@ export default function StoryClip({title, author, date, length, tags, setModalVi
   }
 
 
+const sharingModal = () => {
+  setClicked(story)
+  openSharing(true)
+  
+}
 
+const addToPlaylist = () => {
+  setClicked(story);
+  setModalVisibility(true);
+}
   
   
 //color={'#1ddbb5'}
@@ -50,67 +59,32 @@ export default function StoryClip({title, author, date, length, tags, setModalVi
         <View style = {styles.container}>
 
             <View style={long ? styles.longTitle : styles.title}>
-                <Text style={{fontFamily: 'Montserrat-Bold', fontSize: 19, overflow: 'ellipsis'}}>
-                  {/* {long ? titleAdjust : title} */}
-                  {title}
+                <Text style={{fontFamily: 'Montserrat-Bold', fontSize: 19, overflow: 'ellipsis'}}>{story.title}
                   </Text>
             </View>
 
-
-            <TouchableOpacity style={{marginBottom: '3%'}} onPress={() => navigation.navigate("Profile", {author: author})}>
-                <Text style={{fontFamily: "Montserrat", fontSize: 16}}>{author} | {date}</Text>
-            </TouchableOpacity>
             <View style={{flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', marginBottom: '3%'}}>
             <ScrollView horizontal={true} style={styles.tagRow}>
                 {tagList}
             </ScrollView> 
             </View>
 
-            {/* <LinearGradient colors={['grey', '#1ddbb5']} style={styles.progressBar} start={[0.9, 0.9]} end={[0.0, 0.3]}/> */}
-
-            
-            
-
-
-            
-
             
             <View style={styles.buttons}>
-            
-              <Ionicons name={'play-circle'} color={'#1ddbb5'} size={48} style={{alignSelf: 'center'}} onPress={() => navigation.navigate('StoryListen', {title: title, author: author, length: length, location: location, image: image, transcript: transcript})}/>
-              <Text style={{fontFamily: "Montserrat", fontSize: 14, marginLeft: '-10%'}}> {length} min · {date}</Text>
+
+                <View style={{flexDirection: 'row', justifyContent: 'flex-start', alignItems: 'center'}}>
+                <Ionicons name={'play-circle'} color={'#1ddbb5'} size={48} style={{alignSelf: 'center'}} onPress={() => navigation.navigate('StoryListen', {title: story.title, author: story.author, length: story.length, location: story.location, image: story.image, transcript: story.transcript})}/>
+                <Text style={{fontFamily: "Montserrat", fontSize: 14, }}> {story.length} min · {story.date}</Text>
+                </View>
+                    
+              
         
               <View style={styles.sharingIconsRow}>
-                 <Ionicons name={"md-share-outline"} size={30} color={'black'} style={styles.icon} onPress={() => openSharing(true)}/>
-                 <MaterialIcons name={"playlist-add"} size={35} color={'black'} style={styles.icon} onPress={() => setModalVisibility(true)}/>
+                 <Ionicons name={"md-share-outline"} size={30} color={'black'} style={styles.icon} onPress={() => sharingModal()}/>
+                 <MaterialIcons name={"playlist-add"} size={35} color={'black'} style={styles.icon} onPress={() => addToPlaylist()}/>
                </View>
             </View>
-            
-          
-            {/* <View style={styles.info}>
 
-              <View style={styles.title}>
-                  <Text style={{fontFamily: 'Montserrat-Bold', fontSize: 20}}>{title}</Text>
-              </View>
-
-              <View style={{marginBottom: '10%'}}>
-                <Text style={{fontFamily: "Montserrat-Light", fontSize: 16}}>{author}</Text>
-                <Text style={{fontFamily: 'Montserrat-Light', fontSize: 16}}>{date} · {length} min</Text>
-              </View>
-              
-              <ScrollView horizontal={true} style={styles.tagRow}>
-                  {tagList}
-              </ScrollView> 
-
-            </View>
-
-            <View style={styles.buttons}>
-              <Ionicons name={'play-circle'} color={'#1ddbb5'} size={64} style={{alignSelf: 'center'}} onPress={() => navigation.navigate('StoryListen', {title: title, author: author, length: length, location: location})}/>
-              <View style={styles.sharingIconsRow}>
-                 <Ionicons name={"md-share-outline"} size={30} color={'black'} style={styles.icon}/>
-                 <MaterialIcons name={"playlist-add"} size={32} color={'black'} style={styles.icon} onPress={() => setModalVisibility(true)}/>
-               </View>
-            </View> */}
 
         </View>
 
@@ -146,7 +120,7 @@ const styles = StyleSheet.create({
   title: {
     // marginTop: 15,
     //marginBottom: '8.7%', 
-    marginBottom: 26,
+    marginBottom: 10,
     justifyContent: 'flex-start', 
   },
 

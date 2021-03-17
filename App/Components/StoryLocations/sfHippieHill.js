@@ -4,6 +4,7 @@ export const sfHippieHillStories = [
     {
       id: "1",
       title: "Swing with a View",
+      location: "Hippie Hill",
       length: 22, 
       date: "Jun 2020", 
       tags: ["Love", "Community", "Heart Warmer"], 
@@ -15,6 +16,7 @@ export const sfHippieHillStories = [
     {
       id: "2",
       title: "Culture of Hippie Hill",
+      location: "Hippie Hill",
       length: 9, 
       date: "Aug 2019", 
       tags: ["Music", "Community", "Food", "Love"], 
@@ -26,6 +28,7 @@ export const sfHippieHillStories = [
     {
       id: "3",
       title: "History of Hippie Hill",
+      location: "Hippie Hill",
       length: 28, 
       date: "Jul 2018", 
       tags: ["History-Warmer", "Community"], 

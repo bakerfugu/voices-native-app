@@ -4,6 +4,7 @@ export const sfCrossroads = [
     {
       id: "1",
       title: "Sustainable Fashion FTW",
+      location: "Crossroads Trading",
       length: 2, 
       date: "Jun 2020", 
       tags: ["Fashion", "Sustainability"], 

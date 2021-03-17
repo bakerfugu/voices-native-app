@@ -23,7 +23,7 @@ export default function SharingModal ({visible, setVisible, title, author}) {
             <View style={styles.modalView}>
 
                 <MaterialIcons name='cancel' size={24} color='black' style={{position: 'absolute', top: 5, left: 5}} 
-                onPress={() => setVisibile(false)}/>
+                onPress={() => setVisible(false)}/>
                 <View style={{ width: '100%', padding: '5%', marginLeft: 50}}>
                         <Text style={{fontFamily: 'Montserrat-Bold', fontSize: 18,}}>{title}</Text>
                         <Text>{author}</Text>
@@ -34,26 +34,26 @@ export default function SharingModal ({visible, setVisible, title, author}) {
             <View style={styles.sharingIcons}>
                 <View style={{width: 300, padding: '5%', flexDirection: 'column', justifyContent: 'center'}}>
                         <View style={styles.iconRow}>
-                            <TouchableOpacity style={styles.icon} onPress={() => setVisibile(false)}>
+                            <TouchableOpacity style={styles.icon} onPress={() => setVisible(false)}>
                                 <Feather name="message-circle" size={40} color="white" />
                             </TouchableOpacity>
-                            <TouchableOpacity style={styles.icon} onPress={() => setVisibile(false)}>
+                            <TouchableOpacity style={styles.icon} onPress={() => setVisible(false)}>
                                 <Feather name="link" size={40} color="white" />
                             </TouchableOpacity>
-                            <TouchableOpacity style={styles.icon} onPress={() => setVisibile(false)}>
+                            <TouchableOpacity style={styles.icon} onPress={() => setVisible(false)}>
                                 <Ionicons name='logo-twitter' size={40} color="white"/>
                             </TouchableOpacity>
 
                         </View>
                         <View style={styles.iconRow}>
-                            <TouchableOpacity style={styles.icon} onPress={() => setVisibile(false)}>
+                            <TouchableOpacity style={styles.icon} onPress={() => setVisible(false)}>
                                 <FontAwesome name='facebook-f' size={40} color="white"/>
 
                             </TouchableOpacity>
-                            <TouchableOpacity style={styles.icon} onPress={() => setVisibile(false)}>
+                            <TouchableOpacity style={styles.icon} onPress={() => setVisible(false)}>
                                 <Ionicons name='logo-instagram' size={40} color="white"/>
                             </TouchableOpacity>
-                            <TouchableOpacity style={styles.icon} onPress={() => setVisibile(false)}>
+                            <TouchableOpacity style={styles.icon} onPress={() => setVisible(false)}>
                                 <Ionicons name='ios-logo-whatsapp' size={40} color="white"/>
                             </TouchableOpacity>
 

@@ -11,6 +11,8 @@ import Confirmation from '../../Components/ConfirmationModal';
 import NavigationModal from '../../Components/NavigationModal';
 import { Ionicons } from '@expo/vector-icons'
 import { setCustomRefreshControl } from 'react-native-global-props';
+import SharingModal from '../../Components/SharingModal';
+import CreatePlaylistModal from '../../Components/CreatePlaylistModal.js';
 
 
 const {width, height} = Dimensions.get('screen');
@@ -28,6 +30,8 @@ export default function StoryList ({route, navigation}) {
     const[confirmationModal, setConfirmation] = useState(false);
     const[navigationModal, setNavigation] = useState(false);
     const[listRef, setRef] = useState(null);
+    const [sharingModal, openSharing] = useState(false);
+    const [createPlaylistModal, createPlaylist] = useState(false);
 
     useEffect(() => {
         // console.log(currStory)
@@ -187,13 +191,18 @@ export default function StoryList ({route, navigation}) {
                 image={currStory.info.image} 
                 transcript={currStory.info.transcript}
                 setModalVisibility={setModalVisibility}
+                openSharing={openSharing}
             />
 
-            { modalVisibile && <PlaylistPopUp modalVisible={modalVisibile} setModalVisibility={setModalVisibility} setConfirmation={setConfirmation}/> }
+            { modalVisibile && <PlaylistPopUp modalVisible={modalVisibile} setModalVisibility={setModalVisibility} setConfirmation={setConfirmation} createPlaylist={createPlaylist}/> }
             
             { confirmationModal && <Confirmation visible={confirmationModal} setConfirmation={setConfirmation}/> }
 
             { navigationModal && <NavigationModal visible={navigationModal} setNavigation={setNavigation}/> }
+
+            { sharingModal && <SharingModal visible={sharingModal} setVisible={openSharing} title={currStory.info.title} author={currStory.info.author}/> }
+
+            { createPlaylistModal && <CreatePlaylistModal visible={createPlaylistModal} setVisible={createPlaylist}/> }
             
         </View>
     );

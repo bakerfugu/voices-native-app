@@ -4,6 +4,7 @@ export const sfSmitten = [
     {
         id: "1",
         title: "Smitten with Smitten",
+        location: "Smitten Ice Cream",
         length: 1, 
         date: "Aug 2020", 
         tags: ["Love", "Community"], 
@@ -15,6 +16,7 @@ export const sfSmitten = [
       {
         id: "2",
         title: "Smitten Ice Cream: More than Just Ice Cream",
+        location: "Smitten Ice Cream",
         length: 2, 
         date: "April 2019", 
         tags: ["Food", "Heart-Warmer"], 
@@ -26,6 +28,7 @@ export const sfSmitten = [
       {
         id: "3",
         title: "Meet Smitten's Owner",
+        location: "Smitten Ice Cream",
         length: 2, 
         date: "May 2019", 
         tags: ["Food", "Community", "Heart-Warmer"], 
@@ -37,6 +40,7 @@ export const sfSmitten = [
       {
         id: "4",
         title: "My SF Ice Cream Tour",
+        location: "Smitten Ice Cream",
         length: 2, 
         date: "May 2019", 
         tags: ["Food"], 
@@ -48,6 +52,7 @@ export const sfSmitten = [
       {
         id: "5",
         title: "Learn About Smitten",
+        location: "Smitten Ice Cream",
         length: 2, 
         date: "May 2019", 
         tags: ["Food", "Community"], 

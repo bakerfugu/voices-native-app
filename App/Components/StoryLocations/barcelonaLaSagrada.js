@@ -3,7 +3,6 @@ import { Audio } from '../../Themes';
 
 export const barcelonaLaSagradaStories = [
     {
-      id: "1",
       title: "La Sagrada Familia",
       length: 22, 
       date: "May 2019", 
@@ -13,9 +12,8 @@ export const barcelonaLaSagradaStories = [
       transcript: `This is 99% Invisible. I’m Roman Mars.The line to enter Barcelona’s most famous cathedral often stretches around the block. La Sagrada Familia designed by Antoni Gaudi draws so many people to see it that the neighborhood is congested with tour buses and taxis and scooters. Some 3 million people went inside the church in 2016 and another 7 million came just to stare at the outside of this strange behemoth structure. “If you travel around Spain, you’ll see a lot of old gothic churches,” producer Katie Mingle was in Spain earlier this year, “but this one is different. First, it doesn’t look like a gothic cathedral. It looks like it was built out of bones, or sand, or like it just twirled out of the sea, like a fractal. It looks organic somehow.”  But there’s another thing that sets it apart from your average, old, gothic cathedral. It isn’t actually old. Gaudi wasn’t able to build very much of it before he died in 1926. Most of the church has been built in the last 40 years and it still isn’t finished.Which means that architects have had to figure out, and still are figuring out how Gaudi wanted the church to be built. “We are all together and our room is a special room. The most important part of the building we are building.” That’s Jeronimo Buxareu, one of the current architects of the building, and he says the clues to understanding how to move forward on the construction of La Sagrada Familia are kept in the room we’re standing in right now, in the basement of the church.`,
     },
     {
-      id: "2",
       title: "My Secret Confession: Not a Gaudi Fan",
-      length: 9, 
+      length: 2, 
       date: "March 2019", 
       tags: ["History", "Community", "Art"], 
       author: "adrazen", 
@@ -29,9 +27,8 @@ export const barcelonaLaSagradaStories = [
       image: Images.laSagradaPodcast
     },
     {
-        id: "3",
         title: "Gaudi's La Sagrada Familia",
-        length: 29, 
+        length: 2, 
         date: "Feb 2019", 
         tags: ["History", "Art"], 
         author: "adrazen", 
@@ -40,9 +37,8 @@ export const barcelonaLaSagradaStories = [
         transcript: `Though most people credit Gaudi with the building of La Sagrada Familia, one thing that a lot of people don’t know is that Guadi wasn’t actually the only architect working on the project. Though Gaudi’s efforts and contributions to the project are well-known, he wasn’t the one and and only architect who supervised the building. The former architecture started since the very beginning in 1882 was in fact Francisco del Paulo del Vilar, who planned Sagrada Familia as a regular neocathilic cathedral. However, Vilar resigned soon and in 1882, Gaudi took over the job, changing completely it’s designs. `,
     },
     {
-        id: "4",
         title: "Antoni Gaudi: The Man Behind the Masterpiece",
-        length: 17, 
+        length: 2, 
         date: "Dec 2018", 
         tags: ["History", "Art"], 
         author: "adrazen", 
@@ -51,9 +47,8 @@ export const barcelonaLaSagradaStories = [
         transcript: `You can’t appreciate La Sagrada Familia without appreciating the architect behind the work. Antoni Gaudi brought Catalan architecture to worldwide fame and reputation. Gaudi was also an architect and designer with a special ability to synthesize his own tradition and the courage to take on new technical solutions. He understood how to integrate creative and plastic elements in his buildings.  `,
     },
     {
-        id: "5",
         title: "Inspiration from La Sagrada Familia",
-        length: 10, 
+        length: 3, 
         date: "Oct 2018", 
         tags: ["Heart-Warmer", "Art"], 
         author: "adrazen", 
@@ -63,9 +58,8 @@ export const barcelonaLaSagradaStories = [
         For some reason – call it divine intervention or just mundane desire – at that point I realized there is SO much more to see throughout the world that I’m missing. Sagrada Familia made me want to see more of what’s out there on the world; buildings, cities, natural features, cultures, wildlife, etc.  I want to “build” something out of them, some significance, some knowledge, something I can marvel at.`,
     },
     {
-        id: "6",
         title: "The Ghosts of La Sagrada Familia",
-        length: 9, 
+        length: 2, 
         date: "Jun 2018", 
         tags: ["Horror", "History"], 
         author: "adrazen", 
@@ -73,4 +67,14 @@ export const barcelonaLaSagradaStories = [
         audio: Audio.laSagradaGhosts,
         transcript: `Have you heard about the ghosts of La Sagrada Familia?You probably haven’t, but I’m going to tell you about them today. The ghosts of La Sagrada Familia live in the underground crypt. They’re there pretty much all the time. I can tell you about a few of them. Meet Ghost number one. At the west entrance to the Basilica, I felt very dizzy. There was a male ghost who was standing next to me. He was strong, and stubborn. As soon as I felt him, my boyfriend asked me if I were dizzy because he was, too!  The ghost was trying to get through to both of us. Who was he? He told me he was a construction worker who died while working on the church. He said that he lived in the late 1800s and early 1900s when an accident took his life. I believe that he fell from up high. Meet ghost #2. At the entrance to the gift shop, another male ghost kept vying for my attention. He made me even more dizzy than the first ghost. It was just before I ascended the stairs with the group that he hit me with a wave of energy (ghosts are energy) and made me feel like my head was spinning! He told me that he was also working on the basilica as a stoneworker. He said that a stone had fallen and crushed the right side of his head, killing him. He was just 37 years old when he died and he awoke confused, so he stayed behind as a ghost. `,
     },
+    {
+        title: "Gauidi's Magnum Opus: La Sagrada Familia",
+        length: 2, 
+        date: "Apr 2018", 
+        tags: ["Art", "History", "Architecture"], 
+        author: "johnnydex", 
+        image: Images.laSagradaMagnumOpus,
+        audio: Audio.laSagradaMagnumOpus,
+        transcript: `Sagrada Família is the magnum opus (that is, “greatest work”) of Catalan architect Gaudi. It is a cathedral of enormous size, a floor plan of 300 by 200 feet, with a capacity of 9,000 and planned spires over 500 feet tall. Begun in 1926, it is still unfinished, with work continuing and planned completion perhaps by 2026. (You may see construction equipment inside the church.) Like all of Gaudi’s work, it is designed to imitate nature. Similar to Park Güell the columns which support the structure look like trees. Other features also imitate nature. Expect it to be packed with tourists, but don’t let that dissuade you. It is like no other enormous cathedral in the world and not to be missed when you visit Barcelona. `,
+    }
 ];

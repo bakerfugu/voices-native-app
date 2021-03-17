@@ -21,12 +21,12 @@ import { useHeaderHeight } from '@react-navigation/stack'
 
 
 // export default function StoryInfo ({route}) {
-export default function StoryInfo() {
+export default function StoryInfo({route, params}) {
     const KEYBOARD_VERTICAL_OFFSET = 75 + StatusBar.currentHeight;
 
     const [title, setTitle] = useState('');
-    const [location, setLocation] = useState();
 
+    const {length} = route.params;
     const [valueMS, setValueMS] = useState([]);
     const onChangeMS = (value) => {
         setValueMS(value);
@@ -183,7 +183,7 @@ export default function StoryInfo() {
             <LongButton style={styles.postbutton} onPress={() => { navigation.navigate('Confirmation', {uri: uri}) }} disabled={!title || !uri || !location || !valueMS} label={'Post'}/> */}
             <View style={{ flex: 1,flexDirection: 'column', width: '100%', alignItems: 'center', }}>
                 <View style={styles.postButton}>              
-                    <LongButton onPress={() => { navigation.navigate('Confirmation', {image: image}) }} disabled={!title || !image || !valueMS} label={'Choose Location'}/>
+                    <LongButton onPress={() => { navigation.navigate('Confirmation', {image: image, title: title, tags: valueMS, length: length}) }} disabled={!title || !image || !valueMS} label={'Choose Location'}/>
                 </View>
                 
             </View>

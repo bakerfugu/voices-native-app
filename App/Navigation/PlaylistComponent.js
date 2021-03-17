@@ -18,13 +18,6 @@ export default function PlaylistComponent () {
   const [image, setImage] = useState("");
   const getProfile = async () => {
     const value = await AsyncStorage.getItem('profile');
-      console.log(value);
-      if (value) {
-        console.log(value)
-      }
-      else {
-        console.log('nothing here yet')
-      }
 
   }
   useEffect(() => {

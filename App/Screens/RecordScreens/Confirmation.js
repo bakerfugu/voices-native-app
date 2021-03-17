@@ -9,10 +9,11 @@ import FloatingStoryMapMarker from '../../Components/floatingStoryMapMarker.js'
 import MapView, { Marker } from 'react-native-maps';
 import DropDownPicker from 'react-native-dropdown-picker';
 import { Root, Popup } from 'popup-ui'
+import AsyncStorage from '@react-native-async-storage/async-storage';
     
     
 export default function Confirmation ({route, navigation}) {
-    const { image } = route.params
+    const { image, title, length, tags } = route.params
     console.log(image)
     const [location, setLocation] = useState(null);
     const [modalVisible, setModalVisibility] = useState(false);
@@ -85,9 +86,17 @@ export default function Confirmation ({route, navigation}) {
     }, [location])
 
 
-    const finalizePost = () => {
+    const finalizePost = async () => {
         setModalVisibility(false);
         setPosted(true);
+        const newStory = {
+            title: title,
+            tags: tags,
+            image: image, 
+            length: length, 
+            location: location,
+        }
+        const storyString = JSON.stringify(newStory);
         navigation.navigate('MainMap');
     }  
     

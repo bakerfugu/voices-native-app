@@ -104,7 +104,7 @@ export default function StoryList ({route, navigation}) {
         let storyIndex = index % storyLocations[locationIndex].stories.length;
             return (
                 <ImageBackground source={Images.yellowOrb} resizeMode='contain' style={{height: 80, width: 80, justifyContent: 'center', alignItems: 'center'}}>
-                    <Image source={storyLocations[locationIndex].stories[storyIndex].image ? storyLocations[locationIndex].stories[storyIndex].image : Images.parliament} resizeMode='cover' style={{height: 60, width: 60, borderRadius: '50%'}}/>
+                    <Image source={storyLocations[locationIndex].stories[storyIndex].image ? storyLocations[locationIndex].stories[storyIndex].image : Images.parliament} resizeMode='cover' style={{height: 60, width: 60, borderRadius: 30}}/>
                 </ImageBackground>    
         );
     }
@@ -160,6 +160,32 @@ export default function StoryList ({route, navigation}) {
                     visibilityPadding={3}
                     renderItem={renderItem}
                     radius={RADIUS}
+                    keyExtractor={(item) => `${item.key}`}
+                    elementCount={12}
+                    selectedItemScale={2.7}
+                    swipeSpeedMultiplier={40}
+                    containerStyle={{paddingTop: 80, marginBottom: '2%'}}
+                    onScrollEnd={(item) => {
+                        let index = item % storyLocations[locationIndex].stories.length;
+                        setStory({
+                            info: storyLocations[locationIndex].stories[index],
+                            index: item
+                        })
+                    }}
+                />
+            </View>
+
+            <View style={styles.arrows}>
+                <Ionicons name='arrow-back-sharp' color='#FCC201' size={48} onPress={prevStory}/>
+                <Ionicons name='arrow-forward-sharp' color='#FCC201' size={48} onPress={nextStory}/>
+
+                <View style ={styles.backgroundCircle}/>
+                <CircleList
+                    data={data}
+                    innerRef={component => setRef(component)}
+                    visibilityPadding={3}
+                    renderItem={renderItem}
+                    radius={RADIUS}
                     keyExtractor={(item) => item.id}
                     elementCount={12}
                     selectedItemScale={2.7}
@@ -174,22 +200,10 @@ export default function StoryList ({route, navigation}) {
                     }}
                     />
             </View>
-
-            <View style={styles.arrows}>
-                <Ionicons name='arrow-back-sharp' color='#FCC201' size={48} onPress={prevStory}/>
-                <Ionicons name='arrow-forward-sharp' color='#FCC201' size={48} onPress={nextStory}/>
-
-            </View>
             
             <StoryClip 
                 location={storyLocations[locationIndex].title}
-                title={currStory.info.title} 
-                author={currStory.info.author} 
-                date={currStory.info.date} 
-                length={currStory.info.length}
-                tags={currStory.info.tags}
-                image={currStory.info.image} 
-                transcript={currStory.info.transcript}
+                storyObject={currStory.info}
                 setModalVisibility={setModalVisibility}
                 openSharing={openSharing}
             />

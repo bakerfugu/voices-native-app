@@ -9,8 +9,8 @@ import { LinearGradient } from 'expo-linear-gradient';
 import { NavigationContainer } from '@react-navigation/native';
 import { useNavigation } from '@react-navigation/native' ;
 
-export default function StoryClip({title, author, date, length, tags, setModalVisibility, location, image, transcript, openSharing}) {
-  const {width, height} = Dimensions.get('screen');
+export default function StoryClip({storyObject, setModalVisibility, location, openSharing}) {
+  const { title, author, date, length, tags, image, transcript } = storyObject;
   const navigation = useNavigation();
   //let percentage = {width/100} + "%";
   //<Photo key={photo._id} value={photo} newComment={this.setNewComment} user={this.state.user} class="standard"/>
@@ -18,7 +18,7 @@ export default function StoryClip({title, author, date, length, tags, setModalVi
   
   let tagList;
   if (tags) {
-    tagList = tags.map((tag) => <View style={styles.tag}>
+    tagList = tags.map((tag) => <View style={styles.tag} key={tag}>
       <Text style={styles.tagText}>
         {tag}
       </Text>
@@ -51,7 +51,7 @@ export default function StoryClip({title, author, date, length, tags, setModalVi
         <View style = {styles.container}>
 
             <View style={long ? styles.longTitle : styles.title}>
-                <Text style={{fontFamily: 'Montserrat-Bold', fontSize: 19, overflow: 'ellipsis'}}>
+                <Text style={{fontFamily: 'Montserrat-Bold', fontSize: 19, }}>
                   {/* {long ? titleAdjust : title} */}
                   {title}
                   </Text>
@@ -78,8 +78,8 @@ export default function StoryClip({title, author, date, length, tags, setModalVi
             
             <View style={styles.buttons}>
             
-              <Ionicons name={'play-circle'} color={'#1ddbb5'} size={48} style={{alignSelf: 'center'}} onPress={() => navigation.navigate('StoryListen', {title: title, author: author, length: length, location: location, image: image, transcript: transcript})}/>
-              <Text style={{fontFamily: "Montserrat", fontSize: 14, marginLeft: "-39%"}}> {length} min</Text>
+              <Ionicons name={'play-circle'} color={'#1ddbb5'} size={48} style={{alignSelf: 'center'}} onPress={() => navigation.navigate('StoryListen', { storyObject, location })}/>
+              <Text style={{fontFamily: "Montserrat", fontSize: 14, marginLeft: '-10%'}}> {length} min · {date}</Text>
         
               <View style={styles.sharingIconsRow}>
                  <Ionicons name={"md-share-outline"} size={30} color={'black'} style={styles.icon} onPress={() => openSharing(true)}/>

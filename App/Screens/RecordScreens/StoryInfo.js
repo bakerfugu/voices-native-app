@@ -91,10 +91,8 @@ export default function StoryInfo({route, params}) {
         {
             value: '6',
             label: 'Folklore',
-
         }
     ];
-
 
     const navigation = useNavigation();
     return (
@@ -106,10 +104,10 @@ export default function StoryInfo({route, params}) {
             <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
 
                 <View style={styles.form}>
-                    <TextInput 
-                    style={styles.textInput} 
-                    placeholder="Title" 
-                    onChangeText={setTitle}
+                    <TextInput
+                        style={styles.textInput}
+                        placeholder="Title"
+                        onChangeText={setTitle}
                     />
                     <View style={styles.tagDropDrown}>
                         <MultiselectDropdown
@@ -176,7 +174,7 @@ export default function StoryInfo({route, params}) {
                 <View style={styles.postButton}>              
                     <LongButton onPress={() => { navigation.navigate('Confirmation', {image: image, title: title, tags: valueMS, length: length}) }} disabled={!title || !image || !valueMS} label={'Choose Location'}/>
                 </View>
-                
+
             </View>
         </View>
 

@@ -1,84 +1,133 @@
 import React, { useState, useEffect } from 'react';
-import { StyleSheet, Text, SafeAreaView, View, AsyncStorage, Image, TouchableOpacity, FlatList, Button, ScrollView } from 'react-native';
-import { LinearGradient } from 'expo-linear-gradient';
+import { StyleSheet, Text, SafeAreaView, View, Image, TouchableOpacity, FlatList, TextInput, ScrollView } from 'react-native';
 import BackgroundGradient from '../../Components/BackgroundGradient.js';
-import LongButton from '../../Components/LongButton.js';
 import { Images } from '../../Themes/index.js';
 import { useNavigation } from '@react-navigation/native';
-import ListOfStories from '../../Components/ListOfStories.js';
-import ListNoHeader from '../../Components/ListNoHeader.js';
+import {Ionicons} from '@expo/vector-icons'
+import AsyncStorage from '@react-native-async-storage/async-storage'
+import storyPlaylists from '../../Components/StoryPlaylists';
+import Playlist from '../../Components/Playlist';
+import * as ImagePicker from 'expo-image-picker';
+import * as Permissions from 'expo-permissions';
+import StoryProfiles from '../../Components/StoryProfiles'
+import StoryClipForProfile from '../../Components/StoryClipForProfile'
+import SharingModal from '../../Components/SharingModal';
+import CreatePlaylistModal from '../../Components/CreatePlaylistModal.js';
+import Confirmation from '../../Components/ConfirmationModal';  
+import NavigationModal from '../../Components/NavigationModal';
+import PlaylistPopUp from '../../Components/PlaylistPopUp';
 
+export default function userProfile ({route, navigation}) {
+    const [sharingModal, openSharing] = useState(false);
+    const [createPlaylistModal, createPlaylist] = useState(false);
+    const[modalVisibile, setModalVisibility] = useState(false);
+    const[confirmationModal, setConfirmation] = useState(false);
+    const [profile, setProfile] = useState("");
+    const [clicked, setClicked] = useState();
 
-export default function Profile () {
-    let data = {
-        handle: '@taylorl',
-        location: 'Los Angeles',
-        storyCt: 2,
-        playlistCt: 4, 
-        bioText: "fakebio"
-    };
-    const navigation = useNavigation();
+    let storyList;
+    if (profile.stories) {
+    storyList = profile.stories.map((story) => 
+  
+        <StoryClipForProfile
+            story={story}
+            setModalVisibility={setModalVisibility}
+            openSharing={openSharing}
+            setClicked={setClicked}
+        />
+    );
+  }
+
+  useEffect( () => {
+     const {author} = route.params;
+     const profile = StoryProfiles[author];
+     setProfile(profile);
+     console.log(profile.stories)
+  }, []);
+
+ 
 
     return (
-        <ScrollView style={styles.scroll}>
+        <View style={{flex:1}}>
             <BackgroundGradient/>
+        
+            <ScrollView style={styles.scroll}>
+            
             <Image source={Images.profSettings} style={styles.settings} resizeMode='contain' />
             <View style={styles.photoContainer}>
-            <Image source={Images.profPlaceholder} resizeMode='contain' />
+                <View style={styles.profImageView}>
+                <Image 
+                    source={profile.image}
+                    resizeMode='contain' 
+                    style={styles.profImage}
+                />
+                </View>
+                
             </View>
 
             <View style={styles.infoContainer}>
                 <Text style={styles.handle}>
-                    {data.handle}
+                    {profile.author}
                 </Text>
                 <Text style={styles.location}>
-                    {data.location}
+                    San Francisco
                 </Text>
+
+
                 <View style={styles.metaData}>
                     <Text>
-                        <Text style={styles.number}>{data.storyCt}</Text> Stories Told
+                        <Text style={styles.number}>{profile.stories ? profile.stories.length : 0}</Text> Stories Told
                     </Text>
                     <Image source={Images.dot} style={styles.dot} />
                     <Text>
-                    <Text style={styles.number}>{data.playlistCt}</Text> Playlists 
+                    <Text style={styles.number}>{profile.playlists ? profile.playlists.length : 0}</Text> Playlists 
                     </Text>
                 </View>
+           
                 <View style={styles.bioContainer}>
-                    <Text>
-                        {data.bioText}
-                    </Text>
+                    <Text style={{fontFamily: 'Montserrat', fontSize:18}}>{profile.bio}</Text>
                 </View>
+              
             </View>
+            
 
-            <View>
+            <View style={{width: '100%' ,flexDirection: 'center'}}>
                 <Text id="stories" style={styles.s_header}>Stories</Text>
-                <ListNoHeader/>
+                <View style={{justifyContent:'center', alignItems: 'center', flex: 1, marginTop: '5%'}}>
+                    {storyList}
+                </View>
             </View>
-            <Text style={styles.p_header}>Playlists</Text>
-            <View style={styles.listContainer}>
-                <View style={styles.listRow}>
-                <View style={styles.playlistObj}>
-                    <Image source={Images.fountainsEu} style={styles.playlistImg}/>
-                    <Text style={styles.playlistTitle}>Fountains of Europe</Text>
-                </View>
-                <View style={styles.playlistObj}>
-                    <Image source={Images.fountainsEu} style={styles.playlistImg}/>
-                    <Text style={styles.playlistTitle}>Fountains of Europe</Text>
-                </View>
-                </View>
-                <View style={styles.listRow}>
-                <View style={styles.playlistObj}>
-                    <Image source={Images.fountainsEu} style={styles.playlistImg}/>
-                    <Text style={styles.playlistTitle}>Fountains of Europe</Text>
-                </View>
-                <View style={styles.playlistObj}>
-                    <Image source={Images.fountainsEu} style={styles.playlistImg}/>
-                    <Text style={styles.playlistTitle}>Fountains of Europe</Text>
-                </View>
-                </View>
+            {/* <View style={{width: '100%' ,flexDirection: 'center', alignItems: 'center'}}>
+                <Text style={styles.p_header}>Playlists</Text>
+                <FlatList 
+                scrollEnabled={false}
+                contentContainerStyle={styles.grid}
+                numColumns={2} 
+                data={storyPlaylists} 
+                // scrollEnabled={true}
+                directionalLockEnabled={true}
+                keyExtractor={(playlist, index) => index}
+                renderItem={(playlist) => {
+                    // console.log("Printing playlist: ", playlist);
+                    return <Playlist key={playlist.item.title} value={playlist.item} onPress={() => navigation.navigate('PlaylistListView', {playlist: playlist.item})}/>
+                    }
+                }
+                />
                 
-            </View>
+            </View> */}
+
+            
+         
         </ScrollView>
+            { modalVisibile && <PlaylistPopUp modalVisible={modalVisibile} setModalVisibility={setModalVisibility} setConfirmation={setConfirmation} createPlaylist={createPlaylist}/> }
+            
+            { confirmationModal && <Confirmation visible={confirmationModal} setConfirmation={setConfirmation}/> }
+
+            { sharingModal && <SharingModal visible={sharingModal} setVisible={openSharing} title={clicked.title} author={clicked.author}/> }
+
+            { createPlaylistModal && <CreatePlaylistModal visible={createPlaylistModal} setVisible={createPlaylist}/> }
+        </View>
+
     );
 
 
@@ -94,11 +143,20 @@ const styles = StyleSheet.create({
         marginBottom: '-3%'
     },
     photoContainer: {
-        flex: 1,
-        width: '100%',
-        flexDirection: 'column',
-        justifyContent: 'flex-start',
+        // flex: 1,
+        // width: '100%',
+        // flexDirection: 'column',
+        // justifyContent: 'flex-start',
+        // alignItems: 'center',
+        justifyContent: 'center',
         alignItems: 'center',
+        width: 200,
+        height: 200,
+        borderRadius: 100,
+        borderWidth: 2,
+        backgroundColor: 'white',
+        marginBottom: 30, 
+        alignSelf: 'center'
     }, 
     infoContainer: {
         flex: 1,
@@ -108,7 +166,9 @@ const styles = StyleSheet.create({
         
     },
     scroll: {
-        backgroundColor: '#FFF'
+        flex: 1,
+        height:'100%',
+        width: '100%',
      
     },
     handle: {
@@ -150,13 +210,15 @@ const styles = StyleSheet.create({
         marginLeft: '5%',
         marginTop: '10%',
         marginBottom: '-3%'
+
     },
     p_header: {
         fontWeight: 'bold',
         fontSize: 25,
         marginLeft: '5%',
         marginTop: '10%',
-        marginBottom: '4%'
+        marginBottom: '4%',
+        alignSelf: 'flex-start'
     },
     playlistImg: {
         height: 150,
@@ -181,6 +243,14 @@ const styles = StyleSheet.create({
     },
     listContainer: {
         alignItems: 'center'
+    },
+    profImage: {
+        height: 200,
+        aspectRatio: 1,
+        borderRadius: 100,
+        borderColor: '#F1B600',
+        borderWidth:3
+        
     }
   
 });

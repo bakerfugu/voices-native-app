@@ -4,6 +4,7 @@ export const sfBayToBreakers = [
     {
       id: "1",
       title: "A Tradition Like No Other",
+      location: "Bay to Breakers",
       length: 22, 
       date: "May 2019", 
       tags: ["Love", "Community", "Heart Warmer"], 
@@ -15,6 +16,7 @@ export const sfBayToBreakers = [
     {
       id: "2",
       title: "Why I Love Bay to Breakers",
+      location: "Bay to Breakers",
       length: 9, 
       date: "May 2019", 
       tags: ["Sports", "Community", "Love"], 

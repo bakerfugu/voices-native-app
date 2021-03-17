@@ -69,6 +69,7 @@ const styles = StyleSheet.create({
         fontSize: 26, 
         fontWeight: 'bold',
         textAlign: 'center',
+        fontFamily: 'Montserrat-Bold',
         margin: '3%', 
    
     },

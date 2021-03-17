@@ -57,7 +57,7 @@ export default function StoryClip({title, author, date, length, tags, setModalVi
             </View>
 
 
-            <View style={{marginBottom: '5%'}}>
+            <View style={{marginBottom: '3%'}}>
                 <Text style={{fontFamily: "Montserrat", fontSize: 16}}>@{author}</Text>
             </View>
             <View style={{flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', marginBottom: '3%'}}>
@@ -143,7 +143,8 @@ const styles = StyleSheet.create({
   },
   title: {
     // marginTop: 15,
-    marginBottom: '5%', 
+    //marginBottom: '8.7%', 
+    marginBottom: 26,
     justifyContent: 'flex-start', 
   },
 

@@ -10,7 +10,7 @@ import PlaylistPopUp from '../../Components/PlaylistPopUp'
 
 
 const {width} = Dimensions.get('screen');
-const RADIUS = (1.5 * width) / 2;  
+const RADIUS = (1.6 * width) / 2;  
 
 export default function PlaylistListView ({route, navigation}) {
 
@@ -93,7 +93,7 @@ export default function PlaylistListView ({route, navigation}) {
         let storyIndex = index % playlist.stories.length;
             return (
                 <ImageBackground source={Images.yellowOrb} resizeMode='contain' style={{height: 80, width: 80, justifyContent: 'center', alignItems: 'center'}}>
-                    <Image source={playlist.stories[storyIndex].image} resizeMode='cover' style={{height: 60, width: 60, borderRadius: '50%'}}/>
+                    <Image source={playlist.stories[storyIndex].image} resizeMode='cover' style={{height: 62, width: 62, borderRadius: '50%'}}/>
                 </ImageBackground>    
         );
     }
@@ -115,7 +115,7 @@ export default function PlaylistListView ({route, navigation}) {
                     elementCount={12}
                     selectedItemScale={2.7}
                     swipeSpeedMultiplier={40}
-                    containerStyle={{paddingTop: 80, marginBottom: '5%'}}
+                    containerStyle={{paddingTop: 76, marginBottom: '3%'}}
                     onScrollEnd={(item) => {
                         let index = item % playlist.stories.length;
                         setStory(playlist.stories[index])
@@ -128,6 +128,7 @@ export default function PlaylistListView ({route, navigation}) {
                 date={currStory.date} 
                 length={currStory.length}
                 tags={currStory.tags}
+                image={currStory.image}
                 setModalVisibility={setModalVisibility}
             />
 
@@ -157,14 +158,14 @@ const styles = StyleSheet.create({
         // backgroundColor: 'grey',
     },
     backgroundCircle: {
-        borderColor: '#1ddbb5',
+        borderColor: '#FCC201',
         borderWidth: 10,
         width: RADIUS * 2,
         aspectRatio: 1,
         borderRadius: RADIUS,
         position: 'absolute',
         alignSelf: 'center',
-        marginTop: 120
+        marginTop: 120, 
     },
     
 

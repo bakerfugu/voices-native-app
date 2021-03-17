@@ -26,7 +26,7 @@ export default function ConfirmationModal ({visible, setConfirmation}) {
             <Text style={styles.thanks}>The story has been added to your playlist</Text>
 
             <TouchableOpacity style={styles.able}  onPress={() => setConfirmation(false)}> 
-                <Text>Ok</Text>
+                <Text>OK</Text>
             </TouchableOpacity>
             
             

@@ -40,6 +40,9 @@ const images = {
     //Smitten Ice Cream
     smittenWithSmitten: require('../Images/smitten1.png'),
     iceCreamExtravaganza: require('../Images/smitten2.png'),
+    moreThanIceCreamShop: require('../Images/more_than_just_ice_cream.png'),
+    learnAboutSmitten: require('../Images/learn_about_smitten.png'),
+    smittenOwner: require('../Images/smitten_owner.png'),
     //Bay to Breakers
     traditionB2B: require('../Images/baytobreakers1.png'),
     //crossroads

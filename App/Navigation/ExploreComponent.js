@@ -28,7 +28,8 @@ export default function ExploreComponent () {
       },
       headerTitleStyle: {
         fontSize: 30,
-        fontWeight: 'bold'
+        fontWeight: 'bold',
+        fontFamily: 'Montserrat-Bold'
       },
       headerLeftContainerStyle: {
         paddingLeft: 10
@@ -46,6 +47,7 @@ export default function ExploreComponent () {
       headerTitleStyle: {
         fontSize: 30,
         fontWeight: 'bold',
+        fontFamily: 'Montserrat-Bold'
 
       },
       headerLeftContainerStyle: {
@@ -71,6 +73,7 @@ export default function ExploreComponent () {
       headerTitleStyle: {
         fontSize: 30,
         fontWeight: 'bold',
+        fontFamily: 'Montserrat-Bold'
 
       },
       headerLeftContainerStyle: {
@@ -96,6 +99,7 @@ export default function ExploreComponent () {
         headerTitleStyle: {
           fontSize: 30,
           fontWeight: 'bold',
+          fontFamily: 'Montserrat-Bold'
   
         },
         headerLeftContainerStyle: {

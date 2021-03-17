@@ -24,6 +24,7 @@ export default function RecordComponent () {
           headerTitleStyle: {
             fontSize: 30,
             fontWeight: 'bold',
+            fontFamily: 'Montserrat-Bold'
 
           },
           
@@ -51,6 +52,7 @@ export default function RecordComponent () {
           headerTitleStyle: {
             fontSize: 30,
             fontWeight: 'bold',
+            fontFamily: "Montserrat-Bold",
 
           },
           

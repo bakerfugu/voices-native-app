@@ -67,7 +67,7 @@ const styles = StyleSheet.create({
     }, 
     locationTitle: {
         fontSize: 30,
-    
+        fontFamily: "Montserrat",
         fontWeight: 'bold',
         textAlign: 'center', 
     }, 

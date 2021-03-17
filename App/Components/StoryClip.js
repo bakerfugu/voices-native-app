@@ -9,7 +9,7 @@ import { LinearGradient } from 'expo-linear-gradient';
 import { NavigationContainer } from '@react-navigation/native';
 import { useNavigation } from '@react-navigation/native' ;
 
-export default function StoryClip({title, author, date, length, tags, setModalVisibility, location}) {
+export default function StoryClip({title, author, date, length, tags, setModalVisibility, location, image}) {
 
   const navigation = useNavigation();
   //<Photo key={photo._id} value={photo} newComment={this.setNewComment} user={this.state.user} class="standard"/>
@@ -49,8 +49,11 @@ export default function StoryClip({title, author, date, length, tags, setModalVi
      
         <View style = {styles.container}>
 
-            <View style={styles.title}>
-                <Text style={{fontFamily: 'Montserrat-Bold', fontSize: 19}}>{long ? titleAdjust : title}</Text>
+            <View style={long ? styles.longTitle : styles.title}>
+                <Text style={{fontFamily: 'Montserrat-Bold', fontSize: 19, overflow: 'ellipsis'}}>
+                  {/* {long ? titleAdjust : title} */}
+                  {title}
+                  </Text>
             </View>
 
 
@@ -72,7 +75,7 @@ export default function StoryClip({title, author, date, length, tags, setModalVi
 
             <View style={styles.buttons}>
             
-              <Ionicons name={'play-circle'} color={'#1ddbb5'} size={48} style={{alignSelf: 'center'}} onPress={() => navigation.navigate('StoryListen', {title: title, author: author, length: length, location: location})}/>
+              <Ionicons name={'play-circle'} color={'#1ddbb5'} size={48} style={{alignSelf: 'center'}} onPress={() => navigation.navigate('StoryListen', {title: title, author: author, length: length, location: location, image: image})}/>
               <Text style={{fontFamily: "Montserrat", fontSize: 14, marginLeft: '-10%'}}> {length} min · {date}</Text>
         
               <View style={styles.sharingIconsRow}>
@@ -122,10 +125,12 @@ export default function StoryClip({title, author, date, length, tags, setModalVi
 const styles = StyleSheet.create({
   card: {
     padding: '5%',
+    paddingBottom: "2%",
     borderColor: '#FCC201',
     borderWidth: 2,
     borderRadius: 15,
-    width: '90%'
+    width: '90%',
+    marginBottom: '2%'
   },
   container: {
     // flex: 1,
@@ -138,10 +143,14 @@ const styles = StyleSheet.create({
   },
   title: {
     // marginTop: 15,
-    marginBottom: '5%',
-  
-    justifyContent: 'flex-start',
-   
+    marginBottom: '5%', 
+    justifyContent: 'flex-start', 
+  },
+
+  longTitle: {
+    // marginTop: 15,
+    marginBottom: '1%', 
+    justifyContent: 'flex-start', 
   },
  
   tag: {
@@ -208,6 +217,7 @@ const styles = StyleSheet.create({
   },
   tagText: {
     fontSize: 13,
+    fontFamily: "Montserrat"
   },
   
  

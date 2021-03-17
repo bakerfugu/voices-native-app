@@ -12,7 +12,7 @@ import NavigationModal from '../../Components/NavigationModal';
 import TranscriptModal from '../../Components/TranscriptModal';
     
 export default function StoryListen ({route, navigation}) {
-    const {title, author, length, location} = route.params
+    const {title, author, length, location, image} = route.params
     const [isPlaying, setPlayStatus] = useState(false);
     const[currStory, setStory] = useState(0);
     const[modalVisibile, setModalVisibility] = useState(false);
@@ -27,9 +27,13 @@ export default function StoryListen ({route, navigation}) {
             <BackgroundGradient/>
             <Header title={location} page='Story List' playlist={null} setNavigation={setNavigation}/>
             <View style={styles.content}>
-                <ImageBackground style={{width: 300, aspectRatio: 1, alignItems: 'center', justifyContent: 'center'}} source={Images.yellowOrb} resizeMode='contain'>
-                    <Image source={Images.silverMan} style={{width: 50, aspectRatio: 1, borderRadius: 200}} resizeMode='contain'/>
-                </ImageBackground>
+
+            <ImageBackground source={Images.yellowOrb} resizeMode='contain' style={{height: 300, width: 300, justifyContent: 'center', alignItems: 'center', marginBottom: '10%'}}>
+                    <Image source={image} resizeMode='cover' style={{height: 240, width: 240, borderRadius: '120%'}}/>
+                </ImageBackground> 
+                {/* <ImageBackground resizeMode='contain' style={{width: 300, aspectRatio: 1, alignItems: 'center', justifyContent: 'center'}} source={Images.yellowOrb} resizeMode='contain'>
+                    <Image source={image} style={{width: 50, aspectRatio: 1, borderRadius: 200}} resizeMode='cover'/>
+                </ImageBackground> */}
 
                 <Text style={{fontSize: 24, fontFamily: "Montserrat", textAlign: 'center', marginBottom: 10}}>{title}</Text>
                 <Text style={{fontSize: 18, fontFamily: "Montserrat-Light", textAlign: 'center', marginBottom: 10}}>{author}</Text>

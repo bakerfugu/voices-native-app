@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { StyleSheet, Text, SafeAreaView, View, AsyncStorage, Image, TouchableOpacity, FlatList, Button, ImageBackground, ScrollView} from 'react-native';
 import { Images } from '../Themes';
-import StoryClip from './StoryClip.js';
 import storyLocations from './StoryLocations';
 
 

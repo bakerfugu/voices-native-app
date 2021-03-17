@@ -31,8 +31,30 @@ const storyProfiles = {
     stories: findStoriesOfAuthor("shinnyshin"),
     location: "San Francisco",
     image: Images.janice,
+    bio: "I am a member of the Stanford Women's Tennis team. I'm a Houston, TX native, but I've come to call San Francisco my home away from home.",
+  },
+  adrazen: {
+    author: "adrazen",
+    stories: findStoriesOfAuthor("adrazen"),
+    location: "San Francisco",
+    image: Images.ayelet,
     bio: "",
   },
+  knair: {
+    author: "knair",
+    stories: findStoriesOfAuthor("knair"),
+    location: "San Francisco",
+    image: Images.krishnan,
+    bio: "",
+  },
+  bsharp: {
+    author: "bsharp",
+    stories: findStoriesOfAuthor("bsharp"),
+    location: "San Francisco",
+    image: Images.baker,
+    bio: "",
+  },
+  
 };
 
 export default storyProfiles; 

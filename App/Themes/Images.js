@@ -69,6 +69,9 @@ const images = {
   //profiles 
   taylor : require('../Images/tay.png'),
   janice : require('../Images/janice.png'),
+  baker : require('../Images/baker.png'),
+  krishnan : require('../Images/krishnan.png'),
+  ayelet : require('../Images/ayelet.png'),
 
 }
 

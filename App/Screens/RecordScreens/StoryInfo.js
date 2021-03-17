@@ -131,18 +131,19 @@ export default function StoryInfo({route, params}) {
 
                                 <TouchableOpacity onPress={pickImage}  style={{display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center'}}>
                                     <SvgUploadImageIcon
-                                        width={"50"}
-                                        height={"35"} />
-                                    <Text style={{marginTop: '10%'}}>
+                                        width={"75"}
+                                        height={"50"} />
+                                    <Text style={{marginTop:'2%'}}>
                                         Upload
                                     </Text>
                                 </TouchableOpacity>
-
+                               
                                 <TouchableOpacity onPress={uploadFromCamera} style={{display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center'}}>
                                     <SvgTakePhotoIcon
-                                        width={"50"}  height={"45"} 
+                                        width={"75"}  
+                                    
                                     />
-                                    <Text >
+                                    <Text style={{marginTop:'-8%'}}>
                                         Take Photo
                                     </Text>
                                 </TouchableOpacity>
@@ -211,20 +212,20 @@ const styles = StyleSheet.create({
         borderWidth: 3,
         borderColor: '#F1B600',
         borderRadius: 10,
-        marginTop: "-35%"
+        marginTop: "-29%"
     },
 
     photoBubble: {
-        width: 200,
-        height: 200,
+        width: 250,
+        height: 250,
         borderRadius: 200,
         // width: '50%',
         // paddingBottom: '50%',
         // borderRadius: 100,
         borderWidth: 3,
         borderColor: '#F1B600',
-        flexDirection: 'row',
-        justifyContent: 'space-evenly',
+        flexDirection: 'column',
+        justifyContent: 'center',
         alignItems: 'center',
         paddingHorizontal: 5,
         backgroundColor: 'white',
@@ -236,8 +237,8 @@ const styles = StyleSheet.create({
     tagDropDrown: {
         height: 100,
         width: '80%',
-        marginTop: '-60%',
-        marginBottom: '-30%',
+        marginTop: '-50%',
+        marginBottom: '-20%',
        
     },
     tagsContainer: {

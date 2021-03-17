@@ -27,7 +27,6 @@ export default function RecordComponent () {
             fontFamily: 'Montserrat-Bold'
 
           },
-          
           headerStyle: {
             backgroundColor: 'grey',
             height: 75
@@ -55,7 +54,6 @@ export default function RecordComponent () {
             fontFamily: "Montserrat-Bold",
 
           },
-          
           headerStyle: {
             // backgroundColor: 'grey',
             height: 75

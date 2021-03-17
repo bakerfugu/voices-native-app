@@ -55,6 +55,7 @@ const styles = StyleSheet.create({
         justifyContent: 'flex-start',
         alignItems: 'center',
         // backgroundColor: 'grey'
+
     },
     background: {
         width: '70%',

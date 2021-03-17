@@ -21,19 +21,16 @@ import { useHeaderHeight } from '@react-navigation/stack'
 
 
 // export default function StoryInfo ({route}) {
-export default function StoryInfo() {
+export default function StoryInfo({route, params}) {
     const KEYBOARD_VERTICAL_OFFSET = 75 + StatusBar.currentHeight;
 
     const [title, setTitle] = useState('');
-    const [location, setLocation] = useState();
 
+    const {length} = route.params;
     const [valueMS, setValueMS] = useState([]);
     const onChangeMS = (value) => {
         setValueMS(value);
     };
-
-    
-
 
     const [image, setImage] = useState(null);
 
@@ -42,8 +39,8 @@ export default function StoryInfo() {
         if (status !== 'granted') {
           alert('Sorry, we need camera roll or camera permissions to make this work!');
         }
-      }
-      const pickImage = async () => {
+    }
+    const pickImage = async () => {
         await getPermissionAsync(Permissions.CAMERA_ROLL);
         let result = await ImagePicker.launchImageLibraryAsync({
             mediaTypes: ImagePicker.MediaTypeOptions.All,
@@ -54,9 +51,9 @@ export default function StoryInfo() {
         if (!result.cancelled) {
           setImage(result.uri)
         }
-      }
+    }
 
-      const uploadFromCamera = async () => {
+    const uploadFromCamera = async () => {
         await getPermissionAsync(Permissions.CAMERA);
         let result = await ImagePicker.launchCameraAsync({
             mediaTypes: ImagePicker.MediaTypeOptions.All,
@@ -67,14 +64,7 @@ export default function StoryInfo() {
         if (!result.cancelled) {
             setImage(result.uri)
         }
-      }
-
-      
-        
-        
-        
-
-
+    }
 
     const data = [
         {
@@ -183,7 +173,7 @@ export default function StoryInfo() {
             <LongButton style={styles.postbutton} onPress={() => { navigation.navigate('Confirmation', {uri: uri}) }} disabled={!title || !uri || !location || !valueMS} label={'Post'}/> */}
             <View style={{ flex: 1,flexDirection: 'column', width: '100%', alignItems: 'center', }}>
                 <View style={styles.postButton}>              
-                    <LongButton onPress={() => { navigation.navigate('Confirmation', {image: image}) }} disabled={!title || !image || !valueMS} label={'Choose Location'}/>
+                    <LongButton onPress={() => { navigation.navigate('Confirmation', {image: image, title: title, tags: valueMS, length: length}) }} disabled={!title || !image || !valueMS} label={'Choose Location'}/>
                 </View>
                 
             </View>

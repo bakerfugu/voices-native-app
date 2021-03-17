@@ -8,8 +8,6 @@ export default function FloatingStoryMapMarker ({imageSource, recordStory}) {
     const navigation = useNavigation();
 
     return (
-        
-        
             <View style={styles.orb}>
                 <YellowBlurOrb 
                     style={styles.innerOrb}
@@ -21,10 +19,8 @@ export default function FloatingStoryMapMarker ({imageSource, recordStory}) {
                     <Image source={{uri: imageSource}} resizeMode='cover' style={styles.storyImage}/> :
                     <Image source={imageSource} resizeMode='cover' style={styles.storyImage}/>
                     }
-                    
                 </View>
             </View>
-        
     )
 }
 

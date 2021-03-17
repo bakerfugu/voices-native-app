@@ -1,17 +1,29 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { NavigationContainer } from '@react-navigation/native'
 import { createStackNavigator } from '@react-navigation/stack'
 import PlaylistHome from '../Screens/PlaylistScreens/PlaylistHome.js'
 import PlaylistListView from '../Screens/PlaylistScreens/PlaylistListView.js'
 import PlaylistMapView from '../Screens/PlaylistScreens/Playlist-MapView'
-import { View, TouchableOpacity, Image, StyleSheet } from 'react-native'
+import { View, TouchableOpacity, Image, StyleSheet,  } from 'react-native'
 import { Images } from '../Themes'
 import { useNavigation } from '@react-navigation/native'
-import Profile from '../Screens/ExploreScreens/Profile.js'
+import UserProfile from '../Screens/PlaylistScreens/UserProfile.js'
+import AsyncStorage from '@react-native-async-storage/async-storage'
+import { Ionicons } from '@expo/vector-icons';
 
 
 const PlaylistNav = createStackNavigator();
 export default function PlaylistComponent () {
+
+  const [image, setImage] = useState("");
+  const getProfile = async () => {
+    const value = await AsyncStorage.getItem('profile');
+
+  }
+  useEffect(() => {
+    getProfile();
+  }, [])
+
   const navigation = useNavigation();
   return (
     <PlaylistNav.Navigator headerMode='float'>
@@ -36,11 +48,20 @@ export default function PlaylistComponent () {
             paddingLeft: 10
           },
           headerRight:  () => (
-              <TouchableOpacity style={styles.profImageView} onPress={() => navigation.navigate('Profile')}>
-                <Image source={Images.profPlaceholder} resizeMode='contain' style={styles.profImage}/>
-              </TouchableOpacity>
-                  
+            image ? 
+            <TouchableOpacity style={styles.profImageView} onPress={() => navigation.navigate("User Profile")}>
+              <Image 
+                source={image} 
+                resizeMode='contain' 
+                style={styles.profImage}
+              />
+          </TouchableOpacity>
+          : 
+          <Ionicons name="person-circle" size={48} color="black" onPress={() => navigation.navigate('User Profile')} />
           ),
+              
+                  
+        
           headerRightContainerStyle: {
             paddingRight: 20
           }  
@@ -56,6 +77,14 @@ export default function PlaylistComponent () {
           }}  
       />
       <PlaylistNav.Screen name={'PlaylistMapView'} component={PlaylistMapView}  
+        options={{
+          headerTransparent:true,
+          headerBackTitleVisible: false,
+          headerShown: false,
+         
+          }}  
+      />
+      <PlaylistNav.Screen name={'User Profile'} component={UserProfile}  
         options={{
           headerTransparent:true,
           headerBackTitleVisible: false,

@@ -45,37 +45,7 @@ tabBarOptions={{
 const TabNav = createBottomTabNavigator();
 export default function AppNavigation() {
 
-  const [bioFilledOut, setBioFilledOut] = useState(false);
-  useEffect(() => {
-    
-    async function bio() {
-      try {
-        
-        const user = firebase.auth().currentUser;
-        var userDocRef = firestore.doc('users/' + user.uid);
-        
-        let doc = await userDocRef.get();
-        if(doc.exists) {
-          
-          if (doc.data().bio) {
-            
-            setBioFilledOut(true);          
-          }
-        }
   
-      } catch (err) {
-        console.log(err);
-      }
-    }
-    bio();
-    
-  }, []);
-
-  if (!bioFilledOut) {
-    return (
-      <ProfileInfo updateState={setBioFilledOut}/>
-    )
-  }
   return (
       <NavigationContainer>
       <TabNav.Navigator

@@ -1,5 +1,5 @@
 import React, {useState, useEffect, Fragment} from 'react';
-import {SafeAreaView} from 'react-native'
+import { Platform, SafeAreaView, View } from 'react-native'
 import AppNavigation from './App/Navigation/AppNavigation';
 import LoginScreen from './App/Screens/LoginScreen';
 import firebase from 'firebase';
@@ -20,7 +20,7 @@ export default function App() {
   });
 
     const [loggedIn, setLoggedIn] = useState(false);
-    const [bioFilledIn, setBioFilledIn] = useState(false);
+ 
   
     // Check out this link to learn more about firebase.auth()
     // https://firebase.google.com/docs/reference/node/firebase.auth.Auth
@@ -43,7 +43,7 @@ export default function App() {
   }
   
     if (loggedIn) {
-      return (
+      return ( Platform.OS === 'ios' ?
         <Fragment>
           <ModalPortal />
           <SafeAreaView style={{flex:0, backgroundColor: '#FDF0AF'}}/>
@@ -52,18 +52,28 @@ export default function App() {
             <AppNavigation />
           </SafeAreaView>
         </Fragment>
-        
-        
+        :
+        <Fragment>
+          <View style={{flex:0, backgroundColor: '#FDF0AF'}}/>
+
+          <View style={{flex:1}}>
+            <AppNavigation />
+          </View>
+        </Fragment>
       );
-      
     } 
     
     else {
         return (
-        <SafeAreaView style={{flex:0, backgroundColor: '#FDF0AF'}}>
+        <Fragment>
+
+        
+        <SafeAreaView style={{flex:0, backgroundColor: '#FDF0AF'}}/>
+        <SafeAreaView style={{flex:1}}> 
           <LoginScreen updateStatus={(val) => setLoggedIn(val)} setBioInfo={(val) => setBioInfoFilled(val)}/>
         
         </SafeAreaView>
+        </Fragment>
        );
     }
 

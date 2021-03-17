@@ -6,7 +6,6 @@ import { useNavigation } from '@react-navigation/native'
 import { ScrollView } from 'react-native-gesture-handler';
 
 
-
 export default function StoryLocationComponent ({locationIndex}) {
     // console.log("this is props ", location);
     // console.log("this is props.location ", location.title);

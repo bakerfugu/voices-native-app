@@ -15,7 +15,7 @@ export default function Profile () {
         location: 'Los Angeles',
         storyCt: 2,
         playlistCt: 4, 
-        bioText: "I am a 22-year-old Los Angeles native. I am an art history buff, food lover, and a collegiate athlete. Listen to my story about fantastic days spent at the Getty Center :)"
+        bioText: "fakebio"
     };
     const navigation = useNavigation();
 

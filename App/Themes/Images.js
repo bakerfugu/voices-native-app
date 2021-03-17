@@ -61,6 +61,11 @@ const images = {
   utahToBelize: require('../Images/from-utah-to-belize.png'),
   newYorkPlaylist: require('../Images/new-york-playlist.png'),
 
+
+  //profiles 
+  taylor : require('../Images/tay.png'),
+  janice : require('../Images/janice.png'),
+
 }
 
 export default images

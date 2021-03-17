@@ -122,25 +122,11 @@ export default function EditStory () {
             <View style={styles.content}>
             <View style={styles.timesColumn}>
 
-                    <Text style={{fontSize: 18, color: 'grey', textAlign: 'center'}}>Trimmed Time</Text>
+                    <Text style={{fontSize: 18, color: 'grey', textAlign: 'center'}}>Length</Text>
                     <Text style={{fontSize: 22, color: 'black', textAlign: 'center'}}>{rightHandlePos > leftHandlePos ? trimmedTime() : '00 : 00'}</Text>
 
                 </View>
            
-            <View style={styles.times}>
-                <View style={styles.timesColumn}>
-
-                    <Text style={{fontSize: 18, color: 'grey', textAlign: 'center'}}>Start Time</Text>
-                    <Text style={{fontSize: 22, color: 'black', textAlign: 'center'}}>{calculateTimes(leftHandlePos)}</Text>
-
-                </View>
-                <View style={styles.timesColumn}>
-
-                    <Text style={{fontSize: 18, color: 'grey', textAlign: 'center'}}>End Time</Text>
-                    <Text style={{fontSize: 22, color: 'black', textAlign: 'center'}}>{calculateTimes(rightHandlePos)}</Text>
-
-                </View>
-            </View>
             <View style={{marginBottom: 20}}>
             <Trimmer
                 onHandleChange={onHandleChange}
@@ -159,6 +145,20 @@ export default function EditStory () {
             />
 
             </View>
+            <View style={styles.times}>
+                <View style={styles.timesColumn}>
+
+                    <Text style={{fontSize: 16, color: 'grey', textAlign: 'left'}}>Start</Text>
+                    <Text style={{fontSize: 18, color: 'black', textAlign: 'left'}}>{calculateTimes(leftHandlePos)}</Text>
+
+                </View>
+                <View style={styles.timesColumn}>
+
+                    <Text style={{fontSize: 16, color: 'grey', textAlign: 'left'}}>End</Text>
+                    <Text style={{fontSize: 18, color: 'black', textAlign: 'center'}}>{calculateTimes(rightHandlePos)}</Text>
+
+                </View>
+            </View>
             
             {/* <SvgPlayButtonIcon
                 width={"80"}
@@ -174,7 +174,7 @@ export default function EditStory () {
                 <LongButton 
                 onPress={() => {navigation.navigate('StoryInfo')}} 
                 disabled={rightHandlePos<=leftHandlePos} 
-                label={'Story Info'}/>
+                label={'Next'}/>
                 
                 
             </View>
@@ -203,17 +203,18 @@ const styles = StyleSheet.create({
     times: {
         flexDirection: 'row',
         justifyContent: 'space-around',
-        width: '80%'
+        width: '140%'
     },
     timesColumn: {
         flexDirection: 'column',
-        marginBottom: 30
+       
 
     },
     buttonView: {
         flex: 1,
-        width: '65%',
-        justifyContent: 'flex-end'
+        width: '50%',
+        justifyContent: 'flex-end',
+        marginBottom: '15%'
     },
     content: {
       flex: 8,

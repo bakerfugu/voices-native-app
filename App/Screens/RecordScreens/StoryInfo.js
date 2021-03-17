@@ -139,22 +139,22 @@ export default function StoryInfo() {
                         !image ?
                             <View style={styles.photoBubble}>
 
-                                <TouchableOpacity onPress={pickImage}>
+                                <TouchableOpacity onPress={pickImage}  style={{display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center'}}>
                                     <SvgUploadImageIcon
-                                        width={"70"}
-                                        height={"55"} />
-                                    <Text style={{ marginTop: "5%", marginLeft: "13%" }}>
+                                        width={"50"}
+                                        height={"35"} />
+                                    <Text style={{marginTop: '10%'}}>
                                         Upload
                                     </Text>
                                 </TouchableOpacity>
 
-                                <TouchableOpacity onPress={uploadFromCamera}>
+                                <TouchableOpacity onPress={uploadFromCamera} style={{display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center'}}>
                                     <SvgTakePhotoIcon
-                                        width={"70"} style={{ marginTop: "-35%" }}
+                                        width={"50"}  height={"45"} 
                                     />
-                                    <Text style={{ marginTop: "-20%" }}>
+                                    <Text >
                                         Take Photo
-                            </Text>
+                                    </Text>
                                 </TouchableOpacity>
 
                             </View>
@@ -181,9 +181,9 @@ export default function StoryInfo() {
             </TouchableWithoutFeedback>
 {/* 
             <LongButton style={styles.postbutton} onPress={() => { navigation.navigate('Confirmation', {uri: uri}) }} disabled={!title || !uri || !location || !valueMS} label={'Post'}/> */}
-            <View style={{ flex: 1,flexDirection: 'column', justifyContent: 'flex-end', width: '100%', alignItems: 'center', backgroundColor: '' }}>
+            <View style={{ flex: 1,flexDirection: 'column', width: '100%', alignItems: 'center', }}>
                 <View style={styles.postButton}>              
-                    <LongButton onPress={() => { navigation.navigate('Confirmation', {image: image}) }} disabled={!title || !image || !location || !valueMS} label={'Post'}/>
+                    <LongButton onPress={() => { navigation.navigate('Confirmation', {image: image}) }} disabled={!title || !image || !valueMS} label={'Choose Location'}/>
                 </View>
                 
             </View>
@@ -203,7 +203,7 @@ const styles = StyleSheet.create({
     form: {
         // alignSelf: 'stretch',
         // alignItems: 'center'
-        flex: 5,
+        flex: 8,
         flexDirection: 'column',
         justifyContent: 'space-around',
         alignItems: 'center',
@@ -221,13 +221,13 @@ const styles = StyleSheet.create({
         borderWidth: 3,
         borderColor: '#F1B600',
         borderRadius: 10,
-        margin: '10%',
+        marginTop: "-35%"
     },
 
     photoBubble: {
-        width: 250,
-        height: 250,
-        borderRadius: 250,
+        width: 200,
+        height: 200,
+        borderRadius: 200,
         // width: '50%',
         // paddingBottom: '50%',
         // borderRadius: 100,
@@ -238,15 +238,17 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         paddingHorizontal: 5,
         backgroundColor: 'white',
-        margin: '10%',
+        marginTop: "-30%",
+        
         //marginBottom: "20%"
 
     },
     tagDropDrown: {
         height: 100,
         width: '80%',
-        //marginBottom: 20,
-        margin: '10%'
+        marginTop: '-60%',
+        marginBottom: '-30%',
+       
     },
     tagsContainer: {
         backgroundColor: 'white',
@@ -263,7 +265,11 @@ const styles = StyleSheet.create({
     },
     postButton: {
         flex: 1,
-        width: '40%',
+        width: '50%',
+        flexDirection: 'row',
+        justifyContent:'center',
+        alignItems: 'flex-end',
+        marginBottom: '22%',
         // flexDirection: 'row',
         // justifyContent: 'center',
         // alignItems: 'flex-end',

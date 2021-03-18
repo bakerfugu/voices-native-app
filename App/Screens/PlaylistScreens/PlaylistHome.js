@@ -61,7 +61,7 @@ const styles = StyleSheet.create({
     grid: {
         marginBottom: 32,
         marginTop: 10,
-        alignItems: 'center',
+        alignItems: 'flex-start',
     },
 
     photoContainer: {

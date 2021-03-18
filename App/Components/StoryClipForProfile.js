@@ -73,7 +73,7 @@ const addToPlaylist = () => {
             <View style={styles.buttons}>
 
                 <View style={{flexDirection: 'row', justifyContent: 'flex-start', alignItems: 'center'}}>
-                <Ionicons name={'play-circle'} color={'#1ddbb5'} size={48} style={{alignSelf: 'center'}} onPress={() => navigation.navigate('StoryListen', {title: story.title, author: story.author, length: story.length, location: story.location, image: story.image, transcript: story.transcript})}/>
+                <Ionicons name={'play-circle'} color={'#1ddbb5'} size={48} style={{alignSelf: 'center'}} onPress={() => navigation.navigate('StoryListen', {storyObject: story, location: "Your Stories"})}/>
                 <Text style={{fontFamily: "Montserrat", fontSize: 14, }}> {story.length} min · {story.date}</Text>
                 </View>
                     

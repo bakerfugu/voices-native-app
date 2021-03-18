@@ -9,7 +9,8 @@ import storyPlaylists from '../../Components/StoryPlaylists';
 import Playlist from '../../Components/Playlist';
 import * as ImagePicker from 'expo-image-picker';
 import * as Permissions from 'expo-permissions';
-
+import StoryClipForProfile from '../../Components/StoryClipForProfile'
+import { getPlaylists } from '../../Components/StoryPlaylists'
 export default function userProfile () {
     // let data = {
     //     handle: '@taylorl',
@@ -20,15 +21,20 @@ export default function userProfile () {
     // };
 
 const [profile, setProfile] = useState("");
+const [userStories, setUserStories] = useState('')
 const [bio, setBio] = useState('')
+const [playlists, setPlaylists] = useState('')
 const getProfile = async () => {
 try {
     const value = await AsyncStorage.getItem('profile');
     const parsed = JSON.parse(value)
-        console.log("Hello", parsed);
-    parsed.stories = ""
-    parsed.playlists = ""
-        setProfile(parsed)
+    setProfile(parsed);
+    const storiesString = await AsyncStorage.getItem('userStories')
+    const stories = storiesString ? JSON.parse(storiesString) : [];
+    setUserStories(stories)
+    const gotPlaylists = await getPlaylists();
+    setPlaylists(gotPlaylists);
+    console.log("These are your playlists", playlists)
     
 }
 catch (e) {
@@ -68,6 +74,20 @@ catch (e) {
       await AsyncStorage.setItem('profile', updated);
   }
 
+    let storyList;
+    if (userStories) {
+    console.log('here are my user stories',userStories)
+    storyList = userStories.map((story) => 
+  
+        <StoryClipForProfile
+            story={story}
+            // setModalVisibility={setModalVisibility}
+            // openSharing={openSharing}
+            // setClicked={setClicked}
+        />
+    );
+  }
+
   
     const navigation = useNavigation();
 
@@ -88,7 +108,7 @@ catch (e) {
                 />
                 </View>
                 : 
-                <Ionicons name="ios-person-add" size={100} color="black" onPress={console.log('add photo')} />}
+                <Ionicons name="ios-person-add" size={100} color="black" />}
             </TouchableOpacity>
 
             <View style={styles.infoContainer}>
@@ -102,22 +122,29 @@ catch (e) {
 
                 <View style={styles.metaData}>
                     <Text>
-                        <Text style={styles.number}>{profile.stories ? profile.stories.length : 0}</Text> Stories Told
+                        <Text style={styles.number}>{userStories ? userStories.length : 0}</Text> Stories Told
                     </Text>
                     <Image source={Images.dot} style={styles.dot} />
                     <Text>
                     <Text style={styles.number}>{profile.playlists ? profile.playlists.length : 0}</Text> Playlists 
                     </Text>
                 </View>
-           
-                <TextInput
-                    multiline={true}
-                    fontSize={18}
-                    style={styles.bioContainer}
-                    placeholder="Enter your bio here" 
-                    onChangeText={(text) => setBio(text)}
-                    onSubmitEditing={(text) => updateProfile(text)}
-                />
+                    
+                {profile.bio ? 
+                    <TouchableOpacity style={styles.bioContainer} >
+                        <Text style={{fontFamily: "Montserrat", fontSize:18}}>{profile.bio}</Text>
+                    </TouchableOpacity>
+                    :
+                    <TextInput
+                        multiline={true}
+                        fontSize={18}
+                        style={styles.bioContainer}
+                        placeholder="Enter your bio here" 
+                        onChangeText={(text) => setBio(text)}
+                        onSubmitEditing={(text) => updateProfile(text)}
+                    />
+                }
+                
               
             </View>
             
@@ -125,7 +152,12 @@ catch (e) {
             <View style={{width: '100%' ,flexDirection: 'center'}}>
                 <Text id="stories" style={styles.s_header}>Your Stories</Text>
                 <View style={{justifyContent:'center', alignItems: 'center', flex: 1}}>
-                    {profile.stories ? <View><Text>{}</Text></View> :
+                    {userStories ? 
+                    
+                    <View style={{justifyContent:'center', alignItems: 'center', flex: 1, marginTop: '5%', width: '100%'}}>
+                        {storyList}
+                    </View>
+                    :
                     
                     <View style={{width: '90%', padding: '8%', borderColor: '#FCC201', borderWidth: 2, borderRadius: 15, marginTop: '5%'}}>
                         <Text style={{fontFamily: 'Montserrat', fontSize: 16}}>You have not posted any stories yet!</Text>
@@ -136,6 +168,8 @@ catch (e) {
             </View>
             <View style={{width: '100%' ,flexDirection: 'center', alignItems: 'center'}}>
                 <Text style={styles.p_header}>Playlists</Text>
+
+                {playlists && 
                 <FlatList 
                 scrollEnabled={false}
                 contentContainerStyle={styles.grid}
@@ -149,7 +183,7 @@ catch (e) {
                     return <Playlist key={playlist.item.title} value={playlist.item} onPress={() => navigation.navigate('PlaylistListView', {playlist: playlist.item})}/>
                     }
                 }
-                />
+                />}
                 
             </View>
 
@@ -228,10 +262,13 @@ const styles = StyleSheet.create({
         borderWidth: 1,
         borderRadius: 15,
         borderColor: '#F1B600',
-        alignItems: 'center',
+        alignItems: 'flex-start',
         width: '90%',
         height: 'auto',
-        padding: '3%'
+        padding: '3%',
+        textAlignVertical: 'bottom',
+        fontFamily: 'Montserrat',
+        
     },
     s_header: {
         fontWeight: 'bold',

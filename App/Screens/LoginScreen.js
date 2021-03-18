@@ -1,11 +1,14 @@
 import React, { useState } from 'react';
-import { StyleSheet, Text, View, TextInput, Button, Image, TouchableOpacity,Keyboard } from 'react-native';
+import { StyleSheet, Text, View, Button, Image, TextInput, TouchableOpacity, Alert, Keyboard } from 'react-native';
 import firestore from '../../firebase';
 import firebase from 'firebase';
 import BackgroundGradient from '../Components/BackgroundGradient';
 import {Images} from '../Themes';
 import { TouchableWithoutFeedback } from 'react-native-gesture-handler';
-import AsyncStorage from '@react-native-async-storage/async-storage'
+import AsyncStorage from '@react-native-async-storage/async-storage';
+
+
+
 
 export default function LoginScreen(props) {
 
@@ -62,10 +65,34 @@ export default function LoginScreen(props) {
     } catch (err) {
       if (err.code === 'auth/email-already-in-use') {
         console.log('That email address is already in use!');
+        Alert.alert(
+          "You're signed up already!",
+          "This Email is already in use.",
+          [
+            {
+              text: "Cancel",
+              onPress: () => console.log("Cancel Pressed"),
+              style: "cancel"
+            },
+            { text: "OK", onPress: () => console.log("OK Pressed") }
+          ]
+        );
       }
   
       if (err.code === 'auth/invalid-email') {
         console.log('That email address is invalid!');
+        Alert.alert(
+          "Username or Password is incorrect!",
+          "Please try again.",
+          [
+            {
+              text: "Cancel",
+              onPress: () => console.log("Cancel Pressed"),
+              style: "cancel"
+            },
+            { text: "OK", onPress: () => console.log("OK Pressed") }
+          ]
+        );
       }
       console.log(err);
     }
@@ -84,6 +111,18 @@ export default function LoginScreen(props) {
       console.log('reached');
     } catch (err) {
       console.log(err);
+      Alert.alert(
+        "Invalid email or password!",
+        "Please try again.",
+        [
+          {
+            text: "Cancel",
+            onPress: () => console.log("Cancel Pressed"),
+            style: "cancel"
+          },
+          { text: "OK", onPress: () => console.log("OK Pressed") }
+        ]
+      );
     }
   }
 
@@ -101,6 +140,7 @@ export default function LoginScreen(props) {
             <TextInput
               style={styles.input}
               value={username}
+              label="Username"
               secureTextEntry={false}
               autoCapitalize={"none"}
               onChangeText={(text) => setUsername(text)}
@@ -151,7 +191,7 @@ export default function LoginScreen(props) {
 
       :
       <View>
-      <Text style={{fontSize: 25, fontFamily: "Montserrat", paddingBottom: '3%', alignSelf: 'center'}}>Sign In</Text>       
+      <Text style={{fontSize: 25, fontFamily: "Montserrat", paddingBottom: '3%', paddingTop: '14%', alignSelf: 'center'}}>Sign In</Text>       
       <TextInput
         style={[styles.input, ]}
         value={loginEmail}
@@ -174,6 +214,7 @@ export default function LoginScreen(props) {
           }
         }}
         placeholder="Password" 
+      
       /> 
       {/* <Button
         title='Login'
@@ -182,7 +223,7 @@ export default function LoginScreen(props) {
         style={styles.button}
 
       />  */}
-      <TouchableOpacity style={styles.button} onPress={() => login()}>
+      <TouchableOpacity  disabled={loginPassword.length <= 0 || !loginEmail.includes("@")}  style={loginPassword.length <= 0 || !loginEmail.includes("@") ? styles.disabledButton : styles.button} onPress={() => login()}>
         <Text style={{fontSize:20, fontWeight:'bold', color:'white'}}>LOG IN</Text>
       </TouchableOpacity>
       <TouchableOpacity onPress={() => setExisting(false)}>

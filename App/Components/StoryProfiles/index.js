@@ -81,6 +81,13 @@ const storyProfiles = {
     location: "San Francisco",
     image: Images.janice,
     bio: "",
+  },
+  maria_alfaro: {
+    author: "maria_alfaro",
+    stories: findStoriesOfAuthor("maria_alfaro"),
+    location: "Barcelona",
+    image: Images.maria,
+    bio: "",
   }
 };
 

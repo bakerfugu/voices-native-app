@@ -74,6 +74,7 @@ const images = {
   baker : require('../Images/baker.png'),
   krishnan : require('../Images/krishnan.png'),
   ayelet : require('../Images/ayelet.png'),
+  maria : require('../Images/maria.png'),
 
 }
 

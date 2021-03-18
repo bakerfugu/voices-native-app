@@ -23,6 +23,7 @@ const images = {
     laSagradaGaudi: require('../Images/gaudi.png'),
     laSagradaHistory: require('../Images/sagrada-history.png'),
     laSagrada99Pct: require('../Images/sagrada99pct.png'),
+    laSagradaMagnumOpus: require('../Images/la-sagrada-magnum-opus.png'),
     //Camp Nou
     campNou: require('../Images/camp-nou.png'),
     //teleferic
@@ -48,6 +49,7 @@ const images = {
     B2BMarathon: require('../Images/bay_to_breakers.png'),
     //crossroads
     sfCrossroads: require('../Images/crossroads.png'),
+    crossroadsChildhood: require('../Images/crossroads_childhood.png'),
 
   //Audio Images + Icons
   record : require('../Images/record-button.png'),

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Text, View, ScrollView, StyleSheet, Image, TouchableOpacity } from 'react-native';
+import { Text, View, ScrollView, StyleSheet, Image, TouchableOpacity, Dimensions } from 'react-native';
 import {Ionicons, MaterialIcons} from '@expo/vector-icons';
 import { useFonts } from 'expo-font';
 // import { ScrollView } from 'react-native-gesture-handler';
@@ -12,7 +12,8 @@ import { useNavigation } from '@react-navigation/native' ;
 export default function StoryClip({storyObject, setModalVisibility, location, openSharing}) {
   const { title, author, date, length, tags, image, transcript } = storyObject;
   console.log('Current displaying', storyObject)
-  const navigation = useNavigation();
+  // const navigation = useNavigation();
+  //let percentage = {width/100} + "%";
   //<Photo key={photo._id} value={photo} newComment={this.setNewComment} user={this.state.user} class="standard"/>
   // let all_tags = props.value.tags; 
   

@@ -8,6 +8,7 @@ import storyLocations from '../../Components/StoryLocations';
 import DropDownPicker from 'react-native-dropdown-picker';
 import { Images } from '../../Themes';
 import { MaterialIcons } from '@expo/vector-icons'
+import FloatingLocMarker from '../../Components/floatingLocMarker'
 
 // import { getPlaylists, getPlaylistWithUserStories } from '../../Components/StoryPlaylists'
 
@@ -143,6 +144,8 @@ export default function MainMap() {
                         title="You are here!"
                         
                     > 
+                    <FloatingLocMarker/>
+                    
                                     
                     </Marker>
 

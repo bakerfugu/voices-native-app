@@ -2,7 +2,7 @@ import {Images} from '../../Themes';
 import { Audio } from '../../Themes';
 export const barcelonaRazzmatazz = [
     {
-      id: "1",
+      locationIndex: 5,
       title: "Late Nights + Loud Music",
       length: 1, 
       date: "Sep 2019", 

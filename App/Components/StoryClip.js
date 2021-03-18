@@ -57,10 +57,17 @@ export default function StoryClip({storyObject, setModalVisibility, location, op
                   </Text>
             </View>
 
-
+            <View style={{display: 'flex', flexDirection: 'row'}}>
             <TouchableOpacity style={{marginBottom: '3%'}} onPress={() => navigation.navigate("Profile", {author: author})}>
-                <Text style={{fontFamily: "Montserrat", fontSize: 16}}>{author} | {date}</Text>
+                <Text style={{fontFamily: "Montserrat", fontSize: 16}}>{author} </Text>
             </TouchableOpacity>
+            <Text style={{fontFamily: "Montserrat", fontSize: 16, marginTop: '0%'}}>
+              | {date}
+            </Text>
+
+            </View>
+
+
             <View style={{flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', marginBottom: '3%'}}>
             <ScrollView horizontal={true} style={styles.tagRow}>
                 {tagList}
@@ -79,7 +86,7 @@ export default function StoryClip({storyObject, setModalVisibility, location, op
             <View style={styles.buttons}>
             
               <Ionicons name={'play-circle'} color={'#1ddbb5'} size={48} style={{alignSelf: 'center'}} onPress={() => navigation.navigate('StoryListen', { storyObject, location })}/>
-              <Text style={{fontFamily: "Montserrat", fontSize: 14, marginLeft: '-10%'}}> {length} min · {date}</Text>
+              <Text style={{fontFamily: "Montserrat", fontSize: 14, marginLeft: '-35%'}}> {length} min</Text>
         
               <View style={styles.sharingIconsRow}>
                  <Ionicons name={"md-share-outline"} size={30} color={'black'} style={styles.icon} onPress={() => openSharing(true)}/>

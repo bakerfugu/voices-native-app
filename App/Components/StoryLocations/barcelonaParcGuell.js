@@ -4,6 +4,7 @@ export const barcelonaParcGuell = [
     {
       title: "About Parc Güell",
       location: "Parc Güell",
+      locationIndex: 4,
       length: 1, 
       date: "Feb 2021", 
       tags: ["History", "Art", "Architecture"],

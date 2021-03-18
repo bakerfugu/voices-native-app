@@ -2,7 +2,7 @@ import {Images} from '../../Themes';
 import { Audio } from '../../Themes';
 export const sfHippieHillStories = [
     {
-      id: "1",
+      locationIndex: 7,
       title: "Swing with a View",
       location: "Hippie Hill",
       length: 22, 
@@ -14,7 +14,7 @@ export const sfHippieHillStories = [
       transcript: `One of my favorite memories of San Francisco was at Hippie Hill, which has a bunch of swings that overlook San Francisco. You can see the entire bay. You have to go across the golden gate bridge to be able to access it and it is a 1 mile hike up. But once you get there, there are three or four different swings you can swing on. You can take so many different photos. There’s also a really cool tree you can climb up to get an even better view of the San Francisco Bay. `,
     },
     {
-      id: "2",
+      locationIndex: 7,
       title: "Culture of Hippie Hill",
       location: "Hippie Hill",
       length: 9, 
@@ -26,7 +26,7 @@ export const sfHippieHillStories = [
       image: Images.hippieHillCulture
     },
     {
-      id: "3",
+      locationIndex: 7,
       title: "History of Hippie Hill",
       location: "Hippie Hill",
       length: 28, 

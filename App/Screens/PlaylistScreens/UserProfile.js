@@ -116,7 +116,7 @@ catch (e) {
                     {profile.handle}
                 </Text>
                 <Text style={styles.location}>
-                    San Francisco
+                    {profile.location}
                 </Text>
 
 

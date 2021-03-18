@@ -1,11 +1,13 @@
 import { NavigationContainer } from '@react-navigation/native';
 import React, { useState, useEffect, useRef } from 'react';
-import { StyleSheet, View, Dimensions, Button, Text } from 'react-native';
+import { StyleSheet, View, Dimensions, Image, Text } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import MapView, { Marker } from 'react-native-maps';
 import FloatingStoryMapMarker from '../../Components/floatingStoryMapMarker'
 import storyLocations from '../../Components/StoryLocations';
 import DropDownPicker from 'react-native-dropdown-picker';
+import { Images } from '../../Themes';
+import { MaterialIcons } from '@expo/vector-icons'
 
 // import { getPlaylists, getPlaylistWithUserStories } from '../../Components/StoryPlaylists'
 
@@ -33,19 +35,33 @@ export default function MainMap() {
             mapRef.current.animateToRegion({
                 latitude: 41.3851,
                 longitude: 2.1734,
-                latitudeDelta: 0.015922,
-                longitudeDelta: 0.015421,
+                latitudeDelta: 0.055922,
+                longitudeDelta: 0.055421,
             }, 300)
         }
         else {
             mapRef.current.animateToRegion({
-                latitude: 37.783363,
-                longitude: -122.403908,
-                latitudeDelta: 0.03,
-                longitudeDelta: 0.03,
+                latitude: 37.77634752089827,
+                longitude: -122.44181123023144,
+                latitudeDelta: 0.05,
+                longitudeDelta: 0.05,
             }, 300)
         }
     }, [location])
+
+    const goHome = () => {
+        if (location) {
+            setLocation(null)
+        }
+        else {
+            mapRef.current.animateToRegion({
+                latitude: 37.77634752089827,
+                longitude: -122.44181123023144,
+                latitudeDelta: 0.05,
+                longitudeDelta: 0.05,
+            }, 300)
+        }
+    }
 
     // const testAsync = async () => {
     //     const foo = await getPlaylists()
@@ -97,8 +113,8 @@ export default function MainMap() {
                 mapType={"mutedStandard"}
                 showsPointsOfInterest={false}
                 initialRegion={{
-                    latitude: 37.783363,
-                    longitude: -122.403908,
+                    latitude: 37.77634752089827,
+                    longitude: -122.44181123023144,
                     latitudeDelta: 0.5,
                     longitudeDelta: 0.5,
                 }}
@@ -119,7 +135,26 @@ export default function MainMap() {
 
                 ))}
 
+                    <Marker
+                        coordinate={{
+                            latitude: 37.77634752089827, 
+                            longitude: -122.44181123023144,
+                        }}
+                        title="You are here!"
+                        
+                    > 
+                                    
+                    </Marker>
+
+
             </MapView>
+            <MaterialIcons
+                name='my-location'
+                size={48}
+                color='black'
+                style={{position: 'absolute', bottom: 10, right: 10}}
+                onPress={() => goHome()}
+            />
         </View>
     );
 }

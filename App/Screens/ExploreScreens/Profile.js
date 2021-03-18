@@ -55,7 +55,8 @@ export default function userProfile ({route, navigation}) {
         
             <ScrollView style={styles.scroll}>
             
-            <Image source={Images.profSettings} style={styles.settings} resizeMode='contain' />
+            <Ionicons name="chevron-back-outline" size={34} color="black" onPress={() => navigation.goBack()} style={styles.backButton} />
+            <Ionicons name={"md-share-outline"} size={30} color={'black'} style={styles.settings}/>
             <View style={styles.photoContainer}>
                 <View style={styles.profImageView}>
                 <Image 
@@ -137,12 +138,14 @@ export default function userProfile ({route, navigation}) {
 
 const styles = StyleSheet.create({
     settings: {
-        height: 30,
-        width: 30,
-        alignSelf: 'flex-end',
-        marginTop: '2%',
-        marginRight: '4%',
-        marginBottom: '-3%'
+        position: 'absolute',
+        top: 10,
+        right: 10
+    },
+    backButton: {
+        position: 'absolute',
+        top: 10,
+        left: 10,
     },
     photoContainer: {
         // flex: 1,
@@ -158,7 +161,8 @@ const styles = StyleSheet.create({
         borderWidth: 2,
         backgroundColor: 'white',
         marginBottom: 30, 
-        alignSelf: 'center'
+        alignSelf: 'center',
+        marginTop: '5%'
     }, 
     infoContainer: {
         flex: 1,

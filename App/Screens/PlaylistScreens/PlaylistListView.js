@@ -174,13 +174,28 @@ export default function PlaylistListView({ route, navigation }) {
                 />
             }
             
-            { modalVisibile && <PlaylistPopUp modalVisible={modalVisibile} setModalVisibility={setModalVisibility} setConfirmation={setConfirmation} createPlaylist={createPlaylist}/> }
+            { modalVisibile && 
+                <PlaylistPopUp 
+                    modalVisible={modalVisibile}
+                    setModalVisibility={setModalVisibility} 
+                    setConfirmation={setConfirmation} 
+                    createPlaylist={createPlaylist}
+                    storyObject={currStory.info} 
+                /> 
+            }
             
             { confirmationModal && <Confirmation visible={confirmationModal} setConfirmation={setConfirmation}/> }
 
             { sharingModal && <SharingModal visible={sharingModal} setVisible={openSharing} title={currStory.info.title} author={currStory.info.author}/> }
 
-            { createPlaylistModal && <CreatePlaylistModal visible={createPlaylistModal} setVisible={createPlaylist}/> }
+            { createPlaylistModal && 
+                <CreatePlaylistModal 
+                    visible={createPlaylistModal} 
+                    setVisible={createPlaylist}
+                    setConfirmation={setConfirmation} 
+                    storyObject={currStory.info} 
+                /> 
+            }
 
         </View>
 

@@ -43,7 +43,6 @@ const storyPlaylists = [
 //     image: MUST SET IMAGE ON CREATE,
 //   },
 // ]
-
 export const getPlaylists = async () => {
   try {
     const playlistsString = await AsyncStorage.getItem(`userPlaylists`);

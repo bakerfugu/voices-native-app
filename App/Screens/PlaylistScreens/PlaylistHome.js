@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { StyleSheet, Text, SafeAreaView, View, AsyncStorage, Image, TouchableOpacity, FlatList, Button } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
-import { useNavigation } from '@react-navigation/native';
+import { useNavigation, useIsFocused } from '@react-navigation/native';
 import BackgroundGradient from '../../Components/BackgroundGradient.js';
 import Playlist from '../../Components/Playlist.js';
 import { Images, Metrics } from '../../Themes';
@@ -10,6 +10,7 @@ import { getPlaylists } from '../../Components/StoryPlaylists'
 
 export default function PlaylistHome() {
     const navigation = useNavigation();
+    const isFocused = useIsFocused();
 
     const [playlists, setPlaylists] = useState(null);
 
@@ -19,8 +20,8 @@ export default function PlaylistHome() {
     }
 
     useEffect(() => {
-        retrievePlaylists();
-    }, [])
+        if (isFocused) retrievePlaylists();
+    }, [isFocused])
 
     // console.log("got playlists?", playlists)
     return (

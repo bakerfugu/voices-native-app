@@ -126,7 +126,7 @@ catch (e) {
                     </Text>
                     <Image source={Images.dot} style={styles.dot} />
                     <Text>
-                    <Text style={styles.number}>{profile.playlists ? profile.playlists.length : 0}</Text> Playlists 
+                    <Text style={styles.number}>{playlists ? playlists.length : 0}</Text> Playlists 
                     </Text>
                 </View>
                     
@@ -166,24 +166,24 @@ catch (e) {
 
                 </View>
             </View>
-            <View style={{width: '100%' ,flexDirection: 'center', alignItems: 'center'}}>
+            <View style={{width: '100%',flexDirection: 'center', alignItems: 'center'}}>
                 <Text style={styles.p_header}>Playlists</Text>
 
-                {playlists && 
-                <FlatList 
-                scrollEnabled={false}
-                contentContainerStyle={styles.grid}
-                numColumns={2} 
-                data={storyPlaylists} 
-                // scrollEnabled={true}
-                directionalLockEnabled={true}
-                keyExtractor={(playlist, index) => index}
-                renderItem={(playlist) => {
-                    // console.log("Printing playlist: ", playlist);
-                    return <Playlist key={playlist.item.title} value={playlist.item} onPress={() => navigation.navigate('PlaylistListView', {playlist: playlist.item})}/>
-                    }
-                }
-                />}
+                <FlatList
+                    contentContainerStyle={styles.grid}
+                    numColumns={2}
+                    data={playlists}
+                    // scrollEnabled={true}
+                    directionalLockEnabled={true}
+                    keyExtractor={(playlist) => playlist.title}
+                    renderItem={({item}) => (
+                        <Playlist 
+                            key={item.title} 
+                            playlist={item} 
+                            onPress={() => navigation.navigate('PlaylistListView', { storyReferencePlaylist: item })} 
+                        />
+                    )}
+                />
                 
             </View>
 

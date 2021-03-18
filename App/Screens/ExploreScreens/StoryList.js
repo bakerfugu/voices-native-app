@@ -2,7 +2,7 @@ import React, { useState, useEffect, useLayoutEffect } from 'react';
 import { StyleSheet, Text, View, Dimensions, ImageBackground, Image} from 'react-native';
 import BackgroundGradient from '../../Components/BackgroundGradient.js';
 import { Images } from '../../Themes/index.js';
-import storyLocations from '../../Components/StoryLocations';  
+import staticStoryLocations, { getAppendedUserStories } from '../../Components/StoryLocations';  
 import CircleList from 'react-native-circle-list';
 import StoryClip from '../../Components/StoryClip'
 import Header from '../../Components/Header'
@@ -17,15 +17,18 @@ import CreatePlaylistModal from '../../Components/CreatePlaylistModal.js';
 
 const {width, height} = Dimensions.get('screen');
 const RADIUS = (1.6 * width) / 2;   
+
 export default function StoryList ({route, navigation}) {
+
 
     const {locationIndex} = route.params;
 
     const[currStory, setStory] = useState({
-        info: storyLocations[locationIndex].stories[0],
+        info: staticStoryLocations[locationIndex].stories[0],
         index: 0
-
      })
+    const[storyLocation, setStoryLocation] = useState(staticStoryLocations[locationIndex]);
+    // console.log('Printing story locations', storyLocation, staticStoryLocations)
     const[modalVisibile, setModalVisibility] = useState(false);
     const[confirmationModal, setConfirmation] = useState(false);
     const[navigationModal, setNavigation] = useState(false);
@@ -35,15 +38,21 @@ export default function StoryList ({route, navigation}) {
 
     useEffect(() => {
         // console.log(currStory)
-    }, [currStory])
+    }, [currStory]);
 
-    useEffect(() => {
-        const {locationIndex} = route.params;
-        const story = storyLocations[locationIndex].stories[0]
+    const retrieveStories = async () =>{
+        const retrievedStoryLocation = await getAppendedUserStories(locationIndex);
+        console.log("This is the retrieved location", retrievedStoryLocation);
+        setStoryLocation(retrievedStoryLocation);
+        const story = retrievedStoryLocation.stories[0]
         setStory({
             info: story,
             index: 0,
         })
+    }
+
+    useEffect(() => {
+       retrieveStories()
     }, []);
     
     const data = [
@@ -101,23 +110,28 @@ export default function StoryList ({route, navigation}) {
 
     const renderItem = ({item, index}) => {
         // console.log(item);
-        let storyIndex = index % storyLocations[locationIndex].stories.length;
-            return (
-                <ImageBackground source={Images.yellowOrb} resizeMode='contain' style={{height: 80, width: 80, justifyContent: 'center', alignItems: 'center'}}>
-                    <Image source={storyLocations[locationIndex].stories[storyIndex].image ? storyLocations[locationIndex].stories[storyIndex].image : Images.parliament} resizeMode='cover' style={{height: 60, width: 60, borderRadius: 30}}/>
-                </ImageBackground>    
+        // console.log("This is the story location", storyLocation)
+        const storyIndex = index % storyLocation.stories.length;
+        const storyToDisplay = storyLocation.stories[storyIndex]
+
+        // console.log(storyToDisplay);
+        // const imageToDisplay = (typeof storyToDisplay.image) === "string" ? {uri: storyToDisplay.image} : storyToDisplay.image;
+        return (
+            <ImageBackground source={Images.yellowOrb} resizeMode='contain' style={{height: 80, width: 80, justifyContent: 'center', alignItems: 'center'}}>
+                <Image source={storyToDisplay.image} resizeMode='cover' style={{height: 60, width: 60, borderRadius: 30}}/>
+            </ImageBackground>    
         );
     }
 
     
     const nextStory = () => {  
-        console.log('next story')
+        // console.log('next story')
         const index = currStory.index;
         const new_index = (index + 1) % 12
-        let storyIndex = new_index % storyLocations[locationIndex].stories.length;
+        let storyIndex = new_index % storyLocation.stories.length;
         listRef.scrollToIndex(new_index);
         setStory({
-            info: storyLocations[locationIndex].stories[storyIndex],
+            info: storyLocation.stories[storyIndex],
             index: new_index
         });
     }
@@ -131,11 +145,11 @@ export default function StoryList ({route, navigation}) {
         else {
             new_index = index - 1;
         }
-        console.log(new_index)
-        let storyIndex = new_index % storyLocations[locationIndex].stories.length;
+        // console.log(new_index)
+        let storyIndex = new_index % storyLocation.stories.length;
         listRef.scrollToIndex(new_index);
         setStory({
-            info: storyLocations[locationIndex].stories[storyIndex],
+            info: storyLocation.stories[storyIndex],
             index: new_index
         });
         
@@ -149,8 +163,8 @@ export default function StoryList ({route, navigation}) {
         <View style ={styles.container}>
             <BackgroundGradient/>
             
-            <Header title={storyLocations[locationIndex].title} style={{fontFamily: 'Montserrat-Bold'}} page={'Story List'} playlist={null} setNavigation={setNavigation}/>
-            <Text style={{fontFamily: 'Montserrat-Light', fontSize: 18, marginTop: -10}}>{storyLocations[locationIndex].stories.length} Stories Available</Text>
+            <Header title={storyLocation.title} style={{fontFamily: 'Montserrat-Bold'}} page={'Story List'} playlist={null} setNavigation={setNavigation}/>
+            <Text style={{fontFamily: 'Montserrat-Light', fontSize: 18, marginTop: -10}}>{storyLocation.stories.length} Stories Available</Text>
             <View style={styles.flatlist}>
 
                 <View style ={styles.backgroundCircle}/>
@@ -166,9 +180,9 @@ export default function StoryList ({route, navigation}) {
                     swipeSpeedMultiplier={40}
                     containerStyle={{paddingTop: 80, marginBottom: '2%'}}
                     onScrollEnd={(item) => {
-                        let index = item % storyLocations[locationIndex].stories.length;
+                        let index = item % storyLocation.stories.length;
                         setStory({
-                            info: storyLocations[locationIndex].stories[index],
+                            info: storyLocation.stories[index],
                             index: item
                         })
                     }}
@@ -182,7 +196,7 @@ export default function StoryList ({route, navigation}) {
             </View>
             
             <StoryClip 
-                location={storyLocations[locationIndex].title}
+                location={storyLocation.title}
                 storyObject={currStory.info}
                 setModalVisibility={setModalVisibility}
                 openSharing={openSharing}

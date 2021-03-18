@@ -371,9 +371,9 @@ const styles = StyleSheet.create({
     },
     grid: {
         paddingTop: 5,
-        borderWidth: 3,
-        borderRadius: 10,
-        borderColor: '#F1B600',
+        // borderWidth: 3,
+        // borderRadius: 10,
+        // borderColor: '#F1B600',
         // marginBottom: 32,
         alignItems: 'flex-start',
     },

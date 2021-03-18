@@ -18,6 +18,8 @@ export default function PlaylistComponent () {
   const [image, setImage] = useState("");
   const getProfile = async () => {
     const value = await AsyncStorage.getItem('profile');
+    const profile = JSON.parse(value)
+    setImage(profile.image)
 
   }
   useEffect(() => {
@@ -34,7 +36,7 @@ export default function PlaylistComponent () {
           headerTintColor: 'black',
           title : 'My Playlists',
           headerTitleStyle: {
-            fontSize: 30,
+            fontSize: 26,
             fontWeight: 'bold',
             fontFamily: 'Montserrat-Bold'
 
@@ -51,7 +53,7 @@ export default function PlaylistComponent () {
             image ? 
             <TouchableOpacity style={styles.profImageView} onPress={() => navigation.navigate("User Profile")}>
               <Image 
-                source={image} 
+                source={{uri: image}} 
                 resizeMode='contain' 
                 style={styles.profImage}
               />
@@ -105,8 +107,9 @@ const styles = StyleSheet.create({
       width: 50,
       borderRadius: 25,
   },
-  profImage: {
-    height: '100%',
-    width: '100%'
+  profImage: {  
+    height: 50,
+    width: 50,
+    borderRadius: 25,
   }
 });

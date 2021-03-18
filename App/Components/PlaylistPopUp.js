@@ -122,7 +122,7 @@ const styles = StyleSheet.create({
     grid: {
         marginBottom: 32,
 
-        alignItems: 'center',
+        alignItems: 'flex-start',
 
     },
     cancel: {

@@ -9,14 +9,26 @@ const images = {
   mapDot : require('../Images/map_dot.png'),
 
   //Barcelona Story Images
+    //zona
     zona: require('../Images/zona.png'),
+    zonaWineDine: require('../Images/pic-zona-wine-dine.png'),
+    //Parc Guell
     parkGuell: require('../Images/park-guell.png'),
+    parkGuellImagination: require('../Images/pic_guell_imagination.png'),
+    parkGuellCovid: require('../Images/pic_guell_covid.png'),
+
+    //Citudella + Cascada
     oldImageCitudella: require('../Images/old-image.png'),
-    parliament: require('../Images/parliament.png'),
-    teleferic: require('../Images/teleferic.png'),
-    razzmatazz: require('../Images/razzmatazz.png'),
     cascada: require('../Images/cascada.png'),
     blockedCasc: require('../Images/blockedCasc.png'),
+    parliament: require('../Images/parliament.png'),
+    //Teleferic
+    teleferic: require('../Images/teleferic.png'),
+    telefericTwoLocations: require('../Images/pic-tele-sf.png'),
+    //Razzmatazz
+    razzmatazz: require('../Images/razzmatazz.png'),
+    razzmatazzRiseToFame: require('../Images/pic-razz-rise-to-fame.png'),
+    razzmatazzSpanishMusic: require('../Images/pic-razz-spanish-music.png'),
     //La Sagrada
     laSagradaPodcast: require('../Images/lasagrada1.png'),
     laSagradaInspiration: require('../Images/sagrada-inspiration.png'),
@@ -27,8 +39,11 @@ const images = {
     laSagradaMagnumOpus: require('../Images/la-sagrada-magnum-opus.png'),
     //Camp Nou
     campNou: require('../Images/camp-nou.png'),
+    campNouEuroCup: require('../Images/pic_euro_cup.png'),
+    campNouConcessions: require('../Images/pic_concession_stand.png'),
     //teleferic
     teleferic: require('../Images/teleferic.png'),
+    telefericTwoLocations: require('../Images/pic-tele-sf.png'),
 
 
   //San Francisco story Images
@@ -78,7 +93,8 @@ const images = {
   ayelet : require('../Images/ayelet.png'),
   virginia : require('../Images/virginia.png'),
   johnny : require('../Images/johnny.png'),
-  maria : require('../Images/maria.png'),
+  maria : require('../Images/maria-cropped.png'),
+  giuseppe : require('../Images/g_cropped.png'),
 
 }
 

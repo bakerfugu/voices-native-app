@@ -107,6 +107,7 @@ const styles = StyleSheet.create({
     borderRadius: 15,
     width: '90%',
     marginBottom: '2%',
+    backgroundColor: "white"
   },
   container: {
     // flex: 1,

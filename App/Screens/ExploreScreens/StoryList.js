@@ -21,7 +21,7 @@ const RADIUS = (1.6 * width) / 2;
 export default function StoryList ({route, navigation}) {
 
 
-    const {locationIndex} = route.params;
+    const {locationIndex, newStoryAdded} = route.params;
 
     const [currStory, setStory] = useState(null);
     const [storyLocation, setStoryLocation] = useState(staticStoryLocations[locationIndex]);
@@ -33,7 +33,7 @@ export default function StoryList ({route, navigation}) {
     const [sharingModal, openSharing] = useState(false);
     const [createPlaylistModal, createPlaylist] = useState(false);
 
-    const retrieveStories = async () =>{
+    const retrieveStories = async () => {
         const retrievedStoryLocation = await getAppendedUserStories(locationIndex);
         // console.log("This is the retrieved location", retrievedStoryLocation);
         setStoryLocation(retrievedStoryLocation);
@@ -46,7 +46,9 @@ export default function StoryList ({route, navigation}) {
 
     useEffect(() => {
        retrieveStories()
+    
     }, []);
+
     
     const data = [
 

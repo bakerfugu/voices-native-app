@@ -40,30 +40,25 @@ export default function Confirmation ({route, navigation}) {
     }, [locationIndex])
 
 
-    const finalizePost = async () => {
+    const finalizePost =  () => {
+
+        saveStory();
         setModalVisibility(false);
         setPosted(true);
-        const newStory = {
-            title: title,
-            tags: tags,
-            image: image, 
-            length: length, 
-            // location: location,
-        }
-        const storyString = JSON.stringify(newStory);
+        
         navigation.navigate('MainMap');
     }  
     
-    // const deletePost = () => {
-    //     setModalVisibility(false);
-    //     navigation.navigate('RecordHome', {deleted: true});
-    // }  
+    const deletePost = () => {
+        setModalVisibility(false);
+        navigation.navigate('RecordHome', {deleted: true});
+    }  
 
-    // const editPost = () => {
-    //     setPosted(false);
-    //     setLocation(-1);
-    //     setModalVisibility(false);
-    // } 
+    const editPost = () => {
+        setPosted(false);
+        setLocation(-1);
+        setModalVisibility(false);
+    } 
 
     
     const saveStory = async () => {
@@ -83,7 +78,7 @@ export default function Confirmation ({route, navigation}) {
             
             await AsyncStorage.setItem('userStories', JSON.stringify([...stories, newStory]))
 
-            navigation.navigate('StoryList', {locationIndex: locationIndex, newStoryAdded: true})
+            navigation.navigate('MainMap');
         }
         catch (e) {
             console.log(e)
@@ -141,13 +136,13 @@ export default function Confirmation ({route, navigation}) {
 
             { !posted &&    
             <View style={{position: 'absolute', bottom: 0, width: '50%', height: 100}}>
-                <LongButton disabled={locationIndex == -1} onPress={() => saveStory()} label="Post Story"/>
+                <LongButton disabled={locationIndex == -1} onPress={() => setModalVisibility()} label="Post Story"/>
             </View>
             }
             
 
             <View style={{position: 'absolute'}}>
-                {/* <Modal
+                <Modal
                     animationType = "slide"
                     transparent = {true}
                     visible = {modalVisible}
@@ -161,11 +156,9 @@ export default function Confirmation ({route, navigation}) {
                         <Text style={styles.thanks}>Thanks for sharing your perspective</Text>
 
                         <View style={{flexDirection: 'row'}}>
+                         
                             <View style={{flex: 1, height: 50}}>
-                                <LongButton label='Delete' disabled={false} onPress={deletePost}/>
-                            </View>
-                            <View style={{flex: 1, height: 50}}>
-                                <LongButton label='Edit' disabled={false} onPress={editPost}/>
+                                <LongButton label='Undo' disabled={false} onPress={editPost}/>
                             </View>
                             <View style={{flex: 1, height: 50}}>
                                 <LongButton label='Ok' disabled={false} onPress={finalizePost}/>
@@ -174,7 +167,7 @@ export default function Confirmation ({route, navigation}) {
                         </View>
                     
                     </View>
-                </Modal> */}
+                </Modal>
 
             </View>
             
@@ -274,7 +267,8 @@ const styles = StyleSheet.create({
         fontSize: 16,
         fontFamily: 'Montserrat-Light',
         color: 'grey',
-        alignSelf: 'flex-start'
+        alignSelf: 'flex-start',
+        marginBottom: '5%'
     },
     buttonRow: {
         flexDirection: 'row',

@@ -168,6 +168,7 @@ export default function PlaylistListView({ route, navigation }) {
 
             {currStory &&
                 <StoryClip
+                    location={currStory.info.location}
                     storyObject={currStory.info} 
                     setModalVisibility={setModalVisibility}
                     openSharing={openSharing}

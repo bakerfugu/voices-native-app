@@ -14,7 +14,7 @@ const storyPlaylists = [
     image: Images.laSagrada99Pct,
   },
   {
-    title: "Sweet Memories from San Francisco",
+    title: "Sweet Memories from San Fran",
     stories: sweetMemoriesFromSF,
     image: Images.traditionB2B,
   },

@@ -9,6 +9,7 @@ import DropDownPicker from 'react-native-dropdown-picker';
 import { Images } from '../../Themes';
 import { MaterialIcons } from '@expo/vector-icons'
 import FloatingLocMarker from '../../Components/floatingLocMarker'
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 // import { getPlaylists, getPlaylistWithUserStories } from '../../Components/StoryPlaylists'
 
@@ -31,6 +32,7 @@ export default function MainMap() {
 
     const [location, setLocation] = useState(null)
 
+  
     useEffect(() => {
         if (location === 'Barcelona') {
             mapRef.current.animateToRegion({
@@ -48,6 +50,7 @@ export default function MainMap() {
                 longitudeDelta: 0.05,
             }, 300)
         }
+
     }, [location])
 
     const goHome = () => {
@@ -144,7 +147,7 @@ export default function MainMap() {
                         title="You are here!"
                         
                     > 
-                    <FloatingLocMarker/>
+                    {/* <FloatingLocMarker/> */}
                     
                                     
                     </Marker>

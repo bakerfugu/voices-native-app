@@ -112,7 +112,7 @@ export default function StoryInfo({route, params}) {
                 author: profileObject.handle,
                 transcript: "We are still processing your recording. Please check again later!",
                 image: {uri: image},
-                audio: audioUri,
+                audio: {uri: audioUri},
             }
     
             navigation.navigate('Confirmation', {storyObject});
@@ -137,6 +137,7 @@ export default function StoryInfo({route, params}) {
                 <View style={styles.form}>
                     <TextInput
                         style={styles.textInput}
+                        
                         placeholder="Title"
                         onChangeText={setTitle}
                     />
@@ -150,6 +151,10 @@ export default function StoryInfo({route, params}) {
                             onChange={onChangeMS}
                             chipStyle={{ backgroundColor: '#5dd7bf', borderColor: 'black' }}
                             mainContainerStyle={styles.tagsContainer}
+                            itemTextStyle={{fontFamily: 'Montserrat'}}
+                            selectedItemTextStyle={{fontFamily: "Montserrat"}}
+                            chipTextStyle={{fontFamily: 'Montserrat'}}
+
                         />
                     </View>
 
@@ -236,12 +241,14 @@ const styles = StyleSheet.create({
     textInput: {
         padding: 10,
         width: '80%',
-        height: 50,
+        height: 60,
         backgroundColor: 'white',
         borderWidth: 3,
         borderColor: '#F1B600',
         borderRadius: 10,
-        marginTop: "-29%"
+        marginTop: "-29%",
+        fontFamily: 'Montserrat',
+        fontSize: 18
     },
 
     photoBubble: {

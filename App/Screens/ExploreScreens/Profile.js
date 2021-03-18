@@ -40,9 +40,11 @@ export default function userProfile ({route, navigation}) {
 
   useEffect( () => {
      const {author} = route.params;
+     
      const profile = StoryProfiles[author];
      setProfile(profile);
      console.log(profile.stories)
+     
   }, []);
 
  
@@ -70,7 +72,7 @@ export default function userProfile ({route, navigation}) {
                     {profile.author}
                 </Text>
                 <Text style={styles.location}>
-                    San Francisco
+                   {profile.location}
                 </Text>
 
 
@@ -85,7 +87,7 @@ export default function userProfile ({route, navigation}) {
                 </View>
            
                 <View style={styles.bioContainer}>
-                    <Text style={{fontFamily: 'Montserrat', fontSize:18}}>{profile.bio}</Text>
+                    <Text style={{fontFamily: 'Montserrat', fontSize:16}}>{profile.bio}</Text>
                 </View>
               
             </View>
@@ -161,7 +163,7 @@ const styles = StyleSheet.create({
     infoContainer: {
         flex: 1,
         width: '100%',
-        marginTop: '1%',
+        marginTop: '-5%',
         alignItems: 'center',
         
     },
@@ -249,8 +251,9 @@ const styles = StyleSheet.create({
         aspectRatio: 1,
         borderRadius: 100,
         borderColor: '#F1B600',
-        borderWidth:3
+        borderWidth:3,
         
-    }
+    },
+
   
 });

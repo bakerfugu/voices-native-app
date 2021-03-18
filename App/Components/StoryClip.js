@@ -11,7 +11,7 @@ import { useNavigation } from '@react-navigation/native' ;
 
 export default function StoryClip({storyObject, setModalVisibility, location, openSharing}) {
   const { title, author, date, length, tags, image, transcript } = storyObject;
-
+  console.log('Current displaying', storyObject)
   const navigation = useNavigation();
   //<Photo key={photo._id} value={photo} newComment={this.setNewComment} user={this.state.user} class="standard"/>
   // let all_tags = props.value.tags; 

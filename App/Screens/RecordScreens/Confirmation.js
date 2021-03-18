@@ -10,12 +10,13 @@ import MapView, { Marker } from 'react-native-maps';
 import DropDownPicker from 'react-native-dropdown-picker';
 import { Root, Popup } from 'popup-ui'
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import storyLocations from '../../Components/StoryLocations'
     
     
 export default function Confirmation ({route, navigation}) {
-    const { image, title, length, tags } = route.params
-    console.log(image)
-    const [location, setLocation] = useState(null);
+    const { storyObject } = route.params
+    console.log("This is your story object!!!!!!!!!",storyObject)
+    const [locationIndex, setLocation] = useState(-1);
     const [modalVisible, setModalVisibility] = useState(false);
     const [posted, setPosted] = useState(false);
     const mapRef = useRef(null);
@@ -24,66 +25,19 @@ export default function Confirmation ({route, navigation}) {
         longitude: -122.1697,
     })
 
-    const coordinates = {
-        Stanford: {
-            latitude: 37.4275,
-            longitude: -122.1697,
-            latitudeDelta: 0.035922,
-            longitudeDelta: 0.035421,
-        },
-        HippieHill: {
-            latitude: 37.7699, 
-            longitude: -122.4579,
-            latitudeDelta: 0.035922,
-            longitudeDelta: 0.035421,
-        },
-        Smitten: {
-            latitude: 37.7891, 
-            longitude: -122.43416,
-            latitudeDelta: 0.035922,
-            longitudeDelta: 0.035421,
 
-        },
-        BaytoBreakers: {
-            latitude: 37.7594, 
-            longitude: -122.5107,
-            latitudeDelta: 0.035922,
-            longitudeDelta: 0.035421,
-
-        }
-        
-    }
     useEffect(() => {
-        if (location==='Stanford University') {
-            mapRef.current.animateToRegion(coordinates.Stanford,300)
-            setMarker({
-                latitude: coordinates.Stanford.latitude,
-                longitude: coordinates.Stanford.longitude
-            })
+        if (locationIndex > -1) {
+            const storyLocation = storyLocations[locationIndex]
+            console.log("use Effect", storyLocation)
+            mapRef.current.animateToRegion({
+                ...storyLocation.coordinates,
+                longitudeDelta: .01,
+                latitudeDelta: .01,
+            },300)
+            setMarker(storyLocation.coordinates)         
         }
-        else if (location === 'Smitten Ice Cream') {
-            mapRef.current.animateToRegion(coordinates.Smitten,300)
-            setMarker({
-                latitude: coordinates.Smitten.latitude,
-                longitude: coordinates.Smitten.longitude
-            })
-        }
-        else if (location === "Bay to Breakers") {
-            mapRef.current.animateToRegion(coordinates.BaytoBreakers,300)
-            setMarker({
-                latitude: coordinates.BaytoBreakers.latitude,
-                longitude: coordinates.BaytoBreakers.longitude
-            })
-        }
-        else if (location === 'Hippie Hill') {
-            mapRef.current.animateToRegion(coordinates.HippieHill,300)
-            setMarker({
-                latitude: coordinates.HippieHill.latitude,
-                longitude: coordinates.HippieHill.longitude
-            })
-        }
-
-    }, [location])
+    }, [locationIndex])
 
 
     const finalizePost = async () => {
@@ -94,39 +48,57 @@ export default function Confirmation ({route, navigation}) {
             tags: tags,
             image: image, 
             length: length, 
-            location: location,
+            // location: location,
         }
         const storyString = JSON.stringify(newStory);
         navigation.navigate('MainMap');
     }  
     
-    const deletePost = () => {
-        setModalVisibility(false);
-        navigation.navigate('RecordHome', {deleted: true});
-    }  
+    // const deletePost = () => {
+    //     setModalVisibility(false);
+    //     navigation.navigate('RecordHome', {deleted: true});
+    // }  
 
-    const editPost = () => {
-        setPosted(false);
-        setLocation(null);
-        setModalVisibility(false);
-    } 
+    // const editPost = () => {
+    //     setPosted(false);
+    //     setLocation(-1);
+    //     setModalVisibility(false);
+    // } 
 
     
-    
+    const saveStory = async () => {
+        try {
+            const profileString = await AsyncStorage.getItem('profile');
+            const profileObject = JSON.parse(profileString);
+
+            const storiesString = await AsyncStorage.getItem('userStories');
+        
+            const stories = storiesString ? JSON.parse(profileString) : [];
+
+            const newStory = {
+                ...storyObject,
+                locationIndex: locationIndex,
+            }
+            
+            await AsyncStorage.setItem('userStories', JSON.stringify([...stories, newStory]))
+
+            navigation.navigate('StoryList', {locationIndex: locationIndex, newStoryAdded: true})
+        }
+        catch (e) {
+            console.log(e)
+        }
+    }
 
     return (
         <View style={styles.container}>
 
             <View style={{position: 'absolute', top: 0, height: 50, width: '100%', backgroundColor: '#FDF0AF', padding: 5}}>
                 <DropDownPicker
-                    items={[
-                        {label: 'Stanford University', value: 'Stanford University'},
-                        {label: 'Smitten Ice Cream', value: 'Smitten Ice Cream'},
-                        {label: 'Bay to Breakers', value: 'Bay to Breakers'},
-                        {label: 'Hippie Hill', value: 'Hippie Hill'},
-                        
-                    ]}
-                    defaultValue={location}
+                    items={storyLocations.map((location, index) => ({
+                        label: location.title,
+                        value: index
+                    }))}
+                    // defaultValue={location}
                     containerStyle={{height: 40}}
                     style={{backgroundColor: '#fafafa', borderRadius: 20}}
                     itemStyle={{
@@ -138,8 +110,7 @@ export default function Confirmation ({route, navigation}) {
                         borderColor: 'lightgrey', borderWidth: 2
                     }}
                     dropDownStyle={{backgroundColor: '#fafafa'}}
-                    onChangeItem={item => {
-                        
+                    onChangeItem={item => {  
                         setLocation(item.value)
                     }}
                     placeholder='Select a Location'
@@ -159,8 +130,8 @@ export default function Confirmation ({route, navigation}) {
                   }}        
             >  
 
-                { location &&  <Marker coordinate={markerCoordinates}>
-                        <FloatingStoryMapMarker imageSource={{uri: image}}/>
+                { locationIndex >= 0  &&  <Marker coordinate={markerCoordinates}>
+                        <FloatingStoryMapMarker imageSource={storyObject.image}/>
                     </Marker>
                 }
 
@@ -169,13 +140,13 @@ export default function Confirmation ({route, navigation}) {
 
             { !posted &&    
             <View style={{position: 'absolute', bottom: 0, width: '50%', height: 100}}>
-                <LongButton disabled={!location} onPress={() => setModalVisibility(true)} label="Post Story"/>
+                <LongButton disabled={locationIndex == -1} onPress={() => saveStory()} label="Post Story"/>
             </View>
             }
             
 
             <View style={{position: 'absolute'}}>
-                <Modal
+                {/* <Modal
                     animationType = "slide"
                     transparent = {true}
                     visible = {modalVisible}
@@ -202,7 +173,7 @@ export default function Confirmation ({route, navigation}) {
                         </View>
                     
                     </View>
-                </Modal>
+                </Modal> */}
 
             </View>
             

@@ -18,6 +18,9 @@ import { barcelonaCampNou } from "./barcelonaCampNou";
 import { barcelonaRazzmatazz } from "./barcelonaRazzmatazz";
 import { barcelonaTeleferic } from "./barcelonaTeleferic";
 import { sfCrossroads } from "./sfCrossroads";
+import AsyncStorage from '@react-native-async-storage/async-storage'
+
+
 
 const storyLocations = [
   // {
@@ -156,5 +159,27 @@ const storyLocations = [
     image: Images.smittenWithSmitten,
   },
 ];
+
+export const getAppendedUserStories =  async (index) => {
+  try {
+
+    const storiesString = await AsyncStorage.getItem('userStories');    
+    const userStories = storiesString ? JSON.parse(storiesString) : [];
+
+    const userStoriesAtLocation = userStories.filter(story => story.locationIndex==index)
+
+
+    const location = storyLocations[index];
+    return {
+      ...location,
+      stories: [...location.stories, ...userStoriesAtLocation]
+    }
+
+  }
+
+  catch (e) {
+    console.log(e)
+  }
+}
 
 export default storyLocations;

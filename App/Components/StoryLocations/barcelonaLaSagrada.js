@@ -75,7 +75,7 @@ export const barcelonaLaSagradaStories = [
     },
     {
         locationIndex: 0,
-        title: "Gauidi's Magnum Opus: La Sagrada Familia",
+        title: "Gaudi's Magnum Opus: La Sagrada Familia",
         length: 2, 
         date: "Apr 2018", 
         tags: ["Art", "History", "Architecture"], 

@@ -54,18 +54,11 @@ const storyProfiles = {
     image: Images.baker,
     bio: "",
   },
-  adrazen: {
-    author: "adrazen",
-    stories: findStoriesOfAuthor("adrazen"),
-    location: "San Francisco",
-    image: Images.janice,
-    bio: "",
-  },
   krishfish: {
     author: "krishfish",
     stories: findStoriesOfAuthor("krishfish"),
     location: "San Francisco",
-    image: Images.janice,
+    image: Images.krishnan,
     bio: "Hi! My name is Krishnan and I am an undergraduate student at Stanford. I grew up on the West coast and have loved immsersing myself in Polynesian culture in the Bay Area.",
   }, 
   bakers : {
@@ -75,12 +68,19 @@ const storyProfiles = {
     image: Images.janice,
     bio: "",
   }, 
+  johnnydex : {
+    author: "johnnydex",
+    stories: findStoriesOfAuthor("johnnydex"),
+    location: "Barcelona",
+    image: Images.johnny,
+    bio: "25 años. ex futbolista",
+  }, 
   vmiller: {
     author: "vmiller",
     stories: findStoriesOfAuthor("vmiller"),
-    location: "San Francisco",
-    image: Images.janice,
-    bio: "",
+    location: "Barcelona",
+    image: Images.virginia,
+    bio: "I grew up on an island near Seattle, but my family moved to Barcelona when I was 11. I've loved exploring every part of the beautiful place I call home.",
   }
 };
 

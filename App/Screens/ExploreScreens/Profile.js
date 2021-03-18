@@ -40,9 +40,11 @@ export default function userProfile ({route, navigation}) {
 
   useEffect( () => {
      const {author} = route.params;
+     
      const profile = StoryProfiles[author];
      setProfile(profile);
      console.log(profile.stories)
+     
   }, []);
 
  
@@ -70,7 +72,7 @@ export default function userProfile ({route, navigation}) {
                     {profile.author}
                 </Text>
                 <Text style={styles.location}>
-                    San Francisco
+                   {profile.location}
                 </Text>
 
 

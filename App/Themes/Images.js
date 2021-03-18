@@ -54,6 +54,7 @@ const images = {
     //Hippie Hill
     hippieHillCulture: require('../Images/hippie-hill-culture.png'),
     hippieHillSwingWithView: require('../Images/hippieh1.png'),
+    historyHippie: require('../Images/historyHippie.png'),
     //Smitten Ice Cream
     smittenWithSmitten: require('../Images/smitten1.png'),
     iceCreamExtravaganza: require('../Images/smitten2.png'),

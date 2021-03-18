@@ -35,6 +35,6 @@ export const sfHippieHillStories = [
       author: "adrazen", 
       audio: Audio.hippieHistory,
       transcript: `Are you looking to learn about the history of Hippie HIll? You’ve come to the right place. Let me tell you a little bit about this legendary patch of grass located on the grounds of Golden Gate Park in San Francisco, California. Hippie Hill is a public park that was originally inspired by the spacious Central Park in New York, but Golden Gate Park ended up bigger and with a lifestyle that showcases the local culture of San Francisco. You'll find the gently sloping lawn located east of the Golden Gate Park tennis courts, just off of Kezar Drive, overlooking the beautiful Sharon Meadow (recently renamed to Robin Williams meadow), with tall coastal redwoods, eucalyptus and pine trees flanking either side. For most of the year, Hippie Hill is an easily accessible part of the park, however, when 4/20 rolls around, this historic patch of grass turns into the Bay Area’s most well known and attended 4/20 event.`,
-      image: Images.hippieHillCulture
+      image: Images.historyHippie
     }
 ];

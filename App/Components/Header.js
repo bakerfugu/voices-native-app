@@ -32,7 +32,6 @@ export default function Header ({playlist, title, page, setNavigation}) {
                 {page==='Story List' && <MaterialIcons name='assistant-navigation' size={34} color='black' onPress={() => setNavigation(true)}/>}
                 {page==='Playlist-ListView' && <Ionicons name='map-outline' size={34} color='black' onPress={() => navigation.navigate('PlaylistMapView', {playlist: playlist})}/>}
                 {page==='Playlist-MapView' && <MaterialIcons name='playlist-play' size={50} color='black' onPress={() => navigation.navigate('PlaylistListView', {playlist: playlist})}/>}
-                
             </View>
 
 

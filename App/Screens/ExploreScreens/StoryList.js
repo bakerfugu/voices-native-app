@@ -36,13 +36,9 @@ export default function StoryList ({route, navigation}) {
     const [sharingModal, openSharing] = useState(false);
     const [createPlaylistModal, createPlaylist] = useState(false);
 
-    useEffect(() => {
-        // console.log(currStory)
-    }, [currStory]);
-
     const retrieveStories = async () =>{
         const retrievedStoryLocation = await getAppendedUserStories(locationIndex);
-        console.log("This is the retrieved location", retrievedStoryLocation);
+        // console.log("This is the retrieved location", retrievedStoryLocation);
         setStoryLocation(retrievedStoryLocation);
         const story = retrievedStoryLocation.stories[0]
         setStory({

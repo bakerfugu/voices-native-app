@@ -3,16 +3,13 @@ import React, { useState, useEffect, useRef } from 'react';
 import { StyleSheet, View, Dimensions, Button, Text } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import MapView, { Marker } from 'react-native-maps';
-import { Images } from '../../Themes'
 import FloatingStoryMapMarker from '../../Components/floatingStoryMapMarker'
 import storyLocations from '../../Components/StoryLocations';
 import DropDownPicker from 'react-native-dropdown-picker';
-import { Ionicons } from '@expo/vector-icons'
-import AsyncStorage from '@react-native-async-storage/async-storage'
+
+// import { getPlaylists, getPlaylistWithUserStories } from '../../Components/StoryPlaylists'
 
 export default function MainMap() {
-
-  
     const mapRef = useRef(null);
 
     const data = [
@@ -48,8 +45,18 @@ export default function MainMap() {
                 longitudeDelta: 0.03,
             }, 300)
         }
-
     }, [location])
+
+    // const testAsync = async () => {
+    //     const foo = await getPlaylists()
+    //     // console.log("getting playlists", foo);
+    //     const withUserStories = await getPlaylistWithUserStories(foo[1].title);
+    //     console.log("getting with user stories", withUserStories);
+    // }
+
+    // useEffect(() => {
+    //     testAsync();
+    // }, [])
 
     const navigation = useNavigation();
 

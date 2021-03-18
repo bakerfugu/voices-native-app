@@ -112,7 +112,7 @@ export default function StoryInfo({route, params}) {
                 author: profileObject.handle,
                 transcript: "We are still processing your recording. Please check again later!",
                 image: {uri: image},
-                audio: audioUri,
+                audio: {uri: audioUri},
             }
     
             navigation.navigate('Confirmation', {storyObject});

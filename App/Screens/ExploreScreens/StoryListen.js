@@ -12,11 +12,14 @@ import NavigationModal from '../../Components/NavigationModal';
 import TranscriptModal from '../../Components/TranscriptModal';
 import SharingModal from '../../Components/SharingModal';
 import CreatePlaylistModal from '../../Components/CreatePlaylistModal.js';
+import Scrubber from 'react-native-scrubber'
+import AudioPlayer, { getTimeStringFromMillis } from '../../Components/AudioPlayer'
 
 
 export default function StoryListen({ route, navigation }) {
     const { storyObject, location } = route.params;
-    const { title, author, date, length, tags, image, transcript } = storyObject;
+    const { title, author, date, length, tags, image, transcript, audio } = storyObject;
+    console.log("this is the audio", audio)
     const [isPlaying, setPlayStatus] = useState(false);
     const [currStory, setStory] = useState(0);
     const [modalVisibile, setModalVisibility] = useState(false);
@@ -25,6 +28,12 @@ export default function StoryListen({ route, navigation }) {
     const [transcriptModal, openTranscript] = useState(false);
     const [sharingModal, openSharing] = useState(false);
     const [createPlaylistModal, createPlaylist] = useState(false);
+    const [scrubberValue, setScrubberValue] = useState(0);
+
+
+    const valueChange = () => {
+
+    }
 
     return (
 
@@ -41,9 +50,19 @@ export default function StoryListen({ route, navigation }) {
                 </ImageBackground> */}
 
                 <Text style={{ fontSize: 24, fontFamily: "Montserrat", textAlign: 'center', marginBottom: 10, marginLeft: 10, marginRight: 10 }}>{title}</Text>
-                <Text style={{ fontSize: 18, fontFamily: "Montserrat-Light", textAlign: 'center', marginBottom: 10 }}>{author}</Text>
-                <Text style={{ fontSize: 24, fontFamily: 'Montserrat', textAlign: 'center' }}>00:00 / 25:46</Text>
-                <View style={styles.progressBar} />
+                <Text style={{ fontSize: 18, fontFamily: "Montserrat-Light", textAlign: 'center'}}>{author}</Text>
+                <View style={{width: '80%', marginTop: '5%'}}>
+                    <Scrubber 
+                        value={scrubberValue}
+                        // onSlidingComplete={valueChange}
+                        totalDuration={7000}
+                        trackColor='#1ddbb5'
+                        scrubbedColor='#1ddbb5'
+                        displayedValueStyle={{fontFamily: 'Montserrat', color:'black'}}
+                    />
+
+                </View>
+                
 
                 <View style={styles.playButtons}>
                     <Ionicons name={'play-back-sharp'} size={28} />
@@ -94,6 +113,13 @@ export default function StoryListen({ route, navigation }) {
                     storyObject={storyObject}
                 />
             }
+
+            <AudioPlayer
+                audioSourceObject={audio}
+                playing={isPlaying}
+                // positionMillis={newScrubberPosition}
+                // getStatusInfo={handleAudioStatus}
+            />          
         </View>
 
 
@@ -149,7 +175,7 @@ const styles = StyleSheet.create({
     },
     playButtons: {
         width: '50%',
-        marginTop: 15,
+
         flexDirection: 'row',
         justifyContent: 'space-between',
         alignItems: 'center'

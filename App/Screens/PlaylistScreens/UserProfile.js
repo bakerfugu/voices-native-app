@@ -28,7 +28,11 @@ export default function userProfile () {
     //     bioText: "fakebio"
     // };
 
-const [profile, setProfile] = useState("");
+const [profile, setProfile] = useState({
+    handle: "",
+    image: "",
+    bio: "",
+});
 const [userStories, setUserStories] = useState('')
 const [bio, setBio] = useState('')
 const [playlists, setPlaylists] = useState('')
@@ -37,19 +41,20 @@ const [sharingModal, openSharing] = useState(false);
 const [createPlaylistModal, createPlaylist] = useState(false);
 const[modalVisibile, setModalVisibility] = useState(false);
 const[confirmationModal, setConfirmation] = useState(false);
-const [clicked, setClicked] = useState();
+const [clicked, setClicked] = useState("");
 
 const getProfile = async () => {
 try {
     const value = await AsyncStorage.getItem('profile');
     const parsed = JSON.parse(value)
     setProfile(parsed);
+    console.log("These are the keys", await AsyncStorage.getAllKeys())
     const storiesString = await AsyncStorage.getItem('userStories')
     const stories = storiesString ? JSON.parse(storiesString) : [];
     setUserStories(stories)
     const gotPlaylists = await getPlaylists();
     setPlaylists(gotPlaylists);
-    console.log("These are your playlists", playlists)
+    // console.log("These are your playlists", playlists)
     
 }
 catch (e) {
@@ -73,11 +78,12 @@ catch (e) {
     let result = await ImagePicker.launchImageLibraryAsync({
         mediaTypes: ImagePicker.MediaTypeOptions.All,
             allowsEditing: true,
-            aspect: [1, 1],
+            aspect: [4, 3],
             quality: 1,
     });
     if (!result.cancelled) {
       profile.image = result.uri;
+      setProfile(profile);
       const updated = JSON.stringify(profile);
       await AsyncStorage.setItem('profile', updated)
     }
@@ -85,13 +91,14 @@ catch (e) {
 
   const updateProfile = async (text) => {
       profile.bio = bio;
+      setProfile(bio);
       const updated = JSON.stringify(profile);
       await AsyncStorage.setItem('profile', updated);
   }
 
     let storyList;
     if (userStories) {
-    console.log('here are my user stories',userStories)
+    // console.log('here are my user stories',userStories)
     storyList = userStories.map((story) => 
   
         <StoryClipForProfile
@@ -107,6 +114,7 @@ catch (e) {
     const navigation = useNavigation();
 
     return (
+
         <View style={{flex:1}}>
             <BackgroundGradient/>
         
@@ -115,11 +123,11 @@ catch (e) {
             <Ionicons name="chevron-back-outline" size={34} color="black" onPress={() => navigation.goBack()} style={styles.backButton} />
             <Ionicons name={"settings-outline"} size={30} color={'black'} style={styles.settings}/>
             <TouchableOpacity style={styles.photoContainer} onPress={pickImage}>
-                {profile.image ? 
+                {profile?.image? 
                 <View style={styles.profImageView}>
                 <Image 
                     source={{uri: profile.image}}
-                    resizeMode='contain' 
+                    resizeMode='cover' 
                     style={styles.profImage}
                 />
                 </View>
@@ -129,7 +137,7 @@ catch (e) {
 
             <View style={styles.infoContainer}>
                 <Text style={styles.handle}>
-                    {profile.handle}
+                    {profile?.handle ? profile.handle : ""}
                 </Text>
                 <Text style={styles.location}>
                     San Francisco
@@ -146,7 +154,7 @@ catch (e) {
                     </Text>
                 </View>
                     
-                {profile.bio ? 
+                {profile?.bio?
                     <TouchableOpacity style={styles.bioContainer} >
                         <Text style={{fontFamily: "Montserrat", fontSize:18}}>{profile.bio}</Text>
                     </TouchableOpacity>
@@ -168,7 +176,7 @@ catch (e) {
             <View style={{width: '100%' ,flexDirection: 'center'}}>
                 <Text id="stories" style={styles.s_header}>Your Stories</Text>
                 <View style={{justifyContent:'center', alignItems: 'center', flex: 1}}>
-                    {userStories ? 
+                    {userStories.length>0 ? 
                     
                     <View style={{justifyContent:'center', alignItems: 'center', flex: 1, marginTop: '5%', width: '100%'}}>
                         {storyList}
@@ -231,7 +239,7 @@ catch (e) {
             }
         </View>
     );
-
+        
 
 }
 
@@ -362,10 +370,11 @@ const styles = StyleSheet.create({
         left: 10,
     },
     grid: {
+        paddingTop: 5,
         borderWidth: 3,
         borderRadius: 10,
         borderColor: '#F1B600',
-        marginBottom: 32,
+        // marginBottom: 32,
         alignItems: 'flex-start',
     },
   

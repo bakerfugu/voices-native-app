@@ -15,6 +15,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export default function MainMap() {
     const mapRef = useRef(null);
+    AsyncStorage.clear()
 
     const data = [
         {
@@ -147,7 +148,7 @@ export default function MainMap() {
                         title="You are here!"
                         
                     > 
-                    <FloatingLocMarker/>
+                    {/* <FloatingLocMarker/> */}
                     
                                     
                     </Marker>

@@ -6,7 +6,7 @@ import BackgroundGradient from '../Components/BackgroundGradient';
 import {Images} from '../Themes';
 import { TouchableWithoutFeedback } from 'react-native-gesture-handler';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-
+import { FontAwesome } from '@expo/vector-icons'
 
 
 
@@ -42,12 +42,10 @@ export default function LoginScreen(props) {
           stories: "",
         });
         
-        profile = {
+        const profile = {
           handle: username, 
           bio: "", 
           image: "",
-          stories: [],
-          playlists: []
         }
         
         var stringProfile = JSON.stringify(profile)
@@ -232,6 +230,10 @@ export default function LoginScreen(props) {
 
       </View>
     }
+    <View style={styles.languageOption}> 
+      <FontAwesome name='caret-down' size={16} color='black' />
+      <Text style={{fontFamily: "Montserrat", marginLeft: 5}}>English</Text>
+    </View>
 </View>
   );
 }
@@ -290,5 +292,17 @@ const styles = StyleSheet.create({
     marginBottom: 50,
     minHeight: 35,
     opacity: 0.6,
+  },
+  languageOption: {
+    paddingHorizontal: 10,
+    paddingVertical: 5,
+    borderWidth: 3,
+    borderColor: '#F1c232',
+    position:'absolute',
+    top: 5,
+    right: 10,
+    backgroundColor: 'white',
+    borderRadius: 10,
+    flexDirection: 'row'
   }
 });

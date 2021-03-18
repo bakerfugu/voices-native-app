@@ -7,7 +7,7 @@ import storyPlaylists from './StoryPlaylists';
 import { MaterialIcons } from '@expo/vector-icons'
 import { ScrollView } from 'react-native-gesture-handler';
 
-export default function TranscriptModal ({visible, openTranscript, transcript}) {
+export default function TranscriptModal ({visible, openTranscript, transcript, title, author}) {
 
    
 
@@ -28,8 +28,8 @@ export default function TranscriptModal ({visible, openTranscript, transcript}) 
                         </View>
                         
                         <View style={styles.titleView}>
-                            <Text style={{fontFamily: 'Montserrat', fontSize: 24, textAlign: 'center'}}>This is the title of the story</Text>
-                            <Text style={{fontFamily: 'Montserrat-Light', fontSize: 18, textAlign: 'center'}}>Author</Text>
+                            <Text style={{fontFamily: 'Montserrat-Bold', fontSize: 20, textAlign: 'center'}}>{title}</Text>
+                            <Text style={{fontFamily: 'Montserrat', fontSize: 18, textAlign: 'center'}}>{author}</Text>
                         </View>
                         
                         <View style={styles.outer}>

@@ -2,14 +2,14 @@ import React, { useState, useEffect } from 'react';
 import { StyleSheet, Text, SafeAreaView, View, AsyncStorage, Image, TouchableOpacity, FlatList, Button, Touchable } from 'react-native';
 
 
-export default function Playlist (props) {
-    console.log(props.value);
+export default function Playlist ({playlist, onPress}) {
+    // console.log("here playlist inside comp", playlist)
     return (
         <View style={styles.playlistContainer}>
-            <TouchableOpacity style={styles.playlistPreviewImage} onPress={props.onPress}>
-                <Image source={props.value.image} style={styles.playlistPreviewImage}></Image>
+            <TouchableOpacity style={styles.playlistPreviewImage} onPress={onPress}>
+                <Image source={playlist.image} style={styles.playlistPreviewImage}></Image>
             </TouchableOpacity>
-            <Text style={styles.title}>{props.value.title}</Text>
+            <Text style={styles.title}>{playlist.title}</Text>
         </View>
     )
 }

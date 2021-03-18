@@ -1,18 +1,19 @@
 import { NavigationContainer } from '@react-navigation/native';
 import React, { useState, useEffect, useRef } from 'react';
-import { StyleSheet, View, Dimensions, Button, Text } from 'react-native';
+import { StyleSheet, View, Dimensions, Image, Text } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import MapView, { Marker } from 'react-native-maps';
-import { Images } from '../../Themes'
 import FloatingStoryMapMarker from '../../Components/floatingStoryMapMarker'
 import storyLocations from '../../Components/StoryLocations';
 import DropDownPicker from 'react-native-dropdown-picker';
-import { Ionicons } from '@expo/vector-icons'
-import AsyncStorage from '@react-native-async-storage/async-storage'
+import { Images } from '../../Themes';
+import { MaterialIcons } from '@expo/vector-icons'
+import FloatingLocMarker from '../../Components/floatingLocMarker'
+import AsyncStorage from '@react-native-async-storage/async-storage';
+
+// import { getPlaylists, getPlaylistWithUserStories } from '../../Components/StoryPlaylists'
 
 export default function MainMap() {
-
-  
     const mapRef = useRef(null);
 
     const data = [
@@ -31,25 +32,51 @@ export default function MainMap() {
 
     const [location, setLocation] = useState(null)
 
+  
     useEffect(() => {
         if (location === 'Barcelona') {
             mapRef.current.animateToRegion({
                 latitude: 41.3851,
                 longitude: 2.1734,
-                latitudeDelta: 0.015922,
-                longitudeDelta: 0.015421,
+                latitudeDelta: 0.055922,
+                longitudeDelta: 0.055421,
             }, 300)
         }
         else {
             mapRef.current.animateToRegion({
-                latitude: 37.783363,
-                longitude: -122.403908,
-                latitudeDelta: 0.03,
-                longitudeDelta: 0.03,
+                latitude: 37.77634752089827,
+                longitude: -122.44181123023144,
+                latitudeDelta: 0.05,
+                longitudeDelta: 0.05,
             }, 300)
         }
 
     }, [location])
+
+    const goHome = () => {
+        if (location) {
+            setLocation(null)
+        }
+        else {
+            mapRef.current.animateToRegion({
+                latitude: 37.77634752089827,
+                longitude: -122.44181123023144,
+                latitudeDelta: 0.05,
+                longitudeDelta: 0.05,
+            }, 300)
+        }
+    }
+
+    // const testAsync = async () => {
+    //     const foo = await getPlaylists()
+    //     // console.log("getting playlists", foo);
+    //     const withUserStories = await getPlaylistWithUserStories(foo[1].title);
+    //     console.log("getting with user stories", withUserStories);
+    // }
+
+    // useEffect(() => {
+    //     testAsync();
+    // }, [])
 
     const navigation = useNavigation();
 
@@ -90,8 +117,8 @@ export default function MainMap() {
                 mapType={"mutedStandard"}
                 showsPointsOfInterest={false}
                 initialRegion={{
-                    latitude: 37.783363,
-                    longitude: -122.403908,
+                    latitude: 37.77634752089827,
+                    longitude: -122.44181123023144,
                     latitudeDelta: 0.5,
                     longitudeDelta: 0.5,
                 }}
@@ -112,7 +139,28 @@ export default function MainMap() {
 
                 ))}
 
+                    <Marker
+                        coordinate={{
+                            latitude: 37.77634752089827, 
+                            longitude: -122.44181123023144,
+                        }}
+                        title="You are here!"
+                        
+                    > 
+                    <FloatingLocMarker/>
+                    
+                                    
+                    </Marker>
+
+
             </MapView>
+            <MaterialIcons
+                name='my-location'
+                size={48}
+                color='black'
+                style={{position: 'absolute', bottom: 10, right: 10}}
+                onPress={() => goHome()}
+            />
         </View>
     );
 }

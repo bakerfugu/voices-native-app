@@ -21,28 +21,21 @@ const RADIUS = (1.6 * width) / 2;
 export default function StoryList ({route, navigation}) {
 
 
-    const {locationIndex} = route.params;
+    const {locationIndex, newStoryAdded} = route.params;
 
-    const[currStory, setStory] = useState({
-        info: staticStoryLocations[locationIndex].stories[0],
-        index: 0
-     })
-    const[storyLocation, setStoryLocation] = useState(staticStoryLocations[locationIndex]);
+    const [currStory, setStory] = useState(null);
+    const [storyLocation, setStoryLocation] = useState(staticStoryLocations[locationIndex]);
     // console.log('Printing story locations', storyLocation, staticStoryLocations)
-    const[modalVisibile, setModalVisibility] = useState(false);
-    const[confirmationModal, setConfirmation] = useState(false);
-    const[navigationModal, setNavigation] = useState(false);
-    const[listRef, setRef] = useState(null);
+    const [modalVisibile, setModalVisibility] = useState(false);
+    const [confirmationModal, setConfirmation] = useState(false);
+    const [navigationModal, setNavigation] = useState(false);
+    const [listRef, setRef] = useState(null);
     const [sharingModal, openSharing] = useState(false);
     const [createPlaylistModal, createPlaylist] = useState(false);
 
-    useEffect(() => {
-        // console.log(currStory)
-    }, [currStory]);
-
-    const retrieveStories = async () =>{
+    const retrieveStories = async () => {
         const retrievedStoryLocation = await getAppendedUserStories(locationIndex);
-        console.log("This is the retrieved location", retrievedStoryLocation);
+        // console.log("This is the retrieved location", retrievedStoryLocation);
         setStoryLocation(retrievedStoryLocation);
         const story = retrievedStoryLocation.stories[0]
         setStory({
@@ -53,7 +46,9 @@ export default function StoryList ({route, navigation}) {
 
     useEffect(() => {
        retrieveStories()
+    
     }, []);
+
     
     const data = [
 
@@ -193,22 +188,39 @@ export default function StoryList ({route, navigation}) {
 
             </View>
             
-            <StoryClip 
-                location={storyLocation.title}
-                storyObject={currStory.info}
-                setModalVisibility={setModalVisibility}
-                openSharing={openSharing}
-            />
+            {currStory &&
+                <StoryClip
+                    location={storyLocation.title}
+                    storyObject={currStory.info} 
+                    setModalVisibility={setModalVisibility}
+                    openSharing={openSharing}
+                />
+            }
 
-            { modalVisibile && <PlaylistPopUp modalVisible={modalVisibile} setModalVisibility={setModalVisibility} setConfirmation={setConfirmation} createPlaylist={createPlaylist}/> }
-            
+            { modalVisibile && 
+                <PlaylistPopUp 
+                    modalVisible={modalVisibile}
+                    setModalVisibility={setModalVisibility} 
+                    setConfirmation={setConfirmation} 
+                    createPlaylist={createPlaylist}
+                    storyObject={currStory.info} 
+                /> 
+            }
+
             { confirmationModal && <Confirmation visible={confirmationModal} setConfirmation={setConfirmation}/> }
 
             { navigationModal && <NavigationModal visible={navigationModal} setNavigation={setNavigation}/> }
 
             { sharingModal && <SharingModal visible={sharingModal} setVisible={openSharing} title={currStory.info.title} author={currStory.info.author}/> }
 
-            { createPlaylistModal && <CreatePlaylistModal visible={createPlaylistModal} setVisible={createPlaylist}/> }
+            { createPlaylistModal && 
+                <CreatePlaylistModal 
+                    visible={createPlaylistModal} 
+                    setVisible={createPlaylist}
+                    setConfirmation={setConfirmation} 
+                    storyObject={currStory.info} 
+                /> 
+            }
             
         </View>
     );

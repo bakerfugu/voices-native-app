@@ -3,110 +3,104 @@ import { StyleSheet, Text, View, Modal, Image, TouchableOpacity, FlatList, Butto
 import LongButton from './LongButton'
 import { LinearGradient } from 'expo-linear-gradient';
 import Playlist from './Playlist.js';
-import storyPlaylists from './StoryPlaylists';
 import { MaterialIcons } from '@expo/vector-icons'
+import AsyncStorage from '@react-native-async-storage/async-storage'
 
-export default function PlaylistPopUp ({modalVisibile, setModalVisibility, setConfirmation, createPlaylist}) {
+import { getPlaylists } from './StoryPlaylists'
 
-    let playlists = [];
-    // console.log("this is playlists ", storyPlaylists);
-    for (let i = 0; i < storyPlaylists.length; i++) {
-        let playlist = {
-            title: storyPlaylists[i].title,
-            image: storyPlaylists[i].image,
-            stories: storyPlaylists[i].stories,
-        }
-        playlists.push(playlist);
+
+export default function PlaylistPopUp({ modalVisibile, setModalVisibility, setConfirmation, createPlaylist, storyObject }) {
+
+    const [playlists, setPlaylists] = useState(null);
+
+    const retrievePlaylists = async () => {
+        const gotPlaylists = await getPlaylists();
+        setPlaylists(gotPlaylists)
     }
 
-    for (let i = 0; i < storyPlaylists.length; i++) {
-        let playlist = {
-            title: storyPlaylists[i].title,
-            image: storyPlaylists[i].image,
-            stories: storyPlaylists[i].stories,
-        }
-        playlists.push(playlist);
+    useEffect(() => {
+        retrievePlaylists();
+    }, [])
 
-    }
+    const addStoryToPlaylist = async (playlist) => {
+        const addedStoryReferencesString = await AsyncStorage.getItem(`userPlaylist-${playlist.title}`);
+        const userAddedStoryReferences = addedStoryReferencesString ? JSON.parse(addedStoryReferencesString) : [];
+
+        const newStoryReference = {
+            locationIndex: storyObject.locationIndex,
+            title: storyObject.title
+        }
         
-    console.log(modalVisibile)
+        await AsyncStorage.setItem(`userPlaylist-${playlist.title}`, JSON.stringify([...userAddedStoryReferences, newStoryReference]))
 
-    const openSuccessModal = () => {
         setModalVisibility(false);
         setConfirmation(true)
     }
 
-    const createNewPlaylist = () => {
+    const createNewPlaylist = async () => {
         setModalVisibility(false);
         createPlaylist(true);
     }
-
-
 
     return (
         <Modal
             visible={modalVisibile}
             transparent={true}
         >
-  
             <View style={styles.centeredView}>
 
-            
+
                 <View style={styles.modalView}>
-                        <MaterialIcons name='cancel' size={28} color='black' onPress={() => setModalVisibility(false)} style={styles.cancel}/>
-                        <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
-                            
-                            
-                            <Text style={{fontSize: 24, fontFamily: "Montserrat"}}>Add to Playlist</Text>
-
-                            
-
-                        </View>
-            
-                        <View style={{width: '70%', height: 60, alignSelf: 'center', marginTop: 10}}>
-                            <LongButton label='Create New Playlist' onPress={() => createNewPlaylist()}  disabled={false}/>
-                        </View>
-
-                        
-                        <FlatList 
-                                contentContainerStyle={styles.grid}
-                                numColumns={2} 
-                                data={playlists} 
-                                scrollEnabled={false}
-                                
-                                // scrollEnabled={true}
-                                directionalLockEnabled={true}
-                                keyExtractor={(playlist, index) => index}
-                                renderItem={(playlist) => {
-                                    // console.log("Printing playlist: ", playlist);
-                                    return <Playlist key={playlist.item.title} value={playlist.item} onPress={openSuccessModal}/>
-                                    }
-                                }
-                        />
-                        
-                        
+                    <MaterialIcons name='cancel' size={28} color='black' onPress={() => setModalVisibility(false)} style={styles.cancel} />
+                    <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
+                        <Text style={{ fontSize: 24, fontFamily: "Montserrat" }}>Add to Playlist</Text>
                     </View>
 
-            </View>
-        
+                    <View style={{ width: '70%', height: 60, alignSelf: 'center', marginTop: 10 }}>
+                        <LongButton label='Create New Playlist' onPress={() => createNewPlaylist()} disabled={false} />
+                    </View>
 
-    </Modal>
-     
+                    {playlists && 
+                        <FlatList
+                            contentContainerStyle={styles.grid}
+                            numColumns={2}
+                            data={playlists}
+                            scrollEnabled={false}
+                            // scrollEnabled={true}
+                            directionalLockEnabled={true}
+                            keyExtractor={(playlist) => playlist.title}
+                            renderItem={({item}) => (
+                                <Playlist 
+                                    key={item.title} 
+                                    playlist={item} 
+                                    onPress={() => addStoryToPlaylist(item)} 
+                                />
+                            )}
+                        />
+                    }
+
+                </View>
+
+            </View>
+
+
+        </Modal>
+
     )
 }
 
 const styles = StyleSheet.create({
     centeredView: {
-       
+
         height: '100%',
         justifyContent: "center",
         alignItems: "stretch",
         marginTop: 150
-        
-        
-      },
-      modalView: {
-  
+
+
+    },
+    modalView: {
+
         flex: 1,
         justifyContent: 'center',
         alignItems: "center",
@@ -114,23 +108,23 @@ const styles = StyleSheet.create({
         borderRadius: 20,
         paddingVertical: 35,
 
-        
+
         shadowColor: "#000",
         shadowOffset: {
-          width: 0,
-          height: 2
+            width: 0,
+            height: 2
         },
         shadowOpacity: 0.25,
         shadowRadius: 4,
         elevation: 5
-      },
-    
-      grid: {
-        marginBottom: 32, 
-        
-        alignItems: 'center', 
-        
-    }, 
+    },
+
+    grid: {
+        marginBottom: 32,
+
+        alignItems: 'flex-start',
+
+    },
     cancel: {
         position: 'absolute',
         left: 15,

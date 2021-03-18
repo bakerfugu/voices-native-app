@@ -21,7 +21,6 @@ import { sfCrossroads } from "./sfCrossroads";
 import AsyncStorage from '@react-native-async-storage/async-storage'
 
 
-
 const storyLocations = [
   { //0
     title: "La Sagrada Familia",
@@ -176,7 +175,6 @@ export const getAppendedUserStories =  async (index) => {
     }
 
   }
-
   catch (e) {
     console.log(e)
   }

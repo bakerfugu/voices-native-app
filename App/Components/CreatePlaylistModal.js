@@ -1,29 +1,45 @@
 import React, { useState, useEffect } from 'react';
 import { StyleSheet, Text, View, Modal, Image, TouchableOpacity, FlatList, Button, TextInput } from 'react-native';
 import LongButton from './LongButton'
-import { LinearGradient } from 'expo-linear-gradient';
-import Playlist from './Playlist.js';
-import storyPlaylists from './StoryPlaylists';
 import { MaterialIcons } from '@expo/vector-icons'
+import AsyncStorage from '@react-native-async-storage/async-storage'
 
-export default function CreatePlaylistModal ({visible, setVisible}) {
+
+export default function CreatePlaylistModal ({visible, setVisible, setConfirmation, storyObject}) {
 
     const [playlistName, setPlaylistName] = useState('');
 
-   const create = () => {
-       console.log('create playlist');
-       setVisible(false)
-   }
+    const create = async () => {
+        const playlistsString = await AsyncStorage.getItem(`userPlaylists`);
+        const userAddedPlaylists = playlistsString ? JSON.parse(playlistsString) : [];
+
+        const newPlaylist = {
+            title: playlistName,
+            stories: [],
+            image: storyObject.image,
+        }
+        await AsyncStorage.setItem(`userPlaylists`, JSON.stringify([...userAddedPlaylists, newPlaylist]));
+
+        const addedStoryReferencesString = await AsyncStorage.getItem(`userPlaylist-${newPlaylist.title}`);
+        const userAddedStoryReferences = addedStoryReferencesString ? JSON.parse(addedStoryReferencesString) : [];
+
+        const newStoryReference = {
+            locationIndex: storyObject.locationIndex,
+            title: storyObject.title
+        }
+        
+        await AsyncStorage.setItem(`userPlaylist-${newPlaylist.title}`, JSON.stringify([...userAddedStoryReferences, newStoryReference]));
+
+        setConfirmation(true);
+        setVisible(false);
+    }
 
     return (
         <Modal
             visible={visible}
             transparent={true}
         >
-  
             <View style={styles.centeredView}>
-
-            
                 <View style={styles.modalView}>
                         <MaterialIcons name='cancel' size={28} color='black' onPress={() => setVisible(false)} style={styles.cancel}/>
                         
@@ -36,7 +52,7 @@ export default function CreatePlaylistModal ({visible, setVisible}) {
                         </TextInput>
 
                         <View style={{width: '50%', marginVertical: '5%', marginBottom: '8%'}}>
-                            <LongButton label='Create' onPress={() => create()} disabled={false}/>
+                            <LongButton label='Create' onPress={create} disabled={false}/>
                         </View>
                         
                         

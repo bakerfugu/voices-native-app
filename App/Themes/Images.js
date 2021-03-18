@@ -6,6 +6,7 @@ const images = {
   santaMonica : require('../Images/santaMonica.png'),
   storyBubble : require('../Images/smStory.png'),
   logo : require('../Images/voices-logo-signin.png'),
+  mapDot : require('../Images/map_dot.png'),
 
   //Barcelona Story Images
     zona: require('../Images/zona.png'),
@@ -66,6 +67,7 @@ const images = {
   mexicoCity : require('../Images/mexico-city-mural.png'),
   utahToBelize: require('../Images/from-utah-to-belize.png'),
   newYorkPlaylist: require('../Images/new-york-playlist.png'),
+  usersLoc : require('../Images/usersLoc.png'),
 
 
   //profiles 

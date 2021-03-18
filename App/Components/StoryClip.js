@@ -60,7 +60,7 @@ export default function StoryClip({storyObject, setModalVisibility, location, op
 
             <View style={{display: 'flex', flexDirection: 'row'}}>
             <TouchableOpacity style={{marginBottom: '3%'}} onPress={() => navigation.navigate("Profile", {author: author})}>
-                <Text style={{fontFamily: "Montserrat", fontSize: 16}}>{author} | {date} | {length} min</Text>
+                <Text style={{fontFamily: "Montserrat", fontSize: 16}}>{author} </Text>
             </TouchableOpacity>
             <Text style={{fontFamily: "Montserrat", fontSize: 16, marginTop: '0%'}}>
               | {date}
@@ -87,7 +87,7 @@ export default function StoryClip({storyObject, setModalVisibility, location, op
             <View style={styles.buttons}>
               <View style={{flexDirection: 'row', justifyContent: 'flex-start', alignItems: 'center'}}>
                 <Ionicons name={'play-circle'} color={'#1ddbb5'} size={48} style={{alignSelf: 'center'}} onPress={() => navigation.navigate('StoryListen', { storyObject, location })}/>
-                {/* <Text style={{fontFamily: "Montserrat", fontSize: 14, }}> {length} min</Text> */}
+                <Text style={{fontFamily: "Montserrat", fontSize: 14, }}> {length} min</Text>
 
               </View>
               

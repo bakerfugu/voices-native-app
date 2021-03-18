@@ -16,6 +16,8 @@ export default function LoginScreen(props) {
   const [loginEmail, setLoginEmail] = useState('');
   const [loginPassword, setLoginPassword] = useState('');
   const [errorMessageLogin, setErrorMessageLogin] = useState('');
+  const [existingUser, setExisting] = useState(false);
+  const [tooShort, setTooShort] = useState(false);
 
   // Check out this link to learn more about firebase.auth()
   // https://firebase.google.com/docs/reference/node/firebase.auth.Auth
@@ -88,60 +90,108 @@ export default function LoginScreen(props) {
   return (
     <View style={styles.container}>
       <BackgroundGradient/>
-      <Image source={Images.logo} resizeMode='stretch'/>
+      <Image source={Images.logo} style={{marginTop: '-30%'}} resizeMode='stretch'/>
 
       <Text style={styles.caption}> Illuminate your world with local narratives</Text>
-    
-      <TextInput
-        style={styles.input}
-        value={username}
-        onChangeText={(text) => setUsername(text)}
-        placeholder="Username" 
-      />
+      {
+        !existingUser ? 
+          <View style={styles.subContainer}>
+              <Text style={{fontSize: 25, fontFamily: "Montserrat", paddingBottom: '3%'}}>Create an Account</Text>
+            
+            <TextInput
+              style={styles.input}
+              value={username}
+              secureTextEntry={false}
+              autoCapitalize={"none"}
+              onChangeText={(text) => setUsername(text)}
+              placeholder="Username" 
+            />
 
-      <TextInput
-        style={styles.input}
-        value={signUpEmail}
-        onChangeText={(signUpEmail) => setSignUpEmail(signUpEmail)}
-        placeholder="Email" 
-      />
-      <TextInput
-        style={styles.input}
-        value={signUpPassword}
-        secureTextEntry={true}
-        onChangeText={(signUpPassword) => setSignUpPassword(signUpPassword)}
-        placeholder="Password" 
-      />
-      <TouchableOpacity style={styles.button} onPress={() => signUp()}>
-        <Text style={{fontSize:20, fontWeight:'bold', color:'white'}}>SIGN UP</Text>
-      </TouchableOpacity>
+            <TextInput
+              style={styles.input}
+              value={signUpEmail}
+              autoCapitalize={"none"}
+              textContentType="emailAddress"
+              secureTextEntry={false}
+              onChangeText={(signUpEmail) => setSignUpEmail(signUpEmail)}
+              placeholder="Email" 
+            />
+            <TextInput
+              style={styles.input}
+              value={signUpPassword}
+              secureTextEntry={true}
+              autoCapitalize={"none"}
+              onChangeText={(signUpPassword) => {setSignUpPassword(signUpPassword)
+                if (signUpPassword.length < 6) {
+                  setTooShort(true);
+                } else {
+                  setTooShort(false);
+                }
+              }}
+              placeholder="Password"
+            />
+            {
+              tooShort ? 
+              <Text style={{color: 'red', marginTop: '-2%', marginRight: '7%'}}>
+                Password must be at least 6 characters.
+              </Text>
+              :
+              <View>
+                
+              </View>
+            }
+            <TouchableOpacity disabled={signUpPassword.length < 6 || !signUpEmail.includes("@") || username===""}  style={(signUpPassword.length >= 6 && signUpEmail.includes("@") && username !== "") ? styles.button : styles.disabledButton} onPress={() => signUp()}>
+              <Text style={{fontSize:20, fontWeight:'bold', color:'white'}}>SIGN UP</Text>
+            </TouchableOpacity>
+            <TouchableOpacity onPress={() => setExisting(true)}>
+              <Text style={{fontSize:17, fontFamily: "Montserrat-Light",  color:'black'}}>Already have an account? Log in.</Text>
+            </TouchableOpacity>
+        </View>
 
 
+      :
+      <View>
+      <Text style={{fontSize: 25, fontFamily: "Montserrat", paddingBottom: '3%', alignSelf: 'center'}}>Sign In</Text>       
       <TextInput
-        style={[styles.input, {marginTop: 50}]}
+        style={[styles.input, ]}
         value={loginEmail}
+        autoCapitalize={"none"}
+        secureTextEntry={false}
         onChangeText={(loginEmail) => setLoginEmail(loginEmail)}
         placeholder="Email" 
       />
       <TextInput
         style={styles.input}
         value={loginPassword}
+        autoCapitalize={"none"}
         secureTextEntry={true}
-        onChangeText={(loginPassword) => setLoginPassword(loginPassword)}
+        onChangeText={(loginPassword) => {
+          setLoginPassword(loginPassword);
+          if (loginPassword.length < 6) {
+            setTooShort(true);
+          } else {
+            setTooShort(false);
+          }
+        }}
         placeholder="Password" 
-      />
+      /> 
       {/* <Button
         title='Login'
         onPress={()=> login()}
         color='black'
         style={styles.button}
 
-      /> */}
+      />  */}
       <TouchableOpacity style={styles.button} onPress={() => login()}>
         <Text style={{fontSize:20, fontWeight:'bold', color:'white'}}>LOG IN</Text>
       </TouchableOpacity>
+      <TouchableOpacity onPress={() => setExisting(false)}>
+              <Text style={{fontSize:17, fontFamily: "Montserrat-Light",  color:'black', alignSelf: 'center'}}>New user? Sign up.</Text>
+            </TouchableOpacity>
 
-    </View>
+      </View>
+    }
+</View>
   );
 }
 
@@ -150,11 +200,16 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
-    marginTop: 200
+  },
+  subContainer: {
+    alignItems: 'center',
+    flexDirection: 'column',
+    justifyContent: 'center',
+
   },
   input: {
-    width: '90%',
     fontSize: 20,
+    minWidth: '80%',
     marginBottom: 10,
     backgroundColor: 'whitesmoke',
     padding: 5,
@@ -163,21 +218,36 @@ const styles = StyleSheet.create({
     borderColor: '#F1c232',
     borderRadius: 15,
     borderWidth: 3,
-    minHeight: 35
+    minHeight: 35,
+    alignSelf: 'flex-start'
   },
   caption: {
-    marginBottom: 20,
+    marginBottom: '10%',
     color: 'black',
-    fontSize: 18,
+    fontSize: 16,
+    fontFamily: "Montserrat",
   },
   button: {
+    marginTop: '3%',
     backgroundColor: '#1ddbb5',
     padding: 10,
-    width: '50%',
+    minWidth: '80%',
     borderRadius: 15,
     justifyContent: 'center',
     alignItems: 'center',
     marginBottom: 50,
     minHeight: 35
+  },
+  disabledButton: {
+    marginTop: '3%',
+    backgroundColor: '#1ddbb5',
+    padding: 10,
+    minWidth: '80%',
+    borderRadius: 15,
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginBottom: 50,
+    minHeight: 35,
+    opacity: 0.6,
   }
 });

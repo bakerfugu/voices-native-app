@@ -40,7 +40,7 @@ export default function StoryListen ({route, navigation}) {
                     <Image source={image} style={{width: 50, aspectRatio: 1, borderRadius: 200}} resizeMode='cover'/>
                 </ImageBackground> */}
 
-                <Text style={{fontSize: 24, fontFamily: "Montserrat", textAlign: 'center', marginBottom: 10}}>{title}</Text>
+                <Text style={{fontSize: 24, fontFamily: "Montserrat", textAlign: 'center', marginBottom: 10, marginLeft: 10, marginRight: 10}}>{title}</Text>
                 <Text style={{fontSize: 18, fontFamily: "Montserrat-Light", textAlign: 'center', marginBottom: 10}}>{author}</Text>
                 <Text style={{fontSize: 24, fontFamily: 'Montserrat', textAlign: 'center'}}>00:00 / 25:46</Text>
                 <View style={styles.progressBar}/>
@@ -76,7 +76,7 @@ export default function StoryListen ({route, navigation}) {
 
             { navigationModal && <NavigationModal visible={navigationModal} setNavigation={setNavigation}/> }
 
-            { transcriptModal && <TranscriptModal visible={transcriptModal} openTranscript={openTranscript} transcript={transcript}/>}
+            { transcriptModal && <TranscriptModal visible={transcriptModal} openTranscript={openTranscript} transcript={transcript} title={title} author={author}/>}
 
             { sharingModal && <SharingModal visible={sharingModal} setVisible={openSharing} title={title} author={author}/> }
 

@@ -139,8 +139,6 @@ export default function StoryList ({route, navigation}) {
             index: new_index
         });
         
-
-        
     }
 
     

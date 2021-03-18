@@ -6,7 +6,11 @@ import  CircleList  from 'react-native-circle-list'
 import {Images} from '../../Themes';
 import BackgroundGradient from '../../Components/BackgroundGradient';
 import Header from '../../Components/Header';
-import PlaylistPopUp from '../../Components/PlaylistPopUp'
+import PlaylistPopUp from '../../Components/PlaylistPopUp';
+import { Ionicons } from '@expo/vector-icons'
+import Confirmation from '../../Components/ConfirmationModal';  
+import SharingModal from '../../Components/SharingModal';
+import CreatePlaylistModal from '../../Components/CreatePlaylistModal.js';
 
 
 const {width, height} = Dimensions.get('screen');
@@ -16,14 +20,35 @@ export default function PlaylistListView ({route, navigation}) {
 
     const {playlist} = route.params;
 
-    const[currStory, setStory] = useState('');
-    const[modalVisibile, setModalVisibility] = useState(false)
+    //const[currStory, setStory] = useState('');
+    const[currStory, setStory] = useState({
+        info: playlist.stories[0],
+        index: 0
+     })
+    const[modalVisibile, setModalVisibility] = useState(false);
+    const[listRef, setRef] = useState(null);
+    const [sharingModal, openSharing] = useState(false);
+    const [createPlaylistModal, createPlaylist] = useState(false);
+    const[confirmationModal, setConfirmation] = useState(false);
 
     useEffect(() => {
-        console.log(playlist.stories[0])
-        const newStory = playlist.stories[0]
-        setStory(newStory)
-    }, [])
+        // console.log(currStory)
+    }, [currStory])
+
+    // useEffect(() => {
+    //     console.log(playlist.stories[0])
+    //     const newStory = playlist.stories[0]
+    //     setStory(newStory)
+    // }, [])
+
+    useEffect(() => {
+        //const {locationIndex} = route.params;
+        const story = playlist.stories[0];
+        setStory({
+            info: story,
+            index: 0,
+        })
+    }, []);
 
     const data = [
 
@@ -90,6 +115,38 @@ export default function PlaylistListView ({route, navigation}) {
         );
     }
 
+    const nextStory = () => {  
+        console.log('next story')
+        const index = currStory.index;
+        const new_index = (index + 1) % 12
+        let storyIndex = new_index % playlist.stories.length;
+        listRef.scrollToIndex(new_index);
+        setStory({
+            info: playlist.stories[storyIndex],
+            index: new_index
+        });
+    }
+    const prevStory = () => {
+        
+        const index = currStory.index;
+        let new_index;
+        if (index == 0) {
+            new_index = 11
+        }
+        else {
+            new_index = index - 1;
+        }
+        console.log(new_index)
+
+        let storyIndex = new_index % playlist.stories.length;
+        listRef.scrollToIndex(new_index);
+        setStory({
+            info: playlist.stories[storyIndex],
+            index: new_index
+        });
+        
+    }
+
     return (
         <View style={styles.container}>
             <BackgroundGradient/>
@@ -99,26 +156,60 @@ export default function PlaylistListView ({route, navigation}) {
 
                 <View style ={styles.backgroundCircle}/>
                 <CircleList
+                    elementCount={12}
+                    selectedItemScale={2.7}
+                    swipeSpeedMultiplier={40}
+                    containerStyle={{paddingTop: 80, marginBottom: '2%'}}
+                    onScrollEnd={(item) => {
+                        let index = item % storyLocations[locationIndex].stories.length;
+                        setStory({
+                            info: storyLocations[locationIndex].stories[index],
+                            index: item
+                        })
+                    }}
+
+
                     data={data}
+                    innerRef={component => setRef(component)}
                     visibilityPadding={3}
                     renderItem={renderItem}
                     radius={RADIUS}
-                    keyExtractor={(item) => item.id}
+                    keyExtractor={(item) => `${item.key}`}
+                    //keyExtractor={(item) => item.id}
                     elementCount={12}
                     selectedItemScale={2.7}
                     swipeSpeedMultiplier={40}
                     containerStyle={{paddingTop: 76, marginBottom: '3%'}}
                     onScrollEnd={(item) => {
                         let index = item % playlist.stories.length;
-                        setStory(playlist.stories[index])
+                        //setStory(playlist.stories[index])
+                        setStory({
+                            info: playlist.stories[index],
+                            index: item
+                        })
                     }}
                     />
             </View>
 
+            <View style={styles.arrows}>
+                <Ionicons name='arrow-back-sharp' color='#FCC201' size={48} onPress={prevStory}/>
+                <Ionicons name='arrow-forward-sharp' color='#FCC201' size={48} onPress={nextStory}/>
+
+            </View>
+
             <StoryClip
-                storyObject={currStory} 
+                storyObject={currStory.info} 
                 setModalVisibility={setModalVisibility}
+                openSharing={openSharing}
             />
+            
+            { modalVisibile && <PlaylistPopUp modalVisible={modalVisibile} setModalVisibility={setModalVisibility} setConfirmation={setConfirmation} createPlaylist={createPlaylist}/> }
+            
+            { confirmationModal && <Confirmation visible={confirmationModal} setConfirmation={setConfirmation}/> }
+
+            { sharingModal && <SharingModal visible={sharingModal} setVisible={openSharing} title={currStory.info.title} author={currStory.info.author}/> }
+
+            { createPlaylistModal && <CreatePlaylistModal visible={createPlaylistModal} setVisible={createPlaylist}/> }
 
         </View>
             
@@ -158,6 +249,15 @@ const styles = StyleSheet.create({
         alignSelf: 'center',
         marginTop: 120, 
     },
+    arrows: {
+        marginTop: '-10%',
+        width: '90%',
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+      
+        // backgroundColor: 'grey'
+    }
     
 
   });

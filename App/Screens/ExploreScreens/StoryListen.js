@@ -19,20 +19,56 @@ import AudioPlayer, { getTimeStringFromMillis } from '../../Components/AudioPlay
 export default function StoryListen({ route, navigation }) {
     const { storyObject, location } = route.params;
     const { title, author, date, length, tags, image, transcript, audio } = storyObject;
-    console.log("this is the audio", audio)
-    const [isPlaying, setPlayStatus] = useState(false);
-    const [currStory, setStory] = useState(0);
+    // console.log("this is the audio", audio)
+
+    // const [isPlaying, setPlayStatus] = useState(false);
+    // const [currStory, setStory] = useState(0);
+
     const [modalVisibile, setModalVisibility] = useState(false);
     const [confirmationModal, setConfirmation] = useState(false);
     const [navigationModal, setNavigation] = useState(false);
     const [transcriptModal, openTranscript] = useState(false);
     const [sharingModal, openSharing] = useState(false);
     const [createPlaylistModal, createPlaylist] = useState(false);
-    const [scrubberValue, setScrubberValue] = useState(0);
+    
+    const [activeScrubberPosition, setActiveScrubberPosition] = useState(0);
+    const [newScrubberPosition, setNewScrubberPosition] = useState(0);
+    const [playingSound, setPlayingSound] = useState(false);
+    const [duration, setDuration] = useState(0);
+    const [audioLoaded, setAudioLoaded] = useState(false);
 
+    useEffect(() => {
+        setNewScrubberPosition(0);
+    }, [audio])
 
-    const valueChange = () => {
+    useEffect(() => {
+        setPlayingSound(false);
+        setActiveScrubberPosition(newScrubberPosition);
+    }, [newScrubberPosition])
 
+    const handleAudioStatus = ({ isLoaded, positionMillis, didJustFinish, durationMillis, error }) => {
+        if (!isLoaded) {
+            if (error) console.log("Audio status error", error);
+            return;
+        } else if (!audioLoaded) {
+            setAudioLoaded(audioLoadedUpdated => {
+                if (audioLoadedUpdated !== isLoaded) {
+                    setDuration(durationMillis);
+                    return isLoaded;
+                }
+                return audioLoadedUpdated;
+            });
+        }
+
+        if (didJustFinish) {
+            setPlayingSound(false);
+        } else if (positionMillis) {
+            setActiveScrubberPosition(positionMillis);
+        }
+    }
+
+    const onScrubberMove = (newPosInSeconds) => {
+        setNewScrubberPosition(newPosInSeconds * 1000);
     }
 
     return (
@@ -52,26 +88,38 @@ export default function StoryListen({ route, navigation }) {
                 <Text style={{ fontSize: 24, fontFamily: "Montserrat", textAlign: 'center', marginBottom: 10, marginLeft: 10, marginRight: 10 }}>{title}</Text>
                 <Text style={{ fontSize: 18, fontFamily: "Montserrat-Light", textAlign: 'center'}}>{author}</Text>
                 <View style={{width: '80%', marginTop: '5%'}}>
-                    <Scrubber 
-                        value={scrubberValue}
-                        // onSlidingComplete={valueChange}
-                        totalDuration={7000}
-                        trackColor='#1ddbb5'
-                        scrubbedColor='#1ddbb5'
-                        displayedValueStyle={{fontFamily: 'Montserrat', color:'black'}}
-                    />
-
+                    { audioLoaded && 
+                        <Scrubber 
+                            value={activeScrubberPosition / 1000}
+                            onSlidingComplete={onScrubberMove}
+                            totalDuration={duration / 1000}
+                            trackColor='#1ddbb5'
+                            scrubbedColor='#1ddbb5'
+                            displayedValueStyle={{fontFamily: 'Montserrat', color:'black'}}
+                        />
+                    }
                 </View>
-                
 
                 <View style={styles.playButtons}>
                     <Ionicons name={'play-back-sharp'} size={28} />
-                    <TouchableOpacity onPress={() => setPlayStatus(!isPlaying)}>
-                        <Ionicons name={isPlaying ? 'pause-circle' : 'play-circle'} size={80} color={"#1ddbb5"} />
+                    <TouchableOpacity onPress={() => {
+                        setPlayingSound(playingUpdated => {
+                            if (activeScrubberPosition > duration) return false;
+                            return !playingUpdated;
+                        })
+                    }}>
+                        <Ionicons name={playingSound ? 'pause-circle' : 'play-circle'} size={80} color={"#1ddbb5"} />
                     </TouchableOpacity>
 
                     <Ionicons name={'play-forward-sharp'} size={28} />
                 </View>
+
+                <AudioPlayer
+                    audioSourceObject={audio}
+                    playing={playingSound}
+                    positionMillis={newScrubberPosition}
+                    getStatusInfo={handleAudioStatus}
+                />
             </View>
             
             <View style={styles.transcriptAndOptions}>
@@ -112,14 +160,7 @@ export default function StoryListen({ route, navigation }) {
                     setConfirmation={setConfirmation}
                     storyObject={storyObject}
                 />
-            }
-
-            <AudioPlayer
-                audioSourceObject={audio}
-                playing={isPlaying}
-                // positionMillis={newScrubberPosition}
-                // getStatusInfo={handleAudioStatus}
-            />          
+            }        
         </View>
 
 

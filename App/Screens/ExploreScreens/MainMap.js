@@ -5,15 +5,15 @@ import { useNavigation } from '@react-navigation/native';
 import MapView, { Marker } from 'react-native-maps';
 import { Images } from '../../Themes'
 import FloatingStoryMapMarker from '../../Components/floatingStoryMapMarker'
-import storyLocations from '../../Components/StoryLocations/index.js';
+import storyLocations from '../../Components/StoryLocations';
 import DropDownPicker from 'react-native-dropdown-picker';
 import { Ionicons } from '@expo/vector-icons'
+import AsyncStorage from '@react-native-async-storage/async-storage'
 
 export default function MainMap() {
 
-
+  
     const mapRef = useRef(null);
-
 
     const data = [
         {

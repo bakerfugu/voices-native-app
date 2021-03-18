@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { StyleSheet, Text, TextInput, AsyncStorage, View, StatusBar, Image, TouchableOpacity, FlatList, Button, Keyboard, TouchableWithoutFeedback, KeyboardAvoidingView } from 'react-native';
+import { StyleSheet, Text, TextInput, View, StatusBar, Image, TouchableOpacity, FlatList, Button, Keyboard, TouchableWithoutFeedback, KeyboardAvoidingView } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import BackgroundGradient from '../../Components/BackgroundGradient.js';
 import LongButton from '../../Components/LongButton.js';
@@ -18,6 +18,7 @@ import metrics from '../../Themes/Metrics.js';
 import * as ImagePicker from 'expo-image-picker';
 import * as Permissions from 'expo-permissions';
 import { useHeaderHeight } from '@react-navigation/stack'
+import  AsyncStorage from '@react-native-async-storage/async-storage'
 
 
 // export default function StoryInfo ({route}) {
@@ -26,7 +27,10 @@ export default function StoryInfo({route, params}) {
 
     const [title, setTitle] = useState('');
 
-    const {length} = route.params;
+    const {length, audioUri} = route.params;
+
+
+    // console.log("Audio uri is going to be here",audioUri);
     const [valueMS, setValueMS] = useState([]);
     const onChangeMS = (value) => {
         setValueMS(value);
@@ -68,31 +72,58 @@ export default function StoryInfo({route, params}) {
 
     const data = [
         {
-            value: '1',
+            value: 'COVID-19',
             label: 'COVID-19',
         },
         {
-            value: '2',
+            value: 'Music',
             label: 'Music',
         },
         {
-            value: '3',
+            value: 'Dance',
             label: 'Dance',
         },
         {
-            value: '4',
+            value: 'Food',
             label: 'Food',
 
         },
         {
-            value: '5',
+            value: 'History',
             label: 'History',
         },
         {
-            value: '6',
+            value: 'Folklore',
             label: 'Folklore',
         }
     ];
+
+    const createStoryComponent = async () => {
+        console.log("Clicked choose location")
+        try {
+            const profileString = await AsyncStorage.getItem('profile');
+            const profileObject = JSON.parse(profileString);
+
+            const storyObject = {
+                title: title,
+                length: length, 
+                date: "March 2021", 
+                tags: valueMS, 
+                author: profileObject.handle,
+                transcript: "We are still processing your recording. Please check again later!",
+                image: {uri: image},
+                audio: audioUri,
+            }
+    
+            navigation.navigate('Confirmation', {storyObject});
+     
+        }
+        catch (e) {
+            console.log(e)
+        }
+       
+    }
+
 
     const navigation = useNavigation();
     return (
@@ -172,7 +203,7 @@ export default function StoryInfo({route, params}) {
             <LongButton style={styles.postbutton} onPress={() => { navigation.navigate('Confirmation', {uri: uri}) }} disabled={!title || !uri || !location || !valueMS} label={'Post'}/> */}
             <View style={{ flex: 1,flexDirection: 'column', width: '100%', alignItems: 'center', }}>
                 <View style={styles.postButton}>              
-                    <LongButton onPress={() => { navigation.navigate('Confirmation', {image: image, title: title, tags: valueMS, length: length}) }} disabled={!title || !image || !valueMS} label={'Choose Location'}/>
+                    <LongButton onPress={createStoryComponent} disabled={!title || !image || !valueMS} label={'Choose Location'}/>
                 </View>
 
             </View>

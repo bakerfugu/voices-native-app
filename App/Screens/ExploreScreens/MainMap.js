@@ -158,7 +158,7 @@ export default function MainMap() {
                 name='my-location'
                 size={48}
                 color='black'
-                style={{position: 'absolute', bottom: 10, right: 10}}
+                style={{position: 'absolute', bottom: 20, right: 10}}
                 onPress={() => goHome()}
             />
         </View>

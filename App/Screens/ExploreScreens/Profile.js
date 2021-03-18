@@ -208,7 +208,8 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         width: '90%',
         height: 'auto',
-        padding: '3%'
+        padding: '3%',
+        backgroundColor: "white"
     },
     s_header: {
         fontWeight: 'bold',

@@ -1,7 +1,9 @@
 const audio = {
     //Barcelona
+    //Camp Nou
     fcBarca : require('../Audio/fcBarca.mp3'),
-    gaudiBehindMasterpiece : require('../Audio/AntoniGaudiTheManBehindtheMasterpiece.mp3'),
+    europeanCupCampNou: require('../Audio/camp-nou-european-cup.mp3'),
+    campNouConcessions: require('../Audio/camp-nou-weekend.mp3'),
 
     //Sagrada familia
     gaudiSagrada : require('../Audio/GaudiSagradaFamilia.mp3'),
@@ -9,6 +11,7 @@ const audio = {
     notGaudiFan : require('../Audio/notGaudiFan.mp3'),
     laSagradaGhosts : require('../Audio/laSagradaGhosts.mp3'),
     laSagradaMagnumOpus: require('../Audio/sagrada-familia.mp3'),
+    gaudiBehindMasterpiece : require('../Audio/AntoniGaudiTheManBehindtheMasterpiece.mp3'),
 
     //La Cascada 
     makingOfLaCascada : require('../Audio/makingLaCascada.mp3'),
@@ -17,15 +20,22 @@ const audio = {
 
     //Razmatazz
     razmatazz : require('../Audio/razzmatazzBarca.mp3'),
+    razmatazzSpainMusic : require('../Audio/Spanish-Music.mp3'),
+    razmatazzRiseToFame : require('../Audio/big-break-dj.mp3'),
 
     //Teleferic 
     teleferic : require('../Audio/Teleferic.mp3'),
+    telefericTwoLocations : require('../Audio/teleferic-two-locations.mp3'),
 
     //Zona de Ombra
     zonaDeOmbra: require('../Audio/zona-de-ombra.mp3'),
+    zonaWineDine: require('../Audio/zona-wine-wine.mp3'),
 
     //Parc Guell
     parcGuell: require('../Audio/parc-guell.mp3'),
+    parcGuellImagination: require('../Audio/parc-guell-imagination.mp3'),
+    parcGuellOther: require('../Audio/Park-Guell-1.mp3'),
+
 
 
 

@@ -38,7 +38,7 @@ const storyProfiles = {
     stories: findStoriesOfAuthor("adrazen"),
     location: "San Francisco",
     image: Images.ayelet,
-    bio: "",
+    bio: "I'm a 22 year old living in San Francisco and studying in the Bay Area. I love travelling, learning new languages and boxing!",
   },
   knair: {
     author: "knair",
@@ -87,7 +87,14 @@ const storyProfiles = {
     stories: findStoriesOfAuthor("maria_alfaro"),
     location: "Barcelona",
     image: Images.maria,
-    bio: "",
+    bio: "Bienvenidos! My name is Maria and I am from Sant Cigat del Valles, a suburb right outside of Barcelona. I love sharing stories about the city I hold dear to my heart.",
+  },
+  giuseppe_dolo: {
+    author: "giuseppe_dolo",
+    stories: findStoriesOfAuthor("maria_alfaro"),
+    location: "Barcelona",
+    image: Images.giuseppe,
+    bio: "Ciao! My name is Giuseppe and I'm an Italian who found himself in Barcelona after retirement. I love sharing my stories and the knowledge I gain as I explore this new city!",
   }
 };
 

@@ -81,7 +81,6 @@ const storyProfiles = {
     location: "Barcelona",
     image: Images.virginia,
     bio: "I grew up on an island near Seattle, but my family moved to Barcelona when I was 11. I've loved exploring every part of the beautiful place I call home.",
-    bio: "",
   },
   maria_alfaro: {
     author: "maria_alfaro",

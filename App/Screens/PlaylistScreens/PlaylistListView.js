@@ -11,6 +11,7 @@ import { Ionicons } from '@expo/vector-icons'
 import Confirmation from '../../Components/ConfirmationModal';  
 import SharingModal from '../../Components/SharingModal';
 import CreatePlaylistModal from '../../Components/CreatePlaylistModal.js';
+import storyLocations from "../../Components/StoryLocations";
 
 
 const {width, height} = Dimensions.get('screen');
@@ -18,11 +19,26 @@ const RADIUS = (1.6 * width) / 2;
 
 export default function PlaylistListView ({route, navigation}) {
 
-    const {playlist} = route.params;
 
+    const getStory = (locationIndex, storyTitle) => {
+        // console.log("hello part 1")
+        let story = [];
+
+         console.log("hello part 2", storyLocations[locationIndex]);
+        for (const story of storyLocations[locationIndex].stories) {
+          //story.push(...(location.stories.filter(story => story.title === storyTitle)));
+          if (story.title === storyTitle) {
+            return story;
+          }
+        }
+      }
+
+    const {playlist} = route.params;
+    console.log("this is playlist", playlist);
     //const[currStory, setStory] = useState('');
+    const storyObject = playlist.stories[0];
     const[currStory, setStory] = useState({
-        info: playlist.stories[0],
+        info: getStory(storyObject.locationIndex, storyObject.title),
         index: 0
      })
     const[modalVisibile, setModalVisibility] = useState(false);
@@ -43,7 +59,12 @@ export default function PlaylistListView ({route, navigation}) {
 
     useEffect(() => {
         //const {locationIndex} = route.params;
-        const story = playlist.stories[0];
+        const storyObject = playlist.stories[0];
+        console.log("this is storyObj ", storyObject);
+        //const storyObject = storyLocation.stories[storyIndex];
+        //console.log("this is storyObject ", storyObject);
+        const story = getStory(storyObject.locationIndex, storyObject.title);
+        console.log("this is story ", story);
         setStory({
             info: story,
             index: 0,
@@ -108,9 +129,14 @@ export default function PlaylistListView ({route, navigation}) {
     const renderItem = ({item, index}) => {
         console.log(item);
         let storyIndex = index % playlist.stories.length;
+        const storyObject = playlist.stories[storyIndex];
+        //console.log("this is storyObj ", storyObject);
+        //const storyObject = storyLocation.stories[storyIndex];
+        //console.log("this is storyObject ", storyObject);
+        const story = getStory(storyObject.locationIndex, storyObject.title);
             return (
                 <ImageBackground source={Images.yellowOrb} resizeMode='contain' style={{height: 80, width: 80, justifyContent: 'center', alignItems: 'center'}}>
-                    <Image source={playlist.stories[storyIndex].image} resizeMode='cover' style={{height: 62, width: 62, borderRadius: '50%'}}/>
+                    <Image source={story.image} resizeMode='cover' style={{height: 62, width: 62, borderRadius: '50%'}}/>
                 </ImageBackground>    
         );
     }
@@ -120,9 +146,17 @@ export default function PlaylistListView ({route, navigation}) {
         const index = currStory.index;
         const new_index = (index + 1) % 12
         let storyIndex = new_index % playlist.stories.length;
+
+        const storyObject = playlist.stories[storyIndex];
+        //console.log("this is storyObj ", storyObject);
+        //const storyObject = storyLocation.stories[storyIndex];
+        //console.log("this is storyObject ", storyObject);
+        const story = getStory(storyObject.locationIndex, storyObject.title);
+        console.log("this is story ", story);
+
         listRef.scrollToIndex(new_index);
         setStory({
-            info: playlist.stories[storyIndex],
+            info: story,
             index: new_index
         });
     }
@@ -137,11 +171,18 @@ export default function PlaylistListView ({route, navigation}) {
             new_index = index - 1;
         }
         console.log(new_index)
-
         let storyIndex = new_index % playlist.stories.length;
+        const storyObject = playlist.stories[storyIndex];
+        //console.log("this is storyObj ", storyObject);
+        //const storyObject = storyLocation.stories[storyIndex];
+        //console.log("this is storyObject ", storyObject);
+        const story = getStory(storyObject.locationIndex, storyObject.title);
+        console.log("this is story ", story);
+
+        //let storyIndex = new_index % playlist.stories.length;
         listRef.scrollToIndex(new_index);
         setStory({
-            info: playlist.stories[storyIndex],
+            info: story,
             index: new_index
         });
         
@@ -156,17 +197,7 @@ export default function PlaylistListView ({route, navigation}) {
 
                 <View style ={styles.backgroundCircle}/>
                 <CircleList
-                    elementCount={12}
-                    selectedItemScale={2.7}
-                    swipeSpeedMultiplier={40}
-                    containerStyle={{paddingTop: 80, marginBottom: '2%'}}
-                    onScrollEnd={(item) => {
-                        let index = item % storyLocations[locationIndex].stories.length;
-                        setStory({
-                            info: storyLocations[locationIndex].stories[index],
-                            index: item
-                        })
-                    }}
+
 
 
                     data={data}
@@ -174,17 +205,18 @@ export default function PlaylistListView ({route, navigation}) {
                     visibilityPadding={3}
                     renderItem={renderItem}
                     radius={RADIUS}
-                    keyExtractor={(item) => `${item.key}`}
-                    //keyExtractor={(item) => item.id}
+                    //keyExtractor={(item) => `${item.key}`}
+                    keyExtractor={(item) => item.id}
                     elementCount={12}
                     selectedItemScale={2.7}
                     swipeSpeedMultiplier={40}
                     containerStyle={{paddingTop: 76, marginBottom: '3%'}}
                     onScrollEnd={(item) => {
                         let index = item % playlist.stories.length;
+                        let storyObject = playlist.stories[index];
                         //setStory(playlist.stories[index])
                         setStory({
-                            info: playlist.stories[index],
+                            info: getStory(storyObject.locationIndex, storyObject.title),
                             index: item
                         })
                     }}

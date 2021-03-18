@@ -1,103 +1,85 @@
 import React, { useState, useEffect } from 'react';
 import { StyleSheet, Text, SafeAreaView, View, AsyncStorage, Image, TouchableOpacity, FlatList, Button } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
-import {useNavigation} from '@react-navigation/native';
+import { useNavigation } from '@react-navigation/native';
 import BackgroundGradient from '../../Components/BackgroundGradient.js';
 import Playlist from '../../Components/Playlist.js';
 import { Images, Metrics } from '../../Themes';
-import storyPlaylists from '../../Components/StoryPlaylists';
 
-
-
+import { getPlaylists } from '../../Components/StoryPlaylists'
 
 export default function PlaylistHome() {
     const navigation = useNavigation();
 
-    const [playlists, setPlaylists] = useState([]);
+    const [playlists, setPlaylists] = useState(null);
+
+    const retrievePlaylists = async () => {
+        const gotPlaylists = await getPlaylists();
+        setPlaylists(gotPlaylists)
+    }
 
     useEffect(() => {
-        let playlists = [];
-        // console.log("this is playlists ", storyPlaylists);
-        for (let i = 0; i < storyPlaylists.length; i++) {
-            let playlist = {
-                title: storyPlaylists[i].title,
-                image: storyPlaylists[i].image,
-                stories: storyPlaylists[i].stories,
-            }
-            playlists.push(playlist);
-
-        }
-
-        for (let i = 0; i < storyPlaylists.length; i++) {
-            let playlist = {
-                title: storyPlaylists[i].title,
-                image: storyPlaylists[i].image,
-                stories: storyPlaylists[i].stories,
-            }
-            playlists.push(playlist);
-
-        }
-        setPlaylists(playlists)
-
+        retrievePlaylists();
     }, [])
 
-    
-
-
+    // console.log("got playlists?", playlists)
     return (
-        <View style ={styles.container}>
-            <BackgroundGradient/>
-            <View style={styles.header}/>
-            
+        <View style={styles.container}>
+            <BackgroundGradient />
+            <View style={styles.header} />
 
-            <FlatList 
+            {playlists && 
+                <FlatList
                     contentContainerStyle={styles.grid}
-                    numColumns={2} 
-                    data={playlists} 
+                    numColumns={2}
+                    data={playlists}
                     // scrollEnabled={true}
                     directionalLockEnabled={true}
-                    keyExtractor={(playlist, index) => index}
-                    renderItem={(playlist) => {
-                        // console.log("Printing playlist: ", playlist);
-                        return <Playlist key={playlist.item.title} value={playlist.item} onPress={() => navigation.navigate('PlaylistListView', {playlist: playlist.item})}/>
-                        }
-                    }
-                    />
-            
+                    keyExtractor={(playlist) => playlist.title}
+                    renderItem={({item}) => (
+                        <Playlist 
+                            key={item.title} 
+                            playlist={item} 
+                            onPress={() => navigation.navigate('PlaylistListView', { storyReferencePlaylist: item })} 
+                        />
+                    )}
+                />
+            }
+
         </View>
     );
 }
 
 const styles = StyleSheet.create({
     container: {
-      flex: 1,
-      backgroundColor: '#fff',
-      justifyContent: 'center',
-      alignItems: 'center',
-    }, 
+        flex: 1,
+        backgroundColor: '#fff',
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
     grid: {
-        marginBottom: 32, 
-        marginTop: 10, 
-        alignItems: 'center', 
-    }, 
+        marginBottom: 32,
+        marginTop: 10,
+        alignItems: 'center',
+    },
 
     photoContainer: {
-        height: 10, 
+        height: 10,
         width: 10,
         padding: 100,
         paddingLeft: 200
     },
     profImage: {
-        height: 100, 
+        height: 100,
         width: 100,
-    }, 
+    },
     title: {
-        alignSelf: 'center', 
-        paddingRight: 200, 
-    }, 
- 
+        alignSelf: 'center',
+        paddingRight: 200,
+    },
+
     profileHeader: {
-        alignContent: 'flex-start', 
+        alignContent: 'flex-start',
 
         textAlignVertical: 'center'
     },
@@ -106,4 +88,4 @@ const styles = StyleSheet.create({
         height: Metrics.headerHeight,
     },
 
-  });
+});

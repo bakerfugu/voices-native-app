@@ -1,139 +1,148 @@
 import React, { useState, useEffect } from 'react';
 import { StyleSheet, ImageBackground, View, Image, Modal, Dimensions, Text } from 'react-native';
-import {useNavigation} from '@react-navigation/native';
+import { useNavigation } from '@react-navigation/native';
 import StoryClip from '../../Components/StoryClip';
-import  CircleList  from 'react-native-circle-list'
-import {Images} from '../../Themes';
+import CircleList from 'react-native-circle-list'
+import { Images } from '../../Themes';
 import BackgroundGradient from '../../Components/BackgroundGradient';
 import Header from '../../Components/Header';
 import PlaylistPopUp from '../../Components/PlaylistPopUp'
+import { getPlaylistWithUserStories } from '../../Components/StoryPlaylists'
 
 
-const {width, height} = Dimensions.get('screen');
-const RADIUS = (1.6 * width) / 2;  
+const { width, height } = Dimensions.get('screen');
+const RADIUS = (1.6 * width) / 2;
 
-export default function PlaylistListView ({route, navigation}) {
+const data = [
+    {
+        key: 1,
+        value: 1,
+    },
+    {
+        key: 2,
+        value: 1,
+    },
+    {
+        key: 3,
+        value: 1,
+    },
+    {
+        key: 4,
+        value: 1,
+    },
+    {
+        key: 5,
+        value: 1,
+    },
+    {
+        key: 6,
+        value: 1,
+    },
+    {
+        key: 7,
+        value: 1,
+    },
+    {
+        key: 8,
+        value: 1,
+    },
+    {
+        key: 9,
+        value: 1,
+    },
+    {
+        key: 10,
+        value: 1,
+    },
+    {
+        key: 11,
+        value: 1,
+    },
+    {
+        key: 12,
+        value: 1,
+    }
+];
 
-    const {playlist} = route.params;
+export default function PlaylistListView({ route, navigation }) {
 
-    const[currStory, setStory] = useState('');
-    const[modalVisibile, setModalVisibility] = useState(false)
+    const { storyReferencePlaylist } = route.params;
+
+    const [currStory, setStory] = useState(null);
+    const [modalVisibile, setModalVisibility] = useState(false)
+
+    const [playlist, setPlaylist] = useState(storyReferencePlaylist);
+    const [loaded, setLoaded] = useState(false);
+
+    const retrievePlaylist = async () => {
+        const gotPlaylist = await getPlaylistWithUserStories(storyReferencePlaylist.title);
+        console.log("got playlist in listview", gotPlaylist);
+        setPlaylist(gotPlaylist);
+        setStory(gotPlaylist.stories[0]);
+        setLoaded(true);
+    }
 
     useEffect(() => {
-        console.log(playlist.stories[0])
-        const newStory = playlist.stories[0]
-        setStory(newStory)
+        retrievePlaylist();
     }, [])
 
-    const data = [
-
-        {
-            key: 1, 
-            value: 1,
-        },
-        {
-            key: 2, 
-            value: 1,
-        } , 
-        {
-            key: 3, 
-            value: 1,
-        } ,    
-        {
-            key: 4, 
-            value: 1,
-        }  ,
-        {
-            key: 5, 
-            value: 1,
-        } , 
-        {
-            key: 6, 
-            value: 1,
-        },
-        {
-            key: 7, 
-            value: 1,
-        },
-        {
-            key: 8, 
-            value: 1,
-        },
-        {
-            key: 9, 
-            value: 1,
-        },
-        {
-            key: 10, 
-            value: 1,
-        },
-        {
-            key: 11, 
-            value: 1,
-        },
-        {
-            key: 12, 
-            value: 1,
-        }  
-    
-    ];
-
-
-    
-    const renderItem = ({item, index}) => {
-        console.log(item);
+    const renderItem = ({ item, index }) => {
         let storyIndex = index % playlist.stories.length;
-            return (
-                <ImageBackground source={Images.yellowOrb} resizeMode='contain' style={{height: 80, width: 80, justifyContent: 'center', alignItems: 'center'}}>
-                    <Image source={playlist.stories[storyIndex].image} resizeMode='cover' style={{height: 62, width: 62, borderRadius: '50%'}}/>
-                </ImageBackground>    
+        return (
+            <ImageBackground source={Images.yellowOrb} resizeMode='contain' style={{ height: 80, width: 80, justifyContent: 'center', alignItems: 'center' }}>
+                <Image source={playlist.stories[storyIndex].image} resizeMode='cover' style={{ height: 62, width: 62, borderRadius: 50 }} />
+            </ImageBackground>
         );
     }
 
     return (
         <View style={styles.container}>
-            <BackgroundGradient/>
-            
-            <Header playlist={playlist} page='Playlist-ListView' title={playlist.title}/>
-            <View style={styles.flatlist}>
+            <BackgroundGradient />
 
-                <View style ={styles.backgroundCircle}/>
-                <CircleList
-                    data={data}
-                    visibilityPadding={3}
-                    renderItem={renderItem}
-                    radius={RADIUS}
-                    keyExtractor={(item) => item.id}
-                    elementCount={12}
-                    selectedItemScale={2.7}
-                    swipeSpeedMultiplier={40}
-                    containerStyle={{paddingTop: 76, marginBottom: '3%'}}
-                    onScrollEnd={(item) => {
-                        let index = item % playlist.stories.length;
-                        setStory(playlist.stories[index])
-                    }}
+            <Header playlist={playlist} page='Playlist-ListView' title={playlist.title} />
+            <View style={styles.flatlist}>
+                <View style={styles.backgroundCircle} />
+
+                {loaded &&
+                    <CircleList
+                        data={data}
+                        visibilityPadding={3}
+                        renderItem={renderItem}
+                        radius={RADIUS}
+                        keyExtractor={(item) => item.id}
+                        elementCount={12}
+                        selectedItemScale={2.7}
+                        swipeSpeedMultiplier={40}
+                        containerStyle={{ paddingTop: 76, marginBottom: '3%' }}
+                        onScrollEnd={(item) => {
+                            let index = item % playlist.stories.length;
+                            setStory(playlist.stories[index])
+                        }}
                     />
+                }
             </View>
 
-            <StoryClip
-                storyObject={currStory} 
-                setModalVisibility={setModalVisibility}
-            />
+            {currStory &&
+                <StoryClip
+                    storyObject={currStory}
+                    setModalVisibility={setModalVisibility}
+                />
+            }
 
         </View>
-            
+
     );
 
 }
-   
+
 
 
 const styles = StyleSheet.create({
     container: {
-      flex: 1,
-      backgroundColor: '#fff',
-      justifyContent: 'flex-start',
-      alignItems: 'center',
+        flex: 1,
+        backgroundColor: '#fff',
+        justifyContent: 'flex-start',
+        alignItems: 'center',
     },
     header: {
         height: 100,
@@ -142,10 +151,10 @@ const styles = StyleSheet.create({
     flatlist: {
         //marginTop: '6%',
         //marginBottom: 20,
-        marginBottom: height/500,
-        marginTop: height/80,
+        marginBottom: height / 500,
+        marginTop: height / 80,
         // flex: 1,
-        width:'100%',
+        width: '100%',
         // backgroundColor: 'grey',s
     },
     backgroundCircle: {
@@ -156,8 +165,8 @@ const styles = StyleSheet.create({
         borderRadius: RADIUS,
         position: 'absolute',
         alignSelf: 'center',
-        marginTop: 120, 
+        marginTop: 120,
     },
-    
 
-  });
+
+});

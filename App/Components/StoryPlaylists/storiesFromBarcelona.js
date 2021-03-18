@@ -1,5 +1,6 @@
 import {Images} from '../../Themes';
 
+
 export const storiesFromBarcelona = [
     {
         id: "1",

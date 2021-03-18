@@ -72,28 +72,28 @@ export default function StoryInfo({route, params}) {
 
     const data = [
         {
-            value: '1',
+            value: 'COVID-19',
             label: 'COVID-19',
         },
         {
-            value: '2',
+            value: 'Music',
             label: 'Music',
         },
         {
-            value: '3',
+            value: 'Dance',
             label: 'Dance',
         },
         {
-            value: '4',
+            value: 'Food',
             label: 'Food',
 
         },
         {
-            value: '5',
+            value: 'History',
             label: 'History',
         },
         {
-            value: '6',
+            value: 'Folklore',
             label: 'Folklore',
         }
     ];

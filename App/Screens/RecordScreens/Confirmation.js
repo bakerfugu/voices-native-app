@@ -15,7 +15,7 @@ import storyLocations from '../../Components/StoryLocations'
     
 export default function Confirmation ({route, navigation}) {
     const { storyObject } = route.params
-    console.log("This is your story object!!!!!!!!!",storyObject)
+    // console.log("This is your story object!!!!!!!!!",storyObject)
     const [locationIndex, setLocation] = useState(-1);
     const [modalVisible, setModalVisibility] = useState(false);
     const [posted, setPosted] = useState(false);
@@ -29,7 +29,7 @@ export default function Confirmation ({route, navigation}) {
     useEffect(() => {
         if (locationIndex > -1) {
             const storyLocation = storyLocations[locationIndex]
-            console.log("use Effect", storyLocation)
+            // console.log("use Effect", storyLocation)
             mapRef.current.animateToRegion({
                 ...storyLocation.coordinates,
                 longitudeDelta: .01,
@@ -68,12 +68,13 @@ export default function Confirmation ({route, navigation}) {
     
     const saveStory = async () => {
         try {
-            const profileString = await AsyncStorage.getItem('profile');
-            const profileObject = JSON.parse(profileString);
+            // const profileString = await AsyncStorage.getItem('profile');
+            // const profileObject = JSON.parse(profileString);
 
             const storiesString = await AsyncStorage.getItem('userStories');
         
-            const stories = storiesString ? JSON.parse(profileString) : [];
+            const stories = storiesString ? JSON.parse(storiesString) : [];
+            console.log('old user stories', stories)
 
             const newStory = {
                 ...storyObject,

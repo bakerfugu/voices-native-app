@@ -42,6 +42,7 @@ export default function StoryList ({route, navigation}) {
 
     const retrieveStories = async () =>{
         const retrievedStoryLocation = await getAppendedUserStories(locationIndex);
+        console.log("This is the retrieved location", retrievedStoryLocation);
         setStoryLocation(retrievedStoryLocation);
         const story = retrievedStoryLocation.stories[0]
         setStory({
@@ -109,9 +110,11 @@ export default function StoryList ({route, navigation}) {
 
     const renderItem = ({item, index}) => {
         // console.log(item);
+        // console.log("This is the story location", storyLocation)
         const storyIndex = index % storyLocation.stories.length;
-        const storyToDisplay = storyLocation[storyIndex]
-        console.log(storyToDisplay);
+        const storyToDisplay = storyLocation.stories[storyIndex]
+
+        // console.log(storyToDisplay);
         // const imageToDisplay = (typeof storyToDisplay.image) === "string" ? {uri: storyToDisplay.image} : storyToDisplay.image;
         return (
             <ImageBackground source={Images.yellowOrb} resizeMode='contain' style={{height: 80, width: 80, justifyContent: 'center', alignItems: 'center'}}>
@@ -122,7 +125,7 @@ export default function StoryList ({route, navigation}) {
 
     
     const nextStory = () => {  
-        console.log('next story')
+        // console.log('next story')
         const index = currStory.index;
         const new_index = (index + 1) % 12
         let storyIndex = new_index % storyLocation.stories.length;
@@ -160,7 +163,7 @@ export default function StoryList ({route, navigation}) {
         <View style ={styles.container}>
             <BackgroundGradient/>
             
-            <Header title={currStory.info.title} style={{fontFamily: 'Montserrat-Bold'}} page={'Story List'} playlist={null} setNavigation={setNavigation}/>
+            <Header title={storyLocation.title} style={{fontFamily: 'Montserrat-Bold'}} page={'Story List'} playlist={null} setNavigation={setNavigation}/>
             <Text style={{fontFamily: 'Montserrat-Light', fontSize: 18, marginTop: -10}}>{storyLocation.stories.length} Stories Available</Text>
             <View style={styles.flatlist}>
 

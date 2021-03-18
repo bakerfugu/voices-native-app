@@ -11,6 +11,14 @@ import * as ImagePicker from 'expo-image-picker';
 import * as Permissions from 'expo-permissions';
 import StoryClipForProfile from '../../Components/StoryClipForProfile'
 import { getPlaylists } from '../../Components/StoryPlaylists'
+import SharingModal from '../../Components/SharingModal';
+import CreatePlaylistModal from '../../Components/CreatePlaylistModal.js';
+import Confirmation from '../../Components/ConfirmationModal';  
+import NavigationModal from '../../Components/NavigationModal';
+import PlaylistPopUp from '../../Components/PlaylistPopUp';
+
+
+
 export default function userProfile () {
     // let data = {
     //     handle: '@taylorl',
@@ -24,6 +32,13 @@ const [profile, setProfile] = useState("");
 const [userStories, setUserStories] = useState('')
 const [bio, setBio] = useState('')
 const [playlists, setPlaylists] = useState('')
+
+const [sharingModal, openSharing] = useState(false);
+const [createPlaylistModal, createPlaylist] = useState(false);
+const[modalVisibile, setModalVisibility] = useState(false);
+const[confirmationModal, setConfirmation] = useState(false);
+const [clicked, setClicked] = useState();
+
 const getProfile = async () => {
 try {
     const value = await AsyncStorage.getItem('profile');
@@ -81,9 +96,9 @@ catch (e) {
   
         <StoryClipForProfile
             story={story}
-            // setModalVisibility={setModalVisibility}
-            // openSharing={openSharing}
-            // setClicked={setClicked}
+            setModalVisibility={setModalVisibility}
+            openSharing={openSharing}
+            setClicked={setClicked}
         />
     );
   }
@@ -96,8 +111,9 @@ catch (e) {
             <BackgroundGradient/>
         
             <ScrollView style={styles.scroll}>
-            
-            <Image source={Images.profSettings} style={styles.settings} resizeMode='contain' />
+
+            <Ionicons name="chevron-back-outline" size={34} color="black" onPress={() => navigation.goBack()} style={styles.backButton} />
+            <Ionicons name={"settings-outline"} size={30} color={'black'} style={styles.settings}/>
             <TouchableOpacity style={styles.photoContainer} onPress={pickImage}>
                 {profile.image ? 
                 <View style={styles.profImageView}>
@@ -116,7 +132,7 @@ catch (e) {
                     {profile.handle}
                 </Text>
                 <Text style={styles.location}>
-                    {profile.location}
+                    San Francisco
                 </Text>
 
 
@@ -167,7 +183,7 @@ catch (e) {
                 </View>
             </View>
             <View style={{width: '100%',flexDirection: 'center', alignItems: 'center'}}>
-                <Text style={styles.p_header}>Playlists</Text>
+                <Text style={styles.p_header}>Your Playlists</Text>
 
                 <FlatList
                     contentContainerStyle={styles.grid}
@@ -190,6 +206,29 @@ catch (e) {
             
          
         </ScrollView>
+
+        { modalVisibile && 
+                <PlaylistPopUp 
+                    modalVisible={modalVisibile}
+                    setModalVisibility={setModalVisibility} 
+                    setConfirmation={setConfirmation} 
+                    createPlaylist={createPlaylist}
+                    storyObject={clicked} 
+                /> 
+            }
+            
+            { confirmationModal && <Confirmation visible={confirmationModal} setConfirmation={setConfirmation}/> }
+
+            { sharingModal && <SharingModal visible={sharingModal} setVisible={openSharing} title={clicked.title} author={clicked.author}/> }
+
+            { createPlaylistModal && 
+                <CreatePlaylistModal 
+                    visible={createPlaylistModal} 
+                    setVisible={createPlaylist}
+                    setConfirmation={setConfirmation} 
+                    storyObject={clicked} 
+                /> 
+            }
         </View>
     );
 
@@ -198,12 +237,10 @@ catch (e) {
 
 const styles = StyleSheet.create({
     settings: {
-        height: 30,
-        width: 30,
-        alignSelf: 'flex-end',
-        marginTop: '2%',
-        marginRight: '4%',
-        marginBottom: '-3%'
+        position: 'absolute',
+        top: 10,
+        right: 10
+        
     },
     photoContainer: {
         // flex: 1,
@@ -219,7 +256,8 @@ const styles = StyleSheet.create({
         borderWidth: 2,
         backgroundColor: 'white',
         marginBottom: 30, 
-        alignSelf: 'center'
+        alignSelf: 'center',
+        marginTop: '10%'
     }, 
     infoContainer: {
         flex: 1,
@@ -317,6 +355,18 @@ const styles = StyleSheet.create({
         borderColor: '#F1B600',
         borderWidth:3
         
-    }
+    },
+    backButton: {
+        position: 'absolute',
+        top: 10,
+        left: 10,
+    },
+    grid: {
+        borderWidth: 3,
+        borderRadius: 10,
+        borderColor: '#F1B600',
+        marginBottom: 32,
+        alignItems: 'flex-start',
+    },
   
 });

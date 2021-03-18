@@ -17,9 +17,6 @@ export default function MainMap() {
   
     const mapRef = useRef(null);
 
-    console.log("HERE BOY");
-    printNewPlaylists();
-
     const data = [
         {
             value: '1',

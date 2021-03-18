@@ -10,8 +10,6 @@ import DropDownPicker from 'react-native-dropdown-picker';
 import { Ionicons } from '@expo/vector-icons'
 import AsyncStorage from '@react-native-async-storage/async-storage'
 
-import { printNewPlaylists } from '../../Components/StoryPlaylists/remakePlaylistsScript'
-
 export default function MainMap() {
 
   

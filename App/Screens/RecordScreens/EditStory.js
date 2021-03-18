@@ -156,7 +156,8 @@ export default function EditStory({ route }) {
                     onPress={() => {
                         const time = trimmedTime()
                         const min = time.slice(0, 2);
-                        navigation.navigate('StoryInfo', { length: min })
+
+                        navigation.navigate('StoryInfo', { length: min === '00' ? '01' : min, audioUri: audioUri })
                     }}
                     disabled={rightHandlePos <= leftHandlePos}
                     label={'Next'} />

@@ -11,6 +11,7 @@ import { useNavigation } from '@react-navigation/native' ;
 
 export default function StoryClip({storyObject, setModalVisibility, location, openSharing}) {
   const { title, author, date, length, tags, image, transcript } = storyObject;
+  // console.log('Current displaying', storyObject)
   const navigation = useNavigation();
   //let percentage = {width/100} + "%";
   //<Photo key={photo._id} value={photo} newComment={this.setNewComment} user={this.state.user} class="standard"/>
@@ -59,7 +60,7 @@ export default function StoryClip({storyObject, setModalVisibility, location, op
 
             <View style={{display: 'flex', flexDirection: 'row'}}>
             <TouchableOpacity style={{marginBottom: '3%'}} onPress={() => navigation.navigate("Profile", {author: author})}>
-                <Text style={{fontFamily: "Montserrat", fontSize: 16}}>{author} </Text>
+                <Text style={{fontFamily: "Montserrat", fontSize: 16}}>{author} | {date} | {length} min</Text>
             </TouchableOpacity>
             <Text style={{fontFamily: "Montserrat", fontSize: 16, marginTop: '0%'}}>
               | {date}
@@ -84,9 +85,12 @@ export default function StoryClip({storyObject, setModalVisibility, location, op
 
             
             <View style={styles.buttons}>
-            
-              <Ionicons name={'play-circle'} color={'#1ddbb5'} size={48} style={{alignSelf: 'center'}} onPress={() => navigation.navigate('StoryListen', { storyObject, location })}/>
-              <Text style={{fontFamily: "Montserrat", fontSize: 14, marginLeft: '-35%'}}> {length} min</Text>
+              <View style={{flexDirection: 'row', justifyContent: 'flex-start', alignItems: 'center'}}>
+                <Ionicons name={'play-circle'} color={'#1ddbb5'} size={48} style={{alignSelf: 'center'}} onPress={() => navigation.navigate('StoryListen', { storyObject, location })}/>
+                {/* <Text style={{fontFamily: "Montserrat", fontSize: 14, }}> {length} min</Text> */}
+
+              </View>
+              
         
               <View style={styles.sharingIconsRow}>
                  <Ionicons name={"md-share-outline"} size={30} color={'black'} style={styles.icon} onPress={() => openSharing(true)}/>

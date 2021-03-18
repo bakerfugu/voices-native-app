@@ -243,7 +243,7 @@ const styles = StyleSheet.create({
         width: '80%',
         height: 60,
         backgroundColor: 'white',
-        borderBottomWidth: 3,
+        borderWidth: 3,
         borderColor: '#F1B600',
         borderRadius: 10,
         marginTop: "-29%",
@@ -279,7 +279,7 @@ const styles = StyleSheet.create({
     },
     tagsContainer: {
         backgroundColor: 'white',
-        borderBottomWidth: 3,
+        borderWidth: 3,
         borderColor: '#F1B600',
         borderRadius: 10,
         //marginTop: '10%' 

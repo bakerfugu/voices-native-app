@@ -38,7 +38,7 @@ export default function TranscriptModal ({visible, openTranscript, transcript, t
                     </View>
 
                     <ScrollView style={styles.transcript}>
-                        <Text style={{fontFamily: 'Montserrat', fontSize: 24}}>
+                        <Text style={{fontFamily: 'Montserrat', fontSize: 18}}>
                             {transcript}
                         </Text>
 

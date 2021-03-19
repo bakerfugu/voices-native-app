@@ -183,7 +183,7 @@ catch (e) {
                     </View>
                     :
                     
-                    <View style={{width: '90%', padding: '8%', borderColor: '#FCC201', borderWidth: 2, borderRadius: 15, marginTop: '5%'}}>
+                    <View style={{width: '90%', padding: '8%', borderColor: '#FCC201', borderWidth: 2, borderRadius: 15, marginTop: '5%', backgroundColor: "white"}}>
                         <Text style={{fontFamily: 'Montserrat', fontSize: 16}}>You have not posted any stories yet!</Text>
                     </View>
                     }
@@ -314,6 +314,7 @@ const styles = StyleSheet.create({
         padding: '3%',
         textAlignVertical: 'bottom',
         fontFamily: 'Montserrat',
+        backgroundColor: "white"
         
     },
     s_header: {
@@ -321,7 +322,7 @@ const styles = StyleSheet.create({
         fontSize: 25,
         marginLeft: '5%',
         marginTop: '10%',
-        marginBottom: '-3%'
+        marginBottom: '-3%',
 
     },
     p_header: {

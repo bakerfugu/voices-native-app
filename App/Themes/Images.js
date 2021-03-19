@@ -61,9 +61,12 @@ const images = {
     moreThanIceCreamShop: require('../Images/more_than_just_ice_cream.png'),
     learnAboutSmitten: require('../Images/learn_about_smitten.png'),
     smittenOwner: require('../Images/smitten_owner.png'),
+    smittenRobyn: require('../Images/smitten-robyn.png'),
+    smittenBuilding: require('../Images/smitten-building.png'),
     //Bay to Breakers
     traditionB2B: require('../Images/baytobreakers1.png'),
     B2BMarathon: require('../Images/bay_to_breakers.png'),
+    B2BJournalist: require('../Images/bay_to_breakers.png'),
     //crossroads
     sfCrossroads: require('../Images/crossroads.png'),
     crossroadsChildhood: require('../Images/crossroads_childhood.png'),
@@ -91,7 +94,7 @@ const images = {
   janice : require('../Images/janice.png'),
   baker : require('../Images/baker.png'),
   krishnan : require('../Images/krishnan.png'),
-  ayelet : require('../Images/ayelet.png'),
+  ayelet : require('../Images/ayelet-circle.png'),
   virginia : require('../Images/virginia.png'),
   johnny : require('../Images/johnny.png'),
   maria : require('../Images/maria-cropped.png'),

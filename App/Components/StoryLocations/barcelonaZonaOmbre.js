@@ -33,6 +33,23 @@ export const ZonaOmbra = [
       image: Images.zonaWineDine,
       audio: Audio.zonaWineDine,
     },
+
+    {
+      locationIndex: 6,
+      title: "Pintxo Bars are Better Heaven",
+      location: "Zona d'Ombre",
+      coordinates: {
+        latitude: 41.38275,
+        longitude: 2.1757,
+      },
+      length: 2, 
+      date: "May 2018", 
+      tags: ["Food"],
+      author: "bsharp",
+      transcript: `When I first walked in to the old quarter of Barcelona. And saw all these little pincho bars lining the streets and these beautiful old buildings with the winding streets of cobblestone. It just felt like one of my happy places. I absolutely love food and I love the idea of getting to try different foods and in fact. I actually will usually change my order at a restaurant if someone else at the table is getting the same thing as me even if I'm changing what I most preferred and If you're here, the only things that I can tell you are get lost and try as many things as possible. The first one I don't think is too hard because these streets are impossible to figure out where you are. But the second one you may find yourself daunted by something like the sardines or all of the olives if you happen to not be as into those but I promise. `,
+      image: Images.zonaPixto,
+      audio: Audio.zonaPixto,
+    },
     
 
 ];

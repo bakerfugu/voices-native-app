@@ -27,10 +27,12 @@ const audio = {
     //Teleferic 
     teleferic : require('../Audio/Teleferic.mp3'),
     telefericTwoLocations : require('../Audio/teleferic-two-locations.mp3'),
+    telefericPixto: require('../Audio/pinxto-bar.mp3'),
 
     //Zona de Ombra
     zonaDeOmbra: require('../Audio/zona-de-ombra.mp3'),
     zonaWineDine: require('../Audio/zona-wine-wine.mp3'),
+    zonaPixto: require('../Audio/pinxto-bar.mp3'),
 
     //Parc Guell
     parcGuell: require('../Audio/parc-guell.mp3'),
@@ -45,10 +47,12 @@ const audio = {
     tradition : require('../Audio/baytobreakers.mp3'),
     loveBaytoBreakers : require('../Audio/ILoveBtB.mp3'),
     journalistBaytoBreakers : require('../Audio/ILoveBtB.mp3'),
+    grandbobB2B : require('../Audio/grandbob-ready.mp3'),
 
     //crossroads
     crossroads : require('../Audio/crossroadsStory.mp3'),
     crossroadsChildhood : require('../Audio/crossroads-childhood.mp3'),
+    crossroadsFillmore: require('../Audio/day-fillmore.mp3'),
 
 
     //Hippie Hill

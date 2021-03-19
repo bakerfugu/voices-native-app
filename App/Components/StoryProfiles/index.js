@@ -45,7 +45,7 @@ const storyProfiles = {
     stories: findStoriesOfAuthor("knair"),
     location: "San Francisco",
     image: Images.krishnan,
-    bio: "",
+    bio: "Hi! My name is Krishnan and I am an undergraduate student at Stanford. I grew up on the West coast and have loved immsersing myself in Polynesian culture in the Bay Area.",
   },
   bsharp: {
     author: "bsharp",

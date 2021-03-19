@@ -22,6 +22,7 @@ export default function PlaylistComponent () {
     setImage(profile.image)
 
   }
+  
   useEffect(() => {
     getProfile();
   }, [])

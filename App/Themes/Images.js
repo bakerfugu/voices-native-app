@@ -12,6 +12,7 @@ const images = {
     //zona
     zona: require('../Images/zona.png'),
     zonaWineDine: require('../Images/pic-zona-wine-dine.png'),
+    zonaPixto: require('../Images/pic-pinxto.png'),
     //Parc Guell
     parkGuell: require('../Images/park-guell.png'),
     parkGuellImagination: require('../Images/pic_guell_imagination.png'),
@@ -25,6 +26,7 @@ const images = {
     //Teleferic
     teleferic: require('../Images/teleferic.png'),
     telefericTwoLocations: require('../Images/pic-tele-sf.png'),
+    telefericPinxto: require('../Images/pic-teleferic-pinxto.png'),
     //Razzmatazz
     razzmatazz: require('../Images/razzmatazz.png'),
     razzmatazzRiseToFame: require('../Images/pic-razz-rise-to-fame.png'),
@@ -67,9 +69,11 @@ const images = {
     traditionB2B: require('../Images/baytobreakers1.png'),
     B2BMarathon: require('../Images/bay_to_breakers.png'),
     B2BJournalist: require('../Images/bay_to_breakers.png'),
+    B2BGrandbob: require('../Images/pic-b2bgrandbob.png'),
     //crossroads
     sfCrossroads: require('../Images/crossroads.png'),
     crossroadsChildhood: require('../Images/crossroads_childhood.png'),
+    crossroadsFillmore: require('../Images/pic-fillmore.png'),
 
   //Audio Images + Icons
   record : require('../Images/record-button.png'),

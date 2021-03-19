@@ -12,6 +12,7 @@ const audio = {
     laSagradaGhosts : require('../Audio/laSagradaGhosts.mp3'),
     laSagradaMagnumOpus: require('../Audio/sagrada-familia.mp3'),
     gaudiBehindMasterpiece : require('../Audio/AntoniGaudiTheManBehindtheMasterpiece.mp3'),
+    sagrada99 : require('../Audio/99_sagrada.mp3'),
 
     //La Cascada 
     makingOfLaCascada : require('../Audio/makingLaCascada.mp3'),
@@ -43,6 +44,7 @@ const audio = {
     //Bay to breakers
     tradition : require('../Audio/baytobreakers.mp3'),
     loveBaytoBreakers : require('../Audio/ILoveBtB.mp3'),
+    journalistBaytoBreakers : require('../Audio/ILoveBtB.mp3'),
 
     //crossroads
     crossroads : require('../Audio/crossroadsStory.mp3'),
@@ -60,5 +62,6 @@ const audio = {
     smittenOwner : require('../Audio/MeettheOwnerofSmittenIceCream.mp3'),
     moreThanIceCreamShop : require('../Audio/moreThanIceCream.mp3'),
     smittenIceCream : require('../Audio/smittenIceCream.mp3'),
+    smittenRobyn : require('../Audio/robyn_mixdown.mp3'),
 }
 export default audio

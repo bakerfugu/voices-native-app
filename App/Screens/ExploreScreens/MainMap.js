@@ -14,6 +14,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 // import { getPlaylists, getPlaylistWithUserStories } from '../../Components/StoryPlaylists'
 
 export default function MainMap() {
+
     const mapRef = useRef(null);
 
     const data = [

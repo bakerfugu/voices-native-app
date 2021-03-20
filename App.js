@@ -1,5 +1,5 @@
 import React, {useState, useEffect, Fragment} from 'react';
-import { Platform, SafeAreaView, View } from 'react-native'
+import { Platform, SafeAreaView, View, LogBox } from 'react-native'
 import AppNavigation from './App/Navigation/AppNavigation';
 import LoginScreen from './App/Screens/LoginScreen';
 import firebase from 'firebase';
@@ -9,6 +9,7 @@ import AppLoading from 'expo-app-loading';
 import { useFonts } from 'expo-font';
 import { ModalPortal } from 'react-native-modals';
 
+LogBox.ignoreAllLogs();
 
 export default function App() {
 

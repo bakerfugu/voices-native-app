@@ -48,19 +48,7 @@ export const sfSmitten = [
         image: Images.iceCreamExtravaganza,
         audio: Audio.iceCreamTour,
         transcript: `Some of my favorite times in SF that I can remember was this one time for national ice cream day my friend organized this whole ice cream tour around SF. We visited 4 or 5 ice cream stops. I can’t remember the first one but the other three were Smitten ice cream, which was absolutely delicious, then we went to Loving Cup in SF which is frozen yogurt but it is like Cold Stone version so that was really good. It was really sweet overall, but it was still really delicious. And then the last one we went to was the Baked Bear which was one of my favorites. After we had the ice cream we went right into China Town and Little Italy because it is right in the heart of it. So we were able to have this delicious food and walk around all across SF while having ice cream which is pretty much a perfect day in my opinion. The only downside was there are just so many hills in SF. So we got tired and had to get coffee to sustain us.`,
-      }, 
-      {
-        locationIndex: 10,
-        title: "Smitten Founder On Doubling Down At What You’re Good At",
-        location: "Smitten Ice Cream",
-        length: 40, 
-        date: "May 2019", 
-        tags: ["Food", "Community", "Women"], 
-        author: "willow_alder", 
-        image: Images.smittenRobyn,
-        audio: Audio.smittenRobyn,
-        transcript: `Robyn Fisher really loves ice cream. As a kid, she and her family would have ice cream for those special moments in life – to bond, recover and really savor life. Fast forward to college. Robyn was in the middle of her studies and couldn’t find a decent ice cream in NYC. She recalled the fresh gelato she experienced in Italy and realized that while gourmet coffee was taking off, there was a gap in the market for fresh ice cream. This realization set her life path toward the founding of Smitten Ice Cream. After graduating from business school, Robyn found an engineer willing to work for equity for two years on creating a better ice cream machine, Brrr, a liquid nitrogen machine with six patents and a secret formula for gourmet ice cream. This led to the creation of the Today Smitten makes every ice cream batch to order. You read that right – nothing is frozen until the customer orders it. In this episode of I Want Her Job The Podcast, Robyn shares her motivations that led to Smitten and discusses how starting Smitten gave her a life purpose and a job she truly loves. You also will hear Robyn’s unforgettable story of selling her first batch of ice cream in 2009 in a San Francisco park while using a Radio Flyer Wagon attached to a nitrogen machine and motorcycle battery held together with a bungee cord. After spending two years on the idea and her entire savings, Robyn gave herself two weeks to test if there was a market for her product. It was the depth of the recession, but instead of giving up or finding reasons why her idea wouldn't work, Robyn tried her idea on a serious budget, tweeting the location of her Radio Flyer ice cream. Robyn's experiment worked, and people showed up, a lot of people. That experiment changed Robyn's life and showed her there was a market for authentic food made with passion. Today, you can experience Smitten ice cream in five stores in the Bay Area. Beginning in March 2020, wherever you are in the U.S., you will able to give your loved ones the sweetest surprise by making them a unique ice cream flavor. "Spoon me" and "You dumped his ass" are examples of custom ice cream flavors. Robyn's story is the perfect example of having the courage and passion to follow an idea despite the odds or large competitors. Robyn innovated on an existing product, created a unique experience and built a business based on passion, integrity and smiles. If you have dreams of starting your own business, Robyn's story offers plenty inspiration to get you thinking differently about the possibilities.` 
-    },  
+      },  
       {
         locationIndex: 10,
         title: "Learn About Smitten",

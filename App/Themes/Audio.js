@@ -66,6 +66,5 @@ const audio = {
     smittenOwner : require('../Audio/MeettheOwnerofSmittenIceCream.mp3'),
     moreThanIceCreamShop : require('../Audio/moreThanIceCream.mp3'),
     smittenIceCream : require('../Audio/smittenIceCream.mp3'),
-    smittenRobyn : require('../Audio/robyn_mixdown.mp3'),
 }
 export default audio

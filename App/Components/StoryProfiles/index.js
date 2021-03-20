@@ -91,10 +91,31 @@ const storyProfiles = {
   },
   giuseppe_dolo: {
     author: "giuseppe_dolo",
-    stories: findStoriesOfAuthor("maria_alfaro"),
+    stories: findStoriesOfAuthor("giuseppe_dolo"),
     location: "Barcelona",
     image: Images.giuseppe,
     bio: "Ciao! My name is Giuseppe and I'm an Italian who found himself in Barcelona after retirement. I love sharing my stories and the knowledge I gain as I explore this new city!",
+  },
+  willow_alder: {
+    author: "willow_alder",
+    stories: findStoriesOfAuthor("willow_alder"),
+    location: "San Francisco",
+    image: Images.profPlaceholder,
+    bio: "Hi! I'm a podcast host!",
+  },
+  '99% Invisible Podcast': {
+    author: "99% Invisible Podcast",
+    stories: findStoriesOfAuthor("99% Invisible Podcast"),
+    location: "San Francisco",
+    image: Images.profPlaceholder,
+    bio: "99% Invisible Podcast is a podcast. Feel free to listen!",
+  },
+  'Total Life Freedom Podcast': {
+    author: "Total Life Freedom Podcast",
+    stories: findStoriesOfAuthor("Total Life Freedom Podcast"),
+    location: "San Francisco",
+    image: Images.profPlaceholder,
+    bio: "Total Life Freedom Podcast is a podcast. Feel free to listen!",
   }
 };
 

@@ -81,7 +81,7 @@ const images = {
   addPhoto : require('../Images/addPhoto.png'),
 
   //Profile Images
-  profPlaceholder : require('../Images/tay.png'),
+  profPlaceholder : require('../Images/profilePlaceholder.png'),
   dot : require('../Images/dot.png'),
   profSettings : require('../Images/profSettings.png'),
 

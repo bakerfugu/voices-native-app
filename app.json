@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "voices-app",
-    "slug": "voices-app",
+    "name": "voices",
+    "slug": "voices",
     "version": "1.0.0",
     "orientation": "portrait",
     "updates": {
@@ -15,12 +15,11 @@
     },
     "android": {
       "adaptiveIcon": {
-        
         "backgroundColor": "#FFFFFF"
       }
     },
-    "web": {
-     
-    }
+    "web": {},
+    "description": "voices is an app for cultural immersion through listening to personal stories",
+    "githubUrl": "https://github.com/stanford-cs47-win21/final-project-voices"
   }
 }

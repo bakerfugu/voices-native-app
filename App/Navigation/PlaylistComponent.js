@@ -17,9 +17,16 @@ export default function PlaylistComponent () {
 
   const [image, setImage] = useState("");
   const getProfile = async () => {
-    const value = await AsyncStorage.getItem('profile');
-    const profile = JSON.parse(value)
-    setImage(profile.image)
+    try {
+      const value = await AsyncStorage.getItem('profile');
+      const profile = JSON.parse(value)
+      setImage(profile.image)
+
+    }
+    catch (e) {
+      console.log(e);
+    }
+    
 
   }
   

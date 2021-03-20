@@ -39,34 +39,53 @@ export default function StoryInfo({route, params}) {
     const [image, setImage] = useState(null);
 
     const getPermissionAsync = async (permission) => {
-        const { status } = await Permissions.askAsync(permission);
-        if (status !== 'granted') {
-          alert('Sorry, we need camera roll or camera permissions to make this work!');
+        try {
+            const { status } = await Permissions.askAsync(permission);
+            if (status !== 'granted') {
+                alert('Sorry, we need camera roll or camera permissions to make this work!');
+            }
         }
-    }
-    const pickImage = async () => {
-        await getPermissionAsync(Permissions.CAMERA_ROLL);
-        let result = await ImagePicker.launchImageLibraryAsync({
-            mediaTypes: ImagePicker.MediaTypeOptions.All,
-                allowsEditing: true,
-                aspect: [4, 3],
-                quality: 1,
-        });
-        if (!result.cancelled) {
-          setImage(result.uri)
+        catch (e) {
+            console.log(e)
         }
+        
     }
 
+    const pickImage = async () => {
+        try {
+            await getPermissionAsync(Permissions.CAMERA_ROLL);
+            let result = await ImagePicker.launchImageLibraryAsync({
+                mediaTypes: ImagePicker.MediaTypeOptions.All,
+                    allowsEditing: true,
+                    aspect: [4, 3],
+                    quality: 1,
+            });
+            if (!result.cancelled) {
+                setImage(result.uri)
+            }
+        }
+        catch (e) {
+            console.log(e)
+        }
+    }
+        
+    
+
     const uploadFromCamera = async () => {
-        await getPermissionAsync(Permissions.CAMERA);
-        let result = await ImagePicker.launchCameraAsync({
-            mediaTypes: ImagePicker.MediaTypeOptions.All,
-                allowsEditing: true,
-                aspect: [4, 3],
-                quality: 1,
-        });
-        if (!result.cancelled) {
-            setImage(result.uri)
+        try {
+            await getPermissionAsync(Permissions.CAMERA);
+            let result = await ImagePicker.launchCameraAsync({
+                mediaTypes: ImagePicker.MediaTypeOptions.All,
+                    allowsEditing: true,
+                    aspect: [4, 3],
+                    quality: 1,
+            });
+            if (!result.cancelled) {
+                setImage(result.uri)
+            }
+        }
+        catch (e) {
+            console.log(e);
         }
     }
 

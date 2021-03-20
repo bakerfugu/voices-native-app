@@ -45,10 +45,10 @@ const [clicked, setClicked] = useState("");
 
 const getProfile = async () => {
 try {
+    
     const value = await AsyncStorage.getItem('profile');
     const parsed = JSON.parse(value)
     setProfile(parsed);
-    console.log("These are the keys", await AsyncStorage.getAllKeys())
     const storiesString = await AsyncStorage.getItem('userStories')
     const stories = storiesString ? JSON.parse(storiesString) : [];
     setUserStories(stories)
@@ -82,17 +82,25 @@ catch (e) {
             quality: 1,
     });
     if (!result.cancelled) {
-      profile.image = result.uri;
-      setProfile(profile);
-      const updated = JSON.stringify(profile);
+      const newProfile = {
+        ...profile,
+        image: result.uri
+      }
+      console.log("This is your profile", profile)
+      console.log("This is your new profile", newProfile)
+      setProfile(newProfile)
+      const updated = JSON.stringify(newProfile);
       await AsyncStorage.setItem('profile', updated)
     }
   }
 
   const updateProfile = async (text) => {
-      profile.bio = bio;
-      setProfile(bio);
-      const updated = JSON.stringify(profile);
+    const newProfile = {
+        ...profile,
+        bio: text
+      }
+      setProfile(newProfile);
+      const updated = JSON.stringify(newProfile);
       await AsyncStorage.setItem('profile', updated);
   }
 
@@ -123,7 +131,7 @@ catch (e) {
             <Ionicons name="chevron-back-outline" size={34} color="black" onPress={() => navigation.goBack()} style={styles.backButton} />
             <Ionicons name={"settings-outline"} size={30} color={'black'} style={styles.settings}/>
             <TouchableOpacity style={styles.photoContainer} onPress={pickImage}>
-                {profile?.image? 
+                {profile.image ? 
                 <View style={styles.profImageView}>
                 <Image 
                     source={{uri: profile.image}}
@@ -137,7 +145,7 @@ catch (e) {
 
             <View style={styles.infoContainer}>
                 <Text style={styles.handle}>
-                    {profile?.handle ? profile.handle : ""}
+                    {profile.handle ? profile.handle : ""}
                 </Text>
                 <Text style={styles.location}>
                     San Francisco
@@ -154,21 +162,16 @@ catch (e) {
                     </Text>
                 </View>
                     
-                {profile?.bio?
-                    <TouchableOpacity style={styles.bioContainer} >
-                        <Text style={{fontFamily: "Montserrat", fontSize:18}}>{profile.bio}</Text>
-                    </TouchableOpacity>
-                    :
-                    <TextInput
-                        multiline={true}
-                        fontSize={18}
-                        style={styles.bioContainer}
-                        placeholder="Enter your bio here" 
-                        onChangeText={(text) => setBio(text)}
-                        onSubmitEditing={(text) => updateProfile(text)}
-                    />
-                }
-                
+                <TextInput
+                    multiline={true}
+                    fontSize={18}
+                    style={styles.bioContainer}
+                    placeholder="Enter your bio here" 
+                    value={bio}
+                    onChangeText={(text) => setBio(text)}
+                    onSubmitEditing={(text) => updateProfile(text)}
+            
+                />
               
             </View>
             

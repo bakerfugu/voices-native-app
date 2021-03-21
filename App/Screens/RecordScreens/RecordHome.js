@@ -5,7 +5,7 @@ import BackgroundGradient from "../../Components/BackgroundGradient.js";
 import RecordingOrb from "../../Components/RecordingOrb.js";
 import LongButton from "../../Components/LongButton.js";
 import { Images } from "../../Themes/index.js";
-import { useNavigation } from "@react-navigation/native";
+import { useIsFocused } from '@react-navigation/native';
 import metrics from "../../Themes/Metrics.js";
 
 export default function RecordHome({ route, navigation }) {
@@ -13,6 +13,16 @@ export default function RecordHome({ route, navigation }) {
   const [recording, setRecording] = useState(null);
   const [recordingOn, setRecordingOn] = useState(false);
   const [audioUri, setAudioUri] = useState(null);
+  const isFocused = useIsFocused();
+
+  useEffect(() => {
+      if (isFocused) {
+        setRecording(null);
+        setRecordingOn(false);
+        setAudioUri(null);
+        setTime(0);
+      }
+  }, [isFocused]);
 
   const handleRecordingStatusUpdate = ({ durationMillis }) => {
     if (durationMillis) {

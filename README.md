@@ -31,7 +31,9 @@
 You can see all of the details of our project on the website!  
 https://bakerfugu.github.io/voices-everywhere-cs147/
 
+https://github.com/bakerfugu/voices-native-app/assets/7607483/68a1fd35-d3f4-47ac-8c87-d1fa2417d1d5
+
 ## Setup and Development
 
-Full instructions for using the app or setting up the environment for development can be found here:  
+Full instructions for installing a demo version of the app or setting up the environment for development can be found here:  
 https://bakerfugu.github.io/voices-everywhere-cs147/assets/High-Fi-Prototype-README.pdf

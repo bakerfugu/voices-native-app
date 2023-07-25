@@ -14,7 +14,7 @@
 <br/>
 
 ***"If walls could talk, what could they tell you?"***  
-*"What about the plazas, the statues, the fountains and the streets? Take yourself back to a place that was brand new to you, and imagine hearing authentic stories from locals everywhere you go. Presenting voices, where you can hear the culture and memories behind every landmark and street corner. Then, bring personal stories to life by adding your voice to your favorite places."*
+*"What about the plazas, the statues, the fountains and the streets? Take yourself back to a place that was brand new to you, and imagine hearing authentic stories from locals everywhere you go. Presenting* ***voices,*** *where you can hear the culture and memories behind every landmark and street corner. Then, bring personal stories to life by adding your voice to your favorite places."*
 
 <br/>
 
@@ -24,12 +24,11 @@
 
 ## Voices (React Native App)
 
-**Voices** is a React Native app designed to help people connect to the stories behind a location. Users can record themselves telling a story about their favorite places, and other users can learn about a new place by listening to those stories.
+**voices** is a React Native app designed to help people connect to the stories behind a location. Users can record themselves telling a story about their favorite places, and other users can learn about a new place by listening to those stories.
 
-**Voices** is a group project made for Stanford's CS147 course, and this repo holds the source code for our React Native app. My group members were Krishnan Nair, Ayelet Drazen, and Taylor Lallas
+**voices** is a group project made for Stanford's CS147 course, and this repo holds the source code for our React Native app. My group members were Krishnan Nair, Ayelet Drazen, and Taylor Lallas
 
-You can see all of the details of our project on the website!
-
+You can see all of the details of our project on the website!  
 https://bakerfugu.github.io/voices-everywhere-cs147/
 
 ## Setup and Development
